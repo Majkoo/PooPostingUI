@@ -1,0 +1,51 @@
+<nav>
+  <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-md">
+
+        <a class="navbar-brand" routerLink="home">
+            <img src="https://preview.redd.it/nvaxpuqwius41.jpg?auto=webp&s=803366717450b2e1afd8d216545578278a7b4564" class="navbar-logo" alt="logo">
+            <span class="p-2">PicturesUI</span>
+        </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse navbar-container row" id="navbarSupportedContent">
+
+      <div class="navbar-left col-12 col-lg-auto">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item dropdown text-center">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Konto</a>
+            <ul class="dropdown-menu p-0">
+
+<!--              NGIF NOT LOGGED IN-->
+              <li><a class="dropdown-item text-center py-2" routerLink="/login" routerLinkActive="dd-navlink-active">Zaloguj się</a></li>
+              <li><hr class="dropdown-divider m-0"></li>
+              <li><a class="dropdown-item text-center py-2" routerLink="/register" routerLinkActive="dd-navlink-active">Zarejestruj się</a>
+
+
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-center" aria-current="page" routerLink="browse">Odkrywaj</a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="navbar-right col-12 col-lg-auto">
+        <form class="d-flex searchbar">
+          <input class="form-control me-2" type="search" placeholder="Odkryj coś nowego!" aria-label="Search">
+          <button class="btn btn-primary" type="submit">Szukaj</button>
+        </form>
+      </div>
+
+    </div>
+    </div>
+  </div>
+</nav>
+
+

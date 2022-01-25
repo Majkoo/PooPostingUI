@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+$navbar-height: 76px;
+
+html{
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  ::-webkit-scrollbar{
+    transition: 100ms ease;
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-thumb{
+    background: $gray-600;
+    border-radius: 0px;
+  }
+  ::-webkit-scrollbar-thumb:hover{
+    background: $gray-700;
+  }
+  ::-webkit-scrollbar-track{
+    top: 76px;
+    background: #ababab;
+    box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
+    -webkit-box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
+    -moz-box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
+  }
+}
+h1,h2,h3,h4,h5,h6,p{
+  margin: 0;
+  padding: 0;
+}
+.main{
+  min-height: calc(100vh - $navbar-height - 81px - 1rem);
+  @media only screen and(max-width: 767px) {
+    min-height: calc(100vh - $navbar-height - 161px - 1rem);
+  }
+  margin-bottom: 1rem;
+}
+.sidebar{
+  position: sticky;
+  top: calc($navbar-height + 1.5rem);
+  transition: 100ms ease;
+}
+nav{
+  position: sticky;
+  top: 0;
+  box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
+}
+footer{
+  box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
+}

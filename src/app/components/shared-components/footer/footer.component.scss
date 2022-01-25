@@ -1,0 +1,16 @@
+p {
+  color: white;
+  padding: 0.5rem 0;
+  margin: 0;
+  vertical-align: middle;
+  text-align: center;
+}
+.container-fluid {
+  padding: 0 5rem;
+}
+.separator {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
+}

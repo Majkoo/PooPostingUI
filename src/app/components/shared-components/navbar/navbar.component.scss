@@ -1,0 +1,40 @@
+@import "~bootstrap/scss/bootstrap";
+nav {
+  z-index: 3;
+}
+.navbar {
+  top: 0;
+  position: sticky;
+  width: 100%;
+  .navbar-brand {
+    transition: ease 200ms;
+    .navbar-logo {
+      width: 50px;
+      height: 50px;
+      background-size: contain;
+      border: 2px solid white;
+      border-radius: 20px;
+      transition: ease 200ms;
+    }
+    &:hover {
+      .navbar-logo {
+        border-color: rgba(255, 255, 255, 0.7);
+      }
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .nav-link {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    span {
+      vertical-align: middle;
+    }
+  }
+  .dd-navlink-active{
+    color: $green;
+    background-color: $gray-200;
+  }
+}
+.navbar-container{
+  justify-content: space-between;
+}
+
