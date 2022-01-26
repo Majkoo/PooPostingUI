@@ -2,14 +2,30 @@
   <div class="card mt-2">
     <ul class="list-group list-group-flush">
 
-      <li class="list-group-item text-center">
-        <a routerLink="/login" class="btn btn-outline-primary w-100 p-2 m-0">
-          <p>Zaloguj się!</p>
-        </a>
-      </li>
+      <div *ngIf="!userInfo" class="text-center">
+        <li class="list-group-item text-center">
+          <a routerLink="/login" class="btn btn-outline-primary w-100 p-2 m-0">
+            <p>Zaloguj się!</p>
+          </a>
+        </li>
 
-      <li class="list-group-item">A second item</li>
-      <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+      </div>
+
+      <div *ngIf="userInfo" class="text-center">
+        <li class="list-group-item">
+            <h5>Zalogowano jako {{userInfo.accountDto.nickname}}</h5>
+        </li>
+
+        <li class="list-group-item">
+          <a class="btn btn-outline-primary w-100 mb-2" routerLink="/picture/post"> Wstaw obrazek </a>
+          <a class="btn btn-outline-primary w-100 mb-2" routerLink="/account/{{userInfo.accountDto.id}}"> Moje obrazki </a>
+          <a class="btn btn-outline-primary w-100" routerLink="/account/{{userInfo.accountDto.id}}"> Moje konto </a>
+        </li>
+
+      </div>
+
 
     </ul>
   </div>

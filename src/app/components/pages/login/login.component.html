@@ -1,32 +1,40 @@
 <div class="main">
-  <div class="container pt-4 w-100 w-lg-50">
+  <div class="container pt-4 pt-md-5 w-100 w-lg-50">
 
     <div class="card">
       <div class="card-body">
 
-        <form class="text-center row">
+        <form class="text-center row" [formGroup]="form" (submit)="submit()">
 
           <div class="col-12 pb-3">
             <h2>Logowanie</h2>
           </div>
+
           <div class="mb-3 text-left col-12">
-            <label for="EmailInput" class="form-label">Nazwa użytkownika</label>
-            <input type="email" class="form-control" id="EmailInput" aria-describedby="emailHelp">
+            <label for="NicknameInput" class="form-label">Nazwa użytkownika</label>
+            <input formControlName="nickname" type="text" class="form-control"
+                   id="NicknameInput" aria-describedby="NicknameHelp" required>
           </div>
 
           <div class="mb-3 text-left col-12">
             <label for="PasswordInput" class="form-label">Hasło</label>
-            <input type="password" class="form-control" id="PasswordInput">
+            <input formControlName="password" type="password" class="form-control"
+                   id="PasswordInput" aria-describedby="PasswordHelp" required>
           </div>
 
           <div class="col-12">
-            <a routerLink="../home" type="submit" class="btn btn-primary px-2 px-md-5">Zaloguj się</a>
+            <button type="submit" class="btn btn-primary px-2 px-md-5" [disabled]="form.invalid">Zaloguj się</button>
           </div>
 
         </form>
 
       </div>
     </div>
+
+    <div class="alert alert-danger text-center" role="alert" *ngIf="error">
+      Login lub hasło niepoprawne.
+    </div>
+
     <div class="col-12 text-center py-2">
       <a routerLink="../register" class="register-link">Nie masz jescze konta? Zarejestruj się!</a>
     </div>

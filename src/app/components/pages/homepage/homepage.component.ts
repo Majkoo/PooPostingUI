@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit, Output} from '@angular/core';
-import {Picture} from "../../../../Interfaces/Picture";
+import {Picture} from "../../../Models/Picture";
 import {HttpGetServiceService} from "../../../services/http-get-service.service";
-import {Observable, tap} from "rxjs";
+import {map, Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-body',
@@ -10,13 +10,13 @@ import {Observable, tap} from "rxjs";
 })
 export class HomepageComponent implements OnInit {
 
+  token: string | undefined;
   pictures!: Observable<Picture[]>;
-
-  constructor(private httpGetService: HttpGetServiceService) {}
+  constructor(private httpGetService: HttpGetServiceService) {
+  }
 
   ngOnInit(): void {
     this.pictures = this.httpGetService.getPictures();
   }
-
 
 }

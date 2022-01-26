@@ -1,10 +1,10 @@
 <div class="main">
-  <div class="container pt-4 w-100 w-lg-50">
+  <div class="container pt-4 pt-md-5 w-100 w-lg-50">
 
     <div class="card">
       <div class="card-body">
 
-        <form class="text-center row">
+        <form class="text-center row" [formGroup]="form" (submit)="submit()">
 
           <div class="col-12 pb-3">
             <h2>Rejestracja</h2>
@@ -12,26 +12,35 @@
 
           <div class="mb-3 text-left col-12">
             <label for="NicknameInput" class="form-label">Nazwa użytkownika</label>
-            <input type="email" class="form-control" id="NicknameInput" aria-describedby="emailHelp">
+            <input formControlName="nickname" type="email" class="form-control"
+                   id="NicknameInput" required>
+            <span class="text-danger p-1" *ngIf="!isNicknameFree">* Ta nazwa użytkownika jest zajęta</span>
+            <span class="text-danger p-1" *ngIf="!isNicknameValid">* Nazwa użytkownika powinna być dłuższa niż 2 znaki</span>
           </div>
 
           <div class="mb-3 text-left col-12">
-            <label for="EmailInput" class="form-label">Adres E-mail</label>
-            <input type="email" class="form-control" id="EmailInput" aria-describedby="emailHelp">
+            <label for="EmailInput" class="form-label">E-mail</label>
+            <input formControlName="email" type="email" class="form-control"
+                   id="EmailInput" required>
+            <span class="text-danger p-1" *ngIf="!isEmailValid">* To nie jest poprawny adres e-mail</span>
           </div>
 
           <div class="mb-3 text-left col-12">
             <label for="PasswordInput" class="form-label">Hasło</label>
-            <input type="password" class="form-control" id="PasswordInput">
+            <input formControlName="password" type="password" class="form-control"
+                   id="PasswordInput" required>
+            <span class="text-danger p-1" *ngIf="!isPasswordValid">* Hasło powinno być dłuższe niż 8 znaków</span>
           </div>
 
           <div class="mb-3 text-left col-12">
             <label for="ConfPasswordInput" class="form-label">Potwierdź hasło</label>
-            <input type="password" class="form-control" id="ConfPasswordInput" aria-describedby="emailHelp">
+            <input formControlName="confirmPassword" type="password" class="form-control"
+                   id="ConfPasswordInput" required>
+            <span class="text-danger p-1" *ngIf="!isPassSubmitValid">* Hasła nie są takie same</span>
           </div>
 
           <div class="col-12">
-            <a routerLink="../home" type="submit" class="btn btn-primary px-2 px-md-5">Zarejestruj się</a>
+            <button type="submit" class="btn btn-primary px-2 px-md-5" [disabled]="form.invalid">Zarejestruj się</button>
           </div>
 
 

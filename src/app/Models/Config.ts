@@ -1,4 +1,4 @@
 ﻿export interface Config
 {
-  PicturesApiUrl: string;
+  apiUrl: string;
 }

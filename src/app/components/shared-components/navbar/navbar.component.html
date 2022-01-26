@@ -14,23 +14,14 @@
     <div class="collapse navbar-collapse navbar-container row" id="navbarSupportedContent">
 
       <div class="navbar-left col-12 col-lg-auto">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav dropdown-menu-dark me-auto mb-2 mb-lg-0">
 
           <li class="nav-item dropdown text-center">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Konto</a>
-            <ul class="dropdown-menu p-0">
-
-<!--              NGIF NOT LOGGED IN-->
-              <li><a class="dropdown-item text-center py-2" routerLink="/login" routerLinkActive="dd-navlink-active">Zaloguj się</a></li>
-              <li><hr class="dropdown-divider m-0"></li>
-              <li><a class="dropdown-item text-center py-2" routerLink="/register" routerLinkActive="dd-navlink-active">Zarejestruj się</a>
-
-
-            </ul>
+            <a routerLink="/login" class="nav-link">Konto</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-center" aria-current="page" routerLink="browse">Odkrywaj</a>
+            <a class="nav-link text-center" routerLink="browse">Odkrywaj</a>
           </li>
 
         </ul>

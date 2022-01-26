@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpGetServiceService} from "../../../services/http-get-service.service";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {Picture} from "../../../Models/Picture";
+import {Observable, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-picture-details',
@@ -6,10 +10,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./picture-details.component.scss']
 })
 export class PictureDetailsComponent implements OnInit {
+  constructor(
+    private httpGetService: HttpGetServiceService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
-  constructor() { }
+  picture!: Observable<Picture>;
 
   ngOnInit(): void {
+    this.picture = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => this.httpGetService.getPicture(params.get('id')!))
+    )
+  }
+
+  goBack(){
+    this.router.navigate(["/home"]);
   }
 
 }

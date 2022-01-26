@@ -7,6 +7,7 @@ $navbar-height: 76px;
 html{
   scroll-behavior: smooth;
   overflow-y: scroll;
+  overflow-x: hidden;
   ::-webkit-scrollbar{
     transition: 100ms ease;
     width: 11px;
@@ -54,4 +55,16 @@ footer{
   box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -webkit-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
+}
+.toast {
+  position: fixed;
+  bottom: 7rem;
+  right: 2rem;
+  font-size: 14px;
+  padding: 0.2rem 0.5rem;
+  @media only screen and(max-width: 766px) {
+    transform: translateX(-50%);
+    bottom: 11rem;
+    left: 50%;
+  }
 }
