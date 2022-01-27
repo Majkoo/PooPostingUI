@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit, Output} from '@angular/core';
 import {Picture} from "../../../Models/Picture";
-import {HttpGetServiceService} from "../../../services/http-get-service.service";
 import {map, Observable, tap} from "rxjs";
+import {HttpGetServiceService} from "../../services/http-get-service.service";
 
 @Component({
   selector: 'app-body',

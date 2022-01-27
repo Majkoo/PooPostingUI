@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
-import {LoginModel} from "../../../Models/LoginModel";
-import {ConfigServiceService} from "../../../services/singletons/config-service.service";
 import {RegisterModel} from "../../../Models/RegisterModel";
 import {Router} from "@angular/router";
+import {ConfigServiceService} from "../../../core/services/singletons/config-service.service";
 
 @Component({
   selector: 'app-register',

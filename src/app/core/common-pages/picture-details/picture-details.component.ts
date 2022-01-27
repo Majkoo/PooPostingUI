@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpGetServiceService} from "../../../services/http-get-service.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Picture} from "../../../Models/Picture";
 import {Observable, switchMap} from "rxjs";
+import {HttpGetServiceService} from "../../services/http-get-service.service";
 
 @Component({
   selector: 'app-picture-details',

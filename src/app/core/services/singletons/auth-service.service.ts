@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import {UserInfoModel} from "../../Models/UserInfoModel";
-import {Picture} from "../../Models/Picture";
+import {UserInfoModel} from "../../../Models/UserInfoModel";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,7 @@ export class AuthServiceService {
   getUserInfo(): any {
     if(this.UserInfo){
       return this.UserInfo
-    } 
+    }
     return undefined;
   }
 

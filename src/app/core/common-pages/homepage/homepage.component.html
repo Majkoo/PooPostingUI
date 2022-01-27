@@ -1,0 +1,44 @@
+<main class="container px-3 py-2 main">
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-md-9 order-2 order-md-1 p-0">
+
+          <div>
+              <h2>Do zrobienia:</h2>
+            <ul>
+              <li>Strona 404</li>
+              <li>Strona wstaw obrazek</li>
+              <li>Strona moje konto</li>
+              <li>Strona moje obrazki</li>
+              <li>Strona regulamin</li>
+              <li>Strona zmiana danych</li>
+              <li>Strona polityka prywatności</li>
+              <li>Strona trending</li>
+              <li>Strona wyniki wyszukiwania</li>
+              <li>Serwis z headerami</li>
+              <li>Refactor strony szczegóły</li>
+              <li>Paginacja na homepage</li>
+              <li>Likowanie</li>
+            </ul>
+          </div>
+
+          <div class="main" >
+
+            <app-picture
+              *ngFor="let picture of pictures | async"
+              [picture]="picture">
+            </app-picture>
+
+          </div>
+
+
+        </div>
+
+        <div class="col-12 col-md-3 my-2 order-1 order-md-2">
+          <app-sidebar></app-sidebar>
+        </div>
+
+    </div>
+
+</main>
+

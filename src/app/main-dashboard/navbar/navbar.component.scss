@@ -1,4 +1,3 @@
-@import "~bootstrap/scss/bootstrap";
 nav {
   z-index: 3;
 }
@@ -30,8 +29,8 @@ nav {
     }
   }
   .dd-navlink-active{
-    color: $green;
-    background-color: $gray-200;
+    color: #28A745FF; //$green
+    background-color: #E9ECEFFF;// $gray-200;
   }
 }
 .navbar-container{

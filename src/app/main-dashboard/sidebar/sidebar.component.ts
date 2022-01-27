@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthServiceService} from "../../../services/singletons/auth-service.service";
-import {UserInfoModel} from "../../../Models/UserInfoModel";
+import {AuthServiceService} from "../../core/services/singletons/auth-service.service";
+import {UserInfoModel} from "../../Models/UserInfoModel";
 
 @Component({
   selector: 'app-sidebar',
