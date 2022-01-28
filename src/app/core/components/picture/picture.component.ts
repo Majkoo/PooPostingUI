@@ -8,7 +8,7 @@ import {Picture} from "../../../Models/Picture";
 })
 export class PictureComponent implements OnInit {
 
-  @Input() picture!: Picture | undefined;
+  @Input() picture!: Picture;
 
   ngOnInit(): void {}
 

@@ -1,6 +1,6 @@
 <div *ngIf="picture != undefined">
 
-  <div class="card text-center mt-3 mb-4 border">
+  <div class="card text-center my-3 border">
 
     <div class="card-header pb-1">
       <h5>{{picture.name}}</h5>
@@ -10,7 +10,7 @@
     <div class="card-body">
       <ul class="list-group list-group-flush">
         <li class="list-group-item p-0">
-          <div class="card-img" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <div class="card-img">
             <img class="" [src]="picture.url" alt="{{picture.name}} by {{picture.accountNickname}}">
           </div>
         </li>

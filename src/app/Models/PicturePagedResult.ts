@@ -1,9 +1,7 @@
 ﻿import {Picture} from "./Picture";
 
 export interface PicturePagedResult {
-  Items: Picture[];
-  TotalPages: number;
-  ItemsFrom: number;
-  ItemsTo: number;
-  TotalItemsCount: number;
+  items: Picture[];
+  totalPages: number;
+  page: number;
 }

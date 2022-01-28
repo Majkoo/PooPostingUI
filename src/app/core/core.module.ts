@@ -7,6 +7,7 @@ import { PostPictureComponent } from './common-pages/post-picture/post-picture.c
 import {PictureComponent} from "./components/picture/picture.component";
 import {MainDashboardModule} from "../main-dashboard/main-dashboard.module";
 import {AppRoutingModule} from "../app-routing.module";
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 
@@ -17,7 +18,8 @@ import {AppRoutingModule} from "../app-routing.module";
     PictureDetailsComponent,
     PostPictureComponent,
 
-    PictureComponent
+    PictureComponent,
+     PaginationComponent
   ],
   imports: [
     CommonModule,
