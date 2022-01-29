@@ -11,19 +11,27 @@
           </div>
 
           <div class="mb-3 text-left col-12">
-            <label for="NicknameInput" class="form-label">Nazwa użytkownika</label>
-            <input formControlName="nickname" type="text" class="form-control"
-                   id="NicknameInput" aria-describedby="NicknameHelp" required>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nazwa użytkownika</mat-label>
+              <input matInput formControlName="nickname" type="text" [formControl]="requiredFormControl" required/>
+              <mat-error *ngIf="error">
+                Login lub hasło niepoprawne
+              </mat-error>
+            </mat-form-field>
           </div>
 
           <div class="mb-3 text-left col-12">
-            <label for="PasswordInput" class="form-label">Hasło</label>
-            <input formControlName="password" type="password" class="form-control"
-                   id="PasswordInput" aria-describedby="PasswordHelp" required>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Hasło</mat-label>
+              <input matInput formControlName="password" type="password" [formControl]="requiredFormControl" required/>
+              <mat-error *ngIf="error">
+                Login lub hasło niepoprawne
+              </mat-error>
+            </mat-form-field>
           </div>
 
           <div class="col-12">
-            <button type="submit" class="btn btn-primary px-2 px-md-5" [disabled]="form.invalid">Zaloguj się</button>
+            <button type="submit" mat-raised-button color="primary" class="px-2 px-md-5 mat-button-primary" [disabled]="form.invalid">Zaloguj się</button>
           </div>
 
         </form>
@@ -31,9 +39,6 @@
       </div>
     </div>
 
-    <div class="alert alert-danger text-center" role="alert" *ngIf="error">
-      Login lub hasło nieprawidłowe.
-    </div>
 
     <div class="col-12 text-center py-2">
       <a routerLink="../register" class="register-link">Nie masz jescze konta? Zarejestruj się!</a>

@@ -7,7 +7,9 @@ import { PostPictureComponent } from './common-pages/post-picture/post-picture.c
 import {PictureComponent} from "./components/picture/picture.component";
 import {MainDashboardModule} from "../main-dashboard/main-dashboard.module";
 import {AppRoutingModule} from "../app-routing.module";
-import { PaginationComponent } from './components/pagination/pagination.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { ImageCropperModule } from 'ngx-image-cropper';
+import {MaterialModule} from "../material/material.module";
 
 
 
@@ -17,14 +19,15 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     NotfoundComponent,
     PictureDetailsComponent,
     PostPictureComponent,
-
     PictureComponent,
-     PaginationComponent
   ],
   imports: [
     CommonModule,
     MainDashboardModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    ImageCropperModule,
+    MaterialModule
   ],
   exports: [
     HomepageComponent,

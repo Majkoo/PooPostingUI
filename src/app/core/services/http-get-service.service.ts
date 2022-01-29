@@ -14,13 +14,14 @@ export class HttpGetServiceService {
   GetPQuery: GetPQuery = {
     searchPhrase: "",
     pageNumber: 1,
-    pageSize: 10,
+    pageSize: 40,
     likedTags: []
   };
 
-  constructor(private http: HttpClient,
-              private configService: ConfigServiceService) {
-    this.Url = configService.apiUrl + "picture/";
+  constructor(
+    private http: HttpClient,
+    private config: ConfigServiceService) {
+    this.Url = config.apiUrl + "picture/";
   }
 
   getPictures(): Observable<PicturePagedResult> {
@@ -32,21 +33,16 @@ export class HttpGetServiceService {
   }
 
 
-
-
-
   private getPParams(): HttpParams {
     return new HttpParams()
       .set('searchPhrase', this.GetPQuery.searchPhrase)
       .set('pageNumber', this.GetPQuery.pageNumber)
       .set('pageSize', this.GetPQuery.pageSize)
-      .set('likedTags', this.genLikedTags(this.GetPQuery.likedTags));
+      .set('likedTags', this.parseLikedTags(this.GetPQuery.likedTags));
   }
-  private genLikedTags(tags: string[]): string{
+  private parseLikedTags(tags: string[]): string{
     let result = "["
-    tags.forEach(value => {
-      result += value + ",";
-    })
+    tags.forEach(tag => result += (tag + ","))
     result += "]"
     return result;
   }

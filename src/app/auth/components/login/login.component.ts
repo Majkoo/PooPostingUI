@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, NgForm} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserInfoModel} from "../../../Models/UserInfoModel";
 import {ConfigServiceService} from "../../../core/services/singletons/config-service.service";
 import {AuthServiceService} from "../../../core/services/singletons/auth-service.service";
+import {HttpPostServiceService} from "../../../core/services/http-post-service.service";
 
 @Component({
   selector: 'app-login',
@@ -15,12 +16,16 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   error: boolean = false;
 
+  requiredFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
     private config: ConfigServiceService,
     private router: Router,
-    private authService: AuthServiceService) {}
+    private authService: AuthServiceService,
+    private httpPostService: HttpPostServiceService) {}
 
 
   ngOnInit(): void {
@@ -31,11 +36,10 @@ export class LoginComponent implements OnInit {
   }
 
   submit(): void {
-    this.http.post<UserInfoModel>(this.config.apiUrl + "account/login", this.form.getRawValue(), {
-      responseType: "json",
-      withCredentials: true
-    }).subscribe({
+    this.httpPostService.login(this.form.getRawValue())
+      .subscribe({
       next: (v) => {
+        this.error = false;
         this.authService.setUserInfo(v);
         this.router.navigate(['/home'])
       },

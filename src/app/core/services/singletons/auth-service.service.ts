@@ -24,5 +24,8 @@ export class AuthServiceService {
     }
     return undefined;
   }
+  isUserLogged(): boolean {
+    return (this.UserInfo == null)
+  }
 
 }

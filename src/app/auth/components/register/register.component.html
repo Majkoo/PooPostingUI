@@ -10,37 +10,53 @@
             <h2>Rejestracja</h2>
           </div>
 
+
           <div class="mb-3 text-left col-12">
-            <label for="NicknameInput" class="form-label">Nazwa użytkownika</label>
-            <input formControlName="nickname" type="email" class="form-control"
-                   id="NicknameInput" required>
-            <span class="text-danger p-1" *ngIf="!isNicknameFree">* Ta nazwa użytkownika jest zajęta</span>
-            <span class="text-danger p-1" *ngIf="!isNicknameValid">* Nazwa użytkownika powinna być dłuższa niż 2 znaki</span>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nazwa użytkownika</mat-label>
+              <input matInput formControlName="nickname" type="text" [formControl]="requiredFormControl" required/>
+              <mat-error *ngIf="!isNicknameFree">
+                Ta nazwa użytkownika jest zajęta
+              </mat-error>
+              <mat-error *ngIf="!isNicknameValid">
+                Nazwa użytkownika powinna zawierać co najmniej 4 znaki
+              </mat-error>
+            </mat-form-field>
           </div>
 
           <div class="mb-3 text-left col-12">
-            <label for="EmailInput" class="form-label">E-mail</label>
-            <input formControlName="email" type="email" class="form-control"
-                   id="EmailInput" required>
-            <span class="text-danger p-1" *ngIf="!isEmailValid">* To nie jest poprawny adres e-mail</span>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>E-mail</mat-label>
+              <input matInput formControlName="email" type="email" [formControl]="requiredFormControl" required/>
+              <mat-error *ngIf="!isEmailValid">
+                Proszę wpisać poprawny adres e-mail
+              </mat-error>
+            </mat-form-field>
           </div>
 
           <div class="mb-3 text-left col-12">
-            <label for="PasswordInput" class="form-label">Hasło</label>
-            <input formControlName="password" type="password" class="form-control"
-                   id="PasswordInput" required>
-            <span class="text-danger p-1" *ngIf="!isPasswordValid">* Hasło powinno być dłuższe niż 8 znaków</span>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Hasło</mat-label>
+              <input matInput formControlName="password" type="password" [formControl]="requiredFormControl" required/>
+              <mat-error *ngIf="!isPasswordValid">
+                Hasło powinno mieć co najmniej 8 znaków
+              </mat-error>
+            </mat-form-field>
+
           </div>
 
           <div class="mb-3 text-left col-12">
-            <label for="ConfPasswordInput" class="form-label">Potwierdź hasło</label>
-            <input formControlName="confirmPassword" type="password" class="form-control"
-                   id="ConfPasswordInput" required>
-            <span class="text-danger p-1" *ngIf="!isPassSubmitValid">* Hasła nie są takie same</span>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Potwierdź hasło</mat-label>
+              <input matInput formControlName="confirmPassword" type="password" [formControl]="requiredFormControl" required/>
+              <mat-error *ngIf="!isPassSubmitValid && isPasswordValid">
+                Hasła nie są takie same
+              </mat-error>
+            </mat-form-field>
           </div>
 
           <div class="col-12">
-            <button type="submit" class="btn btn-primary px-2 px-md-5" [disabled]="form.invalid">Zarejestruj się</button>
+            <button type="submit" mat-raised-button color="primary" class="px-2 px-md-5 mat-button-primary" [disabled]="form.invalid">Zarejestruj się</button>
           </div>
 
 

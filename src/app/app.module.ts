@@ -10,6 +10,7 @@ import {CoreModule} from "./core/core.module";
 import {MainDashboardModule} from "./main-dashboard/main-dashboard.module";
 import {AppConfiguration} from "./core/services/singletons/app-configuration";
 import {ConfigServiceService} from "./core/services/singletons/config-service.service";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {
@@ -33,6 +34,7 @@ export function initializerFn(configService: ConfigServiceService){
     AuthModule,
     CoreModule,
     MainDashboardModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {

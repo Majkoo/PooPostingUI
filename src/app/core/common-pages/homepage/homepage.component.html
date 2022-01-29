@@ -6,8 +6,12 @@
 
 
           <div class="mt-3">
-            <app-pagination [pagesArr]="pagesArr" [page]="result.page"></app-pagination>
+            <mat-paginator [length]="result.totalPages * result.items.length"
+                           [pageSize]="5"
+                           aria-label="Select page">
+            </mat-paginator>
           </div>
+
           <div class="main" >
 
             <app-picture
@@ -15,9 +19,7 @@
               [picture]="picture">
             </app-picture>
 
-
           </div>
-          <app-pagination [pagesArr]="pagesArr"></app-pagination>
 
 
         </div>

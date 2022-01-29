@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import {FooterComponent} from "./footer/footer.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {SidebarComponent} from "./sidebar/sidebar.component";
-import {LoginComponent} from "../auth/components/login/login.component";
-import {RegisterComponent} from "../auth/components/register/register.component";
 import {AppRoutingModule} from "../app-routing.module";
+import {MaterialModule} from "../material/material.module";
 
 
 
@@ -17,7 +16,8 @@ import {AppRoutingModule} from "../app-routing.module";
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule
   ],
   exports: [
     FooterComponent,

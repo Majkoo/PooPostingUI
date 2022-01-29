@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit, Output} from '@angular/core';
-import {map, Observable, Subscription, tap} from "rxjs";
 import {HttpGetServiceService} from "../../services/http-get-service.service";
 import {PicturePagedResult} from "../../../Models/PicturePagedResult";
 
@@ -36,24 +35,26 @@ export class HomepageComponent implements OnInit {
   }
 
 
+  // change this
   private static calcPagination(totalPages: number, page: number): string[]{
     let pages = []
-    if(totalPages > 6) {
-      for (let i = page; i < page+3; i++) {
-        pages.push((i+1).toString());
+    if(totalPages > 5) {
+      for (let i = page; i < page+4; i++) {
+        pages.push((i).toString());
       }
       pages.push("...")
-      for (let i = totalPages-3; i < totalPages; i++) {
-        pages.push((i+1).toString());
+      for (let i = totalPages; i < totalPages+1; i++) {
+        pages.push((i).toString());
       }
     } else if (totalPages > 1){
-      for (let i = page; i < totalPages; i++){
-        pages.push((i+1).toString())
+      for (let i = page; i < totalPages+1; i++){
+        pages.push((i).toString())
       }
     } else {
-      pages.push('tylko jedna strona obrazków do wyświetlenia :(');
+      pages.push('1');
     }
     return pages;
   }
+
 
 }

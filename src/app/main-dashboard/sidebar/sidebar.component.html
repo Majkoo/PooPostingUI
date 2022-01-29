@@ -4,7 +4,7 @@
 
       <div *ngIf="!userInfo" class="text-center">
         <li class="list-group-item text-center">
-          <a routerLink="/login" class="btn btn-outline-primary w-100 p-2 m-0">
+          <a routerLink="/login" mat-stroked-button color="primary" class="w-100 p-2 m-0">
             <p>Zaloguj się!</p>
           </a>
         </li>
@@ -19,9 +19,9 @@
         </li>
 
         <li class="list-group-item">
-          <a class="btn btn-outline-primary w-100 mb-2" routerLink="/picture/post"> Wstaw obrazek </a>
-          <a class="btn btn-outline-primary w-100 mb-2" routerLink="/account/{{userInfo.accountDto.id}}"> Moje obrazki </a>
-          <a class="btn btn-outline-primary w-100" routerLink="/account/{{userInfo.accountDto.id}}"> Moje konto </a>
+          <a class="w-100 mb-2" mat-stroked-button color="primary" routerLink="/picture/post"> Wstaw obrazek </a>
+          <a class="w-100 mb-2" mat-stroked-button color="primary" routerLink="/account/{{userInfo.accountDto.id}}"> Moje obrazki </a>
+          <a class="w-100" mat-stroked-button color="primary" routerLink="/account/{{userInfo.accountDto.id}}"> Moje konto </a>
         </li>
 
       </div>
