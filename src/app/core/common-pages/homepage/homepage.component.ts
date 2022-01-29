@@ -1,6 +1,8 @@
-import {Component, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {HttpGetServiceService} from "../../services/http-get-service.service";
 import {PicturePagedResult} from "../../../Models/PicturePagedResult";
+import {Observable} from "rxjs";
+
 
 @Component({
   selector: 'app-body',
@@ -9,6 +11,8 @@ import {PicturePagedResult} from "../../../Models/PicturePagedResult";
 })
 
 export class HomepageComponent implements OnInit {
+  @ViewChild('paginatorTop') paginatorTop: any;
+  @ViewChild('paginatorBottom') paginatorBottom: any;
 
   pagesArr: string[] = [];
 
@@ -16,45 +20,42 @@ export class HomepageComponent implements OnInit {
   result: PicturePagedResult = {
     items:[],
     page:0,
-    totalPages:0
+    pageSize: 0,
+    totalItems:0
   }
 
-
-  constructor(private httpGetService: HttpGetServiceService) {}
+  constructor(private get: HttpGetServiceService) {}
 
   ngOnInit(): void {
-    this.httpGetService.getPictures().subscribe({
+    this.fetchPictures();
+
+  }
+
+  // kinda clunky solution
+  pageTop(val: any) {
+    this.get.setPNumber(val.pageIndex+1);
+    this.fetchPictures();
+    this.paginatorBottom.pageIndex = this.paginatorTop.pageIndex;
+    this.paginatorBottom.pageSize = this.paginatorTop.pageSize;
+  }
+  pageBottom(val: any){
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    this.get.setPNumber(val.pageIndex+1);
+    this.fetchPictures();
+    this.paginatorTop.pageIndex = this.paginatorBottom.pageIndex;
+    this.paginatorTop.pageSize = this.paginatorBottom.pageSize;
+  }
+
+  private fetchPictures(){
+    this.get.getPictures().subscribe({
       next: (value) => {
-      this.result.items = value.items;
-      this.result.page = value.page;
-      this.result.totalPages = value.totalPages;
-      this.pagesArr = HomepageComponent.calcPagination(this.result.totalPages, this.result.page);
+        this.result.items = value.items;
+        this.result.page = value.page;
+        this.result.pageSize = value.pageSize;
+        this.result.totalItems = value.totalItems;
       },
       error: (err) => console.error(err),
     });
   }
-
-
-  // change this
-  private static calcPagination(totalPages: number, page: number): string[]{
-    let pages = []
-    if(totalPages > 5) {
-      for (let i = page; i < page+4; i++) {
-        pages.push((i).toString());
-      }
-      pages.push("...")
-      for (let i = totalPages; i < totalPages+1; i++) {
-        pages.push((i).toString());
-      }
-    } else if (totalPages > 1){
-      for (let i = page; i < totalPages+1; i++){
-        pages.push((i).toString())
-      }
-    } else {
-      pages.push('1');
-    }
-    return pages;
-  }
-
-
 }

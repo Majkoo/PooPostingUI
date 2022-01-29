@@ -14,7 +14,7 @@ export class HttpGetServiceService {
   GetPQuery: GetPQuery = {
     searchPhrase: "",
     pageNumber: 1,
-    pageSize: 40,
+    pageSize: 10,
     likedTags: []
   };
 
@@ -22,6 +22,11 @@ export class HttpGetServiceService {
     private http: HttpClient,
     private config: ConfigServiceService) {
     this.Url = config.apiUrl + "picture/";
+  }
+
+  setPNumber(pageNumber: number): void{
+    this.GetPQuery.pageNumber = pageNumber;
+
   }
 
   getPictures(): Observable<PicturePagedResult> {

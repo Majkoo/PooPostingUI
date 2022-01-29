@@ -2,6 +2,7 @@
 
 export interface PicturePagedResult {
   items: Picture[];
-  totalPages: number;
+  totalItems: number;
+  pageSize: number;
   page: number;
 }
