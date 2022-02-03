@@ -3,14 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {AuthModule} from "./auth/auth.module";
-import {CoreModule} from "./core/core.module";
-import {MainDashboardModule} from "./main-dashboard/main-dashboard.module";
-import {AppConfiguration} from "./core/services/singletons/app-configuration";
-import {ConfigServiceService} from "./core/services/singletons/config-service.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoreModule } from './Modules/core/core.module';
+import { AuthModule } from './Modules/auth/auth.module';
+import {UIModule} from "./Modules/UI/ui.module";
+import { TokenInterceptorService } from './Modules/core/services/interceptors/token-interceptor.service';
+import { ConfigServiceService } from './Modules/core/services/singletons/config-service.service';
+import { HttpErrorInterceptorService } from './Modules/core/services/interceptors/http-error-interceptor.service';
+import { AppConfiguration } from './Models/AppConfiguration';
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {
@@ -33,7 +35,7 @@ export function initializerFn(configService: ConfigServiceService){
 
     AuthModule,
     CoreModule,
-    MainDashboardModule,
+    UIModule,
     BrowserAnimationsModule,
   ],
   providers: [
@@ -41,6 +43,16 @@ export function initializerFn(configService: ConfigServiceService){
       provide: AppConfiguration,
       deps: [HttpClient],
       useExisting: ConfigServiceService
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptorService,
+      multi: true,
     },
     {
       provide: APP_INITIALIZER,

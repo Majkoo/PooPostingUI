@@ -37,6 +37,8 @@ $PicturesUI-theme: mat.define-light-theme((
 
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
+@import "~alertifyjs/build/css/alertify.min.css";
+@import "~alertifyjs/build/css/themes/bootstrap.min.css";
 $navbar-height: 76px;
 
 html{
@@ -68,12 +70,12 @@ h1,h2,h3,h4,h5,h6,p{
   padding: 0 !important;
 }
 .main{
-  min-height: calc(100vh - $navbar-height - 73px - 1rem);
+  min-height: calc(100vh - $navbar-height - 73px);
   @media only screen and(max-width: 767px) {
-    min-height: calc(100vh - $navbar-height - 145px - 1rem);
+    min-height: calc(100vh - $navbar-height - 145px);
     padding: 0 0.5rem;
   }
-  margin-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 .sidebar{
   position: sticky;
@@ -110,6 +112,9 @@ footer{
 .mat-button-primary{
   color: white !important;
   text-decoration: none !important;
+  @media only screen and(max-width: 767px) {
+    height: min-content !important;
+  }
 }
 
 

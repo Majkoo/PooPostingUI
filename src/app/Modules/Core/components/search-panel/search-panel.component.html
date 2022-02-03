@@ -1,0 +1,74 @@
+<mat-card class="bg-dark text-white pb-0">
+  <div class="text-center">
+    <mat-card-title>Panel wyszukiwania</mat-card-title>
+    <mat-card-subtitle class="text-white">Wyszukaj, co cię interesuje</mat-card-subtitle>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+
+      <div class="d-sm-flex justify-content-center justify-content-sm-around w-100 mb-3">
+
+        <div class="min-width d-flex justify-content-center pb-3 p-sm-0">
+          <div>
+            <p class="text-center text-sm-left">Szukaj wśród:</p>
+            <div class="form-check">
+              <input class="form-check-input" name="lookFor" type="radio"
+                     id="lookForPictures" value="pictures" formControlName="lookFor" checked>
+              <label class="form-check-label" for="lookForPictures">
+                Obrazków
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" name="lookFor" type="radio"
+                     id="lookForAccounts" value="accounts" formControlName="lookFor">
+              <label class="form-check-label" for="lookForAccounts">
+                Kont
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="min-width d-flex justify-content-center">
+          <div>
+            <p class="text-center text-sm-left">Sortuj:</p>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sortBy"
+                     id="sortByMostPopular" value="mostPopular" formControlName="sortBy" checked>
+              <label class="form-check-label" for="sortByMostPopular">
+                Najpopularniejsze
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sortBy"
+                     id="sortByNewest" value="newest" formControlName="sortBy">
+              <label class="form-check-label" for="sortByNewest">
+                Najnowsze
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sortBy"
+                     id="sortByMostLikes" value="mostLikes" formControlName="sortBy">
+              <label class="form-check-label" for="sortByMostLikes">
+                Najbardziej lubiane
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-12">
+        <input type="text" class="form-control" placeholder="Podaj frazę" formControlName="searchPhrase">
+      </div>
+
+    </div>
+
+    <mat-card-actions class="d-flex justify-content-between mb-0">
+      <button mat-button type="reset">Wyczyść</button>
+      <button mat-button type="submit">Wyszukaj</button>
+    </mat-card-actions>
+  </form>
+
+</mat-card>
