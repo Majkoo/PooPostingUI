@@ -1,32 +1,63 @@
-<div class="sidebar">
-  <div class="card mt-2">
-    <ul class="list-group list-group-flush">
+<div class="sidebar shadow-sm">
+  <mat-card class="p-0 text-center disable-selection shadow-sm">
 
-      <div *ngIf="!userInfo" class="text-center">
-        <li class="list-group-item text-center">
-          <a routerLink="/login" mat-stroked-button color="primary" class="w-100 p-2 m-0">
-            <p>Zaloguj się!</p>
-          </a>
-        </li>
+    <mat-expansion-panel *ngIf="userInfo === undefined"
+                         [expanded]="true" hideToggle class="rounded-0" >
+      <mat-expansion-panel-header class="border" [collapsedHeight]="'6rem'" [expandedHeight]="'5rem'">
+        <mat-panel-title class="w-100 m-0 d-block text-center">
+            <h3 class="text-primary">Zaloguj się lub zarejestruj!</h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+        <a routerLink="/login" mat-stroked-button color="primary" class="w-100 p-2 m-0 mt-3 mb-2">
+          <p>
+            Zaloguj się
+          </p>
+        </a>
+        <a routerLink="/register" mat-stroked-button color="primary" class="w-100 p-2 m-0">
+          <p>
+            Zarejestruj się
+          </p>
+        </a>
+    </mat-expansion-panel>
 
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
+    <mat-expansion-panel hideToggle class="rounded-0"
+                         [expanded]="userInfo !== undefined"
+                         [disabled]="userInfo === undefined">
+      <mat-expansion-panel-header class="border">
+        <mat-panel-title class="w-100 m-0 justify-content-center">
+          <p>
+            <span class="d-flex justify-content-center">
+                <mat-icon>person</mat-icon>
+                <span class="fs">Moje konto</span>
+            </span>
+          </p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div *ngIf="userInfo">
+        <p class="text-secondary pt-3">
+          Zalogowano jako {{userInfo!.accountDto.nickname}}
+        </p>
       </div>
+    </mat-expansion-panel>
 
-      <div *ngIf="userInfo" class="text-center">
-        <li class="list-group-item">
-            <h5>Zalogowano jako {{userInfo.accountDto.nickname}}</h5>
-        </li>
-
-        <li class="list-group-item">
-          <a class="w-100 mb-2" mat-stroked-button color="primary" routerLink="/picture/post"> Wstaw obrazek </a>
-          <a class="w-100 mb-2" mat-stroked-button color="primary" routerLink="/account/{{userInfo.accountDto.id}}"> Moje obrazki </a>
-          <a class="w-100" mat-stroked-button color="primary" routerLink="/account/{{userInfo.accountDto.id}}"> Moje konto </a>
-        </li>
-
+    <mat-expansion-panel hideToggle class="rounded-0 shadow-sm"
+                         [disabled]="userInfo === undefined">
+      <mat-expansion-panel-header class="border">
+        <mat-panel-title class="w-100 m-0 justify-content-center">
+          <p>
+            <span class="d-flex justify-content-center">
+                <mat-icon>photo_library</mat-icon>
+                <span class="fs">Moje obrazki</span>
+            </span>
+          </p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+        <p class="text-secondary pt-3">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequatur cupiditate dolorem eaque earum harum maxime natus, nemo obcaecati possimus, quia tempore unde? Dignissimos ducimus excepturi impedit ipsum iusto provident sed velit! Esse minima natus officiis, quibusdam quos sed vero!
+        </p>
       </div>
+    </mat-expansion-panel>
 
-
-    </ul>
-  </div>
+  </mat-card>
 </div>

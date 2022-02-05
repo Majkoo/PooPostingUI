@@ -45,6 +45,7 @@ html{
   scroll-behavior: smooth;
   overflow-y: scroll;
   overflow-x: hidden;
+  width: 100vw !important;
   ::-webkit-scrollbar{
     transition: 100ms ease;
     width: 11px;
@@ -52,7 +53,7 @@ html{
   }
   ::-webkit-scrollbar-thumb{
     background: $gray-600;
-    border-radius: 0px;
+    border-radius: 0;
   }
   ::-webkit-scrollbar-thumb:hover{
     background: $gray-700;
@@ -64,27 +65,33 @@ html{
     -webkit-box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
     -moz-box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
   }
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
 }
 h1,h2,h3,h4,h5,h6,p{
   margin: 0 !important;
   padding: 0 !important;
 }
-.main{
-  min-height: calc(100vh - $navbar-height - 73px);
-  @media only screen and(max-width: 767px) {
-    min-height: calc(100vh - $navbar-height - 145px);
-    padding: 0 0.5rem;
-  }
-  padding-bottom: 1rem;
+.disable-selection, img {
+  -webkit-touch-callout: none; /* iOS Safari                         */
+  -webkit-user-select: none; /* Safari                             */
+  -khtml-user-select: none; /* Konqueror HTML                     */
+  -moz-user-select: none; /* Firefox in the past (old versions) */
+  -ms-user-select: none; /* Internet Explorer (>=10) / Edge    */
+  user-select: none; /* Currently supported:               */
+  /* Chrome, Opera and Firefox          */
 }
 .sidebar{
   position: sticky;
   top: calc($navbar-height + 1.5rem);
   transition: 100ms ease;
 }
+.mat-paginator-container {
+  justify-content: space-between !important;
+}
 nav{
   position: sticky;
-  top: 0;
+  top: 0 !important;
+  padding-top: 0;
   box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -webkit-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);

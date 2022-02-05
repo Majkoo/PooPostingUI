@@ -13,6 +13,7 @@ import { TokenInterceptorService } from './Modules/core/services/interceptors/to
 import { ConfigServiceService } from './Modules/core/services/singletons/config-service.service';
 import { HttpErrorInterceptorService } from './Modules/core/services/interceptors/http-error-interceptor.service';
 import { AppConfiguration } from './Models/AppConfiguration';
+import {RouteGuardGuard} from "./Modules/core/guards/route-guard.guard";
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {
@@ -39,6 +40,7 @@ export function initializerFn(configService: ConfigServiceService){
     BrowserAnimationsModule,
   ],
   providers: [
+    RouteGuardGuard,
     {
       provide: AppConfiguration,
       deps: [HttpClient],

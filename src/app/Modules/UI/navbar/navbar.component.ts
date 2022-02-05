@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SearchServiceService} from "../../Core/services/search-service.service";
 import {Router} from "@angular/router";
+import {AuthServiceService} from "../../core/services/singletons/auth-service.service";
 
 @Component({
   selector: 'app-navbar',
@@ -9,22 +10,13 @@ import {Router} from "@angular/router";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-
-  searchPhrase?: string;
-  form: FormGroup
-
   constructor(
-    private searchService: SearchServiceService,
+    private auth: AuthServiceService,
     private router: Router,
   ) {
-    this.form = new FormGroup({
-      searchPhrase: new FormControl(null),
-    });
+
   }
-  onSubmit(){
-    this.searchService.setSearchPhrase(this.form.getRawValue().searchPhrase);
-    this.router.navigate(['/search']);
-  }
+
 
 
 }

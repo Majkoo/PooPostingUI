@@ -1,6 +1,4 @@
 p {
-  color: white;
-  padding: 0.5rem 0 !important;
   margin: 0 !important;
   vertical-align: middle;
   text-align: center;
@@ -13,4 +11,7 @@ p {
   @media only screen and (max-width: 768px) {
     width: 100%;
   }
+}
+.fs {
+  line-height: 24px;
 }

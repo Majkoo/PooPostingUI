@@ -15,4 +15,5 @@ userInfo?: UserInfoModel;
   ngOnInit(): void {
     this.userInfo = this.authService.getUserInfo();
   }
+
 }

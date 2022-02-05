@@ -13,6 +13,7 @@ import { SearchComponent } from './common-pages/search/search.component';
 import {UIModule} from "../UI/ui.module";
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SearchPanelComponent } from './components/search-panel/search-panel.component';
+import { MyAccountComponent } from './common-pages/my-account/my-account.component';
 
 
 
@@ -25,7 +26,8 @@ import { SearchPanelComponent } from './components/search-panel/search-panel.com
     Error404Component,
     Error500Component,
     SearchComponent,
-    SearchPanelComponent
+    SearchPanelComponent,
+    MyAccountComponent
   ],
   imports: [
     CommonModule,

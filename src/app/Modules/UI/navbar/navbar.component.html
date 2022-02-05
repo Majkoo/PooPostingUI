@@ -11,33 +11,52 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse navbar-container row" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse navbar-container justify-content-end row" id="navbarSupportedContent">
 
-      <div class="navbar-left col-12 col-lg-auto">
+      <div class="navbar-right col-12 col-lg-auto">
         <ul class="navbar-nav dropdown-menu-dark me-auto mb-2 mb-lg-0">
 
-          <li class="nav-item dropdown text-center">
-            <a routerLink="/login" class="nav-link">Konto</a>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">
+              <span class="d-flex justify-content-center">
+                <mat-icon>home</mat-icon>
+                <span class="fs"><p>Strona główna</p></span>
+              </span>
+            </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-center" routerLink="browse">Odkrywaj</a>
+            <a class="nav-link text-center" routerLink="search" routerLinkActive="active">
+              <span class="d-flex justify-content-center">
+                <mat-icon>search</mat-icon>
+                <span class="fs"><p>Odkrywaj</p></span>
+              </span>
+            </a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/error404" routerLinkActive="active">
+              <span class="d-flex justify-content-center">
+                <mat-icon>trending_up</mat-icon>
+                <span class="fs"><p>Popularne</p></span>
+              </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/myaccount" routerLinkActive="active">
+              <span class="d-flex justify-content-center">
+                <mat-icon>person</mat-icon>
+                <span class="fs"><p>Konto</p></span>
+              </span>
+            </a>
+          </li>
+
+
 
         </ul>
       </div>
 
-      <div class="navbar-right col-12 col-lg-auto">
-
-        <form class="d-flex searchbar" [formGroup]="form" (ngSubmit)="onSubmit()">
-          <input class="form-control" type="search" placeholder="Wyszukaj..."
-                 aria-label="Search" name="searchPhrase" formControlName="searchPhrase">
-          <button mat-raised-button color="primary" class="w-25 mat-button-primary" type="submit">
-            <mat-icon aria-hidden="false" aria-label="search">search</mat-icon>
-          </button>
-        </form>
-
-      </div>
 
     </div>
     </div>

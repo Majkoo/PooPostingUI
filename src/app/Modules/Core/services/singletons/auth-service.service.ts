@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { LikeModel } from 'src/app/Models/LikeModel';
 import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import {HttpParamsServiceService} from "../http/http-params-service.service";
 
@@ -15,7 +14,6 @@ export class AuthServiceService {
   setUserInfo(value: UserInfoModel): void{
     this.UserInfo = value;
     this.params.GetPQuery.likedTags = this.UserInfo.likedTags;
-    console.log(this.UserInfo);
   }
   getAuthToken(): string {
     if(this.UserInfo?.authToken){
@@ -27,7 +25,7 @@ export class AuthServiceService {
     if(this.UserInfo){
       return this.UserInfo;
     }
-    return null;
+    return undefined;
   }
   getLikes(): any {
     if(this.UserInfo){

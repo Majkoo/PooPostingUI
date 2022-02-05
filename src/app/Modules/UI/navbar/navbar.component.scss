@@ -2,8 +2,6 @@ nav {
   z-index: 3;
 }
 .navbar {
-  top: 0;
-  position: sticky;
   width: 100%;
   .navbar-brand {
     transition: ease 200ms;
@@ -38,5 +36,8 @@ nav {
 }
 .navbar-container{
   justify-content: space-between;
+}
+.fs {
+  line-height: 24px;
 }
 

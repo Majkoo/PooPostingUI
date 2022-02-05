@@ -1,16 +1,7 @@
 <main class="container px-3 py-2 main">
 
     <div class="row justify-content-center">
-        <div class="col-12 col-md-9 order-2 order-md-1 p-0">
-
-
-          <div class="main" >
-
-<!--            OK, i should do separate sites for these. -->
-<!--            <app-error500 *ngIf="error" (backToHomepage)="resetErrors(); resetSearch()"></app-error500>-->
-<!--            <app-error404 *ngIf="notFound" (backToHomepage)="resetErrors(); resetSearch()"></app-error404>-->
-
-
+        <div class="col-12 col-md-8 col-lg-9 order-2 order-md-1 p-0">
 
             <div class="mt-3">
               <mat-paginator #paginatorTop
@@ -20,7 +11,6 @@
                              aria-label="Select page">
               </mat-paginator>
             </div>
-
 
             <div>
               <app-picture
@@ -36,10 +26,9 @@
                            aria-label="Select page">
             </mat-paginator>
 
-          </div>
         </div>
 
-        <div class="col-12 col-md-3 my-2 order-1 order-md-2">
+        <div class="col-12 col-md-4 col-lg-3 my-3 order-1 order-md-2">
           <app-sidebar></app-sidebar>
         </div>
 

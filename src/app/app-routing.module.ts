@@ -8,15 +8,21 @@ import { HomepageComponent } from './Modules/core/common-pages/homepage/homepage
 import { PictureDetailsComponent } from './Modules/core/common-pages/picture-details/picture-details.component';
 import { PostPictureComponent } from './Modules/core/common-pages/post-picture/post-picture.component';
 import { SearchComponent } from './Modules/core/common-pages/search/search.component';
+import {MyAccountComponent} from "./Modules/core/common-pages/my-account/my-account.component";
+import {RouteGuardGuard} from "./Modules/core/guards/route-guard.guard";
 
 const routes: Routes = [
   {path: '', redirectTo: "/home", pathMatch: 'full'},
+
+  {path: "picture/post", component: PostPictureComponent, canActivate: [RouteGuardGuard] },
+  {path: "myaccount", component: MyAccountComponent, canActivate: [RouteGuardGuard]},
+
   {path: "home", component: HomepageComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
   {path: "search", component: SearchComponent},
-  {path: "picture/post", component: PostPictureComponent},
   {path: "picture/:id", component: PictureDetailsComponent},
+
   {path: "error500", component: Error500Component},
   {path: '**', component: Error404Component},
 ];

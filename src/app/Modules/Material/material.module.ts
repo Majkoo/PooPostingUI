@@ -9,6 +9,7 @@ import {HammerModule} from "@angular/platform-browser";
 import {TimeagoModule} from "ngx-timeago";
 import {MatCardModule} from "@angular/material/card";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 const MaterialComponents = [
   MatIconModule,
@@ -21,6 +22,7 @@ const MaterialComponents = [
   MatIconModule,
   MatCardModule,
   MatCheckboxModule,
+  MatExpansionModule,
   HammerModule,
   TimeagoModule.forRoot(),
 
