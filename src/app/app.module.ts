@@ -9,11 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './Modules/core/core.module';
 import { AuthModule } from './Modules/auth/auth.module';
 import {UIModule} from "./Modules/UI/ui.module";
-import { TokenInterceptorService } from './Modules/core/services/interceptors/token-interceptor.service';
-import { ConfigServiceService } from './Modules/core/services/singletons/config-service.service';
-import { HttpErrorInterceptorService } from './Modules/core/services/interceptors/http-error-interceptor.service';
 import { AppConfiguration } from './Models/AppConfiguration';
-import {RouteGuardGuard} from "./Modules/core/guards/route-guard.guard";
+import { RouteGuardGuard } from './Services/guards/route-guard.guard';
+import { ConfigServiceService } from './Services/data/config-service.service';
+import { TokenInterceptorService } from './Services/interceptors/token-interceptor.service';
+import { HttpErrorInterceptorService } from './Services/interceptors/http-error-interceptor.service';
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {

@@ -4,7 +4,7 @@ import {COMMA, ENTER, SPACE} from "@angular/cdk/keycodes";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {Router} from "@angular/router";
-import {HttpServiceService} from "../../services/http/http-service.service";
+import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 
 @Component({
   selector: 'app-post-picture',

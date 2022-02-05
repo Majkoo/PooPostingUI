@@ -3,13 +3,16 @@
   <mat-card class="card text-center p-0 mb-4 shadow">
 
     <mat-card-header class="justify-content-center card-header pb-1">
-      <mat-card-title><p>{{picture.name}}</p></mat-card-title>
+      <mat-card-title>
+        <h4>{{picture.name}}</h4>
+      </mat-card-title>
       <mat-card-subtitle class="text-muted mb-1">
-        <p>
-          <span class="f-sm">Dodano przez:</span>
-          {{picture.accountNickname}},
-          <span>{{picture.pictureAdded | timeago}}</span>
-        </p>
+          <h5>
+            <span class="f-sm">Dodano przez:</span>
+            <span>
+              {{picture.accountNickname}}, {{picture.pictureAdded | timeago}}
+            </span>
+          </h5>
       </mat-card-subtitle>
     </mat-card-header>
     <div class="border-bottom">

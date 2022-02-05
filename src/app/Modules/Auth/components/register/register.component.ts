@@ -1,17 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validator,
-  ValidatorFn,
-  Validators
-} from "@angular/forms";
-import {HttpServiceService} from "../../../core/services/http/http-service.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {AlertifyServiceService} from "../../../core/services/alertify-service.service";
+import { AlertifyServiceService } from 'src/app/Services/alertify-service.service';
+import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { CustomValidators } from 'src/CustomValidators';
 
 @Component({

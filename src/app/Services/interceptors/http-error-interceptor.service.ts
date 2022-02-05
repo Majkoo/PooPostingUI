@@ -8,8 +8,6 @@ import {throwError} from "rxjs";
   providedIn: 'root'
 })
 export class HttpErrorInterceptorService implements HttpInterceptor {
-
-
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req)
       .pipe(

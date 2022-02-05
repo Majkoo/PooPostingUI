@@ -10,7 +10,7 @@
         </div>
 
 
-        <mat-paginator #paginatorTop
+        <mat-paginator #paginatorTop *ngIf="result.items.length > 0"
                        [length]="result.totalItems"
                        [pageSize]="result.pageSize"
                        (page)="pageTop($event)"
@@ -22,7 +22,7 @@
             [picture]="picture">
           </app-picture>
         </div>
-        <mat-paginator #paginatorBottom
+        <mat-paginator #paginatorBottom *ngIf="result.items.length > 2"
                        [length]="result.totalItems"
                        [pageSize]="result.pageSize"
                        (page)="pageBottom($event)"

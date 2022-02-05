@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {ConfigServiceService} from "../../../core/services/singletons/config-service.service";
-import {AuthServiceService} from "../../../core/services/singletons/auth-service.service";
-import {HttpServiceService} from "../../../core/services/http/http-service.service";
-import {AlertifyServiceService} from "../../../core/services/alertify-service.service";
+import { AlertifyServiceService } from 'src/app/Services/alertify-service.service';
+import { AuthServiceService } from 'src/app/Services/data/auth-service.service';
+import { ConfigServiceService } from 'src/app/Services/data/config-service.service';
+import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 
 @Component({
   selector: 'app-login',

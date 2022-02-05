@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {ConfigServiceService} from "../singletons/config-service.service";
 import {Observable, tap, throwError} from "rxjs";
 import {HttpParamsServiceService} from "./http-params-service.service";
 import { Picture } from 'src/app/Models/Picture';
@@ -8,6 +7,7 @@ import { PicturePagedResult } from 'src/app/Models/PicturePagedResult';
 import { LoginModel } from 'src/app/Models/LoginModel';
 import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import { RegisterModel } from 'src/app/Models/RegisterModel';
+import { ConfigServiceService } from '../data/config-service.service';
 
 @Injectable({
   providedIn: 'root'

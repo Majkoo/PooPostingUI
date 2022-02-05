@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
-import {HttpServiceService} from "../../services/http/http-service.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import {HttpParamsServiceService} from "../../services/http/http-params-service.service";
 import { PicturePagedResult } from 'src/app/Models/PicturePagedResult';
+import { HttpServiceService } from 'src/app/Services/http/http-service.service';
+import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
 
 
 @Component({
