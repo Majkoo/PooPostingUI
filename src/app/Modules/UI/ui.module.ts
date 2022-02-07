@@ -6,6 +6,7 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
 import {MaterialModule} from "../material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     CommonModule,
     AppRoutingModule,
     MaterialModule,
+    PrimeNgModule,
     ReactiveFormsModule,
     FormsModule
   ],

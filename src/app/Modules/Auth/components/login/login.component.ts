@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  submit(): void {
+  onSubmit(): void {
     this.error = false;
     this.httpService.postLoginRequest(this.form.getRawValue())
       .subscribe({

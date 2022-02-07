@@ -1,10 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import { PicturePagedResult } from 'src/app/Models/PicturePagedResult';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
-
 
 @Component({
   selector: 'app-body',
@@ -25,8 +23,7 @@ export class HomepageComponent implements OnInit {
 
   constructor(
     private httpService: HttpServiceService,
-    private params: HttpParamsServiceService,
-    private router: Router) {}
+    private params: HttpParamsServiceService) {}
 
   ngOnInit(): void {
     this.fetchPictures();

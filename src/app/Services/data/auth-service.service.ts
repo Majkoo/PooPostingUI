@@ -13,6 +13,7 @@ export class AuthServiceService {
 
   setUserInfo(value: UserInfoModel): void{
     this.UserInfo = value;
+    // localStorage.setItem("token", this.UserInfo.authToken);
     this.params.GetPQuery.likedTags = this.UserInfo.likedTags;
   }
   getAuthToken(): string {

@@ -12,7 +12,6 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatExpansionModule} from "@angular/material/expansion";
 
 const MaterialComponents = [
-  MatIconModule,
   MatInputModule,
   MatPaginatorModule,
   MatChipsModule,

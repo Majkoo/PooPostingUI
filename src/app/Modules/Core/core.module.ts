@@ -14,6 +14,7 @@ import {UIModule} from "../UI/ui.module";
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SearchPanelComponent } from './components/search-panel/search-panel.component';
 import { MyAccountComponent } from './common-pages/my-account/my-account.component';
+import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 
 
 
@@ -35,7 +36,8 @@ import { MyAccountComponent } from './common-pages/my-account/my-account.compone
     AppRoutingModule,
     ReactiveFormsModule,
     ImageCropperModule,
-    MaterialModule
+    MaterialModule,
+    PrimeNgModule
   ],
   exports: [
     HomepageComponent,

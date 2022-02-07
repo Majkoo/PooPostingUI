@@ -44,7 +44,7 @@ $navbar-height: 76px;
 html{
   scroll-behavior: smooth;
   overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   width: 100vw !important;
   ::-webkit-scrollbar{
     transition: 100ms ease;
@@ -91,7 +91,6 @@ h1,h2,h3,h4,h5,h6,p{
 nav{
   position: sticky;
   top: 0 !important;
-  padding-top: 0;
   box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -webkit-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
@@ -123,7 +122,9 @@ footer{
     height: min-content !important;
   }
 }
-
+a:hover {
+  text-decoration: none !important;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

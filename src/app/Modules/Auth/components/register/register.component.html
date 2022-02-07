@@ -9,52 +9,103 @@
 
         <form class="text-center row" typeof="submit" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-          <div class="mb-3 text-left col-12">
-            <mat-form-field class="w-100" appearance="fill">
-              <mat-label>Nazwa użytkownika</mat-label>
-              <input matInput type="text" formControlName="nickname"/>
-              <mat-error>
+          <div class="text-left col-12 mt-3 mb-4">
+            <span class="p-float-label">
+              <input id="nickname-input" class="w-100" type="text"
+                     [ngClass]="form.get('nickname')!.touched ? 'ng-dirty' : ''"
+                     [ngClass]="isNickNameTaken ? 'ng-dirty ng-invalid ng-touched' : ''"
+                     formControlName="nickname" pInputText>
+              <label for="nickname-input">
+                Nazwa użytkownika
+                <span class="text-danger">*</span>
+              </label>
+            </span>
+            <span *ngIf="form.get('nickname')!.touched && form.get('nickname')!.invalid">
+              <small id="nickname-input-error-required" class="px-1 p-error block"
+                     *ngIf="form.get('nickname')!.errors!['required']">
+                Proszę wypełnić to pole
+              </small>
+              <small id="nickname-input-error-minlength" class="px-1 p-error block"
+                     *ngIf="form.get('nickname')!.errors!['minlength']">
                 Nazwa użytkownika powinna zawierać co najmniej 4 znaki
-              </mat-error>
-              <mat-hint class="text-danger" *ngIf="form.get('nickname')!.valid && isNickNameTaken">
-                Ta nazwa użytkownika jest zajęta
-              </mat-hint>
-            </mat-form-field>
-
+              </small>
+            </span>
+            <small id="nickname-input-error" class="px-1 p-error block"
+                   *ngIf="isNickNameTaken">
+              Ta nazwa użytkownika jest zajęta
+            </small>
           </div>
 
-          <div class="mb-3 text-left col-12">
-            <mat-form-field class="w-100" appearance="fill">
-              <mat-label>E-mail</mat-label>
-              <input matInput type="email" formControlName="email"/>
-              <mat-error>
+          <div class="text-left col-12 mb-4">
+            <span class="p-float-label">
+              <input id="email-input" class="w-100" type="text"
+                     [ngClass]="form.get('email')!.touched ? 'ng-dirty' : ''"
+                     formControlName="email" pInputText>
+              <label for="email-input">
+                E-mail
+                <span class="text-danger">*</span>
+              </label>
+            </span>
+            <span *ngIf="form.get('email')!.touched && form.get('email')!.invalid">
+              <small id="email-input-error-required" class="px-1 p-error block"
+                     *ngIf="form.get('email')!.errors!['required']">
+                Proszę wypełnić to pole
+              </small>
+              <small id="email-input-error" class="px-1 p-error block"
+                     *ngIf="form.get('email')!.errors!['email']">
                 Proszę wpisać poprawny adres e-mail
-              </mat-error>
-            </mat-form-field>
+              </small>
+            </span>
           </div>
 
-          <div class="mb-3 text-left col-12">
-            <mat-form-field class="w-100" appearance="fill">
-              <mat-label>Hasło</mat-label>
-              <input matInput type="password" formControlName="password"/>
-              <mat-error>
-                Hasło powinno mieć co najmniej 8 znaków
-              </mat-error>
-            </mat-form-field>
+          <div class="text-left col-12 mb-4">
+            <span class="p-float-label">
+              <input id="password-input" class="w-100" type="password"
+                     [ngClass]="form.get('password')!.touched ? 'ng-dirty' : ''"
+                     formControlName="password" pInputText>
+              <label for="password-input">
+                Hasło
+                <span class="text-danger">*</span>
+              </label>
+            </span>
+            <span *ngIf="form.get('password')!.touched && form.get('password')!.invalid">
+              <small id="password-input-error-required" class="px-1 p-error block"
+                     *ngIf="form.get('password')!.errors!['required']">
+                Proszę wypełnić to pole
+              </small>
+              <small id="password-input-error" class="px-1 p-error block"
+                     *ngIf="form.get('password')!.errors!['minlength']">
+                Hasło powinno zawierać co najmniej 8 znaków
+              </small>
+            </span>
           </div>
 
-          <div class="mb-3 text-left col-12">
-            <mat-form-field class="w-100" appearance="fill">
-              <mat-label>Potwierdź hasło</mat-label>
-              <input matInput type="password" formControlName="confirmPassword"/>
-              <mat-error>
+          <div class="text-left col-12 mb-4">
+            <span class="p-float-label">
+              <input id="conf-input" class="w-100" type="password"
+                     [ngClass]="form.get('confirmPassword')!.touched ? 'ng-dirty' : ''"
+                     formControlName="confirmPassword" pInputText>
+              <label for="conf-input">
+                Powtórz hasło
+                <span class="text-danger">*</span>
+              </label>
+            </span>
+            <span *ngIf="form.get('confirmPassword')!.touched && form.get('confirmPassword')!.invalid">
+              <small id="conf-password-input-error-required" class="px-1 p-error block"
+                     *ngIf="form.get('confirmPassword')!.errors!['required']">
+                Proszę wypełnić to pole
+              </small>
+              <small id="conf-password-input-error" class="px-1 p-error block"
+                     *ngIf="form.get('confirmPassword')!.errors!['mustMatch']">
                 Hasła nie są takie same
-              </mat-error>
-            </mat-form-field>
+              </small>
+            </span>
           </div>
 
           <div class="col-12">
-            <button type="submit" mat-raised-button color="primary" class="px-2 px-md-5 mat-button-primary" [disabled]="!form.valid">Zarejestruj się</button>
+            <button pButton type="submit" class="p-button-primary px-5 py-2 border"
+                      [disabled]="!form.valid">Zarejestruj się
+            </button>
           </div>
 
 

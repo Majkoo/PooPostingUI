@@ -24,7 +24,6 @@ export function initializerFn(configService: ConfigServiceService){
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     BrowserModule,

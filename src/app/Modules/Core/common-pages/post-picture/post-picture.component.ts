@@ -14,8 +14,6 @@ import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 export class PostPictureComponent {
   form!: FormGroup;
   image!: File;
-  //add more specific validation in future
-  NameFormControl = new FormControl('', [Validators.required]);
   @ViewChild('cropperInput') CropperInput: any;
 
   constructor(
@@ -23,7 +21,10 @@ export class PostPictureComponent {
     private httpService: HttpServiceService,
     private router: Router) {
     this.form  = this.formBuilder.group({
-      name: '',
+      name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
       img: undefined,
       description: '',
       tags: this.tags
@@ -98,6 +99,8 @@ export class PostPictureComponent {
     fData.append("name", this.form.getRawValue().name)
     fData.append("description", this.form.getRawValue().description)
     fData.append("tags", this.tagsToString(this.tags))
+    console.log(fData)
+
 
     this.httpService.postPictureRequest(fData).subscribe({
       next: (value) => {this.router.navigate(["./home"])},
