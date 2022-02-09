@@ -39,6 +39,7 @@ $PicturesUI-theme: mat.define-light-theme((
 @import "~bootstrap/scss/bootstrap";
 @import "~alertifyjs/build/css/alertify.min.css";
 @import "~alertifyjs/build/css/themes/bootstrap.min.css";
+@import "~primeicons/primeicons.css";
 $navbar-height: 76px;
 
 html{
@@ -124,6 +125,11 @@ footer{
 }
 a:hover {
   text-decoration: none !important;
+}
+.paginator {
+  position: sticky;
+  bottom: 0;
+  background-color: #efefef;
 }
 
 html, body { height: 100%; }

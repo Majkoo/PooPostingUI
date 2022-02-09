@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import { AlertifyServiceService } from 'src/app/Services/alertify-service.service';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { CustomValidators } from 'src/CustomValidators';
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-register',
@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private httpService: HttpServiceService,
-    private alertify: AlertifyServiceService,
+    private message: MessageService,
     private router: Router,
   ) { }
 
@@ -49,13 +49,14 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     this.isNickNameTaken = false;
+    this.message.clear();
     this.httpService.postRegisterRequest(this.form.getRawValue()).subscribe({
       next: (v) => {
         this.router.navigate(['login']);
-        this.alertify.success("Zarejestrowano pomyślnie. Przeniesiono cię na stronę logowania.")
+        this.message.add({severity:'success', summary: 'Sukces', detail: 'Zarejestrowano pomyślnie. Przeniesiono cię na stronę logowania.'});
       },
       error: () => {
-        this.alertify.error("Rejestracja nieudana. Sprawdź błędy.")
+        this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Rejestracja nie powiodła się. Sprawdź błędy.'});
         this.isNickNameTaken = true;
       }
     });

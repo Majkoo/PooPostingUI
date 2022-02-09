@@ -16,12 +16,6 @@ const MaterialComponents = [
   MatPaginatorModule,
   MatChipsModule,
   MatFormFieldModule,
-  MatFormFieldModule,
-  MatButtonModule,
-  MatIconModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatExpansionModule,
   HammerModule,
   TimeagoModule.forRoot(),
 

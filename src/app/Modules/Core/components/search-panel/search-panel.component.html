@@ -1,12 +1,13 @@
-<mat-card class="bg-dark text-white pb-0">
-  <div class="text-center">
-    <mat-card-title><h1>Panel wyszukiwania</h1></mat-card-title>
-    <mat-card-subtitle class="text-white"><h3>Wyszukaj, co cię interesuje</h3></mat-card-subtitle>
+<div class="bg-dark text-white p-2 mx-3 mx-md-0 rounded shadow d-flex flex-column">
+<!--  Title -->
+  <div class="text-center pb-2">
+    <h1>Panel wyszukiwania</h1>
+    <h3>Wyszukaj, co cię interesuje</h3>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="row">
 
+    <div class="row">
       <div class="d-sm-flex justify-content-center justify-content-sm-around w-100 mb-3">
 
         <div class="min-width d-flex justify-content-center pb-3 p-sm-0">
@@ -58,17 +59,16 @@
 
       </div>
 
-
       <div class="col-12">
         <input type="text" class="form-control" placeholder="Podaj frazę" formControlName="searchPhrase">
       </div>
 
     </div>
 
-    <mat-card-actions class="d-flex justify-content-between mb-0">
+    <div class="d-flex justify-content-between mb-0">
       <button pButton pRipple type="reset" label="Wyczyść" class="p-button-secondary text-white p-button-text"></button>
       <button pButton pRipple type="submit" label="Wyszukaj" class="p-button-secondary text-white p-button-text"></button>
-    </mat-card-actions>
+    </div>
   </form>
 
-</mat-card>
+</div>

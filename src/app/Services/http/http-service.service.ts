@@ -8,6 +8,7 @@ import { LoginModel } from 'src/app/Models/LoginModel';
 import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import { RegisterModel } from 'src/app/Models/RegisterModel';
 import { ConfigServiceService } from '../data/config-service.service';
+import {LikeModel} from "../../Models/LikeModel";
 
 @Injectable({
   providedIn: 'root'
@@ -22,26 +23,62 @@ export class HttpServiceService {
   getPicturesRequest(): Observable<PicturePagedResult>{
     return this.http
       .get<PicturePagedResult>(
-        `${this.config.apiUrl}/picture`,
-        {params: this.params.getGetPicParams()})
+      `${this.config.apiUrl}/picture`,
+      {params: this.params.getGetPicParams()}
+    );
   }
   getPictureRequest(id?: string): Observable<Picture>{
-    return this.http.get<Picture>( `${this.config.apiUrl}/picture/${id}`)
+    return this.http
+      .get<Picture>(
+      `${this.config.apiUrl}/picture/${id}`
+    );
+  }
+  getPictureLikesRequest(id?: string): Observable<LikeModel[]>{
+    return this.http
+      .get<LikeModel[]>(
+        `${this.config.apiUrl}/picture/${id}/likes`
+      );
+  }
+  getAccountLikesRequest(id?: string): Observable<LikeModel[]>{
+    return this.http
+      .get<LikeModel[]>(
+        `${this.config.apiUrl}/account/${id}/likes`
+      );
   }
   postLoginRequest(data: LoginModel): Observable<UserInfoModel> {
-    return this.http.post<UserInfoModel>(`${this.config.apiUrl}/account/login`, data, {responseType: "json",})
+    return this.http
+      .post<UserInfoModel>(
+        `${this.config.apiUrl}/account/login`,
+        data,
+        {responseType: "json",});
   }
   postRegisterRequest(data: RegisterModel): Observable<any> {
-    return this.http.post(`${this.config.apiUrl}/account/register`, data, {responseType: "json",})
+    return this.http
+      .post(
+        `${this.config.apiUrl}/account/register`,
+        data,
+        {responseType: "json",});
   }
   postPictureRequest(data: FormData): Observable<any> {
-    return this.http.post(`${this.config.apiUrl}/picture/create`, data )
+    return this.http
+      .post(
+        `${this.config.apiUrl}/picture/create`,
+        data
+      );
   }
   patchPictureLikeRequest(id: string) {
-    return this.http.patch(`${this.config.apiUrl}/picture/${id}/voteup`, {})
+    return this.http
+      .patch(
+        `${this.config.apiUrl}/picture/${id}/voteup`,
+        {}
+      );
   }
   patchPictureDislikeRequest(id: string) {
-    return this.http.patch(`${this.config.apiUrl}/picture/${id}/votedown`, {})
+    return this.http
+      .patch(
+        `${this.config.apiUrl}/picture/${id}/votedown`,
+        {}
+      );
   }
 
 

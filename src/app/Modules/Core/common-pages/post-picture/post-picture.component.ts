@@ -5,6 +5,7 @@ import {MatChipInputEvent} from "@angular/material/chips";
 import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {Router} from "@angular/router";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-post-picture',
@@ -19,6 +20,7 @@ export class PostPictureComponent {
   constructor(
     private formBuilder: FormBuilder,
     private httpService: HttpServiceService,
+    private message: MessageService,
     private router: Router) {
     this.form  = this.formBuilder.group({
       name: new FormControl(null, [
@@ -99,12 +101,16 @@ export class PostPictureComponent {
     fData.append("name", this.form.getRawValue().name)
     fData.append("description", this.form.getRawValue().description)
     fData.append("tags", this.tagsToString(this.tags))
-    console.log(fData)
-
-
+    this.message.clear();
     this.httpService.postPictureRequest(fData).subscribe({
-      next: (value) => {this.router.navigate(["./home"])},
-      error: (err) => console.error(err)
+      next: () => {
+        this.router.navigate(["./home"]);
+        this.message.add({severity:'success', summary: 'Sukces', detail: 'Obrazek został umieszczony na stronie'});
+      },
+      error: (err) => {
+        this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Nie udało się zapostować obrazka. Sprawdź błędy.'});
+        console.error(err)
+      }
     });
   }
 

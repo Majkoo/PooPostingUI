@@ -9,6 +9,10 @@ import {FileUploadModule} from "primeng/fileupload";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {CardModule} from "primeng/card";
 import {AccordionModule} from "primeng/accordion";
+import {PaginatorModule} from "primeng/paginator";
+import {PrimeIcons} from "primeng/api";
+import {ToastModule} from "primeng/toast";
+import {MessageModule} from "primeng/message";
 
 const PrimeNgComponents = [
   ChipsModule,
@@ -20,7 +24,10 @@ const PrimeNgComponents = [
   FileUploadModule,
   InputTextareaModule,
   CardModule,
-  AccordionModule
+  AccordionModule,
+  PaginatorModule,
+  ToastModule,
+  MessageModule,
 ]
 
 @NgModule({

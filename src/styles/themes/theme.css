@@ -3058,7 +3058,6 @@ p-treeselect.ng-invalid.ng-dirty > .p-treeselect {
 }
 
 .p-paginator {
-  background: #ffffff;
   color: #6c757d;
   border: solid #e9ecef;
   border-width: 0;
@@ -3070,7 +3069,7 @@ p-treeselect.ng-invalid.ng-dirty > .p-treeselect {
 .p-paginator .p-paginator-next,
 .p-paginator .p-paginator-last {
   background-color: transparent;
-  border: 0 none;
+  border: 1px solid grey;
   color: #6c757d;
   min-width: 2.357rem;
   height: 2.357rem;
@@ -3083,7 +3082,7 @@ p-treeselect.ng-invalid.ng-dirty > .p-treeselect {
 .p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover,
 .p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
   background: #e9ecef;
-  border-color: transparent;
+  border-color: black;
   color: #495057;
 }
 .p-paginator .p-paginator-first {
@@ -3129,7 +3128,7 @@ p-treeselect.ng-invalid.ng-dirty > .p-treeselect {
   border-radius: 3px;
 }
 .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-  background: #E8F5E9;
+  background: #c4f3c4;
   border-color: #E8F5E9;
   color: #495057;
 }

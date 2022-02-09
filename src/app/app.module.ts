@@ -14,6 +14,8 @@ import { RouteGuardGuard } from './Services/guards/route-guard.guard';
 import { ConfigServiceService } from './Services/data/config-service.service';
 import { TokenInterceptorService } from './Services/interceptors/token-interceptor.service';
 import { HttpErrorInterceptorService } from './Services/interceptors/http-error-interceptor.service';
+import {MessageService, PrimeIcons} from "primeng/api";
+import {PrimeNgModule} from "./Modules/prime-ng/prime-ng.module";
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {
@@ -27,6 +29,7 @@ export function initializerFn(configService: ConfigServiceService){
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
@@ -37,9 +40,11 @@ export function initializerFn(configService: ConfigServiceService){
     CoreModule,
     UIModule,
     BrowserAnimationsModule,
+    PrimeNgModule,
   ],
   providers: [
     RouteGuardGuard,
+    MessageService,
     {
       provide: AppConfiguration,
       deps: [HttpClient],

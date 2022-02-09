@@ -1,8 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
 import { PicturePagedResult } from 'src/app/Models/PicturePagedResult';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
+import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 
 @Component({
   selector: 'app-body',
@@ -11,8 +12,6 @@ import { HttpParamsServiceService } from 'src/app/Services/http/http-params-serv
 })
 
 export class HomepageComponent implements OnInit {
-  @ViewChild('paginatorTop') paginatorTop: any;
-  @ViewChild('paginatorBottom') paginatorBottom: any;
 
   result: PicturePagedResult = {
     items:[],
@@ -23,39 +22,40 @@ export class HomepageComponent implements OnInit {
 
   constructor(
     private httpService: HttpServiceService,
-    private params: HttpParamsServiceService) {}
+    private params: HttpParamsServiceService,
+    private auth: AuthServiceService) {}
 
   ngOnInit(): void {
+    this.params.setPageNumber(1);
+    this.updateLikes();
     this.fetchPictures();
   }
 
-  // kinda rusty solution
-  pageTop(val: any) {
-    this.params.setPageNumber(val.pageIndex+1);
+  paginate(val: any) {
+    this.updateLikes();
+    this.params.setPageNumber(val.page+1);
     this.fetchPictures();
-    this.paginatorBottom.pageIndex = this.paginatorTop.pageIndex;
-    this.paginatorBottom.pageSize = this.paginatorTop.pageSize;
-  }
-  pageBottom(val: any) {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-    this.params.setPageNumber(val.pageIndex+1);
-    this.fetchPictures();
-    this.paginatorTop.pageIndex = this.paginatorBottom.pageIndex;
-    this.paginatorTop.pageSize = this.paginatorBottom.pageSize;
   }
 
   private fetchPictures(){
     this.httpService.getPicturesRequest().subscribe({
       next: (value: PicturePagedResult) => {
         this.result = value;
-        this.paginatorTop.pageIndex = value.page-1;
-        this.paginatorBottom.pageIndex = value.page-1;
-      },
-      error: (err: HttpErrorResponse) => {
-        // this.router.navigate(['./error500']);
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
       }
     });
+  }
+
+  private updateLikes(){
+    if (this.auth.isUserLogged()){
+      this.httpService.getAccountLikesRequest(this.auth.UserInfo?.accountDto.id)
+        .subscribe({
+          next: (value) => {
+            this.auth.UserInfo!.likes = value;
+          }
+        });
+    }
   }
 
 }
