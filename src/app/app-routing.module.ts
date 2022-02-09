@@ -14,10 +14,16 @@ import { RouteGuardGuard } from './Services/guards/route-guard.guard';
 const routes: Routes = [
   {path: '', redirectTo: "/home", pathMatch: 'full'},
 
-  {path: "picture/post", component: PostPictureComponent,
-    // canActivate: [RouteGuardGuard]
+  {
+    path: "picture/post",
+    component: PostPictureComponent,
+    canActivate: [RouteGuardGuard]
   },
-  {path: "myaccount", component: MyAccountComponent, canActivate: [RouteGuardGuard]},
+  {
+    path: "myaccount",
+    component: MyAccountComponent,
+    canActivate: [RouteGuardGuard]
+  },
 
   {path: "home", component: HomepageComponent},
   {path: "login", component: LoginComponent},

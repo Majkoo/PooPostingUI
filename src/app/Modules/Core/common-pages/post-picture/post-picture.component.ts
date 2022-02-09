@@ -1,7 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {COMMA, ENTER, SPACE} from "@angular/cdk/keycodes";
-import {MatChipInputEvent} from "@angular/material/chips";
 import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {Router} from "@angular/router";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
@@ -15,13 +13,18 @@ import {MessageService} from "primeng/api";
 export class PostPictureComponent {
   form!: FormGroup;
   image!: File;
+  tags: string[] = [];
+  any: any;
+
   @ViewChild('cropperInput') CropperInput: any;
+  @ViewChild('pChips') ChipsInput: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private httpService: HttpServiceService,
     private message: MessageService,
-    private router: Router) {
+    private router: Router
+  ) {
     this.form  = this.formBuilder.group({
       name: new FormControl(null, [
         Validators.required,
@@ -33,23 +36,31 @@ export class PostPictureComponent {
     })
   }
 
-  // mat-chips
-  addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA, SPACE] as const;
-  tags: string[] = [];
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-    if (value) {
-      this.tags.push(value);
-    }
-    event.chipInput!.clear();
+  // p-chips custom logic
+  trimChips() {
+    console.log(this.form.get('tags')?.value);
+    let tags: string[] = this.form.get('tags')?.value;
+    let tagsToTrim: string[] = [];
+    let tagsTrimmed: string[] = [];
+    let uniqueTagsTrimmed: string[] = [];
+    tags.forEach(val => {
+      tagsToTrim = val.split(' ')
+      tagsToTrim.forEach(tag => {
+        tagsTrimmed.push(tag)
+        tagsTrimmed.forEach((c) => {
+          if (!uniqueTagsTrimmed.includes(c)) {
+            uniqueTagsTrimmed.push(c);
+          }
+          if (uniqueTagsTrimmed.length > 6){
+            uniqueTagsTrimmed.pop();
+          }
+        });
+      });
+    });
+    this.form.get('tags')?.setValue(uniqueTagsTrimmed);
+    this.tags = uniqueTagsTrimmed;
   }
-  remove(tag: string): void {
-    const index = this.tags.indexOf(tag);
-    if (index >= 0) {
-      this.tags.splice(index, 1);
-    }
-  }
+
 
   // image cropper
   imageChangedEvent: any;

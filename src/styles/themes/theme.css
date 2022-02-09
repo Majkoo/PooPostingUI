@@ -664,6 +664,7 @@ p-checkbox.ng-dirty.ng-invalid > .p-checkbox > .p-checkbox-box {
 
 .p-chips .p-chips-multiple-container {
   padding: 0.25rem 0.5rem;
+  width: 100%;
 }
 .p-chips .p-chips-multiple-container:not(.p-disabled):hover {
   border-color: #4CAF50;
@@ -693,6 +694,7 @@ p-checkbox.ng-dirty.ng-invalid > .p-checkbox > .p-checkbox-box {
   color: #495057;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
 p-chips.ng-dirty.ng-invalid > .p-chips > .p-inputtext {
@@ -954,6 +956,9 @@ p-dropdown.ng-dirty.ng-invalid > .p-dropdown {
 .p-inputgroup > .p-float-label > .p-component {
   border-radius: 0;
   margin: 0;
+}
+.p-component.p-chips {
+  width: 100%;
 }
 .p-inputgroup > .p-component + .p-inputgroup-addon,
 .p-inputgroup > .p-element + .p-inputgroup-addon,
@@ -3664,16 +3669,16 @@ p-treeselect.ng-invalid.ng-dirty > .p-treeselect {
   margin-bottom: 2rem;
 }
 .p-card .p-card-body {
-  padding: 1rem 0;
+  padding: 0.5rem 0 1rem 0;
 }
 .p-card .p-card-title {
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 .p-card .p-card-subtitle {
   font-weight: 400;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   color: #6c757d;
 }
 .p-card .p-card-content {

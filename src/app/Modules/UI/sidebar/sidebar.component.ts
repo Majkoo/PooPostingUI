@@ -16,4 +16,8 @@ userInfo?: UserInfoModel;
     this.userInfo = this.authService.getUserInfo();
   }
 
+  logout() {
+    this.authService.logout();
+  }
+
 }

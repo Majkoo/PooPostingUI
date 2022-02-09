@@ -6,7 +6,6 @@ import { PostPictureComponent } from './common-pages/post-picture/post-picture.c
 import {PictureComponent} from "./components/picture/picture.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import { ImageCropperModule } from 'ngx-image-cropper';
-import {MaterialModule} from "../material/material.module";
 import {Error404Component} from "./common-pages/errors/error404/error404.component";
 import {Error500Component} from "./common-pages/errors/error500/error500.component";
 import { SearchComponent } from './common-pages/search/search.component';
@@ -15,6 +14,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SearchPanelComponent } from './components/search-panel/search-panel.component';
 import { MyAccountComponent } from './common-pages/my-account/my-account.component';
 import {PrimeNgModule} from "../prime-ng/prime-ng.module";
+import {TimeagoModule} from "ngx-timeago";
 
 
 
@@ -36,8 +36,8 @@ import {PrimeNgModule} from "../prime-ng/prime-ng.module";
     AppRoutingModule,
     ReactiveFormsModule,
     ImageCropperModule,
-    MaterialModule,
-    PrimeNgModule
+    PrimeNgModule,
+    TimeagoModule.forRoot(),
   ],
   exports: [
     HomepageComponent,

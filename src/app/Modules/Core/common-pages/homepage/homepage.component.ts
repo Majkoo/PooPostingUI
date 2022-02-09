@@ -1,5 +1,4 @@
-import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {HttpErrorResponse} from "@angular/common/http";
+import {Component, OnInit,} from '@angular/core';
 import { PicturePagedResult } from 'src/app/Models/PicturePagedResult';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
@@ -31,13 +30,13 @@ export class HomepageComponent implements OnInit {
     this.fetchPictures();
   }
 
-  paginate(val: any) {
+  paginate(val: any): void {
     this.updateLikes();
     this.params.setPageNumber(val.page+1);
     this.fetchPictures();
   }
 
-  private fetchPictures(){
+  private fetchPictures(): void {
     this.httpService.getPicturesRequest().subscribe({
       next: (value: PicturePagedResult) => {
         this.result = value;
@@ -47,7 +46,7 @@ export class HomepageComponent implements OnInit {
     });
   }
 
-  private updateLikes(){
+  private updateLikes(): void {
     if (this.auth.isUserLogged()){
       this.httpService.getAccountLikesRequest(this.auth.UserInfo?.accountDto.id)
         .subscribe({

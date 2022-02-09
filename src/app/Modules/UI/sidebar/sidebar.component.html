@@ -11,10 +11,14 @@
           </div>
         </ng-template>
         <button pButton pRipple routerLink="/login" type="button" label="Zaloguj się"
-                class="p-button-outlined w-100 p-3 border"></button>
+                class="p-button-outlined w-100 p-3 border">
+          <span class="material-icons">login</span>
+        </button>
 
         <button pButton pRipple routerLink="/register" type="button" label="Zarejestruj się"
-                class="p-button-outlined w-100 mt-2 p-3 border"></button>
+                class="p-button-outlined w-100 mt-2 p-3 border">
+          <span class="material-icons">assignment_ind</span>
+        </button>
       </p-accordionTab>
 
       <p-accordionTab [selected]="userInfo !== undefined" [disabled]="userInfo === undefined">
@@ -27,9 +31,13 @@
 
 <!--        content-->
           <div *ngIf="userInfo">
-            <p class="text-secondary">
+            <p class="text-secondary mb-2">
               Zalogowano jako {{userInfo!.accountDto.nickname}}
             </p>
+            <button pRipple pButton class="mt-3 px-2 py-1" (click)="logout()">
+              <span class="material-icons">logout</span>
+              <span>Wyloguj</span>
+            </button>
 
           </div>
       </p-accordionTab>

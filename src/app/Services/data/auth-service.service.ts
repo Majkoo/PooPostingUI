@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import {HttpParamsServiceService} from "../http/http-params-service.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class AuthServiceService {
   UserInfo: UserInfoModel | undefined;
 
   constructor(
-    private params: HttpParamsServiceService) {}
+    private params: HttpParamsServiceService,
+    private router: Router) {}
 
   setUserInfo(value: UserInfoModel): void{
     this.UserInfo = value;
@@ -35,6 +37,11 @@ export class AuthServiceService {
   }
   isUserLogged(): boolean {
     return (this.UserInfo != null);
+  }
+
+  logout() {
+    this.UserInfo = undefined;
+    window.location.reload(); // change this
   }
 
 }
