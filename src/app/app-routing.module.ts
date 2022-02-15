@@ -32,7 +32,9 @@ const routes: Routes = [
   {path: "picture/:id", component: PictureDetailsComponent},
 
   {path: "error500", component: Error500Component},
-  {path: '**', component: Error404Component},
+  {path: "error404", component: Error404Component},
+
+  {path: '**', redirectTo: '/error404', pathMatch: 'full'},
 ];
 
 @NgModule({

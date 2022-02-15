@@ -1,11 +1,33 @@
 <div class="d-flex flex-column justify-content-between" style="height: 100vh">
 
   <div>
-    <app-navbar></app-navbar>
-    <main>
-      <router-outlet></router-outlet>
+    <div class="sticky-top">
+      <app-navbar></app-navbar>
+    </div>
+
+    <main class="container">
+      <div class="row justify-content-center">
+
+        <div class="col-12 col-md-8 col-lg-8 order-2 order-md-1 mt-4 p-0">
+          <router-outlet></router-outlet>
+        </div>
+
+        <app-sidebar class="col-12 col-md-4 col-lg-3 order-1 px-3 pt-2 p-md-0 pl-md-4 order-md-2 mt-4"
+        *ngIf="
+        router.url !== '/error404' &&
+        router.url !== '/error500' &&
+        router.url !== '/login' &&
+        router.url !== '/register' &&
+        router.url !== '/picture/create'
+        ">
+
+        </app-sidebar>
+
+      </div>
     </main>
+
   </div>
+
   <app-footer></app-footer>
 
 </div>
