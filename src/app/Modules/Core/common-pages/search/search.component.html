@@ -1,13 +1,29 @@
 <main>
 
-  <app-search-panel></app-search-panel>
+  <app-search-panel
+    (searchAccEvent)="searchAccounts()"
+    (searchPicEvent)="searchPictures()"
+    (resetSearchEvent)="clearSearch()">
+
+  </app-search-panel>
 
   <div>
     <app-picture
-      *ngFor="let picture of result!.items"
+      *ngFor="let picture of picturesResult!.items"
       [picture]="picture">
     </app-picture>
   </div>
+
+  <nav class="paginator w-100 shadow border" *ngIf="picturesResult.items.length">
+    <p-paginator [rows]="10" [totalRecords]="picturesResult.totalItems-1"
+                 (onPageChange)="paginate($event)"
+                 [pageLinkSize]="10"
+                 [showCurrentPageReport]="true"
+                 [currentPageReportTemplate]="'{currentPage} z {totalPages}'"
+                 [showJumpToPageInput]="true"
+                 aria-label="Select page">
+    </p-paginator>
+  </nav>
 
 </main>
 

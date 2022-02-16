@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpParams} from "@angular/common/http";
 import { GetPQuery } from 'src/app/Models/GetPQuery';
 import { SearchQuery } from 'src/app/Models/SearchQuery';
+import {SortSearch} from "../../Enums/SortSearch";
+import { SortSearchBy } from 'src/app/Enums/SortSearchBy';
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +23,16 @@ export class HttpParamsServiceService {
     searchPhrase: "",
     pageNumber: 1,
     pageSize: 10,
-    lookFor: "",
-    sortBy: ""
+    sortBy: SortSearchBy.MOST_POPULAR,
   }
 
   setPageNumber(pageNumber: number): void{
     this.GetPQuery.pageNumber = pageNumber;
   }
+  setSearchPageNumber(pageNumber: number): void{
+    this.SearchQuery.pageNumber = pageNumber;
+  }
+
   getGetPicParams(): HttpParams {
     let likedTags: string;
 
@@ -41,6 +46,19 @@ export class HttpParamsServiceService {
       .set('pageNumber', this.GetPQuery.pageNumber)
       .set('pageSize', this.GetPQuery.pageSize)
       .set('likedTags', likedTags);
+  }
+  getSearchPicParams(): HttpParams {
+    return new HttpParams()
+      .set('searchPhrase', this.SearchQuery.searchPhrase)
+      .set('pageNumber', this.SearchQuery.pageNumber)
+      .set('pageSize', this.SearchQuery.pageSize)
+      .set('searchBy', this.SearchQuery.sortBy!.toString());
+  }
+  getSearchAccParams(): HttpParams {
+    return new HttpParams()
+      .set('searchPhrase', this.SearchQuery.searchPhrase)
+      .set('pageNumber', this.SearchQuery.pageNumber)
+      .set('pageSize', this.SearchQuery.pageSize)
   }
 
 }

@@ -22,15 +22,17 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
               console.error(`An error occured.\nStatus: ${error.status}\nBody:`)
               console.log(error);
             })
-
+          }
+          else if (error.error === "pictures not found" || error.error === "accounts not found") {
+            return throwError(() => {});
           }
           else if (error.error === "Invalid nickname or password") {
-            return throwError( () => {
+            return throwError(() => {
               console.error("Login failed. (wrong login credentials)")
             });
           }
           else if(error.error.title === "One or more validation errors occurred."){
-            return throwError( () => {
+            return throwError(() => {
               console.error("Register failed. (validation error)")
               console.log(error);
             });

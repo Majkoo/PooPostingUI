@@ -1,7 +1,8 @@
-﻿export interface SearchQuery {
+﻿import { SortSearchBy } from "../Enums/SortSearchBy";
+
+export interface SearchQuery {
   searchPhrase: string,
   pageNumber: number,
   pageSize: number,
-  sortBy: string,
-  lookFor: string
+  sortBy?: SortSearchBy,
 }

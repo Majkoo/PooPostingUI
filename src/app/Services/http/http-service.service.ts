@@ -9,6 +9,7 @@ import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import { RegisterModel } from 'src/app/Models/RegisterModel';
 import { ConfigServiceService } from '../data/config-service.service';
 import {LikeModel} from "../../Models/LikeModel";
+import { AccountPagedResult } from 'src/app/Models/AccountPagedResult';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,13 @@ export class HttpServiceService {
       {params: this.params.getGetPicParams()}
     );
   }
+  searchPicturesRequest(): Observable<PicturePagedResult>{
+    return this.http
+      .get<PicturePagedResult>(
+        `${this.config.apiUrl}/picture/search`,
+        {params: this.params.getSearchPicParams()}
+      );
+  }
   getPictureRequest(id?: string): Observable<Picture>{
     return this.http
       .get<Picture>(
@@ -37,6 +45,13 @@ export class HttpServiceService {
     return this.http
       .get<LikeModel[]>(
         `${this.config.apiUrl}/picture/${id}/likes`
+      );
+  }
+  searchAccountsRequest(): Observable<AccountPagedResult>{
+    return this.http
+      .get<AccountPagedResult>(
+        `${this.config.apiUrl}/account`,
+        {params: this.params.getSearchAccParams()}
       );
   }
   getAccountLikesRequest(id?: string): Observable<LikeModel[]>{

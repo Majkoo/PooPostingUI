@@ -3,6 +3,9 @@ import {PicturePagedResult} from "../../../../Models/PicturePagedResult";
 import {Router} from "@angular/router";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
+import {AccountPagedResult} from "../../../../Models/AccountPagedResult";
+import {MessageService} from "primeng/api";
+import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 
 @Component({
   selector: 'app-search',
@@ -10,10 +13,13 @@ import { HttpParamsServiceService } from 'src/app/Services/http/http-params-serv
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  @ViewChild('paginatorTop') paginatorTop: any;
-  @ViewChild('paginatorBottom') paginatorBottom: any;
-
-  result: PicturePagedResult = {
+  picturesResult: PicturePagedResult = {
+    items:[],
+    page:0,
+    pageSize: 0,
+    totalItems:0
+  }
+  accountsResult: AccountPagedResult = {
     items:[],
     page:0,
     pageSize: 0,
@@ -23,22 +29,96 @@ export class SearchComponent implements OnInit {
   constructor(
     private httpService: HttpServiceService,
     private params: HttpParamsServiceService,
-    private router: Router) {}
+    private router: Router,
+    private message: MessageService,
+    private auth: AuthServiceService) {}
 
   ngOnInit(): void {
+    this.params.setSearchPageNumber(1);
   }
 
-  pageTop(val: any) {
-    this.params.setPageNumber(val.pageIndex+1);
-    this.paginatorBottom.pageIndex = this.paginatorTop.pageIndex;
-    this.paginatorBottom.pageSize = this.paginatorTop.pageSize;
+  searchPictures() {
+    this.httpService.searchPicturesRequest().subscribe({
+      next: (val) => {
+        this.picturesResult.items = val.items;
+        this.picturesResult.page = val.page;
+        this.picturesResult.pageSize = val.pageSize;
+        this.picturesResult.totalItems = val.totalItems;
+        this.message.add({severity:'success', summary: 'Sukces', detail: `Znaleziono ${val.totalItems} wyników`});
+        this.clearAccountsResult();
+      },
+      error: () => {
+        this.message.add({severity:'error', summary: 'Niepowodzenie', detail: `Nie znaleziono żadnych wyników`});
+        this.clearSearch();
+      }
+    });
   }
-  pageBottom(val: any) {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-    this.params.setPageNumber(val.pageIndex+1);
-    this.paginatorTop.pageIndex = this.paginatorBottom.pageIndex;
-    this.paginatorTop.pageSize = this.paginatorBottom.pageSize;
+  searchAccounts() {
+    this.httpService.searchAccountsRequest().subscribe({
+      next: (val) => {
+        this.accountsResult.items = val.items;
+        this.accountsResult.page = val.page;
+        this.accountsResult.pageSize = val.pageSize;
+        this.accountsResult.totalItems = val.totalItems;
+        this.message.add({severity:'success', summary: 'Sukces', detail: `Znaleziono ${val.totalItems} wyników`});
+        this.clearPictureResult();
+      },
+      error: () => {
+        this.message.add({severity:'error', summary: 'Niepowodzenie', detail: `Nie znaleziono żadnych wyników`});
+        this.clearSearch();
+      }
+    });
+  }
+
+  clearSearch() {
+    this.clearAccountsResult();
+    this.clearPictureResult();
+  }
+  paginate(val: any): void {
+    this.updateLikes();
+    this.params.setSearchPageNumber(val.page+1);
+    this.fetchPictures();
+  }
+
+  private clearPictureResult() {
+    this.picturesResult = {
+      items:[],
+      page:0,
+      pageSize: 0,
+      totalItems:0
+    }
+  }
+  private clearAccountsResult() {
+    this.accountsResult = {
+      items:[],
+      page:0,
+      pageSize: 0,
+      totalItems:0
+    }
+  }
+
+  private updateLikes(): void {
+    if (this.auth.isUserLogged()){
+      this.httpService.getAccountLikesRequest(this.auth.UserInfo?.accountDto.id)
+        .subscribe({
+          next: (value) => {
+            this.auth.UserInfo!.likes = value;
+          }
+        });
+    }
+  }
+
+  private fetchPictures(): void {
+    this.httpService.searchPicturesRequest().subscribe({
+      next: (val: PicturePagedResult) => {
+        this.picturesResult.items = val.items;
+        this.picturesResult.page = val.page;
+        this.picturesResult.pageSize = val.pageSize;
+        this.picturesResult.totalItems = val.totalItems;
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    });
   }
 
 }
