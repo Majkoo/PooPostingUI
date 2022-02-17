@@ -12,8 +12,8 @@
       [picture]="picture">
     </app-picture>
     <app-account
-      *ngFor="let account of accountsResult!.items">
-<!--      [picture]="picture"-->
+      *ngFor="let account of accountsResult!.items"
+      [account]="account">
     </app-account>
   </div>
 

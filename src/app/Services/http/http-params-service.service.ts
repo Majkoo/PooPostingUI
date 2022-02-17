@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpParams} from "@angular/common/http";
 import { GetPQuery } from 'src/app/Models/GetPQuery';
 import { SearchQuery } from 'src/app/Models/SearchQuery';
-import {SortSearch} from "../../Enums/SortSearch";
 import { SortSearchBy } from 'src/app/Enums/SortSearchBy';
 
 @Injectable({

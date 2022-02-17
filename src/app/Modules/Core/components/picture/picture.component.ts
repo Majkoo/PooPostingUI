@@ -11,11 +11,10 @@ import {AuthServiceService} from "../../../../Services/data/auth-service.service
   styleUrls: ['./picture.component.scss']
 })
 export class PictureComponent implements OnInit {
-
+  @Input() picture!: Picture;
   isLiked: boolean = false;
   isDisliked: boolean = false;
   IsUserLoggedOn?: boolean;
-  @Input() picture!: Picture;
 
   constructor(
     private configService: ConfigServiceService,
