@@ -1,8 +1,7 @@
-<div class="bg-dark text-white p-2 px-md-4 mx-3 mb-3 mx-md-0 rounded shadow d-flex flex-column">
+<div class="bg-dark text-white p-2 px-md-4 mx-3 mb-5 mx-md-0 rounded shadow d-flex flex-column">
 <!--  Title -->
-  <div class="text-center pb-2">
+  <div class="text-center pt-2 pb-4">
     <h2>Panel wyszukiwania</h2>
-    <h3>Wyszukaj, co cię interesuje</h3>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()" (reset)="reset()">
@@ -58,18 +57,18 @@
         </div>
 
       </div>
+    </div>
 
-      <div class="col-12 px-3
-">
-        <input type="text" class="form-control" placeholder="Podaj frazę" formControlName="searchPhrase">
-      </div>
-
+    <div class="px-3">
+      <input type="text" class="form-control" placeholder="Wyszukaj, co cię interesuje..." formControlName="searchPhrase">
     </div>
 
     <div class="d-flex justify-content-center mt-3 mb-2">
       <button pButton pRipple type="reset" label="Wyczyść" class="p-button-secondary text-white p-button-text border mx-2"></button>
-      <button pButton pRipple type="submit" label="Wyszukaj" class="p-button-secondary text-white p-button-text border mx-2"></button>
+      <button pButton pRipple type="submit" label="Wyszukaj" [disabled]="form.invalid"
+              class="p-button-secondary text-white p-button-text border mx-2"></button>
     </div>
+
   </form>
 
 </div>

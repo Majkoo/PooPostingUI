@@ -15,6 +15,7 @@ import { SearchPanelComponent } from './components/search-panel/search-panel.com
 import { MyAccountComponent } from './common-pages/my-account/my-account.component';
 import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 import {TimeagoModule} from "ngx-timeago";
+import { AccountComponent } from './components/account/account.component';
 
 
 
@@ -28,7 +29,8 @@ import {TimeagoModule} from "ngx-timeago";
     Error500Component,
     SearchComponent,
     SearchPanelComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    AccountComponent
   ],
   imports: [
     CommonModule,

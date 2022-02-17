@@ -21,6 +21,25 @@
 /* Customizations to the designer theme should be defined here */
 * {
   box-sizing: border-box;
+  ::-webkit-scrollbar{
+    transition: 100ms ease;
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-thumb{
+    background: $gray-600;
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover{
+    background: $gray-700;
+  }
+  ::-webkit-scrollbar-track{
+    top: 76px;
+    background: #ababab;
+    box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
+    -webkit-box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
+    -moz-box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
+  }
 }
 a {
   color: $primary-color;

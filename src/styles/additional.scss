@@ -1,0 +1,28 @@
+html{
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  overflow-x: hidden !important;
+  width: auto !important;
+
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
+  font-size: clamp(12px, 2vw, 16px);
+}
+h1,h2,h3,h4,h5,h6,p{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.disable-selection, img {
+  -webkit-touch-callout: none; /* iOS Safari                         */
+  -webkit-user-select: none; /* Safari                             */
+  -khtml-user-select: none; /* Konqueror HTML                     */
+  -moz-user-select: none; /* Firefox in the past (old versions) */
+  -ms-user-select: none; /* Internet Explorer (>=10) / Edge    */
+  user-select: none; /* Currently supported:               */
+  /* Chrome, Opera and Firefox          */
+}
+.material-icons {
+  font-size: 1.5rem !important;
+}
+.p-button {
+  font-size: clamp(14px, 2vw, 1rem) !important;
+}

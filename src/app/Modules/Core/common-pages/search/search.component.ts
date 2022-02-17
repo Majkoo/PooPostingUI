@@ -13,6 +13,8 @@ import {AuthServiceService} from "../../../../Services/data/auth-service.service
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  @ViewChild('paginator') paginator: any;
+
   picturesResult: PicturePagedResult = {
     items:[],
     page:0,
@@ -38,38 +40,51 @@ export class SearchComponent implements OnInit {
   }
 
   searchPictures() {
+    this.clearSearch();
     this.httpService.searchPicturesRequest().subscribe({
       next: (val) => {
         this.picturesResult.items = val.items;
         this.picturesResult.page = val.page;
         this.picturesResult.pageSize = val.pageSize;
         this.picturesResult.totalItems = val.totalItems;
-        this.message.add({severity:'success', summary: 'Sukces', detail: `Znaleziono ${val.totalItems} wyników`});
+        this.message.add({
+          severity:'success',
+          summary: 'Sukces',
+          detail: `Znaleziono ${val.totalItems} wyników dla "${this.params.SearchQuery.searchPhrase}"`
+        });
         this.clearAccountsResult();
       },
       error: () => {
-        this.message.add({severity:'error', summary: 'Niepowodzenie', detail: `Nie znaleziono żadnych wyników`});
-        this.clearSearch();
+        this.message.add({
+          severity:'error',
+          summary: 'Niepowodzenie',
+          detail: `Nie znaleziono żadnych wyników dla "${this.params.SearchQuery.searchPhrase}"`});
       }
     });
   }
   searchAccounts() {
+    this.clearSearch();
     this.httpService.searchAccountsRequest().subscribe({
       next: (val) => {
         this.accountsResult.items = val.items;
         this.accountsResult.page = val.page;
         this.accountsResult.pageSize = val.pageSize;
         this.accountsResult.totalItems = val.totalItems;
-        this.message.add({severity:'success', summary: 'Sukces', detail: `Znaleziono ${val.totalItems} wyników`});
+        this.message.add({
+          severity:'success',
+          summary: 'Sukces',
+          detail: `Znaleziono ${val.totalItems} wyników dla "${this.params.SearchQuery.searchPhrase}"`
+        });
         this.clearPictureResult();
       },
       error: () => {
-        this.message.add({severity:'error', summary: 'Niepowodzenie', detail: `Nie znaleziono żadnych wyników`});
-        this.clearSearch();
+        this.message.add({
+          severity:'error',
+          summary: 'Niepowodzenie',
+          detail: `Nie znaleziono żadnych wyników dla "${this.params.SearchQuery.searchPhrase}"`});
       }
     });
   }
-
   clearSearch() {
     this.clearAccountsResult();
     this.clearPictureResult();

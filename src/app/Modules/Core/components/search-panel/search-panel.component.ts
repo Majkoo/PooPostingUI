@@ -32,7 +32,7 @@ export class SearchPanelComponent implements OnInit {
         value: 0,
         disabled: false
       }),
-      searchPhrase: new FormControl(""),
+      searchPhrase: new FormControl("", Validators.required),
     })
   }
 

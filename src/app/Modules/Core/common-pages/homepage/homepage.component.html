@@ -10,7 +10,7 @@
 <nav class="paginator w-100 shadow border" *ngIf="result.page">
   <p-paginator [rows]="10" [totalRecords]="result.totalItems-1"
                (onPageChange)="paginate($event)"
-               [pageLinkSize]="10"
+               [pageLinkSize]="4"
                [showCurrentPageReport]="true"
                [currentPageReportTemplate]="'{currentPage} z {totalPages}'"
                [showJumpToPageInput]="true"
