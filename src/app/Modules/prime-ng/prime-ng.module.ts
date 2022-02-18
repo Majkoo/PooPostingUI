@@ -10,13 +10,11 @@ import {InputTextareaModule} from "primeng/inputtextarea";
 import {CardModule} from "primeng/card";
 import {AccordionModule} from "primeng/accordion";
 import {PaginatorModule} from "primeng/paginator";
-import {PrimeIcons} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {MessageModule} from "primeng/message";
 import {DataViewModule} from "primeng/dataview";
 import {DividerModule} from "primeng/divider";
 import {TagModule} from "primeng/tag";
-import {ChipModule} from "primeng/chip";
 
 const PrimeNgComponents = [
   ChipsModule,

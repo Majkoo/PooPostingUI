@@ -33,8 +33,6 @@
         <div *ngIf="userInfo">
           <button pButton pRipple routerLink="/picture/post"
                   class="w-100 p-button-outlined" label="Wstaw obrazek"></button>
-          <button pButton pRipple routerLink="mypictures"
-                  class="w-75 mt-3 pl-2 py-1 pr-3" label="Moje obrazki"></button>
         </div>
 
       </p-accordionTab>
@@ -56,6 +54,11 @@
           <button pRipple pButton class="w-75 mt-3 pl-2 py-1 pr-3"
                   routerLink="/myaccount" label="Moje konto">
             <span class="material-icons">account_circle</span>
+          </button>
+
+          <button pButton pRipple routerLink="mypictures"
+                  class="w-75 mt-3 pl-2 py-1 pr-3" label="Moje obrazki">
+            <span class="material-icons">collections</span>
           </button>
 
           <button pRipple pButton class="w-75 mt-3 pl-2 py-1 pr-3"

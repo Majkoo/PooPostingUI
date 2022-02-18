@@ -38,13 +38,6 @@ export class AuthServiceService {
     return undefined;
   }
 
-  getLikes(): any {
-    if(this.UserInfo){
-      return this.UserInfo.likes;
-    }
-    return null;
-  }
-
   isUserLogged(): boolean {
     return (this.UserInfo != null);
   }

@@ -29,7 +29,7 @@ export class PictureComponent implements OnInit {
       this.picture.url = this.configService.picturesUrl + this.picture.url;
     }
     if(this.IsUserLoggedOn){
-      let likes = this.auth.getLikes();
+      let likes = this.auth.getUserInfo().likes;
       if(likes.some((l: LikeModel) => (l.pictureId === this.picture.id) && l.isLike)) {
         this.isLiked = true;
       }

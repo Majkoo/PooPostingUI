@@ -1,38 +1,54 @@
-<div class="mb-4">
+<div class="px-3 px-md-0 mb-4">
+
   <h2>Moje obrazki</h2>
   <p-divider></p-divider>
-</div>
 
-<p-dataView [value]="pictures">
-  <ng-template let-picture pTemplate="listItem">
-    <div class="row mb-4">
-      <div class="col-12 col-sm-8">
-        <div class="d-flex flex-row align-items-center justify-content-between p-2">
+  <p-dataView [value]="pictures">
+    <ng-template let-picture pTemplate="listItem">
 
-          <div class="d-flex flex-column">
+      <div class="d-flex flex-wrap justify-content-center justify-content-sm-between py-3">
 
-            <div class="d-flex flex-row align-items-center">
-              <img src="{{picture.url}}" alt="{{picture.name}}">
-              <div class="title-wrapper">
-                <p class="title px-2">{{picture.name | titlecase}}</p>
-                <p class="description px-2">{{picture.description | slice:0:40}}...</p>
-              </div>
-            </div>
-
-            <div class="tag-wrapper mt">
-              <span *ngFor="let tag of picture.tags | slice:0:6">
-                <p-tag value="{{tag}}" icon="pi pi-tag"></p-tag>
-              </span>
+        <div>
+          <div class="d-flex flex-column flex-sm-row align-items-center">
+            <img src="{{picture.url}}" alt="{{picture.name}}">
+            <div class="title-wrapper">
+              <p class="title px-2">{{picture.name | titlecase}}</p>
+              <p class="description px-2" *ngIf="picture.description && picture.description.length > 40">
+                {{picture.description | slice:0:40}}...
+              </p>
+              <p class="description px-2" *ngIf="picture.description && picture.description.length <= 40">
+                {{picture.description | slice:0:40}}
+              </p>
             </div>
           </div>
 
+          <div class="tag-wrapper mt justify-content-center justify-content-sm-start">
+            <span *ngFor="let tag of picture.tags | slice:0:6">
+              <p-tag value="{{tag}}" icon="pi pi-tag"></p-tag>
+            </span>
+          </div>
+
         </div>
+
+        <div class="d-flex flex-column justify-content-between justify-content-sm-around info-wrapper">
+          <div class="d-flex flex-row justify-content-around">
+            <button pButton disabled label="{{picture.likes}}"
+                    icon="pi pi-thumbs-up" class="p-button-text p-button-raised m-1"></button>
+            <button pButton disabled label="{{picture.dislikes}}"
+                    icon="pi pi-thumbs-down" class="p-button-text p-button-raised m-1"></button>
+          </div>
+          <div
+            class="d-flex flex-row flex-sm-column justify-content-center align-items-center align-items-sm-end gap">
+            <button pButton pRipple label="Opcje" icon="pi pi-list"
+                    class="p-button-sm p-button-raised"></button>
+            <button pButton pRipple label="Szczegóły" icon="pi pi-info-circle"
+                    class="p-button-sm p-button-raised"></button>
+          </div>
+        </div>
+
       </div>
 
-      <div class="col-12 col-sm-4">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, natus!
-      </div>
+    </ng-template>
+  </p-dataView>
 
-    </div>
-  </ng-template>
-</p-dataView>
+</div>
