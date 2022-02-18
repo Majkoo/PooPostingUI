@@ -33,9 +33,9 @@ export class MyPicturesComponent implements OnInit {
 
   }
 
-  filter($evento: any) {
+  filter($event: any) {
     //@ts-ignore
-    this.dataView.filter($evento.target.value!, 'contains')
+    this.dataView.filter($event.target.value!, 'contains')
   }
 
   sortByDate(val: Picture[]): Picture[] {
