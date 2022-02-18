@@ -1,0 +1,26 @@
+img {
+  aspect-ratio: 16/9;
+  max-width: 12rem;
+}
+.title-wrapper {
+  width: 11rem;
+  .title {
+    font-size: 1.25rem;
+    max-width: 11rem;
+    width: fit-content;
+    font-weight: 500;
+  }
+  .description {
+    font-size: 0.875rem;
+    width: fit-content;
+    font-style: italic;
+  }
+}
+.tag-wrapper {
+  max-width: 23rem;
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.25rem;
+  justify-content: flex-start;
+}

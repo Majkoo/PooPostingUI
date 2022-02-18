@@ -1,0 +1,38 @@
+<div class="mb-4">
+  <h2>Moje obrazki</h2>
+  <p-divider></p-divider>
+</div>
+
+<p-dataView [value]="pictures">
+  <ng-template let-picture pTemplate="listItem">
+    <div class="row mb-4">
+      <div class="col-12 col-sm-8">
+        <div class="d-flex flex-row align-items-center justify-content-between p-2">
+
+          <div class="d-flex flex-column">
+
+            <div class="d-flex flex-row align-items-center">
+              <img src="{{picture.url}}" alt="{{picture.name}}">
+              <div class="title-wrapper">
+                <p class="title px-2">{{picture.name | titlecase}}</p>
+                <p class="description px-2">{{picture.description | slice:0:40}}...</p>
+              </div>
+            </div>
+
+            <div class="tag-wrapper mt">
+              <span *ngFor="let tag of picture.tags | slice:0:6">
+                <p-tag value="{{tag}}" icon="pi pi-tag"></p-tag>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-4">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, natus!
+      </div>
+
+    </div>
+  </ng-template>
+</p-dataView>

@@ -16,6 +16,7 @@ import { MyAccountComponent } from './common-pages/my-account/my-account.compone
 import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 import {TimeagoModule} from "ngx-timeago";
 import { AccountComponent } from './components/account/account.component';
+import { MyPicturesComponent } from './common-pages/my-pictures/my-pictures.component';
 
 
 
@@ -30,7 +31,8 @@ import { AccountComponent } from './components/account/account.component';
     SearchComponent,
     SearchPanelComponent,
     MyAccountComponent,
-    AccountComponent
+    AccountComponent,
+    MyPicturesComponent
   ],
   imports: [
     CommonModule,

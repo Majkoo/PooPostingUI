@@ -10,6 +10,7 @@ import { PostPictureComponent } from './Modules/core/common-pages/post-picture/p
 import { SearchComponent } from './Modules/core/common-pages/search/search.component';
 import {MyAccountComponent} from "./Modules/core/common-pages/my-account/my-account.component";
 import { RouteGuardGuard } from './Services/guards/route-guard.guard';
+import {MyPicturesComponent} from "./Modules/core/common-pages/my-pictures/my-pictures.component";
 
 const routes: Routes = [
   {path: '', redirectTo: "/home", pathMatch: 'full'},
@@ -22,6 +23,11 @@ const routes: Routes = [
   {
     path: "myaccount",
     component: MyAccountComponent,
+    canActivate: [RouteGuardGuard]
+  },
+  {
+    path: "mypictures",
+    component: MyPicturesComponent,
     canActivate: [RouteGuardGuard]
   },
 
