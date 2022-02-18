@@ -6,14 +6,24 @@ img {
   width: 11rem;
   .title {
     font-size: 1.25rem;
-    max-width: 11rem;
     width: fit-content;
     font-weight: 500;
+    @media only screen and(max-width: 575px) {
+      text-align: center !important;
+      width: 100%;
+    }
   }
   .description {
     font-size: 0.875rem;
     width: fit-content;
     font-style: italic;
+    @media only screen and(max-width: 575px) {
+      text-align: center !important;
+      width: 100%;
+    }
+  }
+  @media only screen and(max-width: 575px) {
+    text-align: center !important;
   }
 }
 .tag-wrapper {
@@ -27,10 +37,13 @@ img {
   gap: 0.5rem;
 }
 .info-wrapper {
-  @media only screen and(max-width: 576px) {
+  @media only screen and(max-width: 575px) {
     width: 40rem;
   }
 }
 .bi {
   font-size: 2rem;
+}
+.add-date {
+  font-size: 0.75rem;
 }

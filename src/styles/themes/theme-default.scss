@@ -84,7 +84,7 @@ a {
   &:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem $focus-ring-color;
   }
 }
 .p-component-overlay-enter {
@@ -107,7 +107,7 @@ a {
     &:not(.p-disabled).p-focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
       border-color: $primary-color;
     }
     .p-autocomplete-input-token {
@@ -238,7 +238,7 @@ p-calendar.ng-dirty.ng-invalid {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
     .p-datepicker-next {
@@ -259,7 +259,7 @@ p-calendar.ng-dirty.ng-invalid {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
     .p-datepicker-title {
@@ -310,7 +310,7 @@ p-calendar.ng-dirty.ng-invalid {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.2rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem $focus-ring-color;
         }
       }
       >span.p-highlight {
@@ -358,7 +358,7 @@ p-calendar.ng-dirty.ng-invalid {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
       &:last-child {
         margin-top: 0.2em;
@@ -407,7 +407,7 @@ p-calendar.ng-dirty.ng-invalid {
               &:focus {
                 outline: 0 none;
                 outline-offset: 0;
-                box-shadow: 0 0 0 0.2rem $focus-ring-color;
+                box-shadow: 0 0 0 0.05rem $focus-ring-color;
               }
             }
           }
@@ -425,7 +425,7 @@ p-calendar.ng-dirty.ng-invalid {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem $focus-ring-color;
           }
         }
       }
@@ -441,7 +441,7 @@ p-calendar.ng-dirty.ng-invalid {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem $focus-ring-color;
           }
         }
       }
@@ -482,7 +482,7 @@ p-calendar.ng-dirty.ng-invalid {
   &:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem $focus-ring-color;
     border-color: $primary-color;
   }
   .p-cascadeselect-label {
@@ -681,7 +681,7 @@ p-cascadeselect.ng-dirty.ng-invalid {
     .p-checkbox-box.p-focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
       border-color: $primary-color;
     }
     .p-checkbox-box.p-highlight {
@@ -715,7 +715,7 @@ p-checkbox.ng-dirty.ng-invalid {
     &:not(.p-disabled).p-focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
       border-color: $primary-color;
     }
     .p-chips-token {
@@ -804,7 +804,7 @@ p-chips.ng-dirty.ng-invalid {
   &:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem $focus-ring-color;
     border-color: $primary-color;
   }
   .p-dropdown-label {
@@ -1249,7 +1249,7 @@ p-inputnumber.ng-dirty.ng-invalid {
   .p-inputswitch-slider {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem $focus-ring-color;
   }
 }
 p-inputswitch.ng-dirty.ng-invalid {
@@ -1274,7 +1274,7 @@ p-inputswitch.ng-dirty.ng-invalid {
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
       border-color: $primary-color;
     }
   }
@@ -1445,7 +1445,7 @@ p-listbox.ng-dirty.ng-invalid {
   &:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem $focus-ring-color;
     border-color: $primary-color;
   }
   .p-multiselect-label {
@@ -1532,7 +1532,7 @@ p-listbox.ng-dirty.ng-invalid {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
   }
@@ -1642,7 +1642,7 @@ p-password.ng-invalid.ng-dirty {
     &:not(.p-disabled).p-focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
       border-color: $primary-color;
     }
     .p-radiobutton-icon {
@@ -1683,7 +1683,7 @@ p-radiobutton.ng-dirty.ng-invalid {
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
     }
     &:first-child {
       margin-left: 0;
@@ -1782,7 +1782,7 @@ p-selectbutton.ng-dirty.ng-invalid {
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
     }
   }
   .p-slider-range {
@@ -1894,7 +1894,7 @@ p-togglebutton.ng-dirty.ng-invalid {
   &:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem $focus-ring-color;
     border-color: $primary-color;
   }
   .p-treeselect-label {
@@ -1966,7 +1966,7 @@ p-treeselect.ng-invalid.ng-dirty {
   &:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem $focus-ring-color;
   }
   .p-button-icon-left {
     margin-right: 0.5rem;
@@ -2103,7 +2103,7 @@ p-treeselect.ng-invalid.ng-dirty {
       border-color: #56717d;
     }
     &:focus {
-      box-shadow: 0 0 0 0.2rem #beccd2;
+      box-shadow: 0 0 0 0.05rem #beccd2;
     }
     &:active {
       background: #4d646f;
@@ -2124,7 +2124,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #56717d;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #beccd2;
+        box-shadow: 0 0 0 0.05rem #beccd2;
       }
       &:active {
         background: #4d646f;
@@ -2180,7 +2180,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #56717d;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #beccd2;
+        box-shadow: 0 0 0 0.05rem #beccd2;
       }
       &:active {
         background: #4d646f;
@@ -2269,7 +2269,7 @@ p-treeselect.ng-invalid.ng-dirty {
       border-color: #027abc;
     }
     &:focus {
-      box-shadow: 0 0 0 0.2rem #89d4fe;
+      box-shadow: 0 0 0 0.05rem #89d4fe;
     }
     &:active {
       background: #026da7;
@@ -2290,7 +2290,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #027abc;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #89d4fe;
+        box-shadow: 0 0 0 0.05rem #89d4fe;
       }
       &:active {
         background: #026da7;
@@ -2346,7 +2346,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #027abc;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #89d4fe;
+        box-shadow: 0 0 0 0.05rem #89d4fe;
       }
       &:active {
         background: #026da7;
@@ -2435,7 +2435,7 @@ p-treeselect.ng-invalid.ng-dirty {
       border-color: #5e8f32;
     }
     &:focus {
-      box-shadow: 0 0 0 0.2rem #c2e0a8;
+      box-shadow: 0 0 0 0.05rem #c2e0a8;
     }
     &:active {
       background: #537f2d;
@@ -2456,7 +2456,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #5e8f32;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #c2e0a8;
+        box-shadow: 0 0 0 0.05rem #c2e0a8;
       }
       &:active {
         background: #537f2d;
@@ -2512,7 +2512,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #5e8f32;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #c2e0a8;
+        box-shadow: 0 0 0 0.05rem #c2e0a8;
       }
       &:active {
         background: #537f2d;
@@ -2601,7 +2601,7 @@ p-treeselect.ng-invalid.ng-dirty {
       border-color: #fab710;
     }
     &:focus {
-      box-shadow: 0 0 0 0.2rem #fde6ab;
+      box-shadow: 0 0 0 0.05rem #fde6ab;
     }
     &:active {
       background: #e8a704;
@@ -2622,7 +2622,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #fab710;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #fde6ab;
+        box-shadow: 0 0 0 0.05rem #fde6ab;
       }
       &:active {
         background: #e8a704;
@@ -2678,7 +2678,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #fab710;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #fde6ab;
+        box-shadow: 0 0 0 0.05rem #fde6ab;
       }
       &:active {
         background: #e8a704;
@@ -2767,7 +2767,7 @@ p-treeselect.ng-invalid.ng-dirty {
       border-color: #8c239e;
     }
     &:focus {
-      box-shadow: 0 0 0 0.2rem #df9eea;
+      box-shadow: 0 0 0 0.05rem #df9eea;
     }
     &:active {
       background: #7d1f8d;
@@ -2788,7 +2788,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #8c239e;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #df9eea;
+        box-shadow: 0 0 0 0.05rem #df9eea;
       }
       &:active {
         background: #7d1f8d;
@@ -2844,7 +2844,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #8c239e;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #df9eea;
+        box-shadow: 0 0 0 0.05rem #df9eea;
       }
       &:active {
         background: #7d1f8d;
@@ -2933,7 +2933,7 @@ p-treeselect.ng-invalid.ng-dirty {
       border-color: #c02929;
     }
     &:focus {
-      box-shadow: 0 0 0 0.2rem #edacac;
+      box-shadow: 0 0 0 0.05rem #edacac;
     }
     &:active {
       background: #aa2424;
@@ -2954,7 +2954,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #c02929;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #edacac;
+        box-shadow: 0 0 0 0.05rem #edacac;
       }
       &:active {
         background: #aa2424;
@@ -3010,7 +3010,7 @@ p-treeselect.ng-invalid.ng-dirty {
         border-color: #c02929;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem #edacac;
+        box-shadow: 0 0 0 0.05rem #edacac;
       }
       &:active {
         background: #aa2424;
@@ -3103,7 +3103,7 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     &:focus {
       background: transparent;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
       border-color: transparent;
     }
     &:active {
@@ -3219,7 +3219,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
     .p-carousel-next {
@@ -3241,7 +3241,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
   }
@@ -3392,7 +3392,7 @@ p-treeselect.ng-invalid.ng-dirty {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem $focus-ring-color;
           }
         }
         .p-row-editor-init {
@@ -3413,7 +3413,7 @@ p-treeselect.ng-invalid.ng-dirty {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem $focus-ring-color;
           }
         }
         .p-row-editor-save {
@@ -3435,7 +3435,7 @@ p-treeselect.ng-invalid.ng-dirty {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem $focus-ring-color;
           }
         }
         .p-row-editor-cancel {
@@ -3456,7 +3456,7 @@ p-treeselect.ng-invalid.ng-dirty {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem $focus-ring-color;
           }
         }
       }
@@ -3705,7 +3705,7 @@ p-treeselect.ng-invalid.ng-dirty {
   &:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem $focus-ring-color;
   }
 }
 .p-column-filter-menu-button.p-column-filter-menu-button-open {
@@ -3740,7 +3740,7 @@ p-treeselect.ng-invalid.ng-dirty {
   &:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem $focus-ring-color;
   }
 }
 .p-column-filter-overlay {
@@ -3865,7 +3865,7 @@ p-treeselect.ng-invalid.ng-dirty {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem $focus-ring-color;
           }
         }
       }
@@ -3888,7 +3888,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
     .fc-button.fc-dayGridMonth-button {
@@ -3904,7 +3904,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
         z-index: 1;
       }
     }
@@ -3921,7 +3921,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
         z-index: 1;
       }
     }
@@ -3938,7 +3938,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
         z-index: 1;
       }
     }
@@ -4040,7 +4040,7 @@ p-treeselect.ng-invalid.ng-dirty {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem $focus-ring-color;
           }
         }
       }
@@ -4095,7 +4095,7 @@ p-treeselect.ng-invalid.ng-dirty {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem $focus-ring-color;
           }
         }
       }
@@ -4124,7 +4124,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
     .fc-button.fc-dayGridMonth-button {
@@ -4141,7 +4141,7 @@ p-treeselect.ng-invalid.ng-dirty {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.2rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem $focus-ring-color;
           z-index: 1;
         }
       }
@@ -4160,7 +4160,7 @@ p-treeselect.ng-invalid.ng-dirty {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.2rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem $focus-ring-color;
           z-index: 1;
         }
       }
@@ -4179,7 +4179,7 @@ p-treeselect.ng-invalid.ng-dirty {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.2rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem $focus-ring-color;
           z-index: 1;
         }
       }
@@ -4357,7 +4357,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
   }
@@ -4643,7 +4643,7 @@ p-treeselect.ng-invalid.ng-dirty {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem $focus-ring-color;
           }
         }
         .p-treenode-icon {
@@ -4745,7 +4745,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
     .p-treenode-content.p-highlight {
@@ -4878,7 +4878,7 @@ p-treeselect.ng-invalid.ng-dirty {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem $focus-ring-color;
           }
         }
         p-treetablecheckbox {
@@ -5075,7 +5075,7 @@ p-treeselect.ng-invalid.ng-dirty {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.2rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem $focus-ring-color;
         }
       }
     }
@@ -5259,7 +5259,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
     &:hover {
@@ -5298,7 +5298,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
   }
@@ -5511,7 +5511,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
       &:last-child {
         margin-right: 0;
@@ -5615,7 +5615,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
     .p-sidebar-icon {
@@ -5636,7 +5636,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
     + {
@@ -5693,7 +5693,7 @@ p-treeselect.ng-invalid.ng-dirty {
     .p-button.p-fileupload-choose.p-focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
     }
   }
   .p-fileupload-content {
@@ -5745,7 +5745,7 @@ p-treeselect.ng-invalid.ng-dirty {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.2rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem $focus-ring-color;
         }
         .p-menuitem-text {
           color: $text-color;
@@ -6329,7 +6329,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
     &:not(.p-highlight) {
@@ -6582,7 +6582,7 @@ p-treeselect.ng-invalid.ng-dirty {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.2rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem $focus-ring-color;
         }
       }
     }
@@ -6812,7 +6812,7 @@ p-treeselect.ng-invalid.ng-dirty {
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
     }
   }
   .p-message-text {
@@ -6912,7 +6912,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
   }
@@ -7063,7 +7063,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
   }
@@ -7233,7 +7233,7 @@ p-treeselect.ng-invalid.ng-dirty {
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
     }
   }
   img {
@@ -7257,7 +7257,7 @@ p-treeselect.ng-invalid.ng-dirty {
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem $focus-ring-color;
     }
   }
 }
@@ -7414,7 +7414,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem $focus-ring-color;
       }
     }
     .p-menubar-root-list {

@@ -13,10 +13,11 @@
             <img src="{{picture.url}}" alt="{{picture.name}}">
             <div class="title-wrapper">
               <p class="title px-2">{{picture.name | titlecase}}</p>
-              <p class="description px-2" *ngIf="picture.description && picture.description.length > 40">
+              <p class="add-date px-2 text-muted">Dodano {{picture.pictureAdded | date:"dd/M/yy, HH:mm"}}</p>
+              <p class="description px-2 mt-2 text-muted" *ngIf="picture.description && picture.description.length > 40">
                 {{picture.description | slice:0:40}}...
               </p>
-              <p class="description px-2" *ngIf="picture.description && picture.description.length <= 40">
+              <p class="description px-2 mt-2 text-muted" *ngIf="picture.description && picture.description.length <= 40">
                 {{picture.description | slice:0:40}}
               </p>
             </div>

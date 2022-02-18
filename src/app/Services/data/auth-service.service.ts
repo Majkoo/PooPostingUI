@@ -3,6 +3,7 @@ import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import {HttpParamsServiceService} from "../http/http-params-service.service";
 import {Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
+import {AccountModel} from "../../Models/AccountModel";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,12 @@ export class AuthServiceService {
     this.UserInfo = value;
     this.params.GetPQuery.likedTags = this.UserInfo.likedTags;
     this.userSubject.next(true);
+  }
+
+  setUserAccountInfo(value: AccountModel): void {
+    if (this.UserInfo) {
+      this.UserInfo!.accountDto = value;
+    }
   }
 
   getAuthToken(): string {

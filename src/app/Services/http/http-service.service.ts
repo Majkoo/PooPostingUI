@@ -10,6 +10,7 @@ import { RegisterModel } from 'src/app/Models/RegisterModel';
 import { ConfigServiceService } from '../data/config-service.service';
 import {LikeModel} from "../../Models/LikeModel";
 import { AccountPagedResult } from 'src/app/Models/AccountPagedResult';
+import {AccountModel} from "../../Models/AccountModel";
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,12 @@ export class HttpServiceService {
       .get<AccountPagedResult>(
         `${this.config.apiUrl}/account`,
         {params: this.params.getSearchAccParams()}
+      );
+  }
+  getAccountRequest(id: string): Observable<AccountModel>{
+    return this.http
+      .get<AccountModel>(
+        `${this.config.apiUrl}/account/${id}`
       );
   }
   getAccountLikesRequest(id?: string): Observable<LikeModel[]>{
