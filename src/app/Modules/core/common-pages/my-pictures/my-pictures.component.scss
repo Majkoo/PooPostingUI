@@ -1,9 +1,12 @@
 img {
   aspect-ratio: 16/10;
-  max-width: 12rem;
+  max-width: 11rem;
+  @media only screen and(max-width: 575px) {
+    max-width: clamp(200px, 60vw, 60vw);
+  }
 }
 .title-wrapper {
-  width: 11rem;
+  width: 12.5rem;
   .title {
     font-size: 1.25rem;
     width: fit-content;
@@ -27,8 +30,8 @@ img {
   }
 }
 .tag-wrapper {
-  max-width: 23rem;
-  width: fit-content;
+  max-width: 23.5rem;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 0 0.25rem;

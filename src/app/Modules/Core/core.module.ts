@@ -32,7 +32,7 @@ import { MyPicturesComponent } from './common-pages/my-pictures/my-pictures.comp
     SearchPanelComponent,
     MyAccountComponent,
     AccountComponent,
-    MyPicturesComponent
+    MyPicturesComponent,
   ],
   imports: [
     CommonModule,

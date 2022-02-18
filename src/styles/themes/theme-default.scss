@@ -27,15 +27,15 @@
     height: 11px;
   }
   ::-webkit-scrollbar-thumb{
-    background: $gray-600;
+    background: $gray-500;
     border-radius: 0;
   }
   ::-webkit-scrollbar-thumb:hover{
-    background: $gray-700;
+    background: $gray-600;
   }
   ::-webkit-scrollbar-track{
     top: 76px;
-    background: #ababab;
+    background: $gray-300;
     box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
     -webkit-box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
     -moz-box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
@@ -3632,6 +3632,19 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-dataview {
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.15);
+    background: transparent;
+  }
+
   .p-paginator-top {
     border-width: 0 0 1px 0;
     border-radius: 0;
@@ -3653,6 +3666,9 @@ p-treeselect.ng-invalid.ng-dirty {
     color: $text-color;
     border: 0 none;
     padding: 0;
+
+    height: 60vh;
+    overflow-y: scroll;
   }
   .p-dataview-footer {
     background: $surface-b;
@@ -4372,9 +4388,9 @@ p-treeselect.ng-invalid.ng-dirty {
     background-color: transparent;
     border: 1px solid grey;
     color: $text-color-secondary;
-    min-width: 2.357rem;
-    height: 2.357rem;
-    margin: 0.143rem;
+    min-width: 2rem;
+    height: 2rem;
+    margin: 0.1rem;
     transition: box-shadow 0.2s;
     border-radius: 3px;
     border-top-left-radius: 3px;
@@ -4393,9 +4409,9 @@ p-treeselect.ng-invalid.ng-dirty {
     background-color: transparent;
     border: 1px solid grey;
     color: $text-color-secondary;
-    min-width: 2.357rem;
-    height: 2.357rem;
-    margin: 0.143rem;
+    min-width: 2rem;
+    height: 2rem;
+    margin: 0.1rem;
     transition: box-shadow 0.2s;
     border-radius: 3px;
     &:not(.p-disabled) {
@@ -4412,9 +4428,9 @@ p-treeselect.ng-invalid.ng-dirty {
     background-color: transparent;
     border: 1px solid grey;
     color: $text-color-secondary;
-    min-width: 2.357rem;
-    height: 2.357rem;
-    margin: 0.143rem;
+    min-width: 2rem;
+    height: 2rem;
+    margin: 0.1rem;
     transition: box-shadow 0.2s;
     border-radius: 3px;
     &:not(.p-disabled) {
@@ -4431,9 +4447,9 @@ p-treeselect.ng-invalid.ng-dirty {
     background-color: transparent;
     border: 1px solid grey;
     color: $text-color-secondary;
-    min-width: 2.357rem;
-    height: 2.357rem;
-    margin: 0.143rem;
+    min-width: 2rem;
+    height: 2rem;
+    margin: 0.1rem;
     transition: box-shadow 0.2s;
     border-radius: 3px;
     border-top-right-radius: 3px;
@@ -4467,9 +4483,9 @@ p-treeselect.ng-invalid.ng-dirty {
     background-color: transparent;
     border: 0 none;
     color: $text-color-secondary;
-    min-width: 2.357rem;
-    height: 2.357rem;
-    margin: 0.143rem;
+    min-width: 2rem;
+    height: 2rem;
+    margin: 0.1rem;
     padding: 0 0.5rem;
   }
   .p-paginator-pages {
@@ -4477,9 +4493,9 @@ p-treeselect.ng-invalid.ng-dirty {
       background-color: transparent;
       border: 0 none;
       color: $text-color-secondary;
-      min-width: 2.357rem;
-      height: 2.357rem;
-      margin: 0.143rem;
+      min-width: 2rem;
+      height: 2rem;
+      margin: 0.1rem;
       transition: box-shadow 0.2s;
       border-radius: 3px;
       &:not(.p-highlight) {

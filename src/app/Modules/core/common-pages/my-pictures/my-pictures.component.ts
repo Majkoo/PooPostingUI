@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 import {Picture} from "../../../../Models/Picture";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
@@ -11,6 +11,7 @@ import {HttpServiceService} from "../../../../Services/http/http-service.service
 })
 export class MyPicturesComponent implements OnInit {
   pictures!: Picture[];
+  @ViewChild('dv') dataView: any;
 
   constructor(
     private auth: AuthServiceService,
@@ -25,10 +26,22 @@ export class MyPicturesComponent implements OnInit {
         next: (value) => {
           this.auth.setUserAccountInfo(value);
           this.pictures = value.pictures;
+          this.pictures = this.sortByDate(this.pictures);
           this.pictures.forEach(p => p.url.startsWith("http") ? null : p.url = this.configService.picturesUrl+p.url);
         }
       });
 
+  }
+
+  filter($evento: any) {
+    //@ts-ignore
+    this.dataView.filter($evento.target.value!, 'contains')
+  }
+
+  sortByDate(val: Picture[]): Picture[] {
+    return val.sort((a, b) =>
+      new Date(b.pictureAdded).getTime() - new Date(a.pictureAdded).getTime()
+    );
   }
 
 }

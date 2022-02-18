@@ -29,8 +29,9 @@
 
         <!--        content-->
         <div *ngIf="userInfo">
-          <button pButton pRipple routerLink="/picture/post"
-                  class="w-100 p-button-outlined" label="Wstaw obrazek"></button>
+          <button pButton pRipple class="w-100 p-button-outlined"
+                  (click)="toPostPicture()" label="Wstaw obrazek">
+          </button>
         </div>
 
       </p-accordionTab>
@@ -50,12 +51,12 @@
             Zalogowano jako {{userInfo!.accountDto.nickname}}
           </p>
           <button pRipple pButton class="w-75 mt-3 pl-2 py-1 pr-3"
-                  routerLink="/myaccount" label="Moje konto">
+                  (click)="toMyAccount()" label="Moje konto">
             <span class="bi bi-person-circle"></span>
           </button>
 
-          <button pButton pRipple routerLink="mypictures"
-                  class="w-75 mt-3 pl-2 py-1 pr-3" label="Moje obrazki">
+          <button pButton pRipple class="w-75 mt-3 pl-2 py-1 pr-3"
+                  (click)="toMyPictures()" label="Moje obrazki">
             <span class="bi bi-images"></span>
           </button>
 

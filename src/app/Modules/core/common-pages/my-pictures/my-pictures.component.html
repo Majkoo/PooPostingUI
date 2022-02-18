@@ -1,10 +1,16 @@
 <div class="px-3 px-md-0 mb-4">
 
-  <h2>Moje obrazki</h2>
-  <p-divider></p-divider>
-
-  <p-dataView [value]="pictures">
-    <ng-template let-picture pTemplate="listItem">
+  <p-dataView #dv [value]="pictures" [paginator]="true" [rows]="4" filterBy="name">
+    <ng-template pTemplate="header">
+      <div class="d-flex justify-content-around justify-content-sm-between align-items-center flex-wrap">
+        <h2>Moje obrazki</h2>
+        <span class="p-input-icon-left md:mb-0 d-flex align-items-center">
+          <i class="pi pi-search"></i>
+          <input type="search" pInputText placeholder="Znajdź obrazek" (input)="filter($event)">
+      </span>
+      </div>
+    </ng-template>
+    <ng-template let-picture pTemplate="listItem" class="border">
 
       <div class="d-flex flex-wrap justify-content-center justify-content-sm-between py-3">
 
@@ -31,19 +37,19 @@
 
         </div>
 
-        <div class="d-flex flex-column justify-content-between justify-content-sm-around info-wrapper">
+        <div class="d-flex flex-column justify-content-between info-wrapper mr-1">
           <div class="d-flex flex-row justify-content-center justify-content-sm-around">
             <button pButton disabled label="{{picture.likes}}"
-                    icon="bi bi-hand-thumbs-up-fill" class="p-button-text m-1"></button>
+                    icon="bi bi-hand-thumbs-up-fill" class="p-button-text px-2 py-1"></button>
             <button pButton disabled label="{{picture.dislikes}}"
-                    icon="bi bi-hand-thumbs-down-fill" class="p-button-text m-1"></button>
+                    icon="bi bi-hand-thumbs-down-fill" class="p-button-text px-2 py-1"></button>
           </div>
           <div
-            class="d-flex flex-row flex-sm-column justify-content-center align-items-center align-items-sm-end gap">
-            <button pButton pRipple label="Opcje" icon="bi bi-gear"
-                    class="p-button-raised"></button>
-            <button pButton pRipple label="Szczegóły" icon="bi bi-info-circle"
-                    class="p-button-raised"></button>
+            class="d-flex flex-row justify-content-center justify-content-sm-end align-items-center align-items-sm-end gap">
+            <button pButton pRipple icon="bi bi-info-circle"
+                    class="p-button-raised py-1 px-2"></button>
+            <button pButton pRipple icon="bi bi-gear"
+                    class="p-button-raised py-1 px-2"></button>
           </div>
         </div>
 

@@ -21,12 +21,12 @@ const routes: Routes = [
     canActivate: [RouteGuardGuard]
   },
   {
-    path: "myaccount",
+    path: "my-account",
     component: MyAccountComponent,
     canActivate: [RouteGuardGuard]
   },
   {
-    path: "mypictures",
+    path: "my-account/picture",
     component: MyPicturesComponent,
     canActivate: [RouteGuardGuard]
   },

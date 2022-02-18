@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import { AuthServiceService } from 'src/app/Services/data/auth-service.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +11,10 @@ import { AuthServiceService } from 'src/app/Services/data/auth-service.service';
 export class SidebarComponent implements OnInit {
 userInfo?: UserInfoModel;
 
-  constructor(private authService: AuthServiceService) { }
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.userInfo = this.authService.getUserInfo();
@@ -23,6 +27,18 @@ userInfo?: UserInfoModel;
 
   logout() {
     this.authService.logout();
+  }
+
+  toPostPicture() {
+    this.router.navigate(['picture/post']);
+  }
+
+  toMyAccount() {
+    this.router.navigate(['my-account']);
+  }
+
+  toMyPictures() {
+    this.router.navigate(['my-account/picture']);
   }
 
 }
