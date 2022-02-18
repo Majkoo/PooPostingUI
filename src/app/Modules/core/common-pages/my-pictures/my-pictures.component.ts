@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 import {Picture} from "../../../../Models/Picture";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
-import {LikeModel} from "../../../../Models/LikeModel";
 
 @Component({
   selector: 'app-my-pictures',

@@ -11,20 +11,18 @@
           </div>
         </ng-template>
         <button pButton pRipple routerLink="/login" type="button" label="Zaloguj się"
-                class="p-button-outlined w-100 p-3 border">
-          <span class="material-icons">login</span>
+                class="p-button-outlined w-100 p-3 border" icon="bi bi-box-arrow-in-right">
         </button>
 
         <button pButton pRipple routerLink="/register" type="button" label="Zarejestruj się"
-                class="p-button-outlined w-100 mt-2 p-3 border">
-          <span class="material-icons">assignment_ind</span>
+                class="p-button-outlined w-100 mt-2 p-3 border" icon="bi bi-person-plus-fill">
         </button>
       </p-accordionTab>
 
       <p-accordionTab [selected]="userInfo !== undefined" [disabled]="userInfo === undefined">
         <ng-template pTemplate="header">
           <div class="acc-tab-title">
-            <span class="material-icons">photo_library</span>
+            <span class="bi bi-images pr-1"></span>
             <span>Moje obrazki</span>
           </div>
         </ng-template>
@@ -41,7 +39,7 @@
 
         <ng-template pTemplate="header">
           <div class="acc-tab-title">
-            <span class="material-icons">person</span>
+            <span class="bi bi-person-fill"></span>
             <span>Moje konto</span>
           </div>
         </ng-template>
@@ -53,17 +51,17 @@
           </p>
           <button pRipple pButton class="w-75 mt-3 pl-2 py-1 pr-3"
                   routerLink="/myaccount" label="Moje konto">
-            <span class="material-icons">account_circle</span>
+            <span class="bi bi-person-circle"></span>
           </button>
 
           <button pButton pRipple routerLink="mypictures"
                   class="w-75 mt-3 pl-2 py-1 pr-3" label="Moje obrazki">
-            <span class="material-icons">collections</span>
+            <span class="bi bi-images"></span>
           </button>
 
           <button pRipple pButton class="w-75 mt-3 pl-2 py-1 pr-3"
                   (click)="logout()" label="Wyloguj">
-            <span class="material-icons">logout</span>
+            <span class="bi bi-box-arrow-right"></span>
           </button>
 
         </div>

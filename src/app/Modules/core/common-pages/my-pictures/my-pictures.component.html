@@ -24,25 +24,25 @@
 
           <div class="tag-wrapper mt justify-content-center justify-content-sm-start">
             <span *ngFor="let tag of picture.tags | slice:0:6">
-              <p-tag value="{{tag}}" icon="pi pi-tag"></p-tag>
+              <p-tag value="{{tag}}" icon="bi bi-tag"></p-tag>
             </span>
           </div>
 
         </div>
 
         <div class="d-flex flex-column justify-content-between justify-content-sm-around info-wrapper">
-          <div class="d-flex flex-row justify-content-around">
+          <div class="d-flex flex-row justify-content-center justify-content-sm-around">
             <button pButton disabled label="{{picture.likes}}"
-                    icon="pi pi-thumbs-up" class="p-button-text p-button-raised m-1"></button>
+                    icon="bi bi-hand-thumbs-up-fill" class="p-button-text m-1"></button>
             <button pButton disabled label="{{picture.dislikes}}"
-                    icon="pi pi-thumbs-down" class="p-button-text p-button-raised m-1"></button>
+                    icon="bi bi-hand-thumbs-down-fill" class="p-button-text m-1"></button>
           </div>
           <div
             class="d-flex flex-row flex-sm-column justify-content-center align-items-center align-items-sm-end gap">
-            <button pButton pRipple label="Opcje" icon="pi pi-list"
-                    class="p-button-sm p-button-raised"></button>
-            <button pButton pRipple label="Szczegóły" icon="pi pi-info-circle"
-                    class="p-button-sm p-button-raised"></button>
+            <button pButton pRipple label="Opcje" icon="bi bi-gear"
+                    class="p-button-raised"></button>
+            <button pButton pRipple label="Szczegóły" icon="bi bi-info-circle"
+                    class="p-button-raised"></button>
           </div>
         </div>
 
