@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HomepageComponent} from "./common-pages/homepage/homepage.component";
-import {PictureDetailsComponent} from "./common-pages/picture-details/picture-details.component";
 import { PostPictureComponent } from './common-pages/post-picture/post-picture.component';
 import {PictureComponent} from "./components/picture/picture.component";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -17,13 +16,13 @@ import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 import {TimeagoModule} from "ngx-timeago";
 import { AccountComponent } from './components/account/account.component';
 import { MyPicturesComponent } from './common-pages/my-pictures/my-pictures.component';
-
-
+import {PictureDetailsComponent} from "./components/dialogs/picture-details/picture-details.component";
+import { PicturesViewComponent } from './components/pictures-view/pictures-view.component';
+import { LoggedOutComponent } from './common-pages/logged-out/logged-out.component';
 
 @NgModule({
   declarations: [
     HomepageComponent,
-    PictureDetailsComponent,
     PostPictureComponent,
     PictureComponent,
     Error404Component,
@@ -33,6 +32,9 @@ import { MyPicturesComponent } from './common-pages/my-pictures/my-pictures.comp
     MyAccountComponent,
     AccountComponent,
     MyPicturesComponent,
+    PictureDetailsComponent,
+    PicturesViewComponent,
+    LoggedOutComponent
   ],
   imports: [
     CommonModule,

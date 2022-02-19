@@ -5,12 +5,12 @@ import { RegisterComponent } from './Modules/auth/components/register/register.c
 import { Error404Component } from './Modules/core/common-pages/errors/error404/error404.component';
 import { Error500Component } from './Modules/core/common-pages/errors/error500/error500.component';
 import { HomepageComponent } from './Modules/core/common-pages/homepage/homepage.component';
-import { PictureDetailsComponent } from './Modules/core/common-pages/picture-details/picture-details.component';
 import { PostPictureComponent } from './Modules/core/common-pages/post-picture/post-picture.component';
 import { SearchComponent } from './Modules/core/common-pages/search/search.component';
 import {MyAccountComponent} from "./Modules/core/common-pages/my-account/my-account.component";
 import { RouteGuardGuard } from './Services/guards/route-guard.guard';
 import {MyPicturesComponent} from "./Modules/core/common-pages/my-pictures/my-pictures.component";
+import {LoggedOutComponent} from "./Modules/core/common-pages/logged-out/logged-out.component";
 
 const routes: Routes = [
   {path: '', redirectTo: "/home", pathMatch: 'full'},
@@ -34,8 +34,8 @@ const routes: Routes = [
   {path: "home", component: HomepageComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
+  {path: "logged-out", component: LoggedOutComponent},
   {path: "search", component: SearchComponent},
-  {path: "picture/:id", component: PictureDetailsComponent},
 
   {path: "error500", component: Error500Component},
   {path: "error404", component: Error404Component},

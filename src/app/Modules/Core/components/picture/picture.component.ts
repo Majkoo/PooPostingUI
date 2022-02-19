@@ -12,9 +12,12 @@ import {AuthServiceService} from "../../../../Services/data/auth-service.service
 })
 export class PictureComponent implements OnInit {
   @Input() picture!: Picture;
-  isLiked: boolean = false;
-  isDisliked: boolean = false;
+  // isLiked: boolean = false;
+  // isDisliked: boolean = false;
+  showDetailsFlag: boolean = false;
   IsUserLoggedOn?: boolean;
+
+
 
   constructor(
     private configService: ConfigServiceService,
@@ -28,15 +31,15 @@ export class PictureComponent implements OnInit {
     if(!this.picture.url.startsWith("http")){
       this.picture.url = this.configService.picturesUrl + this.picture.url;
     }
-    if(this.IsUserLoggedOn){
-      let likes = this.auth.getUserInfo().likes;
-      if(likes.some((l: LikeModel) => (l.pictureId === this.picture.id) && l.isLike)) {
-        this.isLiked = true;
-      }
-      if(likes.some((l: LikeModel) => (l.pictureId === this.picture.id) && !l.isLike)) {
-        this.isDisliked = true;
-      }
-    }
+    // if(this.IsUserLoggedOn){
+    //   let likes = this.auth.getUserInfo().likes;
+    //   if(likes.some((l: LikeModel) => (l.pictureId === this.picture.id) && l.isLike)) {
+    //     this.isLiked = true;
+    //   }
+    //   if(likes.some((l: LikeModel) => (l.pictureId === this.picture.id) && !l.isLike)) {
+    //     this.isDisliked = true;
+    //   }
+    // }
   }
 
 
@@ -57,10 +60,10 @@ export class PictureComponent implements OnInit {
                 }
               }
 
-              this.isLiked = !this.isLiked;
-              if(this.isLiked && this.isDisliked){
-                this.isDisliked = false;
-              }
+              // this.isLiked = !this.isLiked;
+              // if(this.isLiked && this.isDisliked){
+              //   this.isDisliked = false;
+              // }
               this.picture.likes = likes;
               this.picture.dislikes = dislikes;
             }
@@ -78,10 +81,10 @@ export class PictureComponent implements OnInit {
         next: (value) => {
           this.httpService.getPictureRequest(this.picture.id).subscribe({
             next: (value) => {
-              this.isDisliked = !this.isDisliked;
-              if(this.isLiked && this.isDisliked){
-                this.isLiked= false;
-              }
+              // this.isDisliked = !this.isDisliked;
+              // if(this.isLiked && this.isDisliked){
+              //   this.isLiked= false;
+              // }
               this.picture.likes = value.likes;
               this.picture.dislikes = value.dislikes;
             }
@@ -91,6 +94,10 @@ export class PictureComponent implements OnInit {
           console.error(err)
         }
       })
+  }
+
+  showDetails() {
+    this.showDetailsFlag = true;
   }
 
 }

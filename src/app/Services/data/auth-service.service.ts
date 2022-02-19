@@ -1,9 +1,22 @@
-import { Injectable } from '@angular/core';
+import {Injectable, isDevMode} from '@angular/core';
 import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import {HttpParamsServiceService} from "../http/http-params-service.service";
 import {Router} from "@angular/router";
-import {Observable, Subject} from "rxjs";
+import {Subject} from "rxjs";
 import {AccountModel} from "../../Models/AccountModel";
+
+const devAccountInfo = {
+  accountDto: {
+    id: "08d9ea60-058c-4f9c-8599-2cd37b693c34",
+    nickname: "ShrekTheCreator",
+    email: "",
+    pictures: [],
+    accountCreated: ""
+  },
+  likedTags: "",
+  authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZDllYTYwLTA1OGMtNGY5Yy04NTk5LTJjZDM3YjY5M2MzNCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJTaHJla1RoZUNyZWF0b3IiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIzIiwiZXhwIjoxNjQ2NTg3MjAwLCJpc3MiOiJodHRwczovL3BpY3R1cmVBcGkuY29tIiwiYXVkIjoiaHR0cHM6Ly9waWN0dXJlQXBpLmNvbSJ9.nutD0EA1rMaEsWumgR2RDqEBBW1fJFOWvtlVDI4M9Eo",
+  likes: []
+}
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +30,12 @@ export class AuthServiceService {
     private router: Router
   ) {
     this.userSubject.next(false);
+
+    if (isDevMode()){
+      this.UserInfo = devAccountInfo;
+      console.warn("AUTOMATICALLY LOGGED IN DUE TO DEVELOPMENT MODE")
+      this.userSubject.next(true);
+    }
   }
 
   setUserInfo(value: UserInfoModel): void{
@@ -35,7 +54,7 @@ export class AuthServiceService {
     if(this.UserInfo?.authToken){
       return this.UserInfo.authToken;
     }
-    return "";
+    return '';
   }
 
   getUserInfo(): any {
@@ -52,8 +71,9 @@ export class AuthServiceService {
   logout() {
     this.UserInfo = undefined;
     this.userSubject.next(false);
-    this.router.navigate(['/home']);
-    window.location.reload();
+    this.router.navigate(['/logged-out']);
   }
 
 }
+
+

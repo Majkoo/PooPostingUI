@@ -1,0 +1,51 @@
+<div class="row">
+
+  <div class="col-12 text-center mb-3">
+    <h2><strong>{{picture.name | titlecase}}</strong></h2>
+  </div>
+
+  <div class="col-12 col-md-8">
+    <img src="{{picture.url}}" alt="'{{picture.name}}' dodany przez {{picture.accountNickname}}" class="w-100">
+    <div class="d-flex flex-gap align-items-center justify-content-center">
+      <div *ngFor="let tag of picture.tags">
+        <p-tag><span class="bi bi-tag-fill"></span>{{tag}}</p-tag>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-4 d-flex flex-column justify-content-between">
+    <div class="d-flex flex-column flex-gap">
+      <div class="d-flex align-items-start">
+        <span class="bi bi-person-fill"></span>
+        <p><strong>{{picture.accountNickname}}</strong></p>
+      </div>
+
+      <div class="d-flex align-items-start">
+        <span class="bi bi-calendar"></span>
+        <p>Dodano: <strong>{{picture.pictureAdded | date: "dd/M/yy, HH:mm"}}</strong></p>
+      </div>
+
+      <div class="d-flex align-items-start">
+        <span class="bi bi-file-text-fill"></span>
+        <p><i>{{picture.description}}</i></p>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between mt-3">
+      <button class="mx-1 p-button-sm py-1" pButton pRipple (click)="like()">
+        <strong class="pr-2">{{picture.likes}}</strong>
+        <span class="bi bi-hand-thumbs-up" aria-label="like"></span>
+<!--        <span class="bi bi-hand-thumbs-up" aria-label="like" *ngIf="!isLiked"></span>-->
+<!--        <span class="bi bi-hand-thumbs-up-fill" aria-label="like" *ngIf="isLiked"></span>-->
+      </button>
+
+      <button class="mx-1 p-button-sm py-1" pButton pRipple (click)="dislike()">
+        <strong class="pr-2">{{picture.dislikes}}</strong>
+        <span class="bi bi-hand-thumbs-down" aria-label="dislike"></span>
+<!--        <span class="bi bi-hand-thumbs-down" aria-label="dislike" *ngIf="!isDisliked"></span>-->
+<!--        <span class="bi bi-hand-thumbs-down-fill" aria-label="dislike" *ngIf="isDisliked"></span>-->
+      </button>
+    </div>
+  </div>
+
+</div>

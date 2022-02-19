@@ -3,6 +3,7 @@ import {AuthServiceService} from "../../../../Services/data/auth-service.service
 import {Picture} from "../../../../Models/Picture";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-my-pictures',
@@ -20,17 +21,15 @@ export class MyPicturesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.http.getAccountRequest(this.auth.getUserInfo().accountDto.id)
       .subscribe({
         next: (value) => {
           this.auth.setUserAccountInfo(value);
           this.pictures = value.pictures;
           this.pictures = this.sortByDate(this.pictures);
-          this.pictures.forEach(p => p.url.startsWith("http") ? null : p.url = this.configService.picturesUrl+p.url);
+          this.pictures.forEach(p => p.url.startsWith("http") ? null : p.url = (this.configService.picturesUrl + p.url));
         }
       });
-
   }
 
   filter($event: any) {
@@ -38,10 +37,9 @@ export class MyPicturesComponent implements OnInit {
     this.dataView.filter($event.target.value!, 'contains')
   }
 
-  sortByDate(val: Picture[]): Picture[] {
+  private sortByDate(val: Picture[]): Picture[] {
     return val.sort((a, b) =>
       new Date(b.pictureAdded).getTime() - new Date(a.pictureAdded).getTime()
     );
   }
-
 }

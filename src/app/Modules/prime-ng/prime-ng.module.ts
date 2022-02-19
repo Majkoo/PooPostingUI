@@ -15,6 +15,7 @@ import {MessageModule} from "primeng/message";
 import {DataViewModule} from "primeng/dataview";
 import {DividerModule} from "primeng/divider";
 import {TagModule} from "primeng/tag";
+import {DialogModule} from "primeng/dialog";
 
 const PrimeNgComponents = [
   ChipsModule,
@@ -33,6 +34,7 @@ const PrimeNgComponents = [
   DataViewModule,
   DividerModule,
   TagModule,
+  DialogModule,
 ]
 
 @NgModule({

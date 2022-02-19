@@ -61,4 +61,28 @@ a:hover {
   bottom: 0;
   background-color: #efefef;
 }
+.p-dialog {
+  @media screen and (max-width: 1140px) {
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+  }
+  max-width: 1140px;
+  .p-dialog-header {
+    background-color: $gray-400 !important;
+    border-bottom: 1px solid $gray-500 !important;
+  }
+  .p-dialog-content {
+    padding: 2rem !important;
+    padding-top: 1rem !important;
+  }
+}
+
+
+
+.p-dataview-content, .p-dataview-header, .p-paginator-bottom {
+  outline: 1px solid $gray-200 !important;
+  border: none !important;
+}
+
+
 
