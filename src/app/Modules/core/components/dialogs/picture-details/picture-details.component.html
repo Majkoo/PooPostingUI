@@ -5,27 +5,27 @@
   </div>
 
   <div class="col-12 col-md-8">
-    <img src="{{picture.url}}" alt="'{{picture.name}}' dodany przez {{picture.accountNickname}}" class="w-100">
-    <div class="d-flex flex-gap align-items-center justify-content-center">
+    <img src="{{picture.url}}" alt="'{{picture.name}}' dodany przez {{picture.accountNickname}}" class="img-fluid mw">
+    <div class="d-flex flex-gap align-items-center justify-content-center flex-wrap">
       <div *ngFor="let tag of picture.tags">
         <p-tag><span class="bi bi-tag-fill"></span>{{tag}}</p-tag>
       </div>
     </div>
   </div>
 
-  <div class="col-12 col-md-4 d-flex flex-column justify-content-between">
+  <div class="col-12 col-md-4 d-flex flex-column justify-content-between pt-3 pt-md-0">
     <div class="d-flex flex-column flex-gap">
-      <div class="d-flex align-items-start">
+      <div class="d-flex align-items-start justify-content-center justify-content-md-start">
         <span class="bi bi-person-fill"></span>
         <p><strong>{{picture.accountNickname}}</strong></p>
       </div>
 
-      <div class="d-flex align-items-start">
+      <div class="d-flex align-items-start justify-content-center justify-content-md-start">
         <span class="bi bi-calendar"></span>
         <p>Dodano: <strong>{{picture.pictureAdded | date: "dd/M/yy, HH:mm"}}</strong></p>
       </div>
 
-      <div class="d-flex align-items-start">
+      <div class="d-flex align-items-start justify-content-center justify-content-md-start">
         <span class="bi bi-file-text-fill"></span>
         <p><i>{{picture.description}}</i></p>
       </div>
