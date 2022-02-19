@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import { LoginComponent } from './Modules/auth/components/login/login.component';
-import { RegisterComponent } from './Modules/auth/components/register/register.component';
-import { Error404Component } from './Modules/core/common-pages/errors/error404/error404.component';
-import { Error500Component } from './Modules/core/common-pages/errors/error500/error500.component';
-import { HomepageComponent } from './Modules/core/common-pages/homepage/homepage.component';
-import { PostPictureComponent } from './Modules/core/common-pages/post-picture/post-picture.component';
-import { SearchComponent } from './Modules/core/common-pages/search/search.component';
-import {MyAccountComponent} from "./Modules/core/common-pages/my-account/my-account.component";
+import { LoginComponent } from './Modules/Auth/components/login/login.component';
+import { RegisterComponent } from './Modules/Auth/components/register/register.component';
+import { Error404Component } from './Modules/Core/common-pages/errors/error404/error404.component';
+import { Error500Component } from './Modules/Core/common-pages/errors/error500/error500.component';
+import { HomepageComponent } from './Modules/Core/common-pages/homepage/homepage.component';
+import { PostPictureComponent } from './Modules/Core/common-pages/post-picture/post-picture.component';
+import { SearchComponent } from './Modules/Core/common-pages/search/search.component';
+import {MyAccountComponent} from "./Modules/Core/common-pages/my-account/my-account.component";
 import { RouteGuardGuard } from './Services/guards/route-guard.guard';
-import {MyPicturesComponent} from "./Modules/core/common-pages/my-pictures/my-pictures.component";
-import {LoggedOutComponent} from "./Modules/core/common-pages/logged-out/logged-out.component";
+import {MyPicturesComponent} from "./Modules/Core/common-pages/my-pictures/my-pictures.component";
+import {LoggedOutComponent} from "./Modules/Core/common-pages/logged-out/logged-out.component";
 
 const routes: Routes = [
   {path: '', redirectTo: "/home", pathMatch: 'full'},
