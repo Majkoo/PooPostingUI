@@ -16,10 +16,10 @@ import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 import {TimeagoModule} from "ngx-timeago";
 import { AccountComponent } from './components/account/account.component';
 import { MyPicturesComponent } from './common-pages/my-pictures/my-pictures.component';
-import {PictureDetailsComponent} from "./components/dialogs/picture-details/picture-details.component";
 import { PicturesViewComponent } from './components/pictures-view/pictures-view.component';
 import { LoggedOutComponent } from './common-pages/logged-out/logged-out.component';
 import { PictureSettingsComponent } from './components/modals/picture-settings/picture-settings.component';
+import {PictureDetailsComponent} from "./components/modals/picture-details/picture-details.component";
 
 @NgModule({
   declarations: [
@@ -33,10 +33,10 @@ import { PictureSettingsComponent } from './components/modals/picture-settings/p
     MyAccountComponent,
     AccountComponent,
     MyPicturesComponent,
-    PictureDetailsComponent,
     PicturesViewComponent,
     LoggedOutComponent,
-    PictureSettingsComponent
+    PictureDetailsComponent,
+    PictureSettingsComponent,
   ],
   imports: [
     CommonModule,
