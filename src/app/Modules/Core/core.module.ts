@@ -19,6 +19,7 @@ import { MyPicturesComponent } from './common-pages/my-pictures/my-pictures.comp
 import {PictureDetailsComponent} from "./components/dialogs/picture-details/picture-details.component";
 import { PicturesViewComponent } from './components/pictures-view/pictures-view.component';
 import { LoggedOutComponent } from './common-pages/logged-out/logged-out.component';
+import { PictureSettingsComponent } from './components/modals/picture-settings/picture-settings.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LoggedOutComponent } from './common-pages/logged-out/logged-out.compone
     MyPicturesComponent,
     PictureDetailsComponent,
     PicturesViewComponent,
-    LoggedOutComponent
+    LoggedOutComponent,
+    PictureSettingsComponent
   ],
   imports: [
     CommonModule,

@@ -49,3 +49,8 @@
   <app-picture-details [picture]="picture">
   </app-picture-details>
 </p-dialog>
+
+<p-dialog [(visible)]="showSettingsFlag" header="Ustawienia obrazka" [modal]="true" [draggable]="false">
+  <app-picture-settings [picture]="picture">
+  </app-picture-settings>
+</p-dialog>
