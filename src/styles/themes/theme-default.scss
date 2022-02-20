@@ -1,17 +1,17 @@
-﻿@import "variables";
-@import "colors";
+﻿@use "variables";
+@use "colors";
 
 @keyframes p-component-overlay-enter-animation {
   from {
     background-color: transparent;
   }
   to {
-    background-color: $maskbg;
+    background-color: variables.$maskbg;
   }
 }
 @keyframes p-component-overlay-leave-animation {
   from {
-    background-color: $maskbg;
+    background-color: variables.$maskbg;
   }
   to {
     background-color: transparent;
@@ -27,34 +27,34 @@
     height: 11px;
   }
   ::-webkit-scrollbar-thumb{
-    background: $gray-500;
+    background: colors.$gray-500;
     border-radius: 0;
   }
   ::-webkit-scrollbar-thumb:hover{
-    background: $gray-600;
+    background: colors.$gray-600;
   }
   ::-webkit-scrollbar-track{
     top: 76px;
-    background: $gray-300;
+    background: colors.$gray-300;
     box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
     -webkit-box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
     -moz-box-shadow: 0 0 7px -10px rgba(0,0,0,0.4) inset;
   }
 }
 a {
-  color: $primary-color;
+  color: variables.$primary-color;
   .underline {
     text-decoration: underline !important;
   }
   &:hover {
-    color: $primary-hover-color;
+    color: variables.$primary-hover-color;
   }
   &:active{
-    color: $primary-active-color;
+    color: variables.$primary-active-color;
   }
 }
 .p-component {
-  font-family: $default-font;
+  font-family: variables.$default-font;
   font-size: 1rem;
   font-weight: normal;
   &:disabled {
@@ -62,29 +62,29 @@ a {
   }
 }
 .p-component-overlay {
-  background-color: $opaque;
+  background-color: colors.$opaque;
   transition-duration: 0.2s;
 }
 .p-disabled {
   opacity: 0.6;
 }
 .p-error {
-  color: $error-color;
+  color: variables.$error-color;
 }
 .p-text-secondary {
-  color: $text-color-secondary;
+  color: variables.$text-color-secondary;
 }
 .pi {
   font-size: 1rem;
 }
 .p-link {
   font-size: 1rem;
-  font-family: $default-font;
+  font-family: variables.$default-font;
   border-radius: 3px;
   &:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.05rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
   }
 }
 .p-component-overlay-enter {
@@ -101,21 +101,21 @@ a {
     padding: 0.25rem 0.5rem;
     &:not(.p-disabled) {
       &:hover {
-        border-color: $primary-color;
+        border-color: variables.$primary-color;
       }
     }
     &:not(.p-disabled).p-focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
-      border-color: $primary-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
+      border-color: variables.$primary-color;
     }
     .p-autocomplete-input-token {
       padding: 0.25rem 0;
       input {
-        font-family: $default-font;
+        font-family: variables.$default-font;
         font-size: 1rem;
-        color: $text-color;
+        color: variables.$text-color;
         padding: 0;
         margin: 0;
       }
@@ -123,8 +123,8 @@ a {
     .p-autocomplete-token {
       padding: 0.25rem 0.5rem;
       margin-right: 0.5rem;
-      background: $highlight-color;
-      color: $text-color;
+      background: variables.$highlight-color;
+      color: variables.$text-color;
       border-radius: 3px;
       .p-autocomplete-token-icon {
         margin-left: 0.5rem;
@@ -140,13 +140,13 @@ a {
 p-autocomplete.ng-dirty.ng-invalid {
   >.p-autocomplete {
     >.p-inputtext {
-      border-color: $error-color;
+      border-color: variables.$error-color;
     }
   }
 }
 .p-autocomplete-panel {
-  background: $surface-a;
-  color: $text-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border: 0 none;
   border-radius: 3px;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
@@ -158,29 +158,29 @@ p-autocomplete.ng-dirty.ng-invalid {
       margin: 0;
       padding: 0.5rem 1rem;
       border: 0 none;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
       transition: box-shadow 0.2s;
       border-radius: 0;
       &:hover {
-        color: $text-color;
-        background: $surface-c;
+        color: variables.$text-color;
+        background: variables.$surface-c;
       }
     }
     .p-autocomplete-item.p-highlight {
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
     }
     .p-autocomplete-empty-message {
       padding: 0.5rem 1rem;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
     }
     .p-autocomplete-item-group {
       margin: 0;
       padding: 0.75rem 1rem;
-      color: $text-color;
-      background: $surface-a;
+      color: variables.$text-color;
+      background: variables.$surface-a;
       font-weight: 600;
     }
   }
@@ -193,97 +193,97 @@ p-autocomplete.ng-dirty.ng-invalid {
 p-calendar.ng-dirty.ng-invalid {
   >.p-calendar {
     >.p-inputtext {
-      border-color: $error-color;
+      border-color: variables.$error-color;
     }
   }
 }
 .p-datepicker {
   padding: 0.5rem;
-  background: $surface-a;
-  color: $text-color;
-  border: 1px solid $border-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
+  border: 1px solid variables.$border-color;
   border-radius: 3px;
   &:not(.p-datepicker-inline) {
-    background: $surface-a;
+    background: variables.$surface-a;
     border: 0 none;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     .p-datepicker-header {
-      background: $surface-a;
+      background: variables.$surface-a;
     }
   }
   .p-datepicker-header {
     padding: 0.5rem;
-    color: $text-color;
-    background: $surface-a;
+    color: variables.$text-color;
+    background: variables.$surface-a;
     font-weight: 600;
     margin: 0;
-    border-bottom: 1px solid $surface-d;
+    border-bottom: 1px solid variables.$surface-d;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     .p-datepicker-prev {
       width: 2rem;
       height: 2rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       border: 0 none;
       background: transparent;
       border-radius: 50%;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       &:enabled {
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
           border-color: transparent;
-          background: $surface-c;
+          background: variables.$surface-c;
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
     .p-datepicker-next {
       width: 2rem;
       height: 2rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       border: 0 none;
       background: transparent;
       border-radius: 50%;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       &:enabled {
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
           border-color: transparent;
-          background: $surface-c;
+          background: variables.$surface-c;
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
     .p-datepicker-title {
       line-height: 2rem;
       .p-datepicker-year {
-        color: $text-color;
+        color: variables.$text-color;
         transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
         font-weight: 600;
         padding: 0.5rem;
         &:enabled {
           &:hover {
-            color: $primary-color;
+            color: variables.$primary-color;
           }
         }
       }
       .p-datepicker-month {
-        color: $text-color;
+        color: variables.$text-color;
         transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
         font-weight: 600;
         padding: 0.5rem;
         margin-right: 0.5rem;
         &:enabled {
           &:hover {
-            color: $primary-color;
+            color: variables.$primary-color;
           }
         }
       }
@@ -310,55 +310,55 @@ p-calendar.ng-dirty.ng-invalid {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.05rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
         }
       }
       >span.p-highlight {
-        color: $text-color;
-        background: $highlight-color;
+        color: variables.$text-color;
+        background: variables.$highlight-color;
       }
     }
     td.p-datepicker-today {
       >span {
-        background: $border-color;
-        color: $text-color;
+        background: variables.$border-color;
+        color: variables.$text-color;
         border-color: transparent;
       }
       >span.p-highlight {
-        color: $text-color;
-        background: $highlight-color;
+        color: variables.$text-color;
+        background: variables.$highlight-color;
       }
     }
   }
   .p-datepicker-buttonbar {
     padding: 1rem 0;
-    border-top: 1px solid $surface-d;
+    border-top: 1px solid variables.$surface-d;
     .p-button {
       width: auto;
     }
   }
   .p-timepicker {
-    border-top: 1px solid $surface-d;
+    border-top: 1px solid variables.$surface-d;
     padding: 0.5rem;
     button {
       width: 2rem;
       height: 2rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       border: 0 none;
       background: transparent;
       border-radius: 50%;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       &:enabled {
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
           border-color: transparent;
-          background: $surface-c;
+          background: variables.$surface-c;
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
       &:last-child {
         margin-top: 0.2em;
@@ -379,8 +379,8 @@ p-calendar.ng-dirty.ng-invalid {
       border-radius: 3px;
     }
     .p-monthpicker-month.p-highlight {
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
     }
   }
   .p-yearpicker {
@@ -391,8 +391,8 @@ p-calendar.ng-dirty.ng-invalid {
       border-radius: 3px;
     }
     .p-yearpicker-year.p-highlight {
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
     }
   }
   &:not(.p-disabled) {
@@ -402,12 +402,12 @@ p-calendar.ng-dirty.ng-invalid {
           &:not(.p-highlight) {
             &:not(.p-disabled) {
               &:hover {
-                background: $surface-c;
+                background: variables.$surface-c;
               }
               &:focus {
                 outline: 0 none;
                 outline-offset: 0;
-                box-shadow: 0 0 0 0.05rem $focus-ring-color;
+                box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
               }
             }
           }
@@ -419,13 +419,13 @@ p-calendar.ng-dirty.ng-invalid {
         &:not(.p-disabled) {
           &:not(.p-highlight) {
             &:hover {
-              background: $surface-c;
+              background: variables.$surface-c;
             }
           }
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.05rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           }
         }
       }
@@ -435,13 +435,13 @@ p-calendar.ng-dirty.ng-invalid {
         &:not(.p-disabled) {
           &:not(.p-highlight) {
             &:hover {
-              background: $surface-c;
+              background: variables.$surface-c;
             }
           }
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.05rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           }
         }
       }
@@ -455,7 +455,7 @@ p-calendar.ng-dirty.ng-invalid {
 }
 .p-datepicker.p-datepicker-multiple-month {
   .p-datepicker-group {
-    border-left: 1px solid $surface-d;
+    border-left: 1px solid variables.$surface-d;
     padding-right: 0.5rem;
     padding-left: 0.5rem;
     padding-top: 0;
@@ -470,20 +470,20 @@ p-calendar.ng-dirty.ng-invalid {
   }
 }
 .p-cascadeselect {
-  background: $surface-a;
-  border: 1px solid $border-color;
+  background: variables.$surface-a;
+  border: 1px solid variables.$border-color;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   border-radius: 3px;
   &:not(.p-disabled) {
     &:hover {
-      border-color: $primary-color;
+      border-color: variables.$primary-color;
     }
   }
   &:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.05rem $focus-ring-color;
-    border-color: $primary-color;
+    box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
+    border-color: variables.$primary-color;
   }
   .p-cascadeselect-label {
     background: transparent;
@@ -497,19 +497,19 @@ p-calendar.ng-dirty.ng-invalid {
     }
   }
   .p-cascadeselect-label.p-placeholder {
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
   }
   .p-cascadeselect-trigger {
     background: transparent;
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
     width: 2.357rem;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
 }
 .p-cascadeselect-panel {
-  background: $surface-a;
-  color: $text-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border: 0 none;
   border-radius: 3px;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
@@ -518,7 +518,7 @@ p-calendar.ng-dirty.ng-invalid {
     .p-cascadeselect-item {
       margin: 0;
       border: 0 none;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
       transition: box-shadow 0.2s;
       border-radius: 0;
@@ -527,14 +527,14 @@ p-calendar.ng-dirty.ng-invalid {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+          box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
         }
       }
       &:not(.p-highlight) {
         &:not(.p-disabled) {
           &:hover {
-            color: $text-color;
-            background: $surface-c;
+            color: variables.$text-color;
+            background: variables.$surface-c;
           }
         }
       }
@@ -543,111 +543,111 @@ p-calendar.ng-dirty.ng-invalid {
       }
     }
     .p-cascadeselect-item.p-highlight {
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
     }
   }
 }
 p-cascadeselect.ng-dirty.ng-invalid {
   >.p-cascadeselect {
-    border-color: $error-color;
+    border-color: variables.$error-color;
   }
 }
 .p-input-filled {
   .p-cascadeselect {
-    background: $surface-b;
+    background: variables.$surface-b;
     &:not(.p-disabled) {
       &:hover {
-        background-color: $surface-b;
+        background-color: variables.$surface-b;
       }
     }
     &:not(.p-disabled).p-focus {
-      background-color: $surface-a;
+      background-color: variables.$surface-a;
     }
   }
   .p-checkbox {
     .p-checkbox-box {
-      background-color: $surface-b;
+      background-color: variables.$surface-b;
     }
     .p-checkbox-box.p-highlight {
-      background: $primary-color;
+      background: variables.$primary-color;
     }
     &:not(.p-checkbox-disabled) {
       .p-checkbox-box {
         &:hover {
-          background-color: $surface-b;
+          background-color: variables.$surface-b;
         }
       }
       .p-checkbox-box.p-highlight {
         &:hover {
-          background: $primary-active-color;
+          background: variables.$primary-active-color;
         }
       }
     }
   }
   .p-dropdown {
-    background: $surface-b;
+    background: variables.$surface-b;
     &:not(.p-disabled) {
       &:hover {
-        background-color: $surface-b;
+        background-color: variables.$surface-b;
       }
     }
     &:not(.p-disabled).p-focus {
-      background-color: $surface-a;
+      background-color: variables.$surface-a;
       .p-inputtext {
         background-color: transparent;
       }
     }
   }
   .p-inputtext {
-    background-color: $surface-b;
+    background-color: variables.$surface-b;
     &:enabled {
       &:hover {
-        background-color: $surface-b;
+        background-color: variables.$surface-b;
       }
       &:focus {
-        background-color: $surface-a;
+        background-color: variables.$surface-a;
       }
     }
   }
   .p-multiselect {
-    background: $surface-b;
+    background: variables.$surface-b;
     &:not(.p-disabled) {
       &:hover {
-        background-color: $surface-b;
+        background-color: variables.$surface-b;
       }
     }
     &:not(.p-disabled).p-focus {
-      background-color: $surface-a;
+      background-color: variables.$surface-a;
     }
   }
   .p-radiobutton {
     .p-radiobutton-box {
-      background-color: $surface-b;
+      background-color: variables.$surface-b;
       &:not(.p-disabled) {
         &:hover {
-          background-color: $surface-b;
+          background-color: variables.$surface-b;
         }
       }
     }
     .p-radiobutton-box.p-highlight {
-      background: $primary-color;
+      background: variables.$primary-color;
       &:not(.p-disabled) {
         &:hover {
-          background: $primary-active-color;
+          background: variables.$primary-active-color;
         }
       }
     }
   }
   .p-treeselect {
-    background: $surface-b;
+    background: variables.$surface-b;
     &:not(.p-disabled) {
       &:hover {
-        background-color: $surface-b;
+        background-color: variables.$surface-b;
       }
     }
     &:not(.p-disabled).p-focus {
-      background-color: $surface-a;
+      background-color: variables.$surface-a;
     }
   }
 }
@@ -655,40 +655,40 @@ p-cascadeselect.ng-dirty.ng-invalid {
   width: 20px;
   height: 20px;
   .p-checkbox-box {
-    border: 2px solid $border-color;
-    background: $surface-a;
+    border: 2px solid variables.$border-color;
+    background: variables.$surface-a;
     width: 20px;
     height: 20px;
-    color: $text-color;
+    color: variables.$text-color;
     border-radius: 3px;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     .p-checkbox-icon {
       transition-duration: 0.2s;
-      color: $surface-a;
+      color: variables.$surface-a;
       font-size: 14px;
     }
   }
   .p-checkbox-box.p-highlight {
-    border-color: $primary-color;
-    background: $primary-color;
+    border-color: variables.$primary-color;
+    background: variables.$primary-color;
   }
   &:not(.p-checkbox-disabled) {
     .p-checkbox-box {
       &:hover {
-        border-color: $primary-color;
+        border-color: variables.$primary-color;
       }
     }
     .p-checkbox-box.p-focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
-      border-color: $primary-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
+      border-color: variables.$primary-color;
     }
     .p-checkbox-box.p-highlight {
       &:hover {
-        border-color: $primary-active-color;
-        background: $primary-active-color;
-        color: $surface-a;
+        border-color: variables.$primary-active-color;
+        background: variables.$primary-active-color;
+        color: variables.$surface-a;
       }
     }
   }
@@ -696,7 +696,7 @@ p-cascadeselect.ng-dirty.ng-invalid {
 p-checkbox.ng-dirty.ng-invalid {
   >.p-checkbox {
     >.p-checkbox-box {
-      border-color: $error-color;
+      border-color: variables.$error-color;
     }
   }
 }
@@ -709,20 +709,20 @@ p-checkbox.ng-dirty.ng-invalid {
     width: 100%;
     &:not(.p-disabled) {
       &:hover {
-        border-color: $primary-color;
+        border-color: variables.$primary-color;
       }
     }
     &:not(.p-disabled).p-focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
-      border-color: $primary-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
+      border-color: variables.$primary-color;
     }
     .p-chips-token {
       padding: 0.25rem 0.5rem;
       margin-right: 0.5rem;
-      background: $highlight-color;
-      color: $text-color;
+      background: variables.$highlight-color;
+      color: variables.$text-color;
       border-radius: 3px;
       .p-chips-token-icon {
         margin-left: 0.5rem;
@@ -731,9 +731,9 @@ p-checkbox.ng-dirty.ng-invalid {
     .p-chips-input-token {
       padding: 0.25rem 0;
       input {
-        font-family: $default-font;
+        font-family: variables.$default-font;
         font-size: 1rem;
-        color: $text-color;
+        color: variables.$text-color;
         padding: 0;
         margin: 0;
         width: 100%;
@@ -744,7 +744,7 @@ p-checkbox.ng-dirty.ng-invalid {
 p-chips.ng-dirty.ng-invalid {
   >.p-chips {
     >.p-inputtext {
-      border-color: $error-color;
+      border-color: variables.$error-color;
     }
   }
 }
@@ -782,30 +782,30 @@ p-chips.ng-dirty.ng-invalid {
   background: #323232;
   border: 1px solid #191919;
   .p-colorpicker-color-handle {
-    border-color: $surface-a;
+    border-color: variables.$surface-a;
   }
   .p-colorpicker-hue-handle {
-    border-color: $surface-a;
+    border-color: variables.$surface-a;
   }
 }
 .p-colorpicker-overlay-panel {
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
 .p-dropdown {
-  background: $surface-a;
-  border: 1px solid $border-color;
+  background: variables.$surface-a;
+  border: 1px solid variables.$border-color;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   border-radius: 3px;
   &:not(.p-disabled) {
     &:hover {
-      border-color: $primary-color;
+      border-color: variables.$primary-color;
     }
   }
   &:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.05rem $focus-ring-color;
-    border-color: $primary-color;
+    box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
+    border-color: variables.$primary-color;
   }
   .p-dropdown-label {
     background: transparent;
@@ -818,17 +818,17 @@ p-chips.ng-dirty.ng-invalid {
     }
   }
   .p-dropdown-label.p-placeholder {
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
   }
   .p-dropdown-trigger {
     background: transparent;
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
     width: 2.357rem;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
   .p-dropdown-clear-icon {
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
     right: 2.357rem;
   }
 }
@@ -838,16 +838,16 @@ p-chips.ng-dirty.ng-invalid {
   }
 }
 .p-dropdown-panel {
-  background: $surface-a;
-  color: $text-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border: 0 none;
   border-radius: 3px;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   .p-dropdown-header {
     padding: 0.5rem 1rem;
     border-bottom: 0 none;
-    color: $text-color;
-    background: $surface-b;
+    color: variables.$text-color;
+    background: variables.$surface-b;
     margin: 0;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
@@ -857,7 +857,7 @@ p-chips.ng-dirty.ng-invalid {
     }
     .p-dropdown-filter-icon {
       right: 0.5rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
   }
   .p-dropdown-items {
@@ -868,33 +868,33 @@ p-chips.ng-dirty.ng-invalid {
       margin: 0;
       padding: 0.5rem 1rem;
       border: 0 none;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
       transition: box-shadow 0.2s;
       border-radius: 0;
       &:not(.p-highlight) {
         &:not(.p-disabled) {
           &:hover {
-            color: $text-color;
-            background: $surface-c;
+            color: variables.$text-color;
+            background: variables.$surface-c;
           }
         }
       }
     }
     .p-dropdown-item.p-highlight {
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
     }
     .p-dropdown-empty-message {
       padding: 0.5rem 1rem;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
     }
     .p-dropdown-item-group {
       margin: 0;
       padding: 0.75rem 1rem;
-      color: $text-color;
-      background: $surface-a;
+      color: variables.$text-color;
+      background: variables.$surface-a;
       font-weight: 600;
     }
   }
@@ -906,59 +906,59 @@ p-chips.ng-dirty.ng-invalid {
 }
 p-dropdown.ng-dirty.ng-invalid {
   >.p-dropdown {
-    border-color: $error-color;
+    border-color: variables.$error-color;
   }
 }
 .p-editor-container {
   .p-editor-toolbar {
-    background: $surface-b;
+    background: variables.$surface-b;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
   }
   .p-editor-toolbar.ql-snow {
-    border: 1px solid $surface-d;
+    border: 1px solid variables.$surface-d;
     .ql-stroke {
-      stroke: $text-color-secondary;
+      stroke: variables.$text-color-secondary;
     }
     .ql-fill {
-      fill: $text-color-secondary;
+      fill: variables.$text-color-secondary;
     }
     .ql-picker {
       .ql-picker-label {
         border: 0 none;
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
           .ql-stroke {
-            stroke: $text-color;
+            stroke: variables.$text-color;
           }
           .ql-fill {
-            fill: $text-color;
+            fill: variables.$text-color;
           }
         }
       }
     }
     .ql-picker.ql-expanded {
       .ql-picker-label {
-        color: $text-color;
+        color: variables.$text-color;
         .ql-stroke {
-          stroke: $text-color;
+          stroke: variables.$text-color;
         }
         .ql-fill {
-          fill: $text-color;
+          fill: variables.$text-color;
         }
       }
       .ql-picker-options {
-        background: $surface-a;
+        background: variables.$surface-a;
         border: 0 none;
         box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
         border-radius: 3px;
         padding: 0.5rem 0;
         .ql-picker-item {
-          color: $text-color;
+          color: variables.$text-color;
           &:hover {
-            color: $text-color;
-            background: $surface-c;
+            color: variables.$text-color;
+            background: variables.$surface-c;
           }
         }
       }
@@ -973,84 +973,84 @@ p-dropdown.ng-dirty.ng-invalid {
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
     .ql-editor {
-      background: $surface-a;
-      color: $text-color;
+      background: variables.$surface-a;
+      color: variables.$text-color;
       border-bottom-right-radius: 3px;
       border-bottom-left-radius: 3px;
     }
   }
   .p-editor-content.ql-snow {
-    border: 1px solid $surface-d;
+    border: 1px solid variables.$surface-d;
   }
   .ql-snow.ql-toolbar {
     button {
       &:hover {
-        color: $text-color;
+        color: variables.$text-color;
         .ql-stroke {
-          stroke: $text-color;
+          stroke: variables.$text-color;
         }
         .ql-fill {
-          fill: $text-color;
+          fill: variables.$text-color;
         }
       }
       &:focus {
-        color: $text-color;
+        color: variables.$text-color;
         .ql-stroke {
-          stroke: $text-color;
+          stroke: variables.$text-color;
         }
         .ql-fill {
-          fill: $text-color;
+          fill: variables.$text-color;
         }
       }
     }
     button.ql-active {
-      color: $primary-color;
+      color: variables.$primary-color;
       .ql-stroke {
-        stroke: $primary-color;
+        stroke: variables.$primary-color;
       }
       .ql-fill {
-        fill: $primary-color;
+        fill: variables.$primary-color;
       }
       .ql-picker-label {
-        color: $primary-color;
+        color: variables.$primary-color;
       }
     }
     .ql-picker-label.ql-active {
-      color: $primary-color;
+      color: variables.$primary-color;
       .ql-stroke {
-        stroke: $primary-color;
+        stroke: variables.$primary-color;
       }
       .ql-fill {
-        fill: $primary-color;
+        fill: variables.$primary-color;
       }
       .ql-picker-label {
-        color: $primary-color;
+        color: variables.$primary-color;
       }
     }
     .ql-picker-item.ql-selected {
-      color: $primary-color;
+      color: variables.$primary-color;
       .ql-stroke {
-        stroke: $primary-color;
+        stroke: variables.$primary-color;
       }
       .ql-fill {
-        fill: $primary-color;
+        fill: variables.$primary-color;
       }
       .ql-picker-label {
-        color: $primary-color;
+        color: variables.$primary-color;
       }
     }
   }
 }
 .p-inputgroup-addon {
-  background: $surface-c;
-  color: $text-color-secondary;
-  border-top: 1px solid $border-color;
-  border-left: 1px solid $border-color;
-  border-bottom: 1px solid $border-color;
+  background: variables.$surface-c;
+  color: variables.$text-color-secondary;
+  border-top: 1px solid variables.$border-color;
+  border-left: 1px solid variables.$border-color;
+  border-bottom: 1px solid variables.$border-color;
   padding: 0.5rem 0.5rem;
   min-width: 2.357rem;
   &:last-child {
-    border-right: 1px solid $border-color;
+    border-right: 1px solid variables.$border-color;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
@@ -1194,13 +1194,13 @@ p-dropdown.ng-dirty.ng-invalid {
 }
 p-inputmask.ng-dirty.ng-invalid {
   >.p-inputtext {
-    border-color: $error-color;
+    border-color: variables.$error-color;
   }
 }
 p-inputnumber.ng-dirty.ng-invalid {
   >.p-inputnumber {
     >.p-inputtext {
-      border-color: $error-color;
+      border-color: variables.$error-color;
     }
   }
 }
@@ -1208,11 +1208,11 @@ p-inputnumber.ng-dirty.ng-invalid {
   width: 3rem;
   height: 1.75rem;
   .p-inputswitch-slider {
-    background: $border-color;
+    background: variables.$border-color;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 30px;
     &:before {
-      background: $surface-a;
+      background: variables.$surface-a;
       width: 1.25rem;
       height: 1.25rem;
       left: 0.25rem;
@@ -1233,14 +1233,14 @@ p-inputnumber.ng-dirty.ng-invalid {
   .p-inputswitch-slider {
     &:before {
       transform: translateX(1.25rem);
-      background: $surface-a;
+      background: variables.$surface-a;
     }
-    background: $primary-color;
+    background: variables.$primary-color;
   }
   &:not(.p-disabled) {
     &:hover {
       .p-inputswitch-slider {
-        background: $primary-btn-hover-color;
+        background: variables.$primary-btn-hover-color;
       }
     }
   }
@@ -1249,38 +1249,38 @@ p-inputnumber.ng-dirty.ng-invalid {
   .p-inputswitch-slider {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.05rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
   }
 }
 p-inputswitch.ng-dirty.ng-invalid {
   >.p-inputswitch {
-    border-color: $error-color;
+    border-color: variables.$error-color;
   }
 }
 .p-inputtext {
-  font-family: $default-font;
+  font-family: variables.$default-font;
   font-size: 1rem;
-  color: $text-color;
-  background: $surface-a;
+  color: variables.$text-color;
+  background: variables.$surface-a;
   padding: 0.5rem 0.5rem;
-  border: 1px solid $border-color;
+  border: 1px solid variables.$border-color;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   appearance: none;
   border-radius: 3px;
   &:enabled {
     &:hover {
-      border-color: $primary-color;
+      border-color: variables.$primary-color;
     }
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
-      border-color: $primary-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
+      border-color: variables.$primary-color;
     }
   }
 }
 .p-inputtext.ng-dirty.ng-invalid {
-  border-color: $error-color;
+  border-color: variables.$error-color;
 }
 .p-inputtext.p-inputtext-sm {
   font-size: 0.875rem;
@@ -1293,13 +1293,13 @@ p-inputswitch.ng-dirty.ng-invalid {
 .p-float-label {
   >label {
     left: 0.5rem;
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
     transition-duration: 0.2s;
   }
   >.ng-invalid.ng-dirty {
     + {
       label {
-        color: $error-color;
+        color: variables.$error-color;
       }
     }
   }
@@ -1308,7 +1308,7 @@ p-inputswitch.ng-dirty.ng-invalid {
   >i {
     &:first-of-type {
       left: 0.5rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
   }
   >.p-inputtext {
@@ -1324,7 +1324,7 @@ p-inputswitch.ng-dirty.ng-invalid {
   >i {
     &:last-of-type {
       right: 0.5rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
   }
   >.p-inputtext {
@@ -1332,16 +1332,16 @@ p-inputswitch.ng-dirty.ng-invalid {
   }
 }
 ::-webkit-input-placeholder {
-  color: $text-color-secondary;
+  color: variables.$text-color-secondary;
 }
 :-moz-placeholder {
-  color: $text-color-secondary;
+  color: variables.$text-color-secondary;
 }
 ::-moz-placeholder {
-  color: $text-color-secondary;
+  color: variables.$text-color-secondary;
 }
 :-ms-input-placeholder {
-  color: $text-color-secondary;
+  color: variables.$text-color-secondary;
 }
 .p-inputtext-sm {
   .p-inputtext {
@@ -1356,15 +1356,15 @@ p-inputswitch.ng-dirty.ng-invalid {
   }
 }
 .p-listbox {
-  background: $surface-a;
-  color: $text-color;
-  border: 1px solid $border-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
+  border: 1px solid variables.$border-color;
   border-radius: 3px;
   .p-listbox-header {
     padding: 0.5rem 1rem;
     border-bottom: 0 none;
-    color: $text-color;
-    background: $surface-b;
+    color: variables.$text-color;
+    background: variables.$surface-b;
     margin: 0;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
@@ -1373,7 +1373,7 @@ p-inputswitch.ng-dirty.ng-invalid {
     }
     .p-listbox-filter-icon {
       right: 0.5rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
     .p-checkbox {
       margin-right: 0.5rem;
@@ -1385,32 +1385,32 @@ p-inputswitch.ng-dirty.ng-invalid {
       margin: 0;
       padding: 0.5rem 1rem;
       border: 0 none;
-      color: $text-color;
+      color: variables.$text-color;
       transition: box-shadow 0.2s;
       border-radius: 0;
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+        box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
       }
       .p-checkbox {
         margin-right: 0.5rem;
       }
     }
     .p-listbox-item.p-highlight {
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
     }
     .p-listbox-item-group {
       margin: 0;
       padding: 0.75rem 1rem;
-      color: $text-color;
-      background: $surface-a;
+      color: variables.$text-color;
+      background: variables.$surface-a;
       font-weight: 600;
     }
     .p-listbox-empty-message {
       padding: 0.5rem 1rem;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
     }
   }
@@ -1419,8 +1419,8 @@ p-inputswitch.ng-dirty.ng-invalid {
       &:not(.p-highlight) {
         &:not(.p-disabled) {
           &:hover {
-            color: $text-color;
-            background: $surface-c;
+            color: variables.$text-color;
+            background: variables.$surface-c;
           }
         }
       }
@@ -1429,35 +1429,35 @@ p-inputswitch.ng-dirty.ng-invalid {
 }
 p-listbox.ng-dirty.ng-invalid {
   >.p-listbox {
-    border-color: $error-color;
+    border-color: variables.$error-color;
   }
 }
 .p-multiselect {
-  background: $surface-a;
-  border: 1px solid $border-color;
+  background: variables.$surface-a;
+  border: 1px solid variables.$border-color;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   border-radius: 3px;
   &:not(.p-disabled) {
     &:hover {
-      border-color: $primary-color;
+      border-color: variables.$primary-color;
     }
   }
   &:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.05rem $focus-ring-color;
-    border-color: $primary-color;
+    box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
+    border-color: variables.$primary-color;
   }
   .p-multiselect-label {
     padding: 0.5rem 0.5rem;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   }
   .p-multiselect-label.p-placeholder {
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
   }
   .p-multiselect-trigger {
     background: transparent;
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
     width: 2.357rem;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -1467,8 +1467,8 @@ p-listbox.ng-dirty.ng-invalid {
   .p-multiselect-token {
     padding: 0.25rem 0.5rem;
     margin-right: 0.5rem;
-    background: $highlight-color;
-    color: $text-color;
+    background: variables.$highlight-color;
+    color: variables.$text-color;
     border-radius: 3px;
     .p-multiselect-token-icon {
       margin-left: 0.5rem;
@@ -1488,16 +1488,16 @@ p-listbox.ng-dirty.ng-invalid {
   }
 }
 .p-multiselect-panel {
-  background: $surface-a;
-  color: $text-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border: 0 none;
   border-radius: 3px;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   .p-multiselect-header {
     padding: 0.5rem 1rem;
     border-bottom: 0 none;
-    color: $text-color;
-    background: $surface-b;
+    color: variables.$text-color;
+    background: variables.$surface-b;
     margin: 0;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
@@ -1507,7 +1507,7 @@ p-listbox.ng-dirty.ng-invalid {
       }
       .p-multiselect-filter-icon {
         right: 0.5rem;
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
       }
     }
     .p-checkbox {
@@ -1517,22 +1517,22 @@ p-listbox.ng-dirty.ng-invalid {
       margin-left: 0.5rem;
       width: 2rem;
       height: 2rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       border: 0 none;
       background: transparent;
       border-radius: 50%;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       &:enabled {
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
           border-color: transparent;
-          background: $surface-c;
+          background: variables.$surface-c;
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
   }
@@ -1544,41 +1544,41 @@ p-listbox.ng-dirty.ng-invalid {
       margin: 0;
       padding: 0.5rem 1rem;
       border: 0 none;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
       transition: box-shadow 0.2s;
       border-radius: 0;
       &:not(.p-highlight) {
         &:not(.p-disabled) {
           &:hover {
-            color: $text-color;
-            background: $surface-c;
+            color: variables.$text-color;
+            background: variables.$surface-c;
           }
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+        box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
       }
       .p-checkbox {
         margin-right: 0.5rem;
       }
     }
     .p-multiselect-item.p-highlight {
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
     }
     .p-multiselect-item-group {
       margin: 0;
       padding: 0.75rem 1rem;
-      color: $text-color;
-      background: $surface-a;
+      color: variables.$text-color;
+      background: variables.$surface-a;
       font-weight: 600;
     }
     .p-multiselect-empty-message {
       padding: 0.5rem 1rem;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
     }
   }
@@ -1590,26 +1590,26 @@ p-listbox.ng-dirty.ng-invalid {
 }
 p-multiselect.ng-dirty.ng-invalid {
   >.p-multiselect {
-    border-color: $error-color;
+    border-color: variables.$error-color;
   }
 }
 p-password.ng-invalid.ng-dirty {
   >.p-password {
     >.p-inputtext {
-      border-color: $error-color;
+      border-color: variables.$error-color;
     }
   }
 }
 .p-password-panel {
   padding: 1rem;
-  background: $surface-a;
-  color: $text-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border: 0 none;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   border-radius: 3px;
   .p-password-meter {
     margin-bottom: 0.5rem;
-    background: $surface-d;
+    background: variables.$surface-d;
     .p-password-strength.weak {
       background: #D32F2F;
     }
@@ -1625,41 +1625,41 @@ p-password.ng-invalid.ng-dirty {
   width: 20px;
   height: 20px;
   .p-radiobutton-box {
-    border: 2px solid $border-color;
-    background: $surface-a;
+    border: 2px solid variables.$border-color;
+    background: variables.$surface-a;
     width: 20px;
     height: 20px;
-    color: $text-color;
+    color: variables.$text-color;
     border-radius: 50%;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     &:not(.p-disabled) {
       &:not(.p-highlight) {
         &:hover {
-          border-color: $primary-color;
+          border-color: variables.$primary-color;
         }
       }
     }
     &:not(.p-disabled).p-focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
-      border-color: $primary-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
+      border-color: variables.$primary-color;
     }
     .p-radiobutton-icon {
       width: 12px;
       height: 12px;
       transition-duration: 0.2s;
-      background-color: $surface-a;
+      background-color: variables.$surface-a;
     }
   }
   .p-radiobutton-box.p-highlight {
-    border-color: $primary-color;
-    background: $primary-color;
+    border-color: variables.$primary-color;
+    background: variables.$primary-color;
     &:not(.p-disabled) {
       &:hover {
-        border-color: $primary-active-color;
-        background: $primary-active-color;
-        color: $surface-a;
+        border-color: variables.$primary-active-color;
+        background: variables.$primary-active-color;
+        color: variables.$surface-a;
       }
     }
   }
@@ -1667,7 +1667,7 @@ p-password.ng-invalid.ng-dirty {
 p-radiobutton.ng-dirty.ng-invalid {
   >.p-radiobutton {
     >.p-radiobutton-box {
-      border-color: $error-color;
+      border-color: variables.$error-color;
     }
   }
 }
@@ -1676,14 +1676,14 @@ p-radiobutton.ng-dirty.ng-invalid {
 }
 .p-rating {
   .p-rating-icon {
-    color: $text-color;
+    color: variables.$text-color;
     margin-left: 0.5rem;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     font-size: 1.143rem;
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
     }
     &:first-child {
       margin-left: 0;
@@ -1693,13 +1693,13 @@ p-radiobutton.ng-dirty.ng-invalid {
     color: #e74c3c;
   }
   .p-rating-icon.pi-star-fill {
-    color: $primary-color;
+    color: variables.$primary-color;
   }
   &:not(.p-disabled) {
     &:not(.p-readonly) {
       .p-rating-icon {
         &:hover {
-          color: $primary-color;
+          color: variables.$primary-color;
         }
       }
       .p-rating-icon.p-rating-cancel {
@@ -1712,51 +1712,51 @@ p-radiobutton.ng-dirty.ng-invalid {
 }
 .p-selectbutton {
   .p-button {
-    background: $surface-a;
-    border: 1px solid $border-color;
-    color: $text-color;
+    background: variables.$surface-a;
+    border: 1px solid variables.$border-color;
+    color: variables.$text-color;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     .p-button-icon-left {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
     .p-button-icon-right {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
     &:not(.p-disabled) {
       &:not(.p-highlight) {
         &:hover {
-          background: $surface-c;
-          border-color: $border-color;
-          color: $text-color;
+          background: variables.$surface-c;
+          border-color: variables.$border-color;
+          color: variables.$text-color;
           .p-button-icon-left {
-            color: $text-color-secondary;
+            color: variables.$text-color-secondary;
           }
           .p-button-icon-right {
-            color: $text-color-secondary;
+            color: variables.$text-color-secondary;
           }
         }
       }
     }
   }
   .p-button.p-highlight {
-    background: $primary-color;
-    border-color: $primary-color;
-    color: $surface-a;
+    background: variables.$primary-color;
+    border-color: variables.$primary-color;
+    color: variables.$surface-a;
     .p-button-icon-left {
-      color: $surface-a;
+      color: variables.$surface-a;
     }
     .p-button-icon-right {
-      color: $surface-a;
+      color: variables.$surface-a;
     }
     &:hover {
-      background: $primary-btn-hover-color;
-      border-color: $primary-btn-hover-color;
-      color: $surface-a;
+      background: variables.$primary-btn-hover-color;
+      border-color: variables.$primary-btn-hover-color;
+      color: variables.$surface-a;
       .p-button-icon-left {
-        color: $surface-a;
+        color: variables.$surface-a;
       }
       .p-button-icon-right {
-        color: $surface-a;
+        color: variables.$surface-a;
       }
     }
   }
@@ -1764,35 +1764,35 @@ p-radiobutton.ng-dirty.ng-invalid {
 p-selectbutton.ng-dirty.ng-invalid {
   >.p-selectbutton {
     >.p-button {
-      border-color: $error-color;
+      border-color: variables.$error-color;
     }
   }
 }
 .p-slider {
-  background: $surface-d;
+  background: variables.$surface-d;
   border: 0 none;
   border-radius: 3px;
   .p-slider-handle {
     height: 1.143rem;
     width: 1.143rem;
-    background: $surface-a;
-    border: 2px solid $primary-color;
+    background: variables.$surface-a;
+    border: 2px solid variables.$primary-color;
     border-radius: 50%;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
     }
   }
   .p-slider-range {
-    background: $primary-color;
+    background: variables.$primary-color;
   }
   &:not(.p-disabled) {
     .p-slider-handle {
       &:hover {
-        background: $primary-color;
-        border-color: $primary-color;
+        background: variables.$primary-color;
+        border-color: variables.$primary-color;
       }
     }
   }
@@ -1828,85 +1828,85 @@ p-selectbutton.ng-dirty.ng-invalid {
   }
 }
 .p-togglebutton.p-button {
-  background: $surface-a;
-  border: 1px solid $border-color;
-  color: $text-color;
+  background: variables.$surface-a;
+  border: 1px solid variables.$border-color;
+  color: variables.$text-color;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   .p-button-icon-left {
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
   }
   .p-button-icon-right {
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
   }
   &:not(.p-disabled) {
     &:not(.p-highlight) {
       &:hover {
-        background: $surface-c;
-        border-color: $border-color;
-        color: $text-color;
+        background: variables.$surface-c;
+        border-color: variables.$border-color;
+        color: variables.$text-color;
         .p-button-icon-left {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
         .p-button-icon-right {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
   }
 }
 .p-togglebutton.p-button.p-highlight {
-  background: $primary-color;
-  border-color: $primary-color;
-  color: $surface-a;
+  background: variables.$primary-color;
+  border-color: variables.$primary-color;
+  color: variables.$surface-a;
   .p-button-icon-left {
-    color: $surface-a;
+    color: variables.$surface-a;
   }
   .p-button-icon-right {
-    color: $surface-a;
+    color: variables.$surface-a;
   }
   &:hover {
-    background: $primary-btn-hover-color;
-    border-color: $primary-btn-hover-color;
-    color: $surface-a;
+    background: variables.$primary-btn-hover-color;
+    border-color: variables.$primary-btn-hover-color;
+    color: variables.$surface-a;
     .p-button-icon-left {
-      color: $surface-a;
+      color: variables.$surface-a;
     }
     .p-button-icon-right {
-      color: $surface-a;
+      color: variables.$surface-a;
     }
   }
 }
 p-togglebutton.ng-dirty.ng-invalid {
   >.p-togglebutton.p-button {
-    border-color: $error-color;
+    border-color: variables.$error-color;
   }
 }
 .p-treeselect {
-  background: $surface-a;
-  border: 1px solid $border-color;
+  background: variables.$surface-a;
+  border: 1px solid variables.$border-color;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   border-radius: 3px;
   &:not(.p-disabled) {
     &:hover {
-      border-color: $primary-color;
+      border-color: variables.$primary-color;
     }
   }
   &:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.05rem $focus-ring-color;
-    border-color: $primary-color;
+    box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
+    border-color: variables.$primary-color;
   }
   .p-treeselect-label {
     padding: 0.5rem 0.5rem;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   }
   .p-treeselect-label.p-placeholder {
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
   }
   .p-treeselect-trigger {
     background: transparent;
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
     width: 2.357rem;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -1916,19 +1916,19 @@ p-togglebutton.ng-dirty.ng-invalid {
   .p-treeselect-token {
     padding: 0.25rem 0.5rem;
     margin-right: 0.5rem;
-    background: $surface-d;
-    color: $text-color;
+    background: variables.$surface-d;
+    color: variables.$text-color;
     border-radius: 16px;
   }
 }
 p-treeselect.ng-invalid.ng-dirty {
   >.p-treeselect {
-    border-color: $error-color;
+    border-color: variables.$error-color;
   }
 }
 .p-treeselect-panel {
-  background: $surface-a;
-  color: $text-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border: 0 none;
   border-radius: 3px;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
@@ -1938,35 +1938,35 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     .p-treeselect-empty-message {
       padding: 0.5rem 1rem;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
     }
   }
 }
 .p-button {
-  color: $surface-a;
-  background: $primary-color;
-  border: 1px solid $primary-color;
+  color: variables.$surface-a;
+  background: variables.$primary-color;
+  border: 1px solid variables.$primary-color;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   border-radius: 3px;
   &:enabled {
     &:hover {
-      background: $primary-btn-hover-color;
-      color: $surface-a;
-      border-color: $primary-btn-hover-color;
+      background: variables.$primary-btn-hover-color;
+      color: variables.$surface-a;
+      border-color: variables.$primary-btn-hover-color;
     }
     &:active {
-      background: $primary-active-color;
-      color: $surface-a;
-      border-color: $primary-active-color;
+      background: variables.$primary-active-color;
+      color: variables.$surface-a;
+      border-color: variables.$primary-active-color;
     }
   }
   &:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.05rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
   }
   .p-button-icon-left {
     margin-right: 0.5rem;
@@ -1985,68 +1985,68 @@ p-treeselect.ng-invalid.ng-dirty {
     min-width: 1rem;
     height: 1rem;
     line-height: 1rem;
-    color: $primary-color;
-    background-color: $surface-a;
+    color: variables.$primary-color;
+    background-color: variables.$surface-a;
   }
 }
 .p-button.p-button-outlined {
   background-color: transparent;
-  color: $primary-color;
+  color: variables.$primary-color;
   border: 1px solid;
   &:enabled {
     &:hover {
       background: rgba(76, 175, 80, 0.04);
-      color: $primary-color;
+      color: variables.$primary-color;
       border: 1px solid;
     }
     &:active {
       background: rgba(76, 175, 80, 0.16);
-      color: $primary-color;
+      color: variables.$primary-color;
       border: 1px solid;
     }
   }
 }
 .p-button.p-button-outlined.p-button-plain {
-  color: $text-color-secondary;
-  border-color: $text-color-secondary;
+  color: variables.$text-color-secondary;
+  border-color: variables.$text-color-secondary;
   &:enabled {
     &:hover {
-      background: $surface-c;
-      color: $text-color-secondary;
+      background: variables.$surface-c;
+      color: variables.$text-color-secondary;
     }
     &:active {
-      background: $surface-d;
-      color: $text-color-secondary;
+      background: variables.$surface-d;
+      color: variables.$text-color-secondary;
     }
   }
 }
 .p-button.p-button-text {
   background-color: transparent;
-  color: $primary-color;
+  color: variables.$primary-color;
   border-color: transparent;
   &:enabled {
     &:hover {
       background: rgba(76, 175, 80, 0.04);
-      color: $primary-color;
+      color: variables.$primary-color;
       border-color: transparent;
     }
     &:active {
       background: rgba(76, 175, 80, 0.16);
-      color: $primary-color;
+      color: variables.$primary-color;
       border-color: transparent;
     }
   }
 }
 .p-button.p-button-text.p-button-plain {
-  color: $text-color-secondary;
+  color: variables.$text-color-secondary;
   &:enabled {
     &:hover {
-      background: $surface-c;
-      color: $text-color-secondary;
+      background: variables.$surface-c;
+      color: variables.$text-color-secondary;
     }
     &:active {
-      background: $surface-d;
-      color: $text-color-secondary;
+      background: variables.$surface-d;
+      color: variables.$text-color-secondary;
     }
   }
 }
@@ -2093,13 +2093,13 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-button.p-button-secondary {
-  color: $surface-a;
+  color: variables.$surface-a;
   background: #607D8B;
   border: 1px solid #607D8B;
   &:enabled {
     &:hover {
       background: #56717d;
-      color: $surface-a;
+      color: variables.$surface-a;
       border-color: #56717d;
     }
     &:focus {
@@ -2107,20 +2107,20 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     &:active {
       background: #4d646f;
-      color: $surface-a;
+      color: variables.$surface-a;
       border-color: #4d646f;
     }
   }
 }
 .p-buttonset.p-button-secondary {
   >.p-button {
-    color: $surface-a;
+    color: variables.$surface-a;
     background: #607D8B;
     border: 1px solid #607D8B;
     &:enabled {
       &:hover {
         background: #56717d;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #56717d;
       }
       &:focus {
@@ -2128,7 +2128,7 @@ p-treeselect.ng-invalid.ng-dirty {
       }
       &:active {
         background: #4d646f;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #4d646f;
       }
     }
@@ -2170,13 +2170,13 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-splitbutton.p-button-secondary {
   >.p-button {
-    color: $surface-a;
+    color: variables.$surface-a;
     background: #607D8B;
     border: 1px solid #607D8B;
     &:enabled {
       &:hover {
         background: #56717d;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #56717d;
       }
       &:focus {
@@ -2184,7 +2184,7 @@ p-treeselect.ng-invalid.ng-dirty {
       }
       &:active {
         background: #4d646f;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #4d646f;
       }
     }
@@ -2259,13 +2259,13 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-button.p-button-info {
-  color: $surface-a;
+  color: variables.$surface-a;
   background: #0288D1;
   border: 1px solid #0288D1;
   &:enabled {
     &:hover {
       background: #027abc;
-      color: $surface-a;
+      color: variables.$surface-a;
       border-color: #027abc;
     }
     &:focus {
@@ -2273,20 +2273,20 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     &:active {
       background: #026da7;
-      color: $surface-a;
+      color: variables.$surface-a;
       border-color: #026da7;
     }
   }
 }
 .p-buttonset.p-button-info {
   >.p-button {
-    color: $surface-a;
+    color: variables.$surface-a;
     background: #0288D1;
     border: 1px solid #0288D1;
     &:enabled {
       &:hover {
         background: #027abc;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #027abc;
       }
       &:focus {
@@ -2294,7 +2294,7 @@ p-treeselect.ng-invalid.ng-dirty {
       }
       &:active {
         background: #026da7;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #026da7;
       }
     }
@@ -2336,13 +2336,13 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-splitbutton.p-button-info {
   >.p-button {
-    color: $surface-a;
+    color: variables.$surface-a;
     background: #0288D1;
     border: 1px solid #0288D1;
     &:enabled {
       &:hover {
         background: #027abc;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #027abc;
       }
       &:focus {
@@ -2350,7 +2350,7 @@ p-treeselect.ng-invalid.ng-dirty {
       }
       &:active {
         background: #026da7;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #026da7;
       }
     }
@@ -2425,13 +2425,13 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-button.p-button-success {
-  color: $surface-a;
+  color: variables.$surface-a;
   background: #689F38;
   border: 1px solid #689F38;
   &:enabled {
     &:hover {
       background: #5e8f32;
-      color: $surface-a;
+      color: variables.$surface-a;
       border-color: #5e8f32;
     }
     &:focus {
@@ -2439,20 +2439,20 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     &:active {
       background: #537f2d;
-      color: $surface-a;
+      color: variables.$surface-a;
       border-color: #537f2d;
     }
   }
 }
 .p-buttonset.p-button-success {
   >.p-button {
-    color: $surface-a;
+    color: variables.$surface-a;
     background: #689F38;
     border: 1px solid #689F38;
     &:enabled {
       &:hover {
         background: #5e8f32;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #5e8f32;
       }
       &:focus {
@@ -2460,7 +2460,7 @@ p-treeselect.ng-invalid.ng-dirty {
       }
       &:active {
         background: #537f2d;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #537f2d;
       }
     }
@@ -2502,13 +2502,13 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-splitbutton.p-button-success {
   >.p-button {
-    color: $surface-a;
+    color: variables.$surface-a;
     background: #689F38;
     border: 1px solid #689F38;
     &:enabled {
       &:hover {
         background: #5e8f32;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #5e8f32;
       }
       &:focus {
@@ -2516,7 +2516,7 @@ p-treeselect.ng-invalid.ng-dirty {
       }
       &:active {
         background: #537f2d;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #537f2d;
       }
     }
@@ -2757,13 +2757,13 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-button.p-button-help {
-  color: $surface-a;
+  color: variables.$surface-a;
   background: #9C27B0;
   border: 1px solid #9C27B0;
   &:enabled {
     &:hover {
       background: #8c239e;
-      color: $surface-a;
+      color: variables.$surface-a;
       border-color: #8c239e;
     }
     &:focus {
@@ -2771,20 +2771,20 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     &:active {
       background: #7d1f8d;
-      color: $surface-a;
+      color: variables.$surface-a;
       border-color: #7d1f8d;
     }
   }
 }
 .p-buttonset.p-button-help {
   >.p-button {
-    color: $surface-a;
+    color: variables.$surface-a;
     background: #9C27B0;
     border: 1px solid #9C27B0;
     &:enabled {
       &:hover {
         background: #8c239e;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #8c239e;
       }
       &:focus {
@@ -2792,7 +2792,7 @@ p-treeselect.ng-invalid.ng-dirty {
       }
       &:active {
         background: #7d1f8d;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #7d1f8d;
       }
     }
@@ -2834,13 +2834,13 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-splitbutton.p-button-help {
   >.p-button {
-    color: $surface-a;
+    color: variables.$surface-a;
     background: #9C27B0;
     border: 1px solid #9C27B0;
     &:enabled {
       &:hover {
         background: #8c239e;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #8c239e;
       }
       &:focus {
@@ -2848,7 +2848,7 @@ p-treeselect.ng-invalid.ng-dirty {
       }
       &:active {
         background: #7d1f8d;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #7d1f8d;
       }
     }
@@ -2923,13 +2923,13 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-button.p-button-danger {
-  color: $surface-a;
+  color: variables.$surface-a;
   background: #D32F2F;
   border: 1px solid #D32F2F;
   &:enabled {
     &:hover {
       background: #c02929;
-      color: $surface-a;
+      color: variables.$surface-a;
       border-color: #c02929;
     }
     &:focus {
@@ -2937,20 +2937,20 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     &:active {
       background: #aa2424;
-      color: $surface-a;
+      color: variables.$surface-a;
       border-color: #aa2424;
     }
   }
 }
 .p-buttonset.p-button-danger {
   >.p-button {
-    color: $surface-a;
+    color: variables.$surface-a;
     background: #D32F2F;
     border: 1px solid #D32F2F;
     &:enabled {
       &:hover {
         background: #c02929;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #c02929;
       }
       &:focus {
@@ -2958,7 +2958,7 @@ p-treeselect.ng-invalid.ng-dirty {
       }
       &:active {
         background: #aa2424;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #aa2424;
       }
     }
@@ -3000,13 +3000,13 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-splitbutton.p-button-danger {
   >.p-button {
-    color: $surface-a;
+    color: variables.$surface-a;
     background: #D32F2F;
     border: 1px solid #D32F2F;
     &:enabled {
       &:hover {
         background: #c02929;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #c02929;
       }
       &:focus {
@@ -3014,7 +3014,7 @@ p-treeselect.ng-invalid.ng-dirty {
       }
       &:active {
         background: #aa2424;
-        color: $surface-a;
+        color: variables.$surface-a;
         border-color: #aa2424;
       }
     }
@@ -3089,13 +3089,13 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-button.p-button-link {
-  color: $primary-active-color;
+  color: variables.$primary-active-color;
   background: transparent;
   border: transparent;
   &:enabled {
     &:hover {
       background: transparent;
-      color: $primary-active-color;
+      color: variables.$primary-active-color;
       border-color: transparent;
       .p-button-label {
         text-decoration: underline;
@@ -3103,12 +3103,12 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     &:focus {
       background: transparent;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       border-color: transparent;
     }
     &:active {
       background: transparent;
-      color: $primary-active-color;
+      color: variables.$primary-active-color;
       border-color: transparent;
     }
   }
@@ -3123,7 +3123,7 @@ p-treeselect.ng-invalid.ng-dirty {
 .p-speeddial-action {
   width: 3rem;
   height: 3rem;
-  background: $text-color;
+  background: variables.$text-color;
   color: #fff;
   &:hover {
     background: #343a40;
@@ -3196,14 +3196,14 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-speeddial-mask {
-  background-color: $opaque;
+  background-color: colors.$opaque;
 }
 .p-carousel {
   .p-carousel-content {
     .p-carousel-prev {
       width: 2rem;
       height: 2rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       border: 0 none;
       background: transparent;
       border-radius: 50%;
@@ -3211,21 +3211,21 @@ p-treeselect.ng-invalid.ng-dirty {
       margin: 0.5rem;
       &:enabled {
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
           border-color: transparent;
-          background: $surface-c;
+          background: variables.$surface-c;
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
     .p-carousel-next {
       width: 2rem;
       height: 2rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       border: 0 none;
       background: transparent;
       border-radius: 50%;
@@ -3233,15 +3233,15 @@ p-treeselect.ng-invalid.ng-dirty {
       margin: 0.5rem;
       &:enabled {
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
           border-color: transparent;
-          background: $surface-c;
+          background: variables.$surface-c;
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
   }
@@ -3251,21 +3251,21 @@ p-treeselect.ng-invalid.ng-dirty {
       margin-right: 0.5rem;
       margin-bottom: 0.5rem;
       button {
-        background-color: $surface-c;
+        background-color: variables.$surface-c;
         width: 2rem;
         height: 0.5rem;
         transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
         border-radius: 0;
         &:hover {
-          background: $surface-d;
+          background: variables.$surface-d;
         }
       }
     }
     .p-carousel-indicator.p-highlight {
       button {
-        background: $highlight-color;
-        color: $text-color;
-        background-color: $primary-color;
+        background: variables.$highlight-color;
+        color: variables.$text-color;
+        background-color: variables.$primary-color;
       }
     }
   }
@@ -3280,17 +3280,17 @@ p-treeselect.ng-invalid.ng-dirty {
     border-radius: 0;
   }
   .p-datatable-header {
-    background: $surface-b;
-    color: $text-color;
-    border: 1px solid $surface-c;
+    background: variables.$surface-b;
+    color: variables.$text-color;
+    border: 1px solid variables.$surface-c;
     border-width: 1px 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
   }
   .p-datatable-footer {
-    background: $surface-b;
-    color: $text-color;
-    border: 1px solid $surface-c;
+    background: variables.$surface-b;
+    color: variables.$text-color;
+    border: 1px solid variables.$surface-c;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
@@ -3300,11 +3300,11 @@ p-treeselect.ng-invalid.ng-dirty {
       >th {
         text-align: left;
         padding: 1rem 1rem;
-        border: 1px solid $surface-c;
+        border: 1px solid variables.$surface-c;
         border-width: 0 0 1px 0;
         font-weight: 600;
-        color: $text-color;
-        background: $surface-b;
+        color: variables.$text-color;
+        background: variables.$surface-b;
         transition: box-shadow 0.2s;
       }
     }
@@ -3314,17 +3314,17 @@ p-treeselect.ng-invalid.ng-dirty {
       >td {
         text-align: left;
         padding: 1rem 1rem;
-        border: 1px solid $surface-c;
+        border: 1px solid variables.$surface-c;
         border-width: 0 0 1px 0;
         font-weight: 600;
-        color: $text-color;
-        background: $surface-b;
+        color: variables.$text-color;
+        background: variables.$surface-b;
       }
     }
   }
   .p-sortable-column {
     .p-sortable-column-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       margin-left: 0.5rem;
     }
     .p-sortable-column-badge {
@@ -3332,94 +3332,94 @@ p-treeselect.ng-invalid.ng-dirty {
       height: 1.143rem;
       min-width: 1.143rem;
       line-height: 1.143rem;
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
       margin-left: 0.5rem;
     }
     &:not(.p-highlight) {
       &:hover {
-        background: $surface-c;
-        color: $text-color;
+        background: variables.$surface-c;
+        color: variables.$text-color;
         .p-sortable-column-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
     &:focus {
-      box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+      box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
       outline: 0 none;
     }
   }
   .p-sortable-column.p-highlight {
-    background: $surface-b;
-    color: $primary-color;
+    background: variables.$surface-b;
+    color: variables.$primary-color;
     .p-sortable-column-icon {
-      color: $primary-color;
+      color: variables.$primary-color;
     }
     &:hover {
-      background: $surface-c;
-      color: $primary-color;
+      background: variables.$surface-c;
+      color: variables.$primary-color;
       .p-sortable-column-icon {
-        color: $primary-color;
+        color: variables.$primary-color;
       }
     }
   }
   .p-datatable-tbody {
     >tr {
-      background: $surface-a;
-      color: $text-color;
+      background: variables.$surface-a;
+      color: variables.$text-color;
       transition: box-shadow 0.2s;
       >td {
         text-align: left;
-        border: 1px solid $surface-c;
+        border: 1px solid variables.$surface-c;
         border-width: 0 0 1px 0;
         padding: 1rem 1rem;
         .p-row-toggler {
           width: 2rem;
           height: 2rem;
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           border: 0 none;
           background: transparent;
           border-radius: 50%;
           transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
           &:enabled {
             &:hover {
-              color: $text-color;
+              color: variables.$text-color;
               border-color: transparent;
-              background: $surface-c;
+              background: variables.$surface-c;
             }
           }
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.05rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           }
         }
         .p-row-editor-init {
           width: 2rem;
           height: 2rem;
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           border: 0 none;
           background: transparent;
           border-radius: 50%;
           transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
           &:enabled {
             &:hover {
-              color: $text-color;
+              color: variables.$text-color;
               border-color: transparent;
-              background: $surface-c;
+              background: variables.$surface-c;
             }
           }
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.05rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           }
         }
         .p-row-editor-save {
           width: 2rem;
           height: 2rem;
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           border: 0 none;
           background: transparent;
           border-radius: 50%;
@@ -3427,69 +3427,69 @@ p-treeselect.ng-invalid.ng-dirty {
           margin-right: 0.5rem;
           &:enabled {
             &:hover {
-              color: $text-color;
+              color: variables.$text-color;
               border-color: transparent;
-              background: $surface-c;
+              background: variables.$surface-c;
             }
           }
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.05rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           }
         }
         .p-row-editor-cancel {
           width: 2rem;
           height: 2rem;
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           border: 0 none;
           background: transparent;
           border-radius: 50%;
           transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
           &:enabled {
             &:hover {
-              color: $text-color;
+              color: variables.$text-color;
               border-color: transparent;
-              background: $surface-c;
+              background: variables.$surface-c;
             }
           }
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.05rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           }
         }
       }
       &:focus {
-        outline: 0.15rem solid $focus-ring-color;
+        outline: 0.15rem solid variables.$focus-ring-color;
         outline-offset: 0.15rem;
       }
     }
     >tr.p-highlight {
-      background: $highlight-color;
-      color: $text-color;
+      background: variables.$highlight-color;
+      color: variables.$text-color;
     }
     >tr.p-datatable-dragpoint-top {
       >td {
-        box-shadow: inset 0 2px 0 0 $highlight-color;
-        box-shadow: inset 0 2px 0 0 $primary-color;
+        box-shadow: inset 0 2px 0 0 variables.$highlight-color;
+        box-shadow: inset 0 2px 0 0 variables.$primary-color;
       }
     }
     >tr.p-datatable-dragpoint-bottom {
       >td {
-        box-shadow: inset 0 -2px 0 0 $highlight-color;
-        box-shadow: inset 0 -2px 0 0 $primary-color;
+        box-shadow: inset 0 -2px 0 0 variables.$highlight-color;
+        box-shadow: inset 0 -2px 0 0 variables.$primary-color;
       }
     }
   }
   .p-column-resizer-helper {
-    background: $primary-color;
+    background: variables.$primary-color;
   }
   .p-datatable-scrollable-header {
-    background: $surface-b;
+    background: variables.$surface-b;
   }
   .p-datatable-scrollable-footer {
-    background: $surface-b;
+    background: variables.$surface-b;
   }
   .p-datatable-loading-icon {
     font-size: 2rem;
@@ -3500,8 +3500,8 @@ p-treeselect.ng-invalid.ng-dirty {
     >tr {
       &:not(.p-highlight) {
         &:hover {
-          background: $surface-c;
-          color: $text-color;
+          background: variables.$surface-c;
+          color: variables.$text-color;
         }
       }
     }
@@ -3511,10 +3511,10 @@ p-treeselect.ng-invalid.ng-dirty {
   >.p-datatable-wrapper {
     >.p-datatable-table {
       >.p-datatable-thead {
-        background-color: $surface-b;
+        background-color: variables.$surface-b;
       }
       >.p-datatable-tfoot {
-        background-color: $surface-b;
+        background-color: variables.$surface-b;
       }
     }
   }
@@ -3561,12 +3561,12 @@ p-treeselect.ng-invalid.ng-dirty {
         background: #fcfcfc;
       }
       &:nth-child(even).p-highlight {
-        background: $highlight-color;
-        color: $text-color;
+        background: variables.$highlight-color;
+        color: variables.$text-color;
         .p-row-toggler {
-          color: $text-color;
+          color: variables.$text-color;
           &:hover {
-            color: $text-color;
+            color: variables.$text-color;
           }
         }
       }
@@ -3654,16 +3654,16 @@ p-treeselect.ng-invalid.ng-dirty {
     border-radius: 0;
   }
   .p-dataview-header {
-    background: $surface-b;
-    color: $text-color;
-    border: 1px solid $surface-c;
+    background: variables.$surface-b;
+    color: variables.$text-color;
+    border: 1px solid variables.$surface-c;
     border-width: 1px 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
   }
   .p-dataview-content {
-    background: $surface-a;
-    color: $text-color;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     border: 0 none;
     padding: 0;
 
@@ -3671,9 +3671,9 @@ p-treeselect.ng-invalid.ng-dirty {
     overflow-y: scroll;
   }
   .p-dataview-footer {
-    background: $surface-b;
-    color: $text-color;
-    border: 1px solid $surface-c;
+    background: variables.$surface-b;
+    color: variables.$text-color;
+    border: 1px solid variables.$surface-c;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
@@ -3691,7 +3691,7 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-dataview-content {
     >.p-grid {
       >div {
-        border: solid $surface-c;
+        border: solid variables.$surface-c;
         border-width: 0 0 1px 0;
       }
     }
@@ -3708,60 +3708,60 @@ p-treeselect.ng-invalid.ng-dirty {
 .p-column-filter-menu-button {
   width: 2rem;
   height: 2rem;
-  color: $text-color-secondary;
+  color: variables.$text-color-secondary;
   border: 0 none;
   background: transparent;
   border-radius: 50%;
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
   &:hover {
-    color: $text-color;
+    color: variables.$text-color;
     border-color: transparent;
-    background: $surface-c;
+    background: variables.$surface-c;
   }
   &:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.05rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
   }
 }
 .p-column-filter-menu-button.p-column-filter-menu-button-open {
-  background: $surface-c;
-  color: $text-color;
+  background: variables.$surface-c;
+  color: variables.$text-color;
   &:hover {
-    background: $surface-c;
-    color: $text-color;
+    background: variables.$surface-c;
+    color: variables.$text-color;
   }
 }
 .p-column-filter-menu-button.p-column-filter-menu-button-active {
-  background: $highlight-color;
-  color: $text-color;
+  background: variables.$highlight-color;
+  color: variables.$text-color;
   &:hover {
-    background: $highlight-color;
-    color: $text-color;
+    background: variables.$highlight-color;
+    color: variables.$text-color;
   }
 }
 .p-column-filter-clear-button {
   width: 2rem;
   height: 2rem;
-  color: $text-color-secondary;
+  color: variables.$text-color-secondary;
   border: 0 none;
   background: transparent;
   border-radius: 50%;
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
   &:hover {
-    color: $text-color;
+    color: variables.$text-color;
     border-color: transparent;
-    background: $surface-c;
+    background: variables.$surface-c;
   }
   &:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.05rem $focus-ring-color;
+    box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
   }
 }
 .p-column-filter-overlay {
-  background: $surface-a;
-  color: $text-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border: 0 none;
   border-radius: 3px;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
@@ -3772,30 +3772,30 @@ p-treeselect.ng-invalid.ng-dirty {
       margin: 0;
       padding: 0.5rem 1rem;
       border: 0 none;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
       transition: box-shadow 0.2s;
       border-radius: 0;
       &:not(.p-highlight) {
         &:not(.p-disabled) {
           &:hover {
-            color: $text-color;
-            background: $surface-c;
+            color: variables.$text-color;
+            background: variables.$surface-c;
           }
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+        box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
       }
     }
     .p-column-filter-row-item.p-highlight {
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
     }
     .p-column-filter-separator {
-      border-top: 1px solid $surface-d;
+      border-top: 1px solid variables.$surface-d;
       margin: 0.25rem 0;
     }
   }
@@ -3804,15 +3804,15 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-column-filter-operator {
     padding: 0.5rem 1rem;
     border-bottom: 0 none;
-    color: $text-color;
-    background: $surface-b;
+    color: variables.$text-color;
+    background: variables.$surface-b;
     margin: 0;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
   }
   .p-column-filter-constraint {
     padding: 1rem;
-    border-bottom: 1px solid $surface-d;
+    border-bottom: 1px solid variables.$surface-d;
     .p-column-filter-matchmode-dropdown {
       margin-bottom: 0.5rem;
     }
@@ -3833,36 +3833,36 @@ p-treeselect.ng-invalid.ng-dirty {
 .fc.fc-unthemed {
   .fc-view-container {
     th {
-      background: $surface-b;
-      border: 1px solid $surface-d;
-      color: $text-color;
+      background: variables.$surface-b;
+      border: 1px solid variables.$surface-d;
+      color: variables.$text-color;
     }
     td.fc-widget-content {
-      background: $surface-a;
-      border: 1px solid $surface-d;
-      color: $text-color;
+      background: variables.$surface-a;
+      border: 1px solid variables.$surface-d;
+      color: variables.$text-color;
     }
     td.fc-head-container {
-      border: 1px solid $surface-d;
+      border: 1px solid variables.$surface-d;
     }
     .fc-row {
-      border-right: 1px solid $surface-d;
+      border-right: 1px solid variables.$surface-d;
     }
     .fc-event {
-      background: $primary-btn-hover-color;
-      border: 1px solid $primary-btn-hover-color;
-      color: $surface-a;
+      background: variables.$primary-btn-hover-color;
+      border: 1px solid variables.$primary-btn-hover-color;
+      color: variables.$surface-a;
     }
     .fc-divider {
-      background: $surface-b;
-      border: 1px solid $surface-d;
+      background: variables.$surface-b;
+      border: 1px solid variables.$surface-d;
     }
   }
   .fc-toolbar {
     .fc-button {
-      color: $surface-a;
-      background: $primary-color;
-      border: 1px solid $primary-color;
+      color: variables.$surface-a;
+      background: variables.$primary-color;
+      border: 1px solid variables.$primary-color;
       font-size: 1rem;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
       border-radius: 3px;
@@ -3870,18 +3870,18 @@ p-treeselect.ng-invalid.ng-dirty {
       align-items: center;
       &:enabled {
         &:hover {
-          background: $primary-btn-hover-color;
-          color: $surface-a;
-          border-color: $primary-btn-hover-color;
+          background: variables.$primary-btn-hover-color;
+          color: variables.$surface-a;
+          border-color: variables.$primary-btn-hover-color;
         }
         &:active {
-          background: $primary-active-color;
-          color: $surface-a;
-          border-color: $primary-active-color;
+          background: variables.$primary-active-color;
+          color: variables.$surface-a;
+          border-color: variables.$primary-active-color;
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.05rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           }
         }
       }
@@ -3904,88 +3904,88 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
     .fc-button.fc-dayGridMonth-button {
-      background: $surface-a;
-      border: 1px solid $border-color;
-      color: $text-color;
+      background: variables.$surface-a;
+      border: 1px solid variables.$border-color;
+      color: variables.$text-color;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
       &:hover {
-        background: $surface-c;
-        border-color: $border-color;
-        color: $text-color;
+        background: variables.$surface-c;
+        border-color: variables.$border-color;
+        color: variables.$text-color;
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
         z-index: 1;
       }
     }
     .fc-button.fc-timeGridWeek-button {
-      background: $surface-a;
-      border: 1px solid $border-color;
-      color: $text-color;
+      background: variables.$surface-a;
+      border: 1px solid variables.$border-color;
+      color: variables.$text-color;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
       &:hover {
-        background: $surface-c;
-        border-color: $border-color;
-        color: $text-color;
+        background: variables.$surface-c;
+        border-color: variables.$border-color;
+        color: variables.$text-color;
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
         z-index: 1;
       }
     }
     .fc-button.fc-timeGridDay-button {
-      background: $surface-a;
-      border: 1px solid $border-color;
-      color: $text-color;
+      background: variables.$surface-a;
+      border: 1px solid variables.$border-color;
+      color: variables.$text-color;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
       &:hover {
-        background: $surface-c;
-        border-color: $border-color;
-        color: $text-color;
+        background: variables.$surface-c;
+        border-color: variables.$border-color;
+        color: variables.$text-color;
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
         z-index: 1;
       }
     }
     .fc-button.fc-dayGridMonth-button.fc-button-active {
-      background: $primary-color;
-      border-color: $primary-color;
-      color: $surface-a;
+      background: variables.$primary-color;
+      border-color: variables.$primary-color;
+      color: variables.$surface-a;
       &:hover {
-        background: $primary-btn-hover-color;
-        border-color: $primary-btn-hover-color;
-        color: $surface-a;
+        background: variables.$primary-btn-hover-color;
+        border-color: variables.$primary-btn-hover-color;
+        color: variables.$surface-a;
       }
     }
     .fc-button.fc-timeGridWeek-button.fc-button-active {
-      background: $primary-color;
-      border-color: $primary-color;
-      color: $surface-a;
+      background: variables.$primary-color;
+      border-color: variables.$primary-color;
+      color: variables.$surface-a;
       &:hover {
-        background: $primary-btn-hover-color;
-        border-color: $primary-btn-hover-color;
-        color: $surface-a;
+        background: variables.$primary-btn-hover-color;
+        border-color: variables.$primary-btn-hover-color;
+        color: variables.$surface-a;
       }
     }
     .fc-button.fc-timeGridDay-button.fc-button-active {
-      background: $primary-color;
-      border-color: $primary-color;
-      color: $surface-a;
+      background: variables.$primary-color;
+      border-color: variables.$primary-color;
+      color: variables.$surface-a;
       &:hover {
-        background: $primary-btn-hover-color;
-        border-color: $primary-btn-hover-color;
-        color: $surface-a;
+        background: variables.$primary-btn-hover-color;
+        border-color: variables.$primary-btn-hover-color;
+        color: variables.$surface-a;
       }
     }
     .fc-button-group {
@@ -4006,28 +4006,28 @@ p-treeselect.ng-invalid.ng-dirty {
 .fc.fc-theme-standard {
   .fc-view-harness {
     .fc-scrollgrid {
-      border-color: $surface-d;
+      border-color: variables.$surface-d;
     }
     th {
-      background: $surface-b;
-      border-color: $surface-d;
-      color: $text-color;
+      background: variables.$surface-b;
+      border-color: variables.$surface-d;
+      color: variables.$text-color;
     }
     td {
-      color: $text-color;
-      border-color: $surface-d;
+      color: variables.$text-color;
+      border-color: variables.$surface-d;
     }
     .fc-view {
-      background: $surface-a;
+      background: variables.$surface-a;
     }
     .fc-popover {
       background: none;
       border: 0 none;
       .fc-popover-header {
-        border: 1px solid $surface-d;
+        border: 1px solid variables.$surface-d;
         padding: 1rem;
-        background: $surface-b;
-        color: $text-color;
+        background: variables.$surface-b;
+        color: variables.$text-color;
         .fc-popover-close {
           opacity: 1;
           display: flex;
@@ -4038,7 +4038,7 @@ p-treeselect.ng-invalid.ng-dirty {
           font-size: 1rem;
           width: 2rem;
           height: 2rem;
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           border: 0 none;
           background: transparent;
           border-radius: 50%;
@@ -4048,78 +4048,78 @@ p-treeselect.ng-invalid.ng-dirty {
           }
           &:enabled {
             &:hover {
-              color: $text-color;
+              color: variables.$text-color;
               border-color: transparent;
-              background: $surface-c;
+              background: variables.$surface-c;
             }
           }
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.05rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           }
         }
       }
       .fc-popover-body {
         padding: 1rem;
-        border: 1px solid $surface-d;
-        background: $surface-a;
-        color: $text-color;
+        border: 1px solid variables.$surface-d;
+        background: variables.$surface-a;
+        color: variables.$text-color;
         border-top: 0 none;
       }
     }
     .fc-event.fc-daygrid-block-event {
-      color: $surface-a;
-      background: $primary-btn-hover-color;
-      border-color: $primary-btn-hover-color;
+      color: variables.$surface-a;
+      background: variables.$primary-btn-hover-color;
+      border-color: variables.$primary-btn-hover-color;
       .fc-event-main {
-        color: $surface-a;
+        color: variables.$surface-a;
       }
     }
     .fc-event.fc-daygrid-dot-event {
       .fc-daygrid-event-dot {
-        background: $primary-btn-hover-color;
-        border-color: $primary-btn-hover-color;
+        background: variables.$primary-btn-hover-color;
+        border-color: variables.$primary-btn-hover-color;
       }
       &:hover {
-        background: $surface-c;
-        color: $text-color;
+        background: variables.$surface-c;
+        color: variables.$text-color;
       }
     }
     .fc-cell-shaded {
-      background: $surface-b;
+      background: variables.$surface-b;
     }
   }
   .fc-toolbar {
     .fc-button {
-      color: $surface-a;
-      background: $primary-color;
-      border: 1px solid $primary-color;
+      color: variables.$surface-a;
+      background: variables.$primary-color;
+      border: 1px solid variables.$primary-color;
       font-size: 1rem;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
       border-radius: 3px;
       &:enabled {
         &:hover {
-          background: $primary-btn-hover-color;
-          color: $surface-a;
-          border-color: $primary-btn-hover-color;
+          background: variables.$primary-btn-hover-color;
+          color: variables.$surface-a;
+          border-color: variables.$primary-btn-hover-color;
         }
         &:active {
-          background: $primary-active-color;
-          color: $surface-a;
-          border-color: $primary-active-color;
+          background: variables.$primary-active-color;
+          color: variables.$surface-a;
+          border-color: variables.$primary-active-color;
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.05rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           }
         }
       }
       &:disabled {
         opacity: 0.6;
-        color: $surface-a;
-        background: $primary-color;
-        border: 1px solid $primary-color;
+        color: variables.$surface-a;
+        background: variables.$primary-color;
+        border: 1px solid variables.$primary-color;
       }
       .fc-icon-chevron-left {
         font-family: "PrimeIcons" !important;
@@ -4140,94 +4140,94 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
     .fc-button.fc-dayGridMonth-button {
-      background: $surface-a;
-      border: 1px solid $border-color;
-      color: $text-color;
+      background: variables.$surface-a;
+      border: 1px solid variables.$border-color;
+      color: variables.$text-color;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
       &:hover {
-        background: $surface-c;
-        border-color: $border-color;
-        color: $text-color;
+        background: variables.$surface-c;
+        border-color: variables.$border-color;
+        color: variables.$text-color;
       }
       &:not(:disabled) {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.05rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           z-index: 1;
         }
       }
     }
     .fc-button.fc-timeGridWeek-button {
-      background: $surface-a;
-      border: 1px solid $border-color;
-      color: $text-color;
+      background: variables.$surface-a;
+      border: 1px solid variables.$border-color;
+      color: variables.$text-color;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
       &:hover {
-        background: $surface-c;
-        border-color: $border-color;
-        color: $text-color;
+        background: variables.$surface-c;
+        border-color: variables.$border-color;
+        color: variables.$text-color;
       }
       &:not(:disabled) {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.05rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           z-index: 1;
         }
       }
     }
     .fc-button.fc-timeGridDay-button {
-      background: $surface-a;
-      border: 1px solid $border-color;
-      color: $text-color;
+      background: variables.$surface-a;
+      border: 1px solid variables.$border-color;
+      color: variables.$text-color;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
       &:hover {
-        background: $surface-c;
-        border-color: $border-color;
-        color: $text-color;
+        background: variables.$surface-c;
+        border-color: variables.$border-color;
+        color: variables.$text-color;
       }
       &:not(:disabled) {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.05rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           z-index: 1;
         }
       }
     }
     .fc-button.fc-dayGridMonth-button.fc-button-active {
-      background: $primary-color;
-      border-color: $primary-color;
-      color: $surface-a;
+      background: variables.$primary-color;
+      border-color: variables.$primary-color;
+      color: variables.$surface-a;
       &:hover {
-        background: $primary-btn-hover-color;
-        border-color: $primary-btn-hover-color;
-        color: $surface-a;
+        background: variables.$primary-btn-hover-color;
+        border-color: variables.$primary-btn-hover-color;
+        color: variables.$surface-a;
       }
     }
     .fc-button.fc-timeGridWeek-button.fc-button-active {
-      background: $primary-color;
-      border-color: $primary-color;
-      color: $surface-a;
+      background: variables.$primary-color;
+      border-color: variables.$primary-color;
+      color: variables.$surface-a;
       &:hover {
-        background: $primary-btn-hover-color;
-        border-color: $primary-btn-hover-color;
-        color: $surface-a;
+        background: variables.$primary-btn-hover-color;
+        border-color: variables.$primary-btn-hover-color;
+        color: variables.$surface-a;
       }
     }
     .fc-button.fc-timeGridDay-button.fc-button-active {
-      background: $primary-color;
-      border-color: $primary-color;
-      color: $surface-a;
+      background: variables.$primary-color;
+      border-color: variables.$primary-color;
+      color: variables.$surface-a;
       &:hover {
-        background: $primary-btn-hover-color;
-        border-color: $primary-btn-hover-color;
-        color: $surface-a;
+        background: variables.$primary-btn-hover-color;
+        border-color: variables.$primary-btn-hover-color;
+        color: variables.$surface-a;
       }
     }
     .fc-button-group {
@@ -4245,11 +4245,11 @@ p-treeselect.ng-invalid.ng-dirty {
     }
   }
   a {
-    color: $text-color;
+    color: variables.$text-color;
   }
   .fc-highlight {
-    color: $text-color;
-    background: $highlight-color;
+    color: variables.$text-color;
+    background: variables.$highlight-color;
   }
 }
 .p-orderlist {
@@ -4260,9 +4260,9 @@ p-treeselect.ng-invalid.ng-dirty {
     }
   }
   .p-orderlist-header {
-    background: $surface-b;
-    color: $text-color;
-    border: 1px solid $surface-d;
+    background: variables.$surface-b;
+    color: variables.$text-color;
+    border: 1px solid variables.$surface-d;
     padding: 1rem;
     border-bottom: 0 none;
     border-top-right-radius: 3px;
@@ -4273,21 +4273,21 @@ p-treeselect.ng-invalid.ng-dirty {
   }
   .p-orderlist-filter-container {
     padding: 1rem;
-    background: $surface-a;
-    border: 1px solid $surface-d;
+    background: variables.$surface-a;
+    border: 1px solid variables.$surface-d;
     border-bottom: 0 none;
     .p-orderlist-filter-input {
       padding-right: 1.5rem;
     }
     .p-orderlist-filter-icon {
       right: 0.5rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
   }
   .p-orderlist-list {
-    border: 1px solid $surface-d;
-    background: $surface-a;
-    color: $text-color;
+    border: 1px solid variables.$surface-d;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     padding: 0.5rem 0;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -4295,29 +4295,29 @@ p-treeselect.ng-invalid.ng-dirty {
       padding: 0.5rem 1rem;
       margin: 0;
       border: 0 none;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
       transition: box-shadow 0.2s;
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+        box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
       }
     }
     .p-orderlist-item.p-highlight {
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
     }
     .p-orderlist-empty-message {
       padding: 0.5rem 1rem;
-      color: $text-color;
+      color: variables.$text-color;
     }
     &:not(.cdk-drop-list-dragging) {
       .p-orderlist-item {
         &:not(.p-highlight) {
           &:hover {
-            background: $surface-c;
-            color: $text-color;
+            background: variables.$surface-c;
+            color: variables.$text-color;
           }
         }
       }
@@ -4328,22 +4328,22 @@ p-treeselect.ng-invalid.ng-dirty {
   padding: 0.5rem 1rem;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   border: 0 none;
-  color: $text-color;
-  background: $surface-a;
+  color: variables.$text-color;
+  background: variables.$surface-a;
   margin: 0;
 }
 .p-organizationchart {
   .p-organizationchart-node-content.p-organizationchart-selectable-node {
     &:not(.p-highlight) {
       &:hover {
-        background: $surface-c;
-        color: $text-color;
+        background: variables.$surface-c;
+        color: variables.$text-color;
       }
     }
   }
   .p-organizationchart-node-content.p-highlight {
-    background: $highlight-color;
-    color: $text-color;
+    background: variables.$highlight-color;
+    color: variables.$text-color;
     .p-node-toggler {
       i {
         color: #8fce94;
@@ -4351,20 +4351,20 @@ p-treeselect.ng-invalid.ng-dirty {
     }
   }
   .p-organizationchart-line-down {
-    background: $surface-d;
+    background: variables.$surface-d;
   }
   .p-organizationchart-line-left {
-    border-right: 1px solid $surface-d;
-    border-color: $surface-d;
+    border-right: 1px solid variables.$surface-d;
+    border-color: variables.$surface-d;
   }
   .p-organizationchart-line-top {
-    border-top: 1px solid $surface-d;
-    border-color: $surface-d;
+    border-top: 1px solid variables.$surface-d;
+    border-color: variables.$surface-d;
   }
   .p-organizationchart-node-content {
-    border: 1px solid $surface-d;
-    background: $surface-a;
-    color: $text-color;
+    border: 1px solid variables.$surface-d;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     padding: 1rem;
     .p-node-toggler {
       background: inherit;
@@ -4373,21 +4373,21 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
   }
 }
 .p-paginator {
-  color: $text-color-secondary;
-  border: solid $surface-c;
+  color: variables.$text-color-secondary;
+  border: solid variables.$surface-c;
   border-width: 0;
   padding: 0.5rem 1rem;
   border-radius: 3px;
   .p-paginator-first {
     background-color: transparent;
     border: 1px solid grey;
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
     min-width: 2rem;
     height: 2rem;
     margin: 0.1rem;
@@ -4398,9 +4398,9 @@ p-treeselect.ng-invalid.ng-dirty {
     &:not(.p-disabled) {
       &:not(.p-highlight) {
         &:hover {
-          background: $surface-c;
+          background: variables.$surface-c;
           border-color: black;
-          color: $text-color;
+          color: variables.$text-color;
         }
       }
     }
@@ -4408,7 +4408,7 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-paginator-prev {
     background-color: transparent;
     border: 1px solid grey;
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
     min-width: 2rem;
     height: 2rem;
     margin: 0.1rem;
@@ -4417,9 +4417,9 @@ p-treeselect.ng-invalid.ng-dirty {
     &:not(.p-disabled) {
       &:not(.p-highlight) {
         &:hover {
-          background: $surface-c;
+          background: variables.$surface-c;
           border-color: black;
-          color: $text-color;
+          color: variables.$text-color;
         }
       }
     }
@@ -4427,7 +4427,7 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-paginator-next {
     background-color: transparent;
     border: 1px solid grey;
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
     min-width: 2rem;
     height: 2rem;
     margin: 0.1rem;
@@ -4436,9 +4436,9 @@ p-treeselect.ng-invalid.ng-dirty {
     &:not(.p-disabled) {
       &:not(.p-highlight) {
         &:hover {
-          background: $surface-c;
+          background: variables.$surface-c;
           border-color: black;
-          color: $text-color;
+          color: variables.$text-color;
         }
       }
     }
@@ -4446,7 +4446,7 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-paginator-last {
     background-color: transparent;
     border: 1px solid grey;
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
     min-width: 2rem;
     height: 2rem;
     margin: 0.1rem;
@@ -4457,9 +4457,9 @@ p-treeselect.ng-invalid.ng-dirty {
     &:not(.p-disabled) {
       &:not(.p-highlight) {
         &:hover {
-          background: $surface-c;
+          background: variables.$surface-c;
           border-color: black;
-          color: $text-color;
+          color: variables.$text-color;
         }
       }
     }
@@ -4482,7 +4482,7 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-paginator-current {
     background-color: transparent;
     border: 0 none;
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
     min-width: 2rem;
     height: 2rem;
     margin: 0.1rem;
@@ -4492,7 +4492,7 @@ p-treeselect.ng-invalid.ng-dirty {
     .p-paginator-page {
       background-color: transparent;
       border: 0 none;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       min-width: 2rem;
       height: 2rem;
       margin: 0.1rem;
@@ -4500,16 +4500,16 @@ p-treeselect.ng-invalid.ng-dirty {
       border-radius: 3px;
       &:not(.p-highlight) {
         &:hover {
-          background: $surface-c;
+          background: variables.$surface-c;
           border-color: transparent;
-          color: $text-color;
+          color: variables.$text-color;
         }
       }
     }
     .p-paginator-page.p-highlight {
-      background: $focus-ring-color;
-      border-color: $highlight-color;
-      color: $text-color;
+      background: variables.$focus-ring-color;
+      border-color: variables.$highlight-color;
+      color: variables.$text-color;
     }
   }
 }
@@ -4521,9 +4521,9 @@ p-treeselect.ng-invalid.ng-dirty {
     }
   }
   .p-picklist-header {
-    background: $surface-b;
-    color: $text-color;
-    border: 1px solid $surface-d;
+    background: variables.$surface-b;
+    color: variables.$text-color;
+    border: 1px solid variables.$surface-d;
     padding: 1rem;
     border-bottom: 0 none;
     border-top-right-radius: 3px;
@@ -4534,21 +4534,21 @@ p-treeselect.ng-invalid.ng-dirty {
   }
   .p-picklist-filter-container {
     padding: 1rem;
-    background: $surface-a;
-    border: 1px solid $surface-d;
+    background: variables.$surface-a;
+    border: 1px solid variables.$surface-d;
     border-bottom: 0 none;
     .p-picklist-filter-input {
       padding-right: 1.5rem;
     }
     .p-picklist-filter-icon {
       right: 0.5rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
   }
   .p-picklist-list {
-    border: 1px solid $surface-d;
-    background: $surface-a;
-    color: $text-color;
+    border: 1px solid variables.$surface-d;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     padding: 0.5rem 0;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -4556,29 +4556,29 @@ p-treeselect.ng-invalid.ng-dirty {
       padding: 0.5rem 1rem;
       margin: 0;
       border: 0 none;
-      color: $text-color;
+      color: variables.$text-color;
       background: transparent;
       transition: box-shadow 0.2s;
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+        box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
       }
     }
     .p-picklist-item.p-highlight {
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
     }
     .p-picklist-empty-message {
       padding: 0.5rem 1rem;
-      color: $text-color;
+      color: variables.$text-color;
     }
     &:not(.cdk-drop-list-dragging) {
       .p-picklist-item {
         &:not(.p-highlight) {
           &:hover {
-            background: $surface-c;
-            color: $text-color;
+            background: variables.$surface-c;
+            color: variables.$text-color;
           }
         }
       }
@@ -4589,20 +4589,20 @@ p-treeselect.ng-invalid.ng-dirty {
   padding: 0.5rem 1rem;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   border: 0 none;
-  color: $text-color;
-  background: $surface-a;
+  color: variables.$text-color;
+  background: variables.$surface-a;
   margin: 0;
 }
 .p-timeline {
   .p-timeline-event-marker {
-    border: 2px solid $primary-color;
+    border: 2px solid variables.$primary-color;
     border-radius: 50%;
     width: 1rem;
     height: 1rem;
-    background-color: $surface-a;
+    background-color: variables.$surface-a;
   }
   .p-timeline-event-connector {
-    background-color: $surface-d;
+    background-color: variables.$surface-d;
   }
 }
 .p-timeline.p-timeline-vertical {
@@ -4628,9 +4628,9 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-tree {
-  border: 1px solid $surface-d;
-  background: $surface-a;
-  color: $text-color;
+  border: 1px solid variables.$surface-d;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   padding: 1rem;
   border-radius: 3px;
   .p-tree-container {
@@ -4644,69 +4644,69 @@ p-treeselect.ng-invalid.ng-dirty {
           margin-right: 0.5rem;
           width: 2rem;
           height: 2rem;
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           border: 0 none;
           background: transparent;
           border-radius: 50%;
           transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
           &:enabled {
             &:hover {
-              color: $text-color;
+              color: variables.$text-color;
               border-color: transparent;
-              background: $surface-c;
+              background: variables.$surface-c;
             }
           }
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.05rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           }
         }
         .p-treenode-icon {
           margin-right: 0.5rem;
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
         .p-checkbox {
           margin-right: 0.5rem;
           .p-indeterminate {
             .p-checkbox-icon {
-              color: $text-color;
+              color: variables.$text-color;
             }
           }
         }
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+          box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
         }
       }
       .p-treenode-content.p-highlight {
-        background: $highlight-color;
-        color: $text-color;
+        background: variables.$highlight-color;
+        color: variables.$text-color;
         .p-tree-toggler {
-          color: $text-color;
+          color: variables.$text-color;
           &:hover {
-            color: $text-color;
+            color: variables.$text-color;
           }
         }
         .p-treenode-icon {
-          color: $text-color;
+          color: variables.$text-color;
           &:hover {
-            color: $text-color;
+            color: variables.$text-color;
           }
         }
       }
       .p-treenode-content.p-treenode-selectable {
         &:not(.p-highlight) {
           &:hover {
-            background: $surface-c;
-            color: $text-color;
+            background: variables.$surface-c;
+            color: variables.$text-color;
           }
         }
       }
       .p-treenode-content.p-treenode-dragover {
-        background: $surface-c;
-        color: $text-color;
+        background: variables.$surface-c;
+        color: variables.$text-color;
       }
     }
   }
@@ -4718,7 +4718,7 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     .p-tree-filter-icon {
       right: 0.5rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
   }
   .p-treenode-children {
@@ -4735,16 +4735,16 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-treenode {
     .p-treenode-content {
       border-radius: 3px;
-      border: 1px solid $surface-d;
-      background-color: $surface-a;
-      color: $text-color;
+      border: 1px solid variables.$surface-d;
+      background-color: variables.$surface-a;
+      color: variables.$text-color;
       padding: 0;
       transition: box-shadow 0.2s;
       .p-tree-toggler {
         margin-right: 0.5rem;
       }
       .p-treenode-icon {
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
         margin-right: 0.5rem;
       }
       .p-checkbox {
@@ -4761,21 +4761,21 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
     .p-treenode-content.p-highlight {
-      background-color: $highlight-color;
-      color: $text-color;
+      background-color: variables.$highlight-color;
+      color: variables.$text-color;
       .p-treenode-icon {
-        color: $text-color;
+        color: variables.$text-color;
       }
     }
     .p-treenode-content.p-treenode-selectable {
       &:not(.p-highlight) {
         &:hover {
-          background: $surface-c;
-          color: $text-color;
+          background: variables.$surface-c;
+          color: variables.$text-color;
         }
       }
     }
@@ -4791,17 +4791,17 @@ p-treeselect.ng-invalid.ng-dirty {
     border-radius: 0;
   }
   .p-treetable-header {
-    background: $surface-b;
-    color: $text-color;
-    border: 1px solid $surface-c;
+    background: variables.$surface-b;
+    color: variables.$text-color;
+    border: 1px solid variables.$surface-c;
     border-width: 1px 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
   }
   .p-treetable-footer {
-    background: $surface-b;
-    color: $text-color;
-    border: 1px solid $surface-c;
+    background: variables.$surface-b;
+    color: variables.$text-color;
+    border: 1px solid variables.$surface-c;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
@@ -4811,11 +4811,11 @@ p-treeselect.ng-invalid.ng-dirty {
       >th {
         text-align: left;
         padding: 1rem 1rem;
-        border: 1px solid $surface-c;
+        border: 1px solid variables.$surface-c;
         border-width: 0 0 1px 0;
         font-weight: 600;
-        color: $text-color;
-        background: $surface-b;
+        color: variables.$text-color;
+        background: variables.$surface-b;
         transition: box-shadow 0.2s;
       }
     }
@@ -4825,18 +4825,18 @@ p-treeselect.ng-invalid.ng-dirty {
       >td {
         text-align: left;
         padding: 1rem 1rem;
-        border: 1px solid $surface-c;
+        border: 1px solid variables.$surface-c;
         border-width: 0 0 1px 0;
         font-weight: 600;
-        color: $text-color;
-        background: $surface-b;
+        color: variables.$text-color;
+        background: variables.$surface-b;
       }
     }
   }
   .p-sortable-column {
-    outline-color: $focus-ring-color;
+    outline-color: variables.$focus-ring-color;
     .p-sortable-column-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       margin-left: 0.5rem;
     }
     .p-sortable-column-badge {
@@ -4844,41 +4844,41 @@ p-treeselect.ng-invalid.ng-dirty {
       height: 1.143rem;
       min-width: 1.143rem;
       line-height: 1.143rem;
-      color: $text-color;
-      background: $highlight-color;
+      color: variables.$text-color;
+      background: variables.$highlight-color;
       margin-left: 0.5rem;
     }
     &:not(.p-highlight) {
       &:hover {
-        background: $surface-c;
-        color: $text-color;
+        background: variables.$surface-c;
+        color: variables.$text-color;
         .p-sortable-column-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
   }
   .p-sortable-column.p-highlight {
-    background: $surface-b;
-    color: $primary-color;
+    background: variables.$surface-b;
+    color: variables.$primary-color;
     .p-sortable-column-icon {
-      color: $primary-color;
+      color: variables.$primary-color;
     }
   }
   .p-treetable-tbody {
     >tr {
-      background: $surface-a;
-      color: $text-color;
+      background: variables.$surface-a;
+      color: variables.$text-color;
       transition: box-shadow 0.2s;
       >td {
         text-align: left;
-        border: 1px solid $surface-c;
+        border: 1px solid variables.$surface-c;
         border-width: 0 0 1px 0;
         padding: 1rem 1rem;
         .p-treetable-toggler {
           width: 2rem;
           height: 2rem;
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           border: 0 none;
           background: transparent;
           border-radius: 50%;
@@ -4886,15 +4886,15 @@ p-treeselect.ng-invalid.ng-dirty {
           margin-right: 0.5rem;
           &:enabled {
             &:hover {
-              color: $text-color;
+              color: variables.$text-color;
               border-color: transparent;
-              background: $surface-c;
+              background: variables.$surface-c;
             }
           }
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: 0 0 0 0.05rem $focus-ring-color;
+            box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
           }
         }
         p-treetablecheckbox {
@@ -4902,36 +4902,36 @@ p-treeselect.ng-invalid.ng-dirty {
             margin-right: 0.5rem;
             .p-indeterminate {
               .p-checkbox-icon {
-                color: $text-color;
+                color: variables.$text-color;
               }
             }
           }
         }
       }
       &:focus {
-        outline: 0.15rem solid $focus-ring-color;
+        outline: 0.15rem solid variables.$focus-ring-color;
         outline-offset: -0.15rem;
       }
     }
     >tr.p-highlight {
-      background: $highlight-color;
-      color: $text-color;
+      background: variables.$highlight-color;
+      color: variables.$text-color;
       .p-treetable-toggler {
-        color: $text-color;
+        color: variables.$text-color;
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
         }
       }
     }
   }
   .p-column-resizer-helper {
-    background: $primary-color;
+    background: variables.$primary-color;
   }
   .p-treetable-scrollable-header {
-    background: $surface-b;
+    background: variables.$surface-b;
   }
   .p-treetable-scrollable-footer {
-    background: $surface-b;
+    background: variables.$surface-b;
   }
   .p-treetable-loading-icon {
     font-size: 2rem;
@@ -4942,10 +4942,10 @@ p-treeselect.ng-invalid.ng-dirty {
     >tr {
       &:not(.p-highlight) {
         &:hover {
-          background: $surface-c;
-          color: $text-color;
+          background: variables.$surface-c;
+          color: variables.$text-color;
           .p-treetable-toggler {
-            color: $text-color;
+            color: variables.$text-color;
           }
         }
       }
@@ -5047,23 +5047,23 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-virtualscroller {
   .p-virtualscroller-header {
-    background: $surface-b;
-    color: $text-color;
-    border: 1px solid $surface-c;
+    background: variables.$surface-b;
+    color: variables.$text-color;
+    border: 1px solid variables.$surface-c;
     border-width: 1px 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
   }
   .p-virtualscroller-content {
-    background: $surface-a;
-    color: $text-color;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     border: 0 none;
     padding: 0;
   }
   .p-virtualscroller-footer {
-    background: $surface-b;
-    color: $text-color;
-    border: 1px solid $surface-c;
+    background: variables.$surface-b;
+    color: variables.$text-color;
+    border: 1px solid variables.$surface-c;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
@@ -5075,8 +5075,8 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-accordion-header {
     .p-accordion-header-link {
       padding: 1rem;
-      outline: 1px solid $surface-d;
-      color: $text-color;
+      outline: 1px solid variables.$surface-d;
+      color: variables.$text-color;
       background: #efefef;
       font-weight: 600;
       border-radius: 3px;
@@ -5091,7 +5091,7 @@ p-treeselect.ng-invalid.ng-dirty {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.05rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
         }
       }
     }
@@ -5100,8 +5100,8 @@ p-treeselect.ng-invalid.ng-dirty {
         &:hover {
           .p-accordion-header-link {
             background: #efefef;
-            border-color: $surface-d;
-            color: $text-color;
+            border-color: variables.$surface-d;
+            color: variables.$text-color;
           }
         }
       }
@@ -5109,22 +5109,22 @@ p-treeselect.ng-invalid.ng-dirty {
     &:not(.p-disabled).p-highlight {
       .p-accordion-header-link {
         background: #efefef;
-        color: $text-color;
+        color: variables.$text-color;
       }
       &:hover {
         .p-accordion-header-link {
-          border-color: $surface-d;
+          border-color: variables.$surface-d;
           background: #efefef;
-          color: $text-color;
+          color: variables.$text-color;
         }
       }
     }
   }
   .p-accordion-content {
     padding: 1rem;
-    border: 1px solid $surface-d;
-    background: $surface-a;
-    color: $text-color;
+    border: 1px solid variables.$surface-d;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     border-top: 0;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
@@ -5190,7 +5190,7 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-card {
   background: #efefef;
-  color: $text-color;
+  color: variables.$text-color;
   box-shadow: 0 0 15px -5px rgba(138, 138, 138, 0.75);
   border: 1px solid #d3d3d3;
   border-radius: 3px;
@@ -5206,11 +5206,11 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-card-subtitle {
     font-weight: 400;
     margin-bottom: 0.25rem;
-    color: $text-color-secondary;
+    color: variables.$text-color-secondary;
   }
   .p-card-content {
     padding: 0;
-    background-color: $surface-a;
+    background-color: variables.$surface-a;
     border-bottom: 1px solid #d3d3d3;
     border-top: 1px solid #d3d3d3;
   }
@@ -5220,14 +5220,14 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-divider {
   .p-divider-content {
-    background-color: $surface-a;
+    background-color: variables.$surface-a;
   }
 }
 .p-divider.p-divider-horizontal {
   margin: 1rem 0;
   padding: 0 1rem;
   &:before {
-    border-top: 1px $surface-d;
+    border-top: 1px variables.$surface-d;
   }
   .p-divider-content {
     padding: 0 0.5rem;
@@ -5237,22 +5237,22 @@ p-treeselect.ng-invalid.ng-dirty {
   margin: 0 1rem;
   padding: 1rem 0;
   &:before {
-    border-left: 1px $surface-d;
+    border-left: 1px variables.$surface-d;
   }
   .p-divider-content {
     padding: 0.5rem 0;
   }
 }
 .p-fieldset {
-  border: 1px solid $surface-d;
-  background: $surface-a;
-  color: $text-color;
+  border: 1px solid variables.$surface-d;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border-radius: 3px;
   .p-fieldset-legend {
     padding: 1rem;
-    border: 1px solid $surface-d;
-    color: $text-color;
-    background: $surface-b;
+    border: 1px solid variables.$surface-d;
+    color: variables.$text-color;
+    background: variables.$surface-b;
     font-weight: 600;
     border-radius: 3px;
   }
@@ -5266,7 +5266,7 @@ p-treeselect.ng-invalid.ng-dirty {
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
     a {
       padding: 1rem;
-      color: $text-color;
+      color: variables.$text-color;
       border-radius: 3px;
       transition: box-shadow 0.2s;
       .p-fieldset-toggler {
@@ -5275,22 +5275,22 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
     &:hover {
-      background: $surface-c;
-      border-color: $surface-d;
-      color: $text-color;
+      background: variables.$surface-c;
+      border-color: variables.$surface-d;
+      color: variables.$text-color;
     }
   }
 }
 .p-panel {
   .p-panel-header {
-    border: 1px solid $surface-d;
+    border: 1px solid variables.$surface-d;
     padding: 1rem;
-    background: $surface-b;
-    color: $text-color;
+    background: variables.$surface-b;
+    color: variables.$text-color;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     .p-panel-title {
@@ -5299,39 +5299,39 @@ p-treeselect.ng-invalid.ng-dirty {
     .p-panel-header-icon {
       width: 2rem;
       height: 2rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       border: 0 none;
       background: transparent;
       border-radius: 50%;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       &:enabled {
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
           border-color: transparent;
-          background: $surface-c;
+          background: variables.$surface-c;
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
   }
   .p-panel-content {
     padding: 1rem;
-    border: 1px solid $surface-d;
-    background: $surface-a;
-    color: $text-color;
+    border: 1px solid variables.$surface-d;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
     border-top: 0 none;
   }
   .p-panel-footer {
     padding: 0.5rem 1rem;
-    border: 1px solid $surface-d;
-    background: $surface-a;
-    color: $text-color;
+    border: 1px solid variables.$surface-d;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     border-top: 0 none;
   }
 }
@@ -5342,39 +5342,39 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-scrollpanel {
   .p-scrollpanel-bar {
-    background: $surface-b;
+    background: variables.$surface-b;
     border: 0 none;
   }
 }
 .p-splitter {
-  border: 1px solid $surface-d;
-  background: $surface-a;
+  border: 1px solid variables.$surface-d;
+  background: variables.$surface-a;
   border-radius: 3px;
-  color: $text-color;
+  color: variables.$text-color;
   .p-splitter-gutter {
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
-    background: $surface-b;
+    background: variables.$surface-b;
     .p-splitter-gutter-handle {
-      background: $surface-d;
+      background: variables.$surface-d;
     }
   }
   .p-splitter-gutter-resizing {
-    background: $surface-d;
+    background: variables.$surface-d;
   }
 }
 .p-tabview {
   .p-tabview-nav {
-    background: $surface-a;
-    border: 1px solid $surface-d;
+    background: variables.$surface-a;
+    border: 1px solid variables.$surface-d;
     border-width: 0 0 2px 0;
     li {
       margin-right: 0;
       .p-tabview-nav-link {
-        border: solid $surface-d;
+        border: solid variables.$surface-d;
         border-width: 0 0 2px 0;
-        border-color: transparent transparent $surface-d transparent;
-        background: $surface-a;
-        color: $text-color-secondary;
+        border-color: transparent transparent variables.$surface-d transparent;
+        background: variables.$surface-a;
+        color: variables.$text-color-secondary;
         padding: 1rem;
         font-weight: 600;
         border-top-right-radius: 3px;
@@ -5385,7 +5385,7 @@ p-treeselect.ng-invalid.ng-dirty {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: inset 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: inset 0 0 0 0.2rem variables.$focus-ring-color;
           }
         }
       }
@@ -5393,9 +5393,9 @@ p-treeselect.ng-invalid.ng-dirty {
         &:not(.p-disabled) {
           &:hover {
             .p-tabview-nav-link {
-              background: $surface-a;
-              border-color: $text-color-secondary;
-              color: $text-color-secondary;
+              background: variables.$surface-a;
+              border-color: variables.$text-color-secondary;
+              color: variables.$text-color-secondary;
             }
           }
         }
@@ -5403,9 +5403,9 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     li.p-highlight {
       .p-tabview-nav-link {
-        background: $surface-a;
-        border-color: $primary-color;
-        color: $primary-color;
+        background: variables.$surface-a;
+        border-color: variables.$primary-color;
+        color: variables.$primary-color;
       }
     }
   }
@@ -5419,29 +5419,29 @@ p-treeselect.ng-invalid.ng-dirty {
     margin-left: 0.5rem;
   }
   .p-tabview-nav-btn.p-link {
-    background: $surface-a;
-    color: $primary-color;
+    background: variables.$surface-a;
+    color: variables.$primary-color;
     width: 2.357rem;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     border-radius: 0;
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: inset 0 0 0 0.2rem $focus-ring-color;
+      box-shadow: inset 0 0 0 0.2rem variables.$focus-ring-color;
     }
   }
   .p-tabview-panels {
-    background: $surface-a;
+    background: variables.$surface-a;
     padding: 1rem;
     border: 0 none;
-    color: $text-color;
+    color: variables.$text-color;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
   }
 }
 .p-toolbar {
-  background: $surface-b;
-  border: 1px solid $surface-d;
+  background: variables.$surface-b;
+  border: 1px solid variables.$surface-d;
   padding: 1rem;
   border-radius: 3px;
   .p-toolbar-separator {
@@ -5449,8 +5449,8 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-confirm-popup {
-  background: $surface-a;
-  color: $text-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border: 0 none;
   border-radius: 3px;
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
@@ -5471,12 +5471,12 @@ p-treeselect.ng-invalid.ng-dirty {
   &:after {
     border: solid transparent;
     border-color: rgba(255, 255, 255, 0);
-    border-bottom-color: $surface-a;
+    border-bottom-color: variables.$surface-a;
   }
   &:before {
     border: solid transparent;
     border-color: rgba(255, 255, 255, 0);
-    border-bottom-color: $surface-a;
+    border-bottom-color: variables.$surface-a;
   }
   .p-confirm-popup-icon {
     font-size: 1.5rem;
@@ -5487,15 +5487,15 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-confirm-popup.p-confirm-popup-flipped {
   &:after {
-    border-top-color: $surface-a;
+    border-top-color: variables.$surface-a;
   }
   &:before {
-    border-top-color: $surface-a;
+    border-top-color: variables.$surface-a;
   }
 }
 .p-dialog {
   border-radius: 3px;
-  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 0 1000px rgba(0,0,0,0.5);
   border: 0 none;
 
   ::-webkit-scrollbar {
@@ -5509,11 +5509,10 @@ p-treeselect.ng-invalid.ng-dirty {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.35);
     background: transparent;
   }
-
   .p-dialog-header {
     border-bottom: 0 none;
-    background: $surface-a;
-    color: $text-color;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     padding: 1.5rem;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
@@ -5524,7 +5523,7 @@ p-treeselect.ng-invalid.ng-dirty {
     .p-dialog-header-icon {
       width: 2rem;
       height: 2rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       border: 0 none;
       background: transparent;
       border-radius: 50%;
@@ -5532,15 +5531,15 @@ p-treeselect.ng-invalid.ng-dirty {
       margin-right: 0.5rem;
       &:enabled {
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
           border-color: transparent;
-          background: $surface-c;
+          background: variables.$surface-c;
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
       &:last-child {
         margin-right: 0;
@@ -5548,14 +5547,14 @@ p-treeselect.ng-invalid.ng-dirty {
     }
   }
   .p-dialog-content {
-    background: $surface-a;
-    color: $text-color;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     padding: 0 1.5rem 2rem 1.5rem;
   }
   .p-dialog-footer {
     border-top: 0 none;
-    background: $surface-a;
-    color: $text-color;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     padding: 0 1.5rem 1.5rem 1.5rem;
     text-align: right;
     border-bottom-right-radius: 3px;
@@ -5575,8 +5574,8 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-overlaypanel {
-  background: $surface-a;
-  color: $text-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border: 0 none;
   border-radius: 3px;
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
@@ -5584,8 +5583,8 @@ p-treeselect.ng-invalid.ng-dirty {
     padding: 1rem;
   }
   .p-overlaypanel-close {
-    background: $primary-color;
-    color: $surface-a;
+    background: variables.$primary-color;
+    color: variables.$surface-a;
     width: 2rem;
     height: 2rem;
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
@@ -5595,33 +5594,33 @@ p-treeselect.ng-invalid.ng-dirty {
     right: -1rem;
     &:enabled {
       &:hover {
-        background: $primary-btn-hover-color;
-        color: $surface-a;
+        background: variables.$primary-btn-hover-color;
+        color: variables.$surface-a;
       }
     }
   }
   &:after {
     border: solid transparent;
     border-color: rgba(255, 255, 255, 0);
-    border-bottom-color: $surface-a;
+    border-bottom-color: variables.$surface-a;
   }
   &:before {
     border: solid transparent;
     border-color: rgba(255, 255, 255, 0);
-    border-bottom-color: $surface-a;
+    border-bottom-color: variables.$surface-a;
   }
 }
 .p-overlaypanel.p-overlaypanel-flipped {
   &:after {
-    border-top-color: $surface-a;
+    border-top-color: variables.$surface-a;
   }
   &:before {
-    border-top-color: $surface-a;
+    border-top-color: variables.$surface-a;
   }
 }
 .p-sidebar {
-  background: $surface-a;
-  color: $text-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border: 0 none;
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
   .p-sidebar-header {
@@ -5629,43 +5628,43 @@ p-treeselect.ng-invalid.ng-dirty {
     .p-sidebar-close {
       width: 2rem;
       height: 2rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       border: 0 none;
       background: transparent;
       border-radius: 50%;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       &:enabled {
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
           border-color: transparent;
-          background: $surface-c;
+          background: variables.$surface-c;
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
     .p-sidebar-icon {
       width: 2rem;
       height: 2rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       border: 0 none;
       background: transparent;
       border-radius: 50%;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       &:enabled {
         &:hover {
-          color: $text-color;
+          color: variables.$text-color;
           border-color: transparent;
-          background: $surface-c;
+          background: variables.$surface-c;
         }
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
     + {
@@ -5680,8 +5679,8 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-tooltip {
   .p-tooltip-text {
-    background: $text-color;
-    color: $surface-a;
+    background: variables.$text-color;
+    color: variables.$surface-a;
     padding: 0.5rem 0.5rem;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     border-radius: 3px;
@@ -5689,30 +5688,30 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-tooltip.p-tooltip-right {
   .p-tooltip-arrow {
-    border-right-color: $text-color;
+    border-right-color: variables.$text-color;
   }
 }
 .p-tooltip.p-tooltip-left {
   .p-tooltip-arrow {
-    border-left-color: $text-color;
+    border-left-color: variables.$text-color;
   }
 }
 .p-tooltip.p-tooltip-top {
   .p-tooltip-arrow {
-    border-top-color: $text-color;
+    border-top-color: variables.$text-color;
   }
 }
 .p-tooltip.p-tooltip-bottom {
   .p-tooltip-arrow {
-    border-bottom-color: $text-color;
+    border-bottom-color: variables.$text-color;
   }
 }
 .p-fileupload {
   .p-fileupload-buttonbar {
-    background: $surface-b;
+    background: variables.$surface-b;
     padding: 1rem;
-    border: 1px solid $surface-d;
-    color: $text-color;
+    border: 1px solid variables.$surface-d;
+    color: variables.$text-color;
     border-bottom: 0 none;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
@@ -5722,14 +5721,14 @@ p-treeselect.ng-invalid.ng-dirty {
     .p-button.p-fileupload-choose.p-focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
     }
   }
   .p-fileupload-content {
-    background: $surface-a;
+    background: variables.$surface-a;
     padding: 2rem 1rem;
-    border: 1px solid $surface-d;
-    color: $text-color;
+    border: 1px solid variables.$surface-d;
+    color: variables.$text-color;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
   }
@@ -5750,20 +5749,20 @@ p-treeselect.ng-invalid.ng-dirty {
 .p-fileupload-choose {
   &:not(.p-disabled) {
     &:hover {
-      background: $primary-btn-hover-color;
-      color: $surface-a;
-      border-color: $primary-btn-hover-color;
+      background: variables.$primary-btn-hover-color;
+      color: variables.$surface-a;
+      border-color: variables.$primary-btn-hover-color;
     }
     &:active {
-      background: $primary-active-color;
-      color: $surface-a;
-      border-color: $primary-active-color;
+      background: variables.$primary-active-color;
+      color: variables.$surface-a;
+      border-color: variables.$primary-active-color;
     }
   }
 }
 .p-breadcrumb {
-  background: $surface-a;
-  border: 1px solid $surface-d;
+  background: variables.$surface-a;
+  border: 1px solid variables.$surface-d;
   border-radius: 3px;
   padding: 1rem;
   ul {
@@ -5774,77 +5773,77 @@ p-treeselect.ng-invalid.ng-dirty {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.05rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
         }
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
       &:last-child {
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
     li.p-breadcrumb-chevron {
       margin: 0 0.5rem 0 0.5rem;
-      color: $text-color;
+      color: variables.$text-color;
     }
   }
 }
 .p-contextmenu {
   padding: 0.25rem 0;
-  background: $surface-a;
-  color: $text-color;
+  background: variables.$surface-a;
+  color: variables.$text-color;
   border: 0 none;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   border-radius: 3px;
   width: 12.5rem;
   .p-menuitem-link {
     padding: 0.75rem 1rem;
-    color: $text-color;
+    color: variables.$text-color;
     border-radius: 0;
     transition: box-shadow 0.2s;
     user-select: none;
     .p-menuitem-text {
-      color: $text-color;
+      color: variables.$text-color;
     }
     .p-menuitem-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       margin-right: 0.5rem;
     }
     .p-submenu-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
     &:not(.p-disabled) {
       &:hover {
-        background: $surface-c;
+        background: variables.$surface-c;
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
         .p-submenu-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+      box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
     }
   }
   .p-submenu-list {
     padding: 0.25rem 0;
-    background: $surface-a;
+    background: variables.$surface-a;
     border: 0 none;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     border-radius: 3px;
@@ -5857,20 +5856,20 @@ p-treeselect.ng-invalid.ng-dirty {
   }
   .p-menuitem.p-menuitem-active {
     >.p-menuitem-link {
-      background: $surface-c;
+      background: variables.$surface-c;
       .p-menuitem-text {
-        color: $text-color;
+        color: variables.$text-color;
       }
       .p-menuitem-icon {
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
       }
       .p-submenu-icon {
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
       }
     }
   }
   .p-menu-separator {
-    border-top: 1px solid $surface-d;
+    border-top: 1px solid variables.$surface-d;
     margin: 0.25rem 0;
   }
   .p-submenu-icon {
@@ -5962,126 +5961,126 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-megamenu {
   padding: 0.5rem;
-  background: $surface-b;
-  color: $text-color;
-  border: 1px solid $surface-d;
+  background: variables.$surface-b;
+  color: variables.$text-color;
+  border: 1px solid variables.$surface-d;
   border-radius: 3px;
   .p-megamenu-root-list {
     >.p-menuitem {
       >.p-menuitem-link {
         padding: 0.75rem 1rem;
-        color: $text-color;
+        color: variables.$text-color;
         border-radius: 3px;
         transition: box-shadow 0.2s;
         user-select: none;
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           margin-right: 0.5rem;
         }
         .p-submenu-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           margin-left: 0.5rem;
         }
         &:not(.p-disabled) {
           &:hover {
-            background: $surface-c;
+            background: variables.$surface-c;
             .p-menuitem-text {
-              color: $text-color;
+              color: variables.$text-color;
             }
             .p-menuitem-icon {
-              color: $text-color-secondary;
+              color: variables.$text-color-secondary;
             }
             .p-submenu-icon {
-              color: $text-color-secondary;
+              color: variables.$text-color-secondary;
             }
           }
         }
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+          box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
         }
       }
     }
     >.p-menuitem.p-menuitem-active {
       >.p-menuitem-link {
-        background: $surface-c;
+        background: variables.$surface-c;
         &:not(.p-disabled) {
           &:hover {
-            background: $surface-c;
+            background: variables.$surface-c;
             .p-menuitem-text {
-              color: $text-color;
+              color: variables.$text-color;
             }
             .p-menuitem-icon {
-              color: $text-color-secondary;
+              color: variables.$text-color-secondary;
             }
             .p-submenu-icon {
-              color: $text-color-secondary;
+              color: variables.$text-color-secondary;
             }
           }
         }
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
         .p-submenu-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
   }
   .p-menuitem-link {
     padding: 0.75rem 1rem;
-    color: $text-color;
+    color: variables.$text-color;
     border-radius: 0;
     transition: box-shadow 0.2s;
     user-select: none;
     .p-menuitem-text {
-      color: $text-color;
+      color: variables.$text-color;
     }
     .p-menuitem-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       margin-right: 0.5rem;
     }
     .p-submenu-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
     &:not(.p-disabled) {
       &:hover {
-        background: $surface-c;
+        background: variables.$surface-c;
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
         .p-submenu-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+      box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
     }
   }
   .p-megamenu-panel {
-    background: $surface-a;
-    color: $text-color;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     border: 0 none;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
   .p-megamenu-submenu-header {
     margin: 0;
     padding: 0.75rem 1rem;
-    color: $text-color;
-    background: $surface-a;
+    color: variables.$text-color;
+    background: variables.$surface-a;
     font-weight: 600;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
@@ -6090,7 +6089,7 @@ p-treeselect.ng-invalid.ng-dirty {
     padding: 0.25rem 0;
     width: 12.5rem;
     .p-menu-separator {
-      border-top: 1px solid $surface-d;
+      border-top: 1px solid variables.$surface-d;
       margin: 0.25rem 0;
     }
     .p-menuitem {
@@ -6102,15 +6101,15 @@ p-treeselect.ng-invalid.ng-dirty {
   }
   .p-menuitem.p-menuitem-active {
     >.p-menuitem-link {
-      background: $surface-c;
+      background: variables.$surface-c;
       .p-menuitem-text {
-        color: $text-color;
+        color: variables.$text-color;
       }
       .p-menuitem-icon {
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
       }
       .p-submenu-icon {
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
       }
     }
   }
@@ -6127,58 +6126,58 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-menu {
   padding: 0.25rem 0;
-  background: $surface-a;
-  color: $text-color;
-  border: 1px solid $surface-d;
+  background: variables.$surface-a;
+  color: variables.$text-color;
+  border: 1px solid variables.$surface-d;
   border-radius: 3px;
   width: 12.5rem;
   .p-menuitem-link {
     padding: 0.75rem 1rem;
-    color: $text-color;
+    color: variables.$text-color;
     border-radius: 0;
     transition: box-shadow 0.2s;
     user-select: none;
     .p-menuitem-text {
-      color: $text-color;
+      color: variables.$text-color;
     }
     .p-menuitem-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       margin-right: 0.5rem;
     }
     .p-submenu-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
     &:not(.p-disabled) {
       &:hover {
-        background: $surface-c;
+        background: variables.$surface-c;
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
         .p-submenu-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+      box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
     }
   }
   .p-submenu-header {
     margin: 0;
     padding: 0.75rem 1rem;
-    color: $text-color;
-    background: $surface-a;
+    color: variables.$text-color;
+    background: variables.$surface-a;
     font-weight: 600;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
   }
   .p-menu-separator {
-    border-top: 1px solid $surface-d;
+    border-top: 1px solid variables.$surface-d;
     margin: 0.25rem 0;
   }
   .p-menuitem {
@@ -6189,129 +6188,129 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-menu.p-menu-overlay {
-  background: $surface-a;
+  background: variables.$surface-a;
   border: 0 none;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
 .p-menubar {
   padding: 0.5rem;
-  background: $surface-b;
-  color: $text-color;
-  border: 1px solid $surface-d;
+  background: variables.$surface-b;
+  color: variables.$text-color;
+  border: 1px solid variables.$surface-d;
   border-radius: 3px;
   .p-menuitem-link {
     padding: 0.75rem 1rem;
-    color: $text-color;
+    color: variables.$text-color;
     border-radius: 0;
     transition: box-shadow 0.2s;
     user-select: none;
     .p-menuitem-text {
-      color: $text-color;
+      color: variables.$text-color;
     }
     .p-menuitem-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       margin-right: 0.5rem;
     }
     .p-submenu-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
     &:not(.p-disabled) {
       &:hover {
-        background: $surface-c;
+        background: variables.$surface-c;
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
         .p-submenu-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+      box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
     }
   }
   .p-menubar-root-list {
     >.p-menuitem {
       >.p-menuitem-link {
         padding: 0.75rem 1rem;
-        color: $text-color;
+        color: variables.$text-color;
         border-radius: 3px;
         transition: box-shadow 0.2s;
         user-select: none;
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           margin-right: 0.5rem;
         }
         .p-submenu-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           margin-left: 0.5rem;
         }
         &:not(.p-disabled) {
           &:hover {
-            background: $surface-c;
+            background: variables.$surface-c;
             .p-menuitem-text {
-              color: $text-color;
+              color: variables.$text-color;
             }
             .p-menuitem-icon {
-              color: $text-color-secondary;
+              color: variables.$text-color-secondary;
             }
             .p-submenu-icon {
-              color: $text-color-secondary;
+              color: variables.$text-color-secondary;
             }
           }
         }
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+          box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
         }
       }
     }
     >.p-menuitem.p-menuitem-active {
       >.p-menuitem-link {
-        background: $surface-c;
+        background: variables.$surface-c;
         &:not(.p-disabled) {
           &:hover {
-            background: $surface-c;
+            background: variables.$surface-c;
             .p-menuitem-text {
-              color: $text-color;
+              color: variables.$text-color;
             }
             .p-menuitem-icon {
-              color: $text-color-secondary;
+              color: variables.$text-color-secondary;
             }
             .p-submenu-icon {
-              color: $text-color-secondary;
+              color: variables.$text-color-secondary;
             }
           }
         }
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
         .p-submenu-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
   }
   .p-submenu-list {
     padding: 0.25rem 0;
-    background: $surface-a;
+    background: variables.$surface-a;
     border: 0 none;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     width: 12.5rem;
     .p-menu-separator {
-      border-top: 1px solid $surface-d;
+      border-top: 1px solid variables.$surface-d;
       margin: 0.25rem 0;
     }
     .p-submenu-icon {
@@ -6326,15 +6325,15 @@ p-treeselect.ng-invalid.ng-dirty {
   }
   .p-menuitem.p-menuitem-active {
     >.p-menuitem-link {
-      background: $surface-c;
+      background: variables.$surface-c;
       .p-menuitem-text {
-        color: $text-color;
+        color: variables.$text-color;
       }
       .p-menuitem-icon {
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
       }
       .p-submenu-icon {
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
       }
     }
   }
@@ -6343,9 +6342,9 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-panelmenu-header {
     >a {
       padding: 1rem;
-      border: 1px solid $surface-d;
-      color: $text-color;
-      background: $surface-b;
+      border: 1px solid variables.$surface-d;
+      color: variables.$text-color;
+      background: variables.$surface-b;
       font-weight: 600;
       border-radius: 3px;
       transition: box-shadow 0.2s;
@@ -6358,16 +6357,16 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
     &:not(.p-highlight) {
       &:not(.p-disabled) {
         >a {
           &:hover {
-            background: $surface-c;
-            border-color: $surface-d;
-            color: $text-color;
+            background: variables.$surface-c;
+            border-color: variables.$surface-d;
+            color: variables.$text-color;
           }
         }
       }
@@ -6376,27 +6375,27 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-panelmenu-header.p-highlight {
     margin-bottom: 0;
     >a {
-      background: $surface-b;
-      border-color: $surface-d;
-      color: $text-color;
+      background: variables.$surface-b;
+      border-color: variables.$surface-d;
+      color: variables.$text-color;
       border-bottom-right-radius: 0;
       border-bottom-left-radius: 0;
     }
     &:not(.p-disabled) {
       >a {
         &:hover {
-          border-color: $surface-d;
-          background: $surface-c;
-          color: $text-color;
+          border-color: variables.$surface-d;
+          background: variables.$surface-c;
+          color: variables.$text-color;
         }
       }
     }
   }
   .p-panelmenu-content {
     padding: 0.25rem 0;
-    border: 1px solid $surface-d;
-    background: $surface-a;
-    color: $text-color;
+    border: 1px solid variables.$surface-d;
+    background: variables.$surface-a;
+    color: variables.$text-color;
     margin-bottom: 0;
     border-top: 0;
     border-top-right-radius: 0;
@@ -6406,38 +6405,38 @@ p-treeselect.ng-invalid.ng-dirty {
     .p-menuitem {
       .p-menuitem-link {
         padding: 0.75rem 1rem;
-        color: $text-color;
+        color: variables.$text-color;
         border-radius: 0;
         transition: box-shadow 0.2s;
         user-select: none;
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
           margin-right: 0.5rem;
         }
         .p-submenu-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
         &:not(.p-disabled) {
           &:hover {
-            background: $surface-c;
+            background: variables.$surface-c;
             .p-menuitem-text {
-              color: $text-color;
+              color: variables.$text-color;
             }
             .p-menuitem-icon {
-              color: $text-color-secondary;
+              color: variables.$text-color-secondary;
             }
             .p-submenu-icon {
-              color: $text-color-secondary;
+              color: variables.$text-color-secondary;
             }
           }
         }
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+          box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
         }
         .p-panelmenu-icon {
           margin-right: 0.5rem;
@@ -6509,67 +6508,67 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-slidemenu {
   padding: 0.25rem 0;
-  background: $surface-a;
-  color: $text-color;
-  border: 1px solid $surface-d;
+  background: variables.$surface-a;
+  color: variables.$text-color;
+  border: 1px solid variables.$surface-d;
   border-radius: 3px;
   width: 12.5rem;
   .p-menuitem-link {
     padding: 0.75rem 1rem;
-    color: $text-color;
+    color: variables.$text-color;
     border-radius: 0;
     transition: box-shadow 0.2s;
     user-select: none;
     .p-menuitem-text {
-      color: $text-color;
+      color: variables.$text-color;
     }
     .p-menuitem-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       margin-right: 0.5rem;
     }
     .p-submenu-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
     &:not(.p-disabled) {
       &:hover {
-        background: $surface-c;
+        background: variables.$surface-c;
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
         .p-submenu-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+      box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
     }
   }
   .p-slidemenu-list {
     padding: 0.25rem 0;
-    background: $surface-a;
+    background: variables.$surface-a;
     border: 0 none;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
   .p-slidemenu.p-slidemenu-active {
     >.p-slidemenu-link {
-      background: $surface-c;
+      background: variables.$surface-c;
       .p-slidemenu-text {
-        color: $text-color;
+        color: variables.$text-color;
       }
       .p-slidemenu-icon {
-        color: $text-color-secondary;
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
+        color: variables.$text-color-secondary;
       }
     }
   }
   .p-slidemenu-separator {
-    border-top: 1px solid $surface-d;
+    border-top: 1px solid variables.$surface-d;
     margin: 0.25rem 0;
   }
   .p-slidemenu-icon {
@@ -6577,11 +6576,11 @@ p-treeselect.ng-invalid.ng-dirty {
   }
   .p-slidemenu-backward {
     padding: 0.75rem 1rem;
-    color: $text-color;
+    color: variables.$text-color;
   }
 }
 .p-slidemenu.p-slidemenu-overlay {
-  background: $surface-a;
+  background: variables.$surface-a;
   border: 0 none;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
@@ -6591,11 +6590,11 @@ p-treeselect.ng-invalid.ng-dirty {
       background: transparent;
       transition: box-shadow 0.2s;
       border-radius: 3px;
-      background: $surface-a;
+      background: variables.$surface-a;
       .p-steps-number {
-        color: $text-color;
-        border: 1px solid $surface-c;
-        background: $surface-a;
+        color: variables.$text-color;
+        border: 1px solid variables.$surface-c;
+        background: variables.$surface-a;
         min-width: 2rem;
         height: 2rem;
         line-height: 2rem;
@@ -6605,19 +6604,19 @@ p-treeselect.ng-invalid.ng-dirty {
       }
       .p-steps-title {
         margin-top: 0.5rem;
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
       }
       &:not(.p-disabled) {
         &:focus {
           outline: 0 none;
           outline-offset: 0;
-          box-shadow: 0 0 0 0.05rem $focus-ring-color;
+          box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
         }
       }
     }
     &:before {
       content: " ";
-      border-top: 1px solid $surface-d;
+      border-top: 1px solid variables.$surface-d;
       width: 100%;
       top: 50%;
       left: 0;
@@ -6628,28 +6627,28 @@ p-treeselect.ng-invalid.ng-dirty {
   }
   .p-steps-item.p-highlight {
     .p-steps-number {
-      background: $highlight-color;
-      color: $text-color;
+      background: variables.$highlight-color;
+      color: variables.$text-color;
     }
     .p-steps-title {
       font-weight: 600;
-      color: $text-color;
+      color: variables.$text-color;
     }
   }
 }
 .p-tabmenu {
   .p-tabmenu-nav {
-    background: $surface-a;
-    border: 1px solid $surface-d;
+    background: variables.$surface-a;
+    border: 1px solid variables.$surface-d;
     border-width: 0 0 2px 0;
     .p-tabmenuitem {
       margin-right: 0;
       .p-menuitem-link {
-        border: solid $surface-d;
+        border: solid variables.$surface-d;
         border-width: 0 0 2px 0;
-        border-color: transparent transparent $surface-d transparent;
-        background: $surface-a;
-        color: $text-color-secondary;
+        border-color: transparent transparent variables.$surface-d transparent;
+        background: variables.$surface-a;
+        color: variables.$text-color-secondary;
         padding: 1rem;
         font-weight: 600;
         border-top-right-radius: 3px;
@@ -6663,7 +6662,7 @@ p-treeselect.ng-invalid.ng-dirty {
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: inset 0 0 0 0.2rem $focus-ring-color;
+            box-shadow: inset 0 0 0 0.2rem variables.$focus-ring-color;
           }
         }
       }
@@ -6671,9 +6670,9 @@ p-treeselect.ng-invalid.ng-dirty {
         &:not(.p-disabled) {
           &:hover {
             .p-menuitem-link {
-              background: $surface-a;
-              border-color: $text-color-secondary;
-              color: $text-color-secondary;
+              background: variables.$surface-a;
+              border-color: variables.$text-color-secondary;
+              color: variables.$text-color-secondary;
             }
           }
         }
@@ -6681,59 +6680,59 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     .p-tabmenuitem.p-highlight {
       .p-menuitem-link {
-        background: $surface-a;
-        border-color: $primary-color;
-        color: $primary-color;
+        background: variables.$surface-a;
+        border-color: variables.$primary-color;
+        color: variables.$primary-color;
       }
     }
   }
 }
 .p-tieredmenu {
   padding: 0.25rem 0;
-  background: $surface-a;
-  color: $text-color;
-  border: 1px solid $surface-d;
+  background: variables.$surface-a;
+  color: variables.$text-color;
+  border: 1px solid variables.$surface-d;
   border-radius: 3px;
   width: 12.5rem;
   .p-menuitem-link {
     padding: 0.75rem 1rem;
-    color: $text-color;
+    color: variables.$text-color;
     border-radius: 0;
     transition: box-shadow 0.2s;
     user-select: none;
     .p-menuitem-text {
-      color: $text-color;
+      color: variables.$text-color;
     }
     .p-menuitem-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       margin-right: 0.5rem;
     }
     .p-submenu-icon {
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
     }
     &:not(.p-disabled) {
       &:hover {
-        background: $surface-c;
+        background: variables.$surface-c;
         .p-menuitem-text {
-          color: $text-color;
+          color: variables.$text-color;
         }
         .p-menuitem-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
         .p-submenu-icon {
-          color: $text-color-secondary;
+          color: variables.$text-color-secondary;
         }
       }
     }
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+      box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
     }
   }
   .p-submenu-list {
     padding: 0.25rem 0;
-    background: $surface-a;
+    background: variables.$surface-a;
     border: 0 none;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
@@ -6745,20 +6744,20 @@ p-treeselect.ng-invalid.ng-dirty {
   }
   .p-menuitem.p-menuitem-active {
     >.p-menuitem-link {
-      background: $surface-c;
+      background: variables.$surface-c;
       .p-menuitem-text {
-        color: $text-color;
+        color: variables.$text-color;
       }
       .p-menuitem-icon {
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
       }
       .p-submenu-icon {
-        color: $text-color-secondary;
+        color: variables.$text-color-secondary;
       }
     }
   }
   .p-menu-separator {
-    border-top: 1px solid $surface-d;
+    border-top: 1px solid variables.$surface-d;
     margin: 0.25rem 0;
   }
   .p-submenu-icon {
@@ -6766,7 +6765,7 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-tieredmenu.p-tieredmenu-overlay {
-  background: $surface-a;
+  background: variables.$surface-a;
   border: 0 none;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
@@ -6841,7 +6840,7 @@ p-treeselect.ng-invalid.ng-dirty {
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
     }
   }
   .p-message-text {
@@ -6941,7 +6940,7 @@ p-treeselect.ng-invalid.ng-dirty {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
   }
@@ -6998,7 +6997,7 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-galleria-close {
     margin: 0.5rem;
     background: transparent;
-    color: $surface-b;
+    color: variables.$surface-b;
     width: 4rem;
     height: 4rem;
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
@@ -7008,12 +7007,12 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     &:hover {
       background: rgba(255, 255, 255, 0.1);
-      color: $surface-b;
+      color: variables.$surface-b;
     }
   }
   .p-galleria-item-nav {
     background: transparent;
-    color: $surface-b;
+    color: variables.$surface-b;
     width: 4rem;
     height: 4rem;
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
@@ -7028,34 +7027,34 @@ p-treeselect.ng-invalid.ng-dirty {
     &:not(.p-disabled) {
       &:hover {
         background: rgba(255, 255, 255, 0.1);
-        color: $surface-b;
+        color: variables.$surface-b;
       }
     }
   }
   .p-galleria-caption {
     background: rgba(0, 0, 0, 0.5);
-    color: $surface-b;
+    color: variables.$surface-b;
     padding: 1rem;
   }
   .p-galleria-indicators {
     padding: 1rem;
     .p-galleria-indicator {
       button {
-        background-color: $surface-c;
+        background-color: variables.$surface-c;
         width: 1rem;
         height: 1rem;
         transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
         border-radius: 50%;
         &:hover {
-          background: $surface-d;
+          background: variables.$surface-d;
         }
       }
     }
     .p-galleria-indicator.p-highlight {
       button {
-        background: $highlight-color;
-        color: $text-color;
-        background-color: $primary-color;
+        background: variables.$highlight-color;
+        color: variables.$text-color;
+        background-color: variables.$primary-color;
       }
     }
   }
@@ -7065,34 +7064,34 @@ p-treeselect.ng-invalid.ng-dirty {
     .p-galleria-thumbnail-prev {
       margin: 0.5rem;
       background-color: transparent;
-      color: $surface-b;
+      color: variables.$surface-b;
       width: 2rem;
       height: 2rem;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       border-radius: 50%;
       &:hover {
         background: rgba(255, 255, 255, 0.1);
-        color: $surface-b;
+        color: variables.$surface-b;
       }
     }
     .p-galleria-thumbnail-next {
       margin: 0.5rem;
       background-color: transparent;
-      color: $surface-b;
+      color: variables.$surface-b;
       width: 2rem;
       height: 2rem;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       border-radius: 50%;
       &:hover {
         background: rgba(255, 255, 255, 0.1);
-        color: $surface-b;
+        color: variables.$surface-b;
       }
     }
     .p-galleria-thumbnail-item-content {
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
   }
@@ -7130,8 +7129,8 @@ p-treeselect.ng-invalid.ng-dirty {
     }
     .p-galleria-indicator.p-highlight {
       button {
-        background: $highlight-color;
-        color: $text-color;
+        background: variables.$highlight-color;
+        color: variables.$text-color;
       }
     }
   }
@@ -7144,7 +7143,7 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-image-preview-indicator {
   background-color: transparent;
-  color: $surface-b;
+  color: variables.$surface-b;
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
 }
 .p-image-preview-container {
@@ -7158,7 +7157,7 @@ p-treeselect.ng-invalid.ng-dirty {
   padding: 1rem;
 }
 .p-image-action.p-link {
-  color: $surface-b;
+  color: variables.$surface-b;
   background-color: transparent;
   width: 3rem;
   height: 3rem;
@@ -7169,7 +7168,7 @@ p-treeselect.ng-invalid.ng-dirty {
     margin-right: 0;
   }
   &:hover {
-    color: $surface-b;
+    color: variables.$surface-b;
     background-color: rgba(255, 255, 255, 0.1);
   }
   i {
@@ -7177,7 +7176,7 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-avatar {
-  background-color: $surface-d;
+  background-color: variables.$surface-d;
   border-radius: 3px;
 }
 .p-avatar.p-avatar-lg {
@@ -7198,12 +7197,12 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-avatar-group {
   .p-avatar {
-    border: 2px solid $surface-a;
+    border: 2px solid variables.$surface-a;
   }
 }
 .p-badge {
-  background: $primary-color;
-  color: $surface-a;
+  background: variables.$primary-color;
+  color: variables.$surface-a;
   font-size: 0.75rem;
   font-weight: 700;
   min-width: 1.5rem;
@@ -7212,15 +7211,15 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-badge.p-badge-secondary {
   background-color: #607D8B;
-  color: $surface-a;
+  color: variables.$surface-a;
 }
 .p-badge.p-badge-success {
   background-color: #689F38;
-  color: $surface-a;
+  color: variables.$surface-a;
 }
 .p-badge.p-badge-info {
   background-color: #0288D1;
-  color: $surface-a;
+  color: variables.$surface-a;
 }
 .p-badge.p-badge-warning {
   background-color: #FBC02D;
@@ -7228,7 +7227,7 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-badge.p-badge-danger {
   background-color: #D32F2F;
-  color: $surface-a;
+  color: variables.$surface-a;
 }
 .p-badge.p-badge-lg {
   font-size: 1.125rem;
@@ -7243,8 +7242,8 @@ p-treeselect.ng-invalid.ng-dirty {
   line-height: 3rem;
 }
 .p-chip {
-  background-color: $surface-d;
-  color: $text-color;
+  background-color: variables.$surface-d;
+  color: variables.$text-color;
   border-radius: 16px;
   padding: 0 0.5rem;
   .p-chip-text {
@@ -7262,7 +7261,7 @@ p-treeselect.ng-invalid.ng-dirty {
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
     }
   }
   img {
@@ -7279,29 +7278,29 @@ p-treeselect.ng-invalid.ng-dirty {
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     &:not(.p-disabled) {
       &:hover {
-        background: $surface-c;
-        color: $text-color;
+        background: variables.$surface-c;
+        color: variables.$text-color;
       }
     }
     &:focus {
       outline: 0 none;
       outline-offset: 0;
-      box-shadow: 0 0 0 0.05rem $focus-ring-color;
+      box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
     }
   }
 }
 .p-progressbar {
   border: 0 none;
   height: 1.5rem;
-  background: $surface-d;
+  background: variables.$surface-d;
   border-radius: 3px;
   .p-progressbar-value {
     border: 0 none;
     margin: 0;
-    background: $primary-color;
+    background: variables.$primary-color;
   }
   .p-progressbar-label {
-    color: $surface-a;
+    color: variables.$surface-a;
     line-height: 1.5rem;
   }
 }
@@ -7313,7 +7312,7 @@ p-treeselect.ng-invalid.ng-dirty {
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
   .p-scrolltop-icon {
     font-size: 1.5rem;
-    color: $surface-b;
+    color: variables.$surface-b;
   }
 }
 .p-scrolltop.p-link {
@@ -7323,15 +7322,15 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-skeleton {
-  background-color: $surface-c;
+  background-color: variables.$surface-c;
   border-radius: 3px;
   &:after {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
   }
 }
 .p-tag {
-  background: $primary-color;
-  color: $surface-a;
+  background: variables.$primary-color;
+  color: variables.$surface-a;
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.25rem 0.4rem;
@@ -7346,11 +7345,11 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-tag.p-tag-success {
   background-color: #689F38;
-  color: $surface-a;
+  color: variables.$surface-a;
 }
 .p-tag.p-tag-info {
   background-color: #0288D1;
-  color: $surface-a;
+  color: variables.$surface-a;
 }
 .p-tag.p-tag-warning {
   background-color: #FBC02D;
@@ -7358,16 +7357,16 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-tag.p-tag-danger {
   background-color: #D32F2F;
-  color: $surface-a;
+  color: variables.$surface-a;
 }
 .p-terminal {
-  background: $surface-a;
-  color: $text-color;
-  border: 1px solid $surface-d;
+  background: variables.$surface-a;
+  color: variables.$text-color;
+  border: 1px solid variables.$surface-d;
   padding: 1rem;
   .p-terminal-input {
     font-size: 1rem;
-    font-family: $default-font;
+    font-family: variables.$default-font;
   }
 }
 @media screen and (max-width: 769px) {
@@ -7433,29 +7432,29 @@ p-treeselect.ng-invalid.ng-dirty {
       display: flex;
       width: 2rem;
       height: 2rem;
-      color: $text-color-secondary;
+      color: variables.$text-color-secondary;
       border-radius: 50%;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       &:hover {
-        color: $text-color-secondary;
-        background: $surface-c;
+        color: variables.$text-color-secondary;
+        background: variables.$surface-c;
       }
       &:focus {
         outline: 0 none;
         outline-offset: 0;
-        box-shadow: 0 0 0 0.05rem $focus-ring-color;
+        box-shadow: 0 0 0 0.05rem variables.$focus-ring-color;
       }
     }
     .p-menubar-root-list {
       position: absolute;
       display: none;
       padding: 0.25rem 0;
-      background: $surface-a;
+      background: variables.$surface-a;
       border: 0 none;
       box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
       width: 100%;
       .p-menu-separator {
-        border-top: 1px solid $surface-d;
+        border-top: 1px solid variables.$surface-d;
         margin: 0.25rem 0;
       }
       .p-submenu-icon {
@@ -7466,38 +7465,38 @@ p-treeselect.ng-invalid.ng-dirty {
         position: static;
         >.p-menuitem-link {
           padding: 0.75rem 1rem;
-          color: $text-color;
+          color: variables.$text-color;
           border-radius: 0;
           transition: box-shadow 0.2s;
           user-select: none;
           .p-menuitem-text {
-            color: $text-color;
+            color: variables.$text-color;
           }
           .p-menuitem-icon {
-            color: $text-color-secondary;
+            color: variables.$text-color-secondary;
             margin-right: 0.5rem;
           }
           .p-submenu-icon {
-            color: $text-color-secondary;
+            color: variables.$text-color-secondary;
           }
           &:not(.p-disabled) {
             &:hover {
-              background: $surface-c;
+              background: variables.$surface-c;
               .p-menuitem-text {
-                color: $text-color;
+                color: variables.$text-color;
               }
               .p-menuitem-icon {
-                color: $text-color-secondary;
+                color: variables.$text-color-secondary;
               }
               .p-submenu-icon {
-                color: $text-color-secondary;
+                color: variables.$text-color-secondary;
               }
             }
           }
           &:focus {
             outline: 0 none;
             outline-offset: 0;
-            box-shadow: inset 0 0 0 0.15rem $focus-ring-color;
+            box-shadow: inset 0 0 0 0.15rem variables.$focus-ring-color;
           }
           >.p-submenu-icon {
             margin-left: auto;

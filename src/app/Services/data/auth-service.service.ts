@@ -4,6 +4,7 @@ import {HttpParamsServiceService} from "../http/http-params-service.service";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs";
 import {AccountModel} from "../../Models/AccountModel";
+import {LikeModel} from "../../Models/LikeModel";
 
 const devAccountInfo = {
   accountDto: {
@@ -24,6 +25,7 @@ const devAccountInfo = {
 export class AuthServiceService {
   UserInfo: UserInfoModel | undefined;
   userSubject: Subject<boolean> = new Subject<boolean>();
+  likesSubject: Subject<LikeModel[]> = new Subject<LikeModel[]>();
 
   constructor(
     private params: HttpParamsServiceService,

@@ -4,6 +4,8 @@ import { ConfigServiceService } from 'src/app/Services/data/config-service.servi
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {LikeModel} from "../../../../Models/LikeModel";
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
+import {Router} from "@angular/router";
+import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
 
 @Component({
   selector: 'app-picture',
@@ -17,12 +19,11 @@ export class PictureComponent implements OnInit {
   showDetailsFlag: boolean = false;
   IsUserLoggedOn?: boolean;
 
-
-
   constructor(
     private configService: ConfigServiceService,
     private httpService: HttpServiceService,
-    private auth: AuthServiceService
+    private auth: AuthServiceService,
+    private scroll: ScrollServiceService,
   ) {
     this.IsUserLoggedOn = this.auth.isUserLogged();
   }
@@ -96,8 +97,12 @@ export class PictureComponent implements OnInit {
       })
   }
 
+
   showDetails() {
+    this.scroll.disableScroll()
     this.showDetailsFlag = true;
   }
-
+  enableScroll() {
+    this.scroll.enableScroll()
+  }
 }

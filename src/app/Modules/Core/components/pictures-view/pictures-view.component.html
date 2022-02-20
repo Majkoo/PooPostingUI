@@ -45,12 +45,14 @@
 
 </div>
 
-<p-dialog [(visible)]="showDetailsFlag" header="Szczegóły obrazka" [modal]="true" [draggable]="false">
-  <app-picture-details [picture]="picture">
+<p-dialog [(visible)]="showDetailsFlag" header="Szczegóły obrazka" position="center"
+          [draggable]="false" [closeOnEscape]="true" (onHide)="enableScroll()">
+  <app-picture-details [picture]="picture" [isLoggedOn]="true">
   </app-picture-details>
 </p-dialog>
 
-<p-dialog [(visible)]="showSettingsFlag" header="Ustawienia obrazka" [modal]="true" [draggable]="false">
+<p-dialog [(visible)]="showSettingsFlag" header="Ustawienia obrazka" position="center"
+          [draggable]="false" [closeOnEscape]="true" (onHide)="enableScroll()">
   <app-picture-settings [picture]="picture">
   </app-picture-settings>
 </p-dialog>

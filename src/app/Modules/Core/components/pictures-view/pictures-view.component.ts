@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Picture} from "../../../../Models/Picture";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
+import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
 
 @Component({
   selector: 'app-pictures-view',
@@ -14,6 +15,7 @@ export class PicturesViewComponent implements OnInit{
 
   constructor(
     private configService: ConfigServiceService,
+    private scroll: ScrollServiceService
   ) { }
 
   ngOnInit(): void {
@@ -23,13 +25,14 @@ export class PicturesViewComponent implements OnInit{
   }
 
   showDetails() {
+    this.scroll.disableScroll();
     this.showDetailsFlag = true;
   }
   showSettings() {
+    this.scroll.disableScroll();
     this.showSettingsFlag = true;
   }
-
-
-
-
+  enableScroll() {
+    this.scroll.enableScroll();
+  }
 }

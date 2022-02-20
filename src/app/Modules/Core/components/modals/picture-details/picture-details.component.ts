@@ -11,6 +11,7 @@ import {LikeModel} from "../../../../../Models/LikeModel";
 })
 export class PictureDetailsComponent implements OnInit{
   @Input() picture!: Picture;
+  @Input() isLoggedOn: boolean = false;
 
   constructor(
     private auth: AuthServiceService,

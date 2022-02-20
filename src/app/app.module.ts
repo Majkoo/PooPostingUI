@@ -15,7 +15,6 @@ import { TokenInterceptorService } from './Services/interceptors/token-intercept
 import { HttpErrorInterceptorService } from './Services/interceptors/http-error-interceptor.service';
 import {MessageService} from "primeng/api";
 import {PrimeNgModule} from "./Modules/prime-ng/prime-ng.module";
-import {TimeagoModule} from "ngx-timeago";
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {
