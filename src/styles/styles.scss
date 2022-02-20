@@ -5,15 +5,6 @@
 
 $navbar-height: 76px;
 
-.sidebar{
-  position: -webkit-sticky;
-  position: sticky;
-  top: calc(76px + 1.5rem);
-  transition: 100ms ease;
-}
-.mat-paginator-container {
-  justify-content: space-between !important;
-}
 nav{
   position: sticky;
   position: -webkit-sticky;
@@ -22,11 +13,32 @@ nav{
   -webkit-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
 }
+.sidebar{
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(76px + 1.5rem);
+  transition: 100ms ease;
+}
 footer{
   box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -webkit-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
 }
+
+.bi {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+a:hover {
+  text-decoration: none !important;
+}
+.bb {
+  border-bottom: 2px solid $gray-200 !important;
+}
+.bt {
+  border-top: 2px solid $gray-200 !important;
+}
+
 .toast {
   position: fixed;
   bottom: 3em;
@@ -39,28 +51,12 @@ footer{
     left: 50%;
   }
 }
-.bi {
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-}
-.mat-stroked-button {
-  text-decoration: none !important;
-}
-.mat-button-primary{
-  color: white !important;
-  text-decoration: none !important;
-  @media only screen and(max-width: 767px) {
-    height: min-content !important;
-  }
-}
-a:hover {
-  text-decoration: none !important;
-}
 .paginator {
   position: sticky;
   bottom: 0;
   background-color: #efefef;
 }
+
 .p-dialog {
   @media screen and (max-width: 1140px) {
     margin-right: 1rem !important;
@@ -76,8 +72,6 @@ a:hover {
     padding-top: 1rem !important;
   }
 }
-
-
 
 .p-dataview-content, .p-dataview-header, .p-paginator-bottom {
   outline: 1px solid $gray-200 !important;
