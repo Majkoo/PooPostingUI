@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {Subject} from "rxjs";
 import {AccountModel} from "../../Models/AccountModel";
 import {LikeModel} from "../../Models/LikeModel";
+import {HttpServiceService} from "../http/http-service.service";
 
 const devAccountInfo = {
   accountDto: {
@@ -24,12 +25,13 @@ const devAccountInfo = {
 })
 export class AuthServiceService {
   UserInfo: UserInfoModel | undefined;
-  userSubject: Subject<boolean> = new Subject<boolean>();
-  likesSubject: Subject<LikeModel[]> = new Subject<LikeModel[]>();
+  userSubject: Subject<boolean> = new Subject<boolean>(); // on login/logout
+  likedSubject: Subject<true> = new Subject<true>();  // on like/dislike
 
   constructor(
     private params: HttpParamsServiceService,
-    private router: Router
+    private router: Router,
+    private http: HttpServiceService,
   ) {
     this.userSubject.next(false);
 
@@ -37,6 +39,18 @@ export class AuthServiceService {
       this.UserInfo = devAccountInfo;
       console.warn("AUTOMATICALLY LOGGED IN DUE TO DEVELOPMENT MODE")
       this.userSubject.next(true);
+    }
+  }
+
+  updateLikes(): void {
+    if (this.isUserLogged()){
+      this.http.getAccountLikesRequest(this.UserInfo?.accountDto.id)
+        .subscribe({
+          next: (value : LikeModel[]) => {
+            this.UserInfo!.likes = value;
+            this.likedSubject.next(true);
+          }
+        });
     }
   }
 
@@ -67,7 +81,7 @@ export class AuthServiceService {
   }
 
   isUserLogged(): boolean {
-    return (this.UserInfo != null);
+    return (this.UserInfo !== undefined);
   }
 
   logout() {

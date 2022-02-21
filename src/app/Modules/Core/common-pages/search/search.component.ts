@@ -90,7 +90,7 @@ export class SearchComponent implements OnInit {
     this.clearPictureResult();
   }
   paginate(val: any): void {
-    this.updateLikes();
+    this.auth.updateLikes();
     this.params.setSearchPageNumber(val.page+1);
     this.fetchPictures();
   }
@@ -112,16 +112,7 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  private updateLikes(): void {
-    if (this.auth.isUserLogged()){
-      this.httpService.getAccountLikesRequest(this.auth.UserInfo?.accountDto.id)
-        .subscribe({
-          next: (value) => {
-            this.auth.UserInfo!.likes = value;
-          }
-        });
-    }
-  }
+
 
   private fetchPictures(): void {
     this.httpService.searchPicturesRequest().subscribe({
