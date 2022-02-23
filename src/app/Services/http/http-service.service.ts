@@ -88,16 +88,16 @@ export class HttpServiceService {
         data
       );
   }
-  patchPictureLikeRequest(id: string) {
+  patchPictureLikeRequest(id: string): Observable<Picture> {
     return this.http
-      .patch(
+      .patch<Picture>(
         `${this.config.apiUrl}/picture/${id}/voteup`,
         {}
       );
   }
-  patchPictureDislikeRequest(id: string) {
+  patchPictureDislikeRequest(id: string): Observable<Picture> {
     return this.http
-      .patch(
+      .patch<Picture>(
         `${this.config.apiUrl}/picture/${id}/votedown`,
         {}
       );

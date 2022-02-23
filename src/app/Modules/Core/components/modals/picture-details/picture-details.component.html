@@ -14,17 +14,14 @@
     </div>
 
     <div class="d-flex align-items-center justify-content-center justify-content-center mt-3 gap-1">
-      <button class="mx-1 py-2" pButton pRipple (click)="dislike()" [disabled]="!isLoggedOn">
-        <strong class="pr-2">{{picture.dislikes}}</strong>
-        <span class="bi bi-hand-thumbs-down" aria-label="dislike"></span>
-        <!--        <span class="bi bi-hand-thumbs-down" aria-label="dislike" *ngIf="!isDisliked"></span>-->
-        <!--        <span class="bi bi-hand-thumbs-down-fill" aria-label="dislike" *ngIf="isDisliked"></span>-->
-      </button>
       <button class="mx-1 py-2" pButton pRipple (click)="like()" [disabled]="!isLoggedOn">
-        <strong class="pr-2">{{picture.likes}}</strong>
-        <span class="bi bi-hand-thumbs-up" aria-label="like"></span>
-        <!--        <span class="bi bi-hand-thumbs-up" aria-label="like" *ngIf="!isLiked"></span>-->
-        <!--        <span class="bi bi-hand-thumbs-up-fill" aria-label="like" *ngIf="isLiked"></span>-->
+        <strong class="pr-2">{{picture.likeCount}}</strong>
+        <span class="bi" [ngClass]="picture.isLiked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'" aria-label="like"></span>
+      </button>
+
+      <button class="mx-1 py-2" pButton pRipple (click)="dislike()" [disabled]="!isLoggedOn">
+        <strong class="pr-2">{{picture.dislikeCount}}</strong>
+        <span class="bi" [ngClass]="picture.isDisliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="like"></span>
       </button>
     </div>
 

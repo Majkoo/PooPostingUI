@@ -22,6 +22,7 @@ export class PicturesViewComponent implements OnInit{
     if(!this.picture.url.startsWith("http")){
       this.picture.url = this.configService.picturesUrl + this.picture.url;
     }
+    this.updateLikes();
   }
 
   showDetails() {
@@ -35,4 +36,10 @@ export class PicturesViewComponent implements OnInit{
   enableScroll() {
     this.scroll.enableScroll();
   }
+
+  private updateLikes() {
+    this.picture.likeCount = this.picture.likes.filter(l => l.isLike).length;
+    this.picture.dislikeCount = this.picture.likes.filter(l => !l.isLike).length;
+  }
+
 }

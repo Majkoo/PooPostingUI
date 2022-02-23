@@ -1,4 +1,6 @@
-﻿export interface Picture {
+﻿import {LikeModel} from "./LikeModel";
+
+export interface Picture {
   id: string;
   accountId: string;
   accountNickname: string;
@@ -7,6 +9,9 @@
   tags: string[];
   url: string;
   pictureAdded: string;
-  likes: number;
-  dislikes: number;
+  likes: LikeModel[];
+  likeCount: number;
+  dislikeCount: number;
+  isLiked: boolean;
+  isDisliked: boolean;
 }

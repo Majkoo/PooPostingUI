@@ -16,7 +16,7 @@ const devAccountInfo = {
     accountCreated: ""
   },
   likedTags: "",
-  authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZDllYTYwLTA1OGMtNGY5Yy04NTk5LTJjZDM3YjY5M2MzNCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJTaHJla1RoZUNyZWF0b3IiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIzIiwiZXhwIjoxNjQ2NTg3MjAwLCJpc3MiOiJodHRwczovL3BpY3R1cmVBcGkuY29tIiwiYXVkIjoiaHR0cHM6Ly9waWN0dXJlQXBpLmNvbSJ9.nutD0EA1rMaEsWumgR2RDqEBBW1fJFOWvtlVDI4M9Eo",
+  authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZDllYTYwLTA1OGMtNGY5Yy04NTk5LTJjZDM3YjY5M2MzNCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJTaHJla1RoZUNyZWF0b3IiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIzIiwiZXhwIjoxNjQ2OTIxNjIyLCJpc3MiOiJodHRwczovL3BpY3R1cmVBcGkuY29tIiwiYXVkIjoiaHR0cHM6Ly9waWN0dXJlQXBpLmNvbSJ9.0fWyzZJPGqF1ursXr8IJ0LYLz0l5uZFOhnwHJk6EUEA",
   likes: []
 }
 
@@ -26,7 +26,6 @@ const devAccountInfo = {
 export class AuthServiceService {
   UserInfo: UserInfoModel | undefined;
   userSubject: Subject<boolean> = new Subject<boolean>(); // on login/logout
-  likedSubject: Subject<true> = new Subject<true>();  // on like/dislike
 
   constructor(
     private params: HttpParamsServiceService,
@@ -36,7 +35,7 @@ export class AuthServiceService {
     this.userSubject.next(false);
 
     if (isDevMode()){
-      this.UserInfo = devAccountInfo;
+      this.setUserInfo(devAccountInfo);
       console.warn("AUTOMATICALLY LOGGED IN DUE TO DEVELOPMENT MODE")
       this.userSubject.next(true);
     }
@@ -48,7 +47,6 @@ export class AuthServiceService {
         .subscribe({
           next: (value : LikeModel[]) => {
             this.UserInfo!.likes = value;
-            this.likedSubject.next(true);
           }
         });
     }

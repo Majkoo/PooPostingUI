@@ -1,6 +1,6 @@
 <div class="d-flex flex-wrap justify-content-center justify-content-sm-between p-2 border-bottom">
 
-  <div>
+  <div *ngIf="picture !== undefined">
     <div class="d-flex flex-column flex-sm-row align-items-center">
       <img src="{{picture.url}}" alt="{{picture.name}}">
       <div class="title-wrapper">
@@ -25,10 +25,10 @@
 
   <div class="d-flex flex-column justify-content-between info-wrapper mr-1">
     <div class="d-flex flex-row justify-content-center justify-content-sm-around">
-      <button pButton disabled label="{{picture.likes}}"
+      <button pButton disabled label="{{picture.likeCount}}"
               icon="bi bi-hand-thumbs-up-fill" class="p-button-text px-1 py-1">
       </button>
-      <button pButton disabled label="{{picture.dislikes}}"
+      <button pButton disabled label="{{picture.dislikeCount}}"
               icon="bi bi-hand-thumbs-down-fill" class="p-button-text px-1 py-1">
       </button>
     </div>
