@@ -6,6 +6,7 @@ import {Subject} from "rxjs";
 import {AccountModel} from "../../Models/AccountModel";
 import {LikeModel} from "../../Models/LikeModel";
 import {HttpServiceService} from "../http/http-service.service";
+import {Picture} from "../../Models/Picture";
 
 const devAccountInfo = {
   accountDto: {
@@ -35,29 +36,20 @@ export class AuthServiceService {
     this.userSubject.next(false);
 
     if (isDevMode()){
+      // implement better login
       this.setUserInfo(devAccountInfo);
       console.warn("AUTOMATICALLY LOGGED IN DUE TO DEVELOPMENT MODE")
       this.userSubject.next(true);
     }
   }
 
-  updateLikes(): void {
-    if (this.isUserLogged()){
-      this.http.getAccountLikesRequest(this.UserInfo?.accountDto.id)
-        .subscribe({
-          next: (value : LikeModel[]) => {
-            this.UserInfo!.likes = value;
-          }
-        });
-    }
-  }
+
 
   setUserInfo(value: UserInfoModel): void{
     this.UserInfo = value;
     this.params.GetPQuery.likedTags = this.UserInfo.likedTags;
     this.userSubject.next(true);
   }
-
   setUserAccountInfo(value: AccountModel): void {
     if (this.UserInfo) {
       this.UserInfo!.accountDto = value;
@@ -70,14 +62,12 @@ export class AuthServiceService {
     }
     return '';
   }
-
   getUserInfo(): any {
     if(this.UserInfo){
       return this.UserInfo;
     }
     return undefined;
   }
-
   isUserLogged(): boolean {
     return (this.UserInfo !== undefined);
   }
@@ -86,6 +76,34 @@ export class AuthServiceService {
     this.UserInfo = undefined;
     this.userSubject.next(false);
     this.router.navigate(['/logged-out']);
+  }
+
+  updateLikes(): void {
+    if (this.isUserLogged()){
+      this.http.getAccountLikesRequest(this.UserInfo?.accountDto.id)
+        .subscribe({
+          next: (value : LikeModel[]) => {
+            this.UserInfo!.likes = value;
+          }
+        });
+    }
+  }
+  updatePictureLikes(picture: Picture): Picture {
+    picture.likeCount = picture.likes.filter(l => l.isLike).length;
+    picture.dislikeCount = picture.likes.filter(l => !l.isLike).length;
+    if (this.isUserLogged()) {
+      picture.isLiked = picture.likes.some(
+        (l) =>
+          (l.accountId == this.getUserInfo().accountDto.id) &&
+          (l.isLike)
+      );
+      picture.isDisliked = picture.likes.some(
+        (l) =>
+          (l.accountId == this.getUserInfo().accountDto.id) &&
+          (!l.isLike)
+      );
+    }
+    return picture;
   }
 
 }

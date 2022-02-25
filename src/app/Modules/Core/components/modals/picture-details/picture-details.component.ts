@@ -18,7 +18,7 @@ export class PictureDetailsComponent implements OnInit{
     private httpService: HttpServiceService,
   ) { }
   ngOnInit() {
-    this.updateLikes();
+    this.updatePicture();
   }
 
   like(){
@@ -29,13 +29,16 @@ export class PictureDetailsComponent implements OnInit{
     this.httpService.patchPictureDislikeRequest(this.picture.id)
       .subscribe(this.likeObserver)
   }
+  updatePicture() {
+    this.picture = this.auth.updatePictureLikes(this.picture);
+  }
 
   likeObserver = {
     next: () => {
       this.httpService.getPictureRequest(this.picture.id).subscribe({
         next: (value) => {
           this.picture.likes = value.likes;
-          this.updateLikes();
+          this.updatePicture();
         }
       })
     },
@@ -43,20 +46,4 @@ export class PictureDetailsComponent implements OnInit{
       console.error(err)
     }
   }
-
-  private updateLikes() {
-    this.picture.likeCount = this.picture.likes.filter(l => l.isLike).length;
-    this.picture.dislikeCount = this.picture.likes.filter(l => !l.isLike).length;
-    this.picture.isLiked = this.picture.likes.some(
-      (l) =>
-        (l.accountId == this.auth.getUserInfo().accountDto.id) &&
-        (l.isLike)
-    );
-    this.picture.isDisliked = this.picture.likes.some(
-      (l) =>
-        (l.accountId == this.auth.getUserInfo().accountDto.id) &&
-        (!l.isLike)
-    );
-  }
-
 }

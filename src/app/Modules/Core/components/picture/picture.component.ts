@@ -31,7 +31,16 @@ export class PictureComponent implements OnInit {
     if(!this.picture.url.startsWith("http")){
       this.picture.url = this.configService.picturesUrl + this.picture.url;
     }
-    this.updateLikes();
+    this.updatePicture();
+  }
+
+  showDetails() {
+    this.scroll.disableScroll()
+    this.showDetailsFlag = true;
+  }
+  enableScroll() {
+    this.scroll.enableScroll()
+    this.updatePicture();
   }
 
   like(){
@@ -42,15 +51,8 @@ export class PictureComponent implements OnInit {
     this.httpService.patchPictureDislikeRequest(this.picture.id)
       .subscribe(this.likeObserver)
   }
-
-
-  showDetails() {
-    this.scroll.disableScroll()
-    this.showDetailsFlag = true;
-  }
-  enableScroll() {
-    this.scroll.enableScroll()
-    this.updateLikes()
+  updatePicture() {
+    this.picture = this.auth.updatePictureLikes(this.picture);
   }
 
   likeObserver = {
@@ -58,28 +60,13 @@ export class PictureComponent implements OnInit {
       this.httpService.getPictureRequest(this.picture.id).subscribe({
         next: (value) => {
           this.picture.likes = value.likes;
-          this.updateLikes();
+          this.updatePicture();
         }
       })
     },
     error: (err: HttpErrorResponse) => {
       console.error(err)
     }
-  }
-
-  private updateLikes() {
-    this.picture.likeCount = this.picture.likes.filter(l => l.isLike).length;
-    this.picture.dislikeCount = this.picture.likes.filter(l => !l.isLike).length;
-    this.picture.isLiked = this.picture.likes.some(
-      (l) =>
-        (l.accountId == this.auth.getUserInfo().accountDto.id) &&
-        (l.isLike)
-    );
-    this.picture.isDisliked = this.picture.likes.some(
-      (l) =>
-        (l.accountId == this.auth.getUserInfo().accountDto.id) &&
-        (!l.isLike)
-    );
   }
 
 }

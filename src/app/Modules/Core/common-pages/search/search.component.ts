@@ -89,6 +89,7 @@ export class SearchComponent implements OnInit {
     this.clearAccountsResult();
     this.clearPictureResult();
   }
+
   paginate(val: any): void {
     this.auth.updateLikes();
     this.params.setSearchPageNumber(val.page+1);
@@ -111,8 +112,6 @@ export class SearchComponent implements OnInit {
       totalItems:0
     }
   }
-
-
 
   private fetchPictures(): void {
     this.httpService.searchPicturesRequest().subscribe({
