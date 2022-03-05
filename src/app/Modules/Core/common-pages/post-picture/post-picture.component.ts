@@ -38,13 +38,12 @@ export class PostPictureComponent {
 
   // p-chips custom logic
   trimChips() {
-    console.log(this.form.get('tags')?.value);
     let tags: string[] = this.form.get('tags')?.value;
     let tagsToTrim: string[] = [];
     let tagsTrimmed: string[] = [];
     let uniqueTagsTrimmed: string[] = [];
     tags.forEach(val => {
-      tagsToTrim = val.split(' ')
+      tagsToTrim = val.split(" ")
       tagsToTrim.forEach(tag => {
         tagsTrimmed.push(tag)
         tagsTrimmed.forEach((c) => {
@@ -59,6 +58,7 @@ export class PostPictureComponent {
     });
     this.form.get('tags')?.setValue(uniqueTagsTrimmed);
     this.tags = uniqueTagsTrimmed;
+    console.log(this.tagsToString(this.tags))
   }
 
 
@@ -86,7 +86,7 @@ export class PostPictureComponent {
   private tagsToString(tags: string[]): string{
     let result = ""
     tags.forEach(tag => result += (tag + " "));
-    return result
+    return result.slice(0, result.length - 1);
   }
 
   //stackOverflow
