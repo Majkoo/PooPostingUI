@@ -76,8 +76,12 @@
                        formControlName="tags"
                        [allowDuplicate]="false"
                        [addOnTab]="true"
+<<<<<<< Updated upstream
                        [separator]="','"
                        (onAdd)="trimChips()">
+=======
+                       (onAdd)="trimChips()" (keydown)="onKeyDown($event)" (touchend)="onKeyDown($event)" [addOnBlur]="true">
+>>>>>>> Stashed changes
                 <ng-template let-item pTemplate="item">
                   <span class="bi bi-tag">{{item}}</span>
                 </ng-template>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import { Observable } from 'rxjs/internal/Observable';
-import {catchError} from "rxjs/operators";
+import {catchError, retry} from "rxjs/operators";
 import {throwError} from "rxjs";
 import {Router} from "@angular/router";
 
@@ -15,35 +15,38 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req)
       .pipe(
+        retry(3),
         catchError((error: HttpErrorResponse) => {
-          if (error.status.toString().startsWith("5") || error.status.toString().startsWith("0")) {
-            return throwError(() => {
-              this.router.navigate(['/error500']);
-              console.error(`An error occured.\nStatus: ${error.status}\nBody:`)
-              console.log(error);
-            })
-          }
-          else if (error.error === "pictures not found" || error.error === "accounts not found") {
-            return throwError(() => {});
-          }
-          else if (error.error === "Invalid nickname or password") {
-            return throwError(() => {
-              console.error("Login failed. (wrong login credentials)")
-            });
-          }
-          else if(error.error.title === "One or more validation errors occurred."){
-            return throwError(() => {
-              console.error("Register failed. (validation error)")
-              console.log(error);
-            });
-          }
-          else {
-            return throwError(() => {
-              console.error(`An error occured.\nStatus: ${error.status}\nBody:`)
-              console.log(error);
-            });
-          }
 
+          switch (error.status) {
+            case (0): {
+              return throwError(() => {
+                this.router.navigate(['/error0']);
+                console.error(error);
+              })
+            }
+            case (400 || 401 || 402 || 403 || 404 || 405): {
+              if (error.error === "pictures not found" ||
+                  error.error === "accounts not found" ||
+                  error.error.title === "One or more validation errors occurred." ||
+                  error.error === "Invalid nickname or password") {
+                return throwError(() => {
+                  console.error(error);
+                });
+              }
+              else {
+                return throwError(() => {
+                  console.error(error);
+                })
+              }
+            }
+            default: {
+              return throwError(() => {
+                this.router.navigate(['/error500']);
+                console.error(error);
+              })
+            }
+          }
 
         })
       );
