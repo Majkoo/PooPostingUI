@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {Router} from "@angular/router";
@@ -10,7 +10,7 @@ import {MessageService} from "primeng/api";
   templateUrl: './post-picture.component.html',
   styleUrls: ['./post-picture.component.scss']
 })
-export class PostPictureComponent {
+export class PostPictureComponent implements OnInit {
   form!: FormGroup;
   image!: File;
   tags: string[] = [];
@@ -38,13 +38,12 @@ export class PostPictureComponent {
 
   // p-chips custom logic
   trimChips() {
-    console.log(this.form.get('tags')?.value);
     let tags: string[] = this.form.get('tags')?.value;
     let tagsToTrim: string[] = [];
     let tagsTrimmed: string[] = [];
     let uniqueTagsTrimmed: string[] = [];
     tags.forEach(val => {
-      tagsToTrim = val.split(' ')
+      tagsToTrim = val.split(" ")
       tagsToTrim.forEach(tag => {
         tagsTrimmed.push(tag)
         tagsTrimmed.forEach((c) => {
@@ -60,7 +59,14 @@ export class PostPictureComponent {
     this.form.get('tags')?.setValue(uniqueTagsTrimmed);
     this.tags = uniqueTagsTrimmed;
   }
-
+  onKeyDown(event: any) {
+    if (event.key === ";" || event.key === " " || event.key === "," || event.key === "#") {
+      event.preventDefault();
+      const element = event.target as HTMLElement;
+      element.blur();
+      element.focus();
+    }
+  }
 
   // image cropper
   imageChangedEvent: any;
@@ -86,7 +92,7 @@ export class PostPictureComponent {
   private tagsToString(tags: string[]): string{
     let result = ""
     tags.forEach(tag => result += (tag + " "));
-    return result
+    return result.slice(0, result.length - 1);
   }
 
   //stackOverflow
@@ -123,6 +129,9 @@ export class PostPictureComponent {
         console.error(err)
       }
     });
+  }
+
+  ngOnInit() {
   }
 
 }

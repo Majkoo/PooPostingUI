@@ -9,10 +9,10 @@ import {UserInfoModel} from "../../../../Models/UserInfoModel";
 })
 export class MyAccountComponent implements OnInit {
   constructor(private auth: AuthServiceService) { }
-  userInfo?: UserInfoModel;
+  userInfo!: UserInfoModel;
 
   ngOnInit(): void {
-    this.auth.getUserInfo();
+    this.userInfo = this.auth.getUserInfo();
   }
 
 }

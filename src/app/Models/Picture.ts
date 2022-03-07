@@ -10,8 +10,8 @@ export interface Picture {
   url: string;
   pictureAdded: string;
   likes: LikeModel[];
-  likeCount: number;
-  dislikeCount: number;
-  isLiked: boolean;
-  isDisliked: boolean;
+  likeCount?: number;
+  dislikeCount?: number;
+  isLiked?: boolean;
+  isDisliked?: boolean;
 }

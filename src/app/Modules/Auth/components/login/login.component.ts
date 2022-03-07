@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         error: () => {
           this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Podano błędne dane logowania.', key: "login-failed"});
         }
-    })
+      })
   }
 
 }

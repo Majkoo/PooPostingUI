@@ -1,4 +1,4 @@
 ﻿{
-  "apiUrl": "https://localhost:5001/api",
-  "picturesUrl": "https://localhost:5001/"
+  "apiUrl": "https://migra-pictures-api.ml/api",
+  "picturesUrl": "https://pictures-api.migra.ml/"
 }
