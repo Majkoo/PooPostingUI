@@ -4,17 +4,25 @@ import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {Router} from "@angular/router";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {MessageService} from "primeng/api";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-post-picture',
   templateUrl: './post-picture.component.html',
   styleUrls: ['./post-picture.component.scss']
 })
-export class PostPictureComponent implements OnInit {
+export class PostPictureComponent {
   form!: FormGroup;
   image!: File;
   tags: string[] = [];
-  any: any;
+
+  siteKey!: string;
+  captchaPassed: boolean = false;
+  awaitSubmit: boolean = false;
+  imgError: boolean = false;
+  passCaptcha() {
+    this.captchaPassed = true;
+  }
 
   @ViewChild('cropperInput') CropperInput: any;
   @ViewChild('pChips') ChipsInput: any;
@@ -25,15 +33,25 @@ export class PostPictureComponent implements OnInit {
     private message: MessageService,
     private router: Router
   ) {
+    this.siteKey = "6Lfdv78eAAAAAJZcBW3ymM-3yaKieXyTTXFPNHcm";
+
     this.form  = this.formBuilder.group({
-      name: new FormControl(null, [
+      name: new FormControl("", [
         Validators.required,
         Validators.minLength(4),
+        Validators.maxLength(25)
       ]),
-      img: undefined,
-      description: '',
-      tags: this.tags
-    })
+      img: new FormControl(undefined, [
+        Validators.required
+      ]),
+      description: new FormControl("", [
+        Validators.maxLength(500)
+      ]),
+      tags: new FormControl(this.tags, [
+        Validators.maxLength(500)
+      ]),
+    });
+
   }
 
   // p-chips custom logic
@@ -79,15 +97,16 @@ export class PostPictureComponent implements OnInit {
     const Blob =  this.dataURItoBlob(event.base64!);
     let file = new File([Blob], "picture")
     this.image = file;
+    this.imgError = false;
   }
   imageLoaded() {
-    // show cropper
+    this.imgError = false;
   }
   cropperReady() {
-    // cropper ready
+    this.imgError = false;
   }
   loadImageFailed() {
-    // show message
+    this.imgError = true;
   }
   private tagsToString(tags: string[]): string{
     let result = ""
@@ -96,7 +115,7 @@ export class PostPictureComponent implements OnInit {
   }
 
   //stackOverflow
-  dataURItoBlob(dataURI: string) {
+  private dataURItoBlob(dataURI: string) {
     const binary = atob(dataURI.split(',')[1]);
     const array = [];
     for (let i = 0; i < binary.length; i++) {
@@ -107,12 +126,10 @@ export class PostPictureComponent implements OnInit {
     });
   }
 
-  // changeRatio(value: number){
-  //   this.CropperInput.aspectRatio = value;
-  // }
-
   //send form data
   submit(){
+    this.awaitSubmit = true;
+    this.captchaPassed = false;
     let fData: FormData = new FormData;
     fData.append("file", this.image)
     fData.append("name", this.form.getRawValue().name)
@@ -123,15 +140,16 @@ export class PostPictureComponent implements OnInit {
       next: () => {
         this.router.navigate(["./home"]);
         this.message.add({severity:'success', summary: 'Sukces', detail: 'Obrazek został umieszczony na stronie'});
+        this.awaitSubmit = false;
       },
-      error: (err) => {
+      error: (err: HttpErrorResponse) => {
         this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Nie udało się zapostować obrazka. Sprawdź błędy.'});
-        console.error(err)
+
+        console.error(err);
+        this.imgError = true;
+        this.awaitSubmit = false;
       }
     });
-  }
-
-  ngOnInit() {
   }
 
 }

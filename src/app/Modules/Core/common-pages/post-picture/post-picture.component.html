@@ -29,6 +29,10 @@
                      *ngIf="form.get('name')!.errors!['minlength']">
                 Nazwa obrazka powinna zawierać co najmniej 4 znaki
               </small>
+              <small id="name-input-error-maxlength" class="px-1 p-error block"
+                     *ngIf="form.get('name')!.errors!['maxlength']">
+                Nazwa obrazka powinna zawierać maksymalnie 25 znaków
+              </small>
             </span>
           </div>
 
@@ -40,8 +44,8 @@
               </div>
             </div>
 
-            <div class="row mt-2">
-              <div class="text-center col-12" >
+            <div class="row mt-2 justify-content-center">
+              <div class="text-center col-12">
                 <h5>Przytnij</h5>
                 <image-cropper class="border" #cropperInput
                   [imageChangedEvent]="imageChangedEvent"
@@ -56,6 +60,14 @@
                   (loadImageFailed)="loadImageFailed()">
                 </image-cropper>
               </div>
+              <small id="file-input-error-notselected" class="px-1 p-error block"
+                     *ngIf="form.get('img')!.errors && form.get('img')!.touched">
+                Proszę wybrać obrazek
+              </small>
+              <small id="file-input-error-invalid" class="px-1 p-error block"
+                     *ngIf="(imgError && form.get('img')!.touched) && !(form.get('img')!.errors)">
+                Nieobsługiwany format pliku
+              </small>
             </div>
 
           </div>
@@ -66,7 +78,12 @@
               <textarea id="float-input" class="w-100" formControlName="description" rows="3" cols="30" pInputTextarea></textarea>
               <label for="float-input">Opis obrazka</label>
             </span>
+            <small id="desc-area-error-maxlength" class="px-1 p-error block"
+                   *ngIf="form.get('description')!.errors">
+              Opis obrazka powinien zawierać maksymalnie 500 znaków
+            </small>
           </div>
+
 
 <!--          Picture tags-->
           <div class="mx-3 mb-4 w-100 text-left">
@@ -84,11 +101,14 @@
               <label for="chips">Tagi</label>
             </div>
             <p class="lh15 mt-1"><small id="chips-help" class="mx-1 text-muted">Możesz wprowadzić maksymalnie 6 tagów.</small></p>
-            <p class="lh15"><small id="chips-help2" class="mx-1 text-muted">Naciśnij enter, aby dodać tag.</small></p>
+          </div>
+
+          <div class="d-flex w-100 justify-content-center mb-3">
+            <p-captcha [siteKey]="siteKey" (onResponse)="passCaptcha()"></p-captcha>
           </div>
 
           <div class="col-12">
-            <button pButton pRipple (click)="submit()" class="px-5" [disabled]="form.invalid">Wyślij</button>
+            <button pButton pRipple (click)="submit()" class="px-5" [disabled]="form.invalid || !captchaPassed || awaitSubmit || imgError">Wyślij</button>
           </div>
 
         </form>
