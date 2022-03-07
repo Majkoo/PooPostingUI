@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import { AuthServiceService } from 'src/app/Services/data/auth-service.service';
-import { ConfigServiceService } from 'src/app/Services/data/config-service.service';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {MessageService} from "primeng/api";
 
@@ -13,6 +12,7 @@ import {MessageService} from "primeng/api";
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
+  awaitSubmit: boolean = false;
 
   constructor(
     private router: Router,
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.awaitSubmit = true;
     this.message.clear();
     this.httpService.postLoginRequest(this.form.getRawValue())
       .subscribe({
@@ -36,9 +37,11 @@ export class LoginComponent implements OnInit {
           this.authService.setUserInfo(v);
           this.message.add({severity:'success', summary: 'Sukces', detail: 'Zalogowano pomyślnie.'});
           this.router.navigate(['home']);
+          this.awaitSubmit = false;
         },
         error: () => {
           this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Podano błędne dane logowania.', key: "login-failed"});
+          this.awaitSubmit = false;
         }
       })
   }

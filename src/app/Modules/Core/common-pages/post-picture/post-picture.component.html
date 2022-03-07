@@ -44,8 +44,8 @@
               </div>
             </div>
 
-            <div class="row mt-2">
-              <div class="text-center col-12" >
+            <div class="row mt-2 justify-content-center">
+              <div class="text-center col-12">
                 <h5>Przytnij</h5>
                 <image-cropper class="border" #cropperInput
                   [imageChangedEvent]="imageChangedEvent"
@@ -60,6 +60,14 @@
                   (loadImageFailed)="loadImageFailed()">
                 </image-cropper>
               </div>
+              <small id="file-input-error-notselected" class="px-1 p-error block"
+                     *ngIf="form.get('img')!.errors && form.get('img')!.touched">
+                Proszę wybrać obrazek
+              </small>
+              <small id="file-input-error-invalid" class="px-1 p-error block"
+                     *ngIf="(imgError && form.get('img')!.touched) && !(form.get('img')!.errors)">
+                Nieobsługiwany format pliku
+              </small>
             </div>
 
           </div>
@@ -100,7 +108,7 @@
           </div>
 
           <div class="col-12">
-            <button pButton pRipple (click)="submit()" class="px-5" [disabled]="form.invalid || !captchaPassed">Wyślij</button>
+            <button pButton pRipple (click)="submit()" class="px-5" [disabled]="form.invalid || !captchaPassed || awaitSubmit || imgError">Wyślij</button>
           </div>
 
         </form>

@@ -4,6 +4,7 @@ import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {Router} from "@angular/router";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {MessageService} from "primeng/api";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-post-picture',
@@ -13,11 +14,12 @@ import {MessageService} from "primeng/api";
 export class PostPictureComponent {
   form!: FormGroup;
   image!: File;
-  siteKey!: string;
   tags: string[] = [];
-  any: any;
 
+  siteKey!: string;
   captchaPassed: boolean = false;
+  awaitSubmit: boolean = false;
+  imgError: boolean = false;
   passCaptcha() {
     this.captchaPassed = true;
   }
@@ -95,15 +97,16 @@ export class PostPictureComponent {
     const Blob =  this.dataURItoBlob(event.base64!);
     let file = new File([Blob], "picture")
     this.image = file;
+    this.imgError = false;
   }
   imageLoaded() {
-    // show cropper
+    this.imgError = false;
   }
   cropperReady() {
-    // cropper ready
+    this.imgError = false;
   }
   loadImageFailed() {
-    // show message
+    this.imgError = true;
   }
   private tagsToString(tags: string[]): string{
     let result = ""
@@ -125,6 +128,7 @@ export class PostPictureComponent {
 
   //send form data
   submit(){
+    this.awaitSubmit = true;
     this.captchaPassed = false;
     let fData: FormData = new FormData;
     fData.append("file", this.image)
@@ -136,10 +140,14 @@ export class PostPictureComponent {
       next: () => {
         this.router.navigate(["./home"]);
         this.message.add({severity:'success', summary: 'Sukces', detail: 'Obrazek został umieszczony na stronie'});
+        this.awaitSubmit = false;
       },
-      error: (err) => {
+      error: (err: HttpErrorResponse) => {
         this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Nie udało się zapostować obrazka. Sprawdź błędy.'});
-        console.error(err)
+
+        console.error(err);
+        this.imgError = true;
+        this.awaitSubmit = false;
       }
     });
   }
