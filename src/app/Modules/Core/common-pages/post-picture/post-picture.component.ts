@@ -26,18 +26,13 @@ export class PostPictureComponent {
     private router: Router
   ) {
     this.form  = this.formBuilder.group({
-      name: new FormControl("", [
+      name: new FormControl(null, [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(25),
       ]),
       img: undefined,
-      description: new FormControl("", [
-        Validators.maxLength(500),
-      ]),
-      tags: new FormControl(this.tags, [
-        Validators.maxLength(500), // add custom max 500 chars validator
-      ]),
+      description: '',
+      tags: this.tags
     })
   }
 
