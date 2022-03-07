@@ -10,11 +10,17 @@ import {MessageService} from "primeng/api";
   templateUrl: './post-picture.component.html',
   styleUrls: ['./post-picture.component.scss']
 })
-export class PostPictureComponent implements OnInit {
+export class PostPictureComponent {
   form!: FormGroup;
   image!: File;
+  siteKey!: string;
   tags: string[] = [];
   any: any;
+
+  captchaPassed: boolean = false;
+  passCaptcha() {
+    this.captchaPassed = true;
+  }
 
   @ViewChild('cropperInput') CropperInput: any;
   @ViewChild('pChips') ChipsInput: any;
@@ -25,15 +31,25 @@ export class PostPictureComponent implements OnInit {
     private message: MessageService,
     private router: Router
   ) {
+    this.siteKey = "6Lfdv78eAAAAAJZcBW3ymM-3yaKieXyTTXFPNHcm";
+
     this.form  = this.formBuilder.group({
-      name: new FormControl(null, [
+      name: new FormControl("", [
         Validators.required,
         Validators.minLength(4),
+        Validators.maxLength(25)
       ]),
-      img: undefined,
-      description: '',
-      tags: this.tags
-    })
+      img: new FormControl(undefined, [
+        Validators.required
+      ]),
+      description: new FormControl("", [
+        Validators.maxLength(500)
+      ]),
+      tags: new FormControl(this.tags, [
+        Validators.maxLength(500)
+      ]),
+    });
+
   }
 
   // p-chips custom logic
@@ -96,7 +112,7 @@ export class PostPictureComponent implements OnInit {
   }
 
   //stackOverflow
-  dataURItoBlob(dataURI: string) {
+  private dataURItoBlob(dataURI: string) {
     const binary = atob(dataURI.split(',')[1]);
     const array = [];
     for (let i = 0; i < binary.length; i++) {
@@ -107,12 +123,9 @@ export class PostPictureComponent implements OnInit {
     });
   }
 
-  // changeRatio(value: number){
-  //   this.CropperInput.aspectRatio = value;
-  // }
-
   //send form data
   submit(){
+    this.captchaPassed = false;
     let fData: FormData = new FormData;
     fData.append("file", this.image)
     fData.append("name", this.form.getRawValue().name)
@@ -129,9 +142,6 @@ export class PostPictureComponent implements OnInit {
         console.error(err)
       }
     });
-  }
-
-  ngOnInit() {
   }
 
 }
