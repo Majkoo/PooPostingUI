@@ -3,7 +3,8 @@ import {AuthServiceService} from "../../../../Services/data/auth-service.service
 import {Picture} from "../../../../Models/Picture";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
-import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {HttpResponse} from "@angular/common/http";
+import {AccountModel} from "../../../../Models/AccountModel";
 
 @Component({
   selector: 'app-my-pictures',
@@ -23,7 +24,7 @@ export class MyPicturesComponent implements OnInit {
   ngOnInit(): void {
     this.http.getAccountRequest(this.auth.getUserInfo().accountDto.id)
       .subscribe({
-        next: (value) => {
+        next: (value: AccountModel) => {
           this.auth.setUserAccountInfo(value);
           this.pictures = value.pictures;
           this.pictures = this.sortByDate(this.pictures);

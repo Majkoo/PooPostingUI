@@ -7,6 +7,7 @@ import {AccountModel} from "../../Models/AccountModel";
 import {LikeModel} from "../../Models/LikeModel";
 import {HttpServiceService} from "../http/http-service.service";
 import {Picture} from "../../Models/Picture";
+import {HttpResponse} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +61,7 @@ export class AuthServiceService {
     if (this.isUserLogged()){
       this.http.getAccountLikesRequest(this.UserInfo?.accountDto.id)
         .subscribe({
-          next: (value : LikeModel[]) => {
+          next: (value: LikeModel[]) => {
             this.UserInfo!.likes = value;
           }
         });
@@ -112,7 +113,8 @@ const devAccountInfo: UserInfoModel = {
             "pictureId": "08d9ea60-0591-4550-843d-465368cacf9b",
             "isLike": true
           }
-        ]
+        ],
+        isModifiable: true
       },
       {
         id: "08d9ea60-0594-4175-8c57-4d5434a62ebb",
@@ -129,13 +131,14 @@ const devAccountInfo: UserInfoModel = {
         ],
         url: "http://3.bp.blogspot.com/_GoN5EPxM4Y8/S-3O8XQippI/AAAAAAAAAJI/HkXJaFXTr1g/w1200-h630-p-k-no-nu/shrek1ta5.jpg",
         pictureAdded: "2022-02-07T18:33:58",
-        likes: []
+        likes: [],
+        isModifiable: true
       }
     ],
     accountCreated: ""
   },
   likedTags: "",
-  authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZDllYTYwLTA1OGMtNGY5Yy04NTk5LTJjZDM3YjY5M2MzNCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJTaHJla1RoZUNyZWF0b3IiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIzIiwiZXhwIjoxNjQ2OTIxNjIyLCJpc3MiOiJodHRwczovL3BpY3R1cmVBcGkuY29tIiwiYXVkIjoiaHR0cHM6Ly9waWN0dXJlQXBpLmNvbSJ9.0fWyzZJPGqF1ursXr8IJ0LYLz0l5uZFOhnwHJk6EUEA",
-  likes: []
+  authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZDllYTYwLTA1OGMtNGY5Yy04NTk5LTJjZDM3YjY5M2MzNCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJTaHJla1RoZUNyZWF0b3IiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIzIiwiZXhwIjoxNjQ4MjI1NjcwLCJpc3MiOiJodHRwczovL3BpY3R1cmVBcGkuY29tIiwiYXVkIjoiaHR0cHM6Ly9waWN0dXJlQXBpLmNvbSJ9.a2xs_yImMG4SlrosFumeyzQ0p0Sn5sUzZ_A5SO2xiXw",
+  likes: [],
 }
 

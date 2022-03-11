@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {Observable, tap, throwError} from "rxjs";
 import {HttpParamsServiceService} from "./http-params-service.service";
 import { Picture } from 'src/app/Models/Picture';
@@ -11,6 +11,7 @@ import { ConfigServiceService } from '../data/config-service.service';
 import {LikeModel} from "../../Models/LikeModel";
 import { AccountPagedResult } from 'src/app/Models/AccountPagedResult';
 import {AccountModel} from "../../Models/AccountModel";
+import {PutPictureModel} from "../../Models/PutPictureModel";
 
 @Injectable({
   providedIn: 'root'
@@ -88,6 +89,12 @@ export class HttpServiceService {
         data
       );
   }
+  deletePictureRequest(id: string): Observable<any> {
+    return this.http
+      .delete(
+        `${this.config.apiUrl}/picture/${id}`
+      );
+  }
   patchPictureLikeRequest(id: string): Observable<Picture> {
     return this.http
       .patch<Picture>(
@@ -101,6 +108,13 @@ export class HttpServiceService {
         `${this.config.apiUrl}/picture/${id}/votedown`,
         {}
       );
+  }
+  putPictureRequest(data: PutPictureModel, id: string) {
+    return this.http
+      .put<Picture>(
+        `${this.config.apiUrl}/picture/${id}`,
+        data
+      )
   }
 
 

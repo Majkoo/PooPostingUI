@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {MessageService} from "primeng/api";
 import {HttpErrorResponse} from "@angular/common/http";
+import {catchError} from "rxjs/operators";
+import {throwError} from "rxjs";
 
 @Component({
   selector: 'app-post-picture',
@@ -20,8 +22,15 @@ export class PostPictureComponent {
   captchaPassed: boolean = false;
   awaitSubmit: boolean = false;
   imgError: boolean = false;
+  isSafe: boolean = true;
   passCaptcha() {
     this.captchaPassed = true;
+  }
+
+  clearErrors(){
+    this.awaitSubmit = false;
+    this.imgError = false;
+    this.isSafe = true;
   }
 
   @ViewChild('cropperInput') CropperInput: any;
@@ -39,7 +48,7 @@ export class PostPictureComponent {
       name: new FormControl("", [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(25)
+        Validators.maxLength(40)
       ]),
       img: new FormControl(undefined, [
         Validators.required
@@ -92,21 +101,22 @@ export class PostPictureComponent {
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
+    this.clearErrors();
   }
   imageCropped(event: ImageCroppedEvent) {
     const Blob =  this.dataURItoBlob(event.base64!);
     let file = new File([Blob], "picture")
     this.image = file;
-    this.imgError = false;
+    this.clearErrors();
   }
   imageLoaded() {
-    this.imgError = false;
+    this.clearErrors();
   }
   cropperReady() {
-    this.imgError = false;
+    this.clearErrors();
   }
   loadImageFailed() {
-    this.imgError = true;
+    this.clearErrors();
   }
   private tagsToString(tags: string[]): string{
     let result = ""
@@ -129,7 +139,6 @@ export class PostPictureComponent {
   //send form data
   submit(){
     this.awaitSubmit = true;
-    this.captchaPassed = false;
     let fData: FormData = new FormData;
     fData.append("file", this.image)
     fData.append("name", this.form.getRawValue().name)
@@ -140,13 +149,15 @@ export class PostPictureComponent {
       next: () => {
         this.router.navigate(["./home"]);
         this.message.add({severity:'success', summary: 'Sukces', detail: 'Obrazek został umieszczony na stronie'});
-        this.awaitSubmit = false;
+        this.clearErrors();
       },
-      error: (err: HttpErrorResponse) => {
-        this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Nie udało się zapostować obrazka. Sprawdź błędy.'});
-
-        console.error(err);
-        this.imgError = true;
+      error: (err) => {
+        switch (err.error) {
+          case ("nsfw picture"):
+            this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Wykryto nieodpowiednie treści. Obrazek nie został zapostowany.'});
+            this.isSafe = false;
+            break;
+        }
         this.awaitSubmit = false;
       }
     });

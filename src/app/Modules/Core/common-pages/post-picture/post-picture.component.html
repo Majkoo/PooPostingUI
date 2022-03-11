@@ -31,7 +31,7 @@
               </small>
               <small id="name-input-error-maxlength" class="px-1 p-error block"
                      *ngIf="form.get('name')!.errors!['maxlength']">
-                Nazwa obrazka powinna zawierać maksymalnie 25 znaków
+                Nazwa obrazka powinna zawierać maksymalnie 40 znaków
               </small>
             </span>
           </div>
@@ -67,6 +67,10 @@
               <small id="file-input-error-invalid" class="px-1 p-error block"
                      *ngIf="(imgError && form.get('img')!.touched) && !(form.get('img')!.errors)">
                 Nieobsługiwany format pliku
+              </small>
+              <small id="file-input-error-notsafe" class="px-1 p-error block"
+                     *ngIf="!isSafe">
+                Wykryto nieodpowiednie treści
               </small>
             </div>
 

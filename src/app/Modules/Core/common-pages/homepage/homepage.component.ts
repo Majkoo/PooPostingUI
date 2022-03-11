@@ -3,6 +3,7 @@ import { PicturePagedResult } from 'src/app/Models/PicturePagedResult';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
+import {LikeModel} from "../../../../Models/LikeModel";
 
 @Component({
   selector: 'app-body',
@@ -50,7 +51,7 @@ export class HomepageComponent implements OnInit {
     if (this.auth.isUserLogged()){
       this.httpService.getAccountLikesRequest(this.auth.UserInfo?.accountDto.id)
         .subscribe({
-          next: (value) => {
+          next: (value: LikeModel[]) => {
             this.auth.UserInfo!.likes = value;
           }
         });

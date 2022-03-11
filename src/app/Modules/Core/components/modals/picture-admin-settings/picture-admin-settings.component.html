@@ -6,25 +6,6 @@
 
   <div class="col-12 col-md-8 text-center">
     <img src="{{picture.url}}" alt="'{{picture.name}}' dodany przez {{picture.accountNickname}}" class="img-fluid mw border mb-2">
-
-    <div class="d-flex gap-05 align-items-center justify-content-center flex-wrap">
-      <div *ngFor="let tag of picture.tags">
-        <p-tag><span class="bi bi-tag-fill"></span>{{tag}}</p-tag>
-      </div>
-    </div>
-
-    <div class="d-flex align-items-center justify-content-center justify-content-center mt-3 gap-1">
-      <button class="mx-1 py-2" pButton pRipple (click)="like()" [disabled]="!isLoggedOn">
-        <strong class="pr-2">{{picture.likeCount}}</strong>
-        <span class="bi" [ngClass]="picture.isLiked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'" aria-label="like"></span>
-      </button>
-
-      <button class="mx-1 py-2" pButton pRipple (click)="dislike()" [disabled]="!isLoggedOn">
-        <strong class="pr-2">{{picture.dislikeCount}}</strong>
-        <span class="bi" [ngClass]="picture.isDisliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="like"></span>
-      </button>
-    </div>
-
   </div>
 
   <div class="col-12 col-md-4 d-flex flex-column justify-content-between pt-3 pt-md-0">
@@ -43,8 +24,25 @@
         <span class="bi bi-file-text-fill"></span>
         <p><i>{{picture.description == undefined || "" || " " ? 'brak opisu' : picture.description}}</i></p>
       </div>
+
+      <div class="d-flex align-items-start justify-content-center justify-content-md-start" label="Opis obrazka">
+        <span class="bi bi-hand-thumbs-up-fill"></span>
+        <p><i class="pr-3">{{picture.likeCount}}</i></p>
+        <span class="bi bi-hand-thumbs-down-fill"></span>
+        <p><i>{{picture.dislikeCount}}</i></p>
+      </div>
+
+      <div class="d-flex align-items-start justify-content-center justify-content-md-start" label="Opis obrazka">
+        <span class="bi bi-tag-fill"></span>
+        <p><i>{{picture.tags == [] || [" "] ? "brak tagów" : picture.tags}}</i></p>
+      </div>
+
     </div>
 
+    <div class="w-100">
+      <input type="text" pInputText class="w-100 mb-2" placeholder="Wpisz nazwę obrazka, aby usunąć" [(ngModel)]="deletePhrase">
+      <button pButton pRipple class="p-button-danger mb-2 w-100" label="Usuń ten obrazek" (click)="delete()" [disabled]="deletePhrase.toLowerCase() !== picture.name.toLowerCase()"></button>
+    </div>
   </div>
 
 </div>

@@ -42,7 +42,7 @@
 
           <div class="text-left col-12 mb-4">
             <span class="p-float-label">
-              <input id="email-input" class="w-100" type="text"
+              <input id="email-input" class="w-100" type="text" [pKeyFilter]="blockSpace"
                      [ngClass]="form.get('email')!.touched ? 'ng-dirty' : ''"
                      formControlName="email" pInputText>
               <label for="email-input">

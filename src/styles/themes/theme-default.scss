@@ -721,6 +721,8 @@ p-checkbox.ng-dirty.ng-invalid {
     .p-chips-token {
       padding: 0.25rem 0.5rem;
       margin-right: 0.5rem;
+      margin-bottom: 0.15rem;
+      margin-top: 0.15rem;
       background: variables.$highlight-color;
       color: variables.$text-color;
       border-radius: 3px;
@@ -2057,7 +2059,7 @@ p-treeselect.ng-invalid.ng-dirty {
   border-radius: 2rem;
 }
 .p-button.p-button-icon-only {
-  width: 2.357rem;
+  width: 2.750rem;
   padding: 0.5rem 0;
   .p-button-icon-left {
     margin: 0;
@@ -6908,6 +6910,7 @@ p-treeselect.ng-invalid.ng-dirty {
 }
 .p-toast {
   opacity: 0.9;
+  z-index: 1000;
   .p-toast-message {
     margin: 0 0 1rem 0;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
@@ -6945,6 +6948,7 @@ p-treeselect.ng-invalid.ng-dirty {
     }
   }
   .p-toast-message.p-toast-message-info {
+    z-index: 1000;
     background: #B3E5FC;
     border: solid #0891cf;
     border-width: 0 0 0 6px;
@@ -6957,6 +6961,7 @@ p-treeselect.ng-invalid.ng-dirty {
     }
   }
   .p-toast-message.p-toast-message-success {
+    z-index: 1000;
     background: #C8E6C9;
     border: solid #439446;
     border-width: 0 0 0 6px;
@@ -6969,6 +6974,7 @@ p-treeselect.ng-invalid.ng-dirty {
     }
   }
   .p-toast-message.p-toast-message-warn {
+    z-index: 1000;
     background: #FFECB3;
     border: solid #d9a300;
     border-width: 0 0 0 6px;
@@ -6981,6 +6987,7 @@ p-treeselect.ng-invalid.ng-dirty {
     }
   }
   .p-toast-message.p-toast-message-error {
+    z-index: 1000;
     background: #FFCDD2;
     border: solid #e60017;
     border-width: 0 0 0 6px;

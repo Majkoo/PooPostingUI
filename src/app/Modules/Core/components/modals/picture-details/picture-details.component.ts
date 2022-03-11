@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Picture} from "../../../../../Models/Picture";
 import {AuthServiceService} from "../../../../../Services/data/auth-service.service";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
-import {HttpErrorResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-picture-details',
@@ -36,14 +36,11 @@ export class PictureDetailsComponent implements OnInit{
   likeObserver = {
     next: () => {
       this.httpService.getPictureRequest(this.picture.id).subscribe({
-        next: (value) => {
+        next: (value: Picture) => {
           this.picture.likes = value.likes;
           this.updatePicture();
         }
       })
     },
-    error: (err: HttpErrorResponse) => {
-      console.error(err)
-    }
   }
 }

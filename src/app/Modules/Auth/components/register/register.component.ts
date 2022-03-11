@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { CustomValidators } from 'src/CustomValidators';
 import {MessageService} from "primeng/api";
+import {throwError} from "rxjs";
 
 @Component({
   selector: 'app-register',
@@ -12,11 +13,13 @@ import {MessageService} from "primeng/api";
 })
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
-  isNickNameTaken: boolean = false;
+  blockSpace: RegExp = /[^\s]/;
 
   siteKey!: string;
   captchaPassed: boolean = false;
   awaitSubmit: boolean = false;
+  isNickNameTaken: boolean = false;
+
   passCaptcha() {
     this.captchaPassed = true;
   }
@@ -61,15 +64,16 @@ export class RegisterComponent implements OnInit {
     this.isNickNameTaken = false;
     this.message.clear();
     this.httpService.postRegisterRequest(this.form.getRawValue()).subscribe({
-      next: (v) => {
+      next: () => {
         this.router.navigate(['login']);
         this.message.add({severity:'success', summary: 'Sukces', detail: 'Zarejestrowano pomyślnie. Przeniesiono cię na stronę logowania.'});
-        this.awaitSubmit = false;
       },
-      error: () => {
-        this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Rejestracja nie powiodła się. Sprawdź błędy.'});
-        this.isNickNameTaken = true;
+      error: (err) => {
         this.awaitSubmit = false;
+        this.message.add({severity:'error', summary: 'Sukces', detail: 'Nie udało się zarejestrować. Sprawdź błędy.'});
+        if (err.error.errors || err.error.errors.Nickname === "That nickname is taken") {
+          this.isNickNameTaken = true;
+        }
       }
     });
 

@@ -14,4 +14,5 @@ export interface Picture {
   dislikeCount?: number;
   isLiked?: boolean;
   isDisliked?: boolean;
+  isModifiable: boolean;
 }

@@ -29,25 +29,55 @@
 
       <div class="d-flex align-items-start justify-content-center justify-content-md-start" label="Opis obrazka">
         <span class="bi bi-file-text-fill"></span>
-        <p><i>{{picture.description == undefined ? 'brak opisu' : picture.description}}</i></p>
+        <p><i>{{picture.description == undefined || "" || " " ? 'brak opisu' : picture.description}}</i></p>
       </div>
     </div>
 
     <div>
       <h3 class="mb-4">Zmień dane obrazka</h3>
-      <form class="text-center row gap-3 mb-5" [formGroup]="form" type="submit" (ngSubmit)="null">
+      <form class="text-center row gap-3 mb-5" [formGroup]="form" type="submit" (ngSubmit)="submit()">
         <div class="text-left col-12">
             <span class="p-float-label">
-              <input id="pic-name-input" class="w-100" type="text" formControlName="name" pInputText>
-              <label for="pic-name-input">Nazwa obrazka</label>
+              <input id="name-input" class="w-100" type="text"
+                     [ngClass]="form.get('name')!.touched ? 'ng-dirty' : ''"
+                     formControlName="name" pInputText>
+              <label for="name-input">
+                Nazwa obrazka
+                <span class="text-danger">*</span>
+              </label>
+            </span>
+          <span *ngIf="form.get('name')!.touched && form.get('name')!.invalid">
+              <small id="name-input-error-required" class="px-1 p-error block"
+                   *ngIf="form.get('name')!.errors!['required']">
+                Nazwa obrazka jest wymagana
+              </small>
+              <small id="name-input-error-minlength" class="px-1 p-error block"
+                     *ngIf="form.get('name')!.errors!['minlength']">
+                Nazwa obrazka powinna zawierać co najmniej 4 znaki
+              </small>
+              <small id="name-input-error-maxlength" class="px-1 p-error block"
+                     *ngIf="form.get('name')!.errors!['maxlength']">
+                Nazwa obrazka powinna zawierać maksymalnie 40 znaków
+              </small>
             </span>
         </div>
 
-        <div class="text-left col-12">
-            <span class="p-float-label">
-              <input id="pic-tags-input" class="w-100" type="text" formControlName="tags" pInputText>
-              <label for="pic-tags-input">Tagi obrazka</label>
-            </span>
+        <div class="text-left w-100 px-3">
+          <div class="p-float-label w-100">
+            <p-chips #pChips
+                     id="chips"
+                     formControlName="tags"
+                     [allowDuplicate]="false"
+                     [addOnTab]="true"
+                     (onAdd)="trimChips()" (keydown)="onKeyDown($event)" (touchend)="onKeyDown($event)" [addOnBlur]="true">
+
+            </p-chips>
+            <ng-template let-item pTemplate="item">
+              <span class="bi bi-tag"><div style="font-size: 12px;">{{item}}</div></span>
+            </ng-template>
+            <label for="chips">Tagi</label>
+          </div>
+          <p class="lh15 mt-1"><small id="chips-help" class="mx-1 text-muted">Możesz wprowadzić maksymalnie 6 tagów.</small></p>
         </div>
 
         <div class="text-left col-12">
@@ -59,7 +89,7 @@
 
         <div class="col-12">
           <button pButton pRipple type="submit" label="Zatwierdź zmiany"
-                  class="p-button-primary px-5 py-2" [disabled]="form.invalid"></button>
+                  class="p-button-primary px-5 py-2" [disabled]="form.invalid || awaitSubmit"></button>
         </div>
 
       </form>

@@ -3,7 +3,6 @@ import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
-import {SortSearchBy} from "../../../../Enums/SortSearchBy";
 import {SortSearch} from "../../../../Enums/SortSearch";
 
 @Component({
@@ -11,7 +10,7 @@ import {SortSearch} from "../../../../Enums/SortSearch";
   templateUrl: './search-panel.component.html',
   styleUrls: ['./search-panel.component.scss']
 })
-export class SearchPanelComponent implements OnInit {
+export class SearchPanelComponent {
   @ViewChild('paginatorTop') paginator: any;
   form!: FormGroup;
   @Output() searchAccEvent = new EventEmitter;
@@ -21,7 +20,6 @@ export class SearchPanelComponent implements OnInit {
   constructor(
     private httpService: HttpServiceService,
     private params: HttpParamsServiceService,
-    private router: Router
   ) {
     this.form = new FormGroup({
       lookFor: new FormControl({
@@ -80,9 +78,6 @@ export class SearchPanelComponent implements OnInit {
         break;
 
     }
-  }
-
-  ngOnInit(): void {
   }
 
 }

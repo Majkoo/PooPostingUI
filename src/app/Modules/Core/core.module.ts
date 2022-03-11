@@ -20,6 +20,7 @@ import { PicturesViewComponent } from './components/pictures-view/pictures-view.
 import { LoggedOutComponent } from './common-pages/logged-out/logged-out.component';
 import { PictureSettingsComponent } from './components/modals/picture-settings/picture-settings.component';
 import {PictureDetailsComponent} from "./components/modals/picture-details/picture-details.component";
+import { PictureAdminSettingsComponent } from './components/modals/picture-admin-settings/picture-admin-settings.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {PictureDetailsComponent} from "./components/modals/picture-details/pictu
     LoggedOutComponent,
     PictureDetailsComponent,
     PictureSettingsComponent,
+    PictureAdminSettingsComponent,
   ],
   imports: [
     CommonModule,

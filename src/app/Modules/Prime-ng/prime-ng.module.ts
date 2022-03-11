@@ -17,6 +17,9 @@ import {DividerModule} from "primeng/divider";
 import {TagModule} from "primeng/tag";
 import {DialogModule} from "primeng/dialog";
 import {CaptchaModule} from "primeng/captcha";
+import {KeyFilterModule} from "primeng/keyfilter";
+import {ConfirmPopupModule} from "primeng/confirmpopup";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 const PrimeNgComponents = [
   ChipsModule,
@@ -37,6 +40,7 @@ const PrimeNgComponents = [
   TagModule,
   DialogModule,
   CaptchaModule,
+  KeyFilterModule,
 ]
 
 @NgModule({

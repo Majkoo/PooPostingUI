@@ -42,11 +42,8 @@ export class SearchComponent implements OnInit {
   searchPictures() {
     this.clearSearch();
     this.httpService.searchPicturesRequest().subscribe({
-      next: (val) => {
-        this.picturesResult.items = val.items;
-        this.picturesResult.page = val.page;
-        this.picturesResult.pageSize = val.pageSize;
-        this.picturesResult.totalItems = val.totalItems;
+      next: (val: PicturePagedResult) => {
+        this.picturesResult = val;
         this.message.add({
           severity:'success',
           summary: 'Sukces',
@@ -65,11 +62,8 @@ export class SearchComponent implements OnInit {
   searchAccounts() {
     this.clearSearch();
     this.httpService.searchAccountsRequest().subscribe({
-      next: (val) => {
-        this.accountsResult.items = val.items;
-        this.accountsResult.page = val.page;
-        this.accountsResult.pageSize = val.pageSize;
-        this.accountsResult.totalItems = val.totalItems;
+      next: (val: AccountPagedResult) => {
+        this.accountsResult = val;
         this.message.add({
           severity:'success',
           summary: 'Sukces',
@@ -116,10 +110,7 @@ export class SearchComponent implements OnInit {
   private fetchPictures(): void {
     this.httpService.searchPicturesRequest().subscribe({
       next: (val: PicturePagedResult) => {
-        this.picturesResult.items = val.items;
-        this.picturesResult.page = val.page;
-        this.picturesResult.pageSize = val.pageSize;
-        this.picturesResult.totalItems = val.totalItems;
+        this.picturesResult = val;
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
       }
