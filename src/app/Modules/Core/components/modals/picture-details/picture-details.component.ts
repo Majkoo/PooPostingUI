@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Picture} from "../../../../../Models/Picture";
 import {AuthServiceService} from "../../../../../Services/data/auth-service.service";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-picture-details',

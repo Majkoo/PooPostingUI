@@ -1,5 +1,5 @@
 export interface PutPictureModel {
-  name: string;
-  description: string;
+  name?: string;
+  description?: string;
   tags?: string[];
 }

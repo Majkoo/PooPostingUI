@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Picture} from "../../../../../Models/Picture";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {PutPictureModel} from "../../../../../Models/PutPictureModel";
 import {MessageService} from "primeng/api";
+import {SelectOption} from "../../../../../Models/SelectOption";
 
 @Component({
   selector: 'app-picture-settings',
@@ -12,17 +13,39 @@ import {MessageService} from "primeng/api";
 })
 export class PictureSettingsComponent implements OnInit {
   @Input() picture!: Picture;
-  form!: FormGroup;
-  awaitSubmit: boolean = false;
+  @Output() onDelete = new EventEmitter<void>();
+  deletePhrase: string = "";
 
+  changeTags!: FormGroup;
+  changeName!: FormGroup;
+  changeDesc!: FormGroup;
+
+  awaitSubmit: boolean = false;
   tags: string[] = [];
+
+  editOptions: SelectOption[];
+  editValue: SelectOption = {name: "none", class: "none"};
+
+  selectOptions: SelectOption[];
+  selectValue: SelectOption = {name: "none", class: "none"};
+
   constructor(
     private http: HttpServiceService,
     private message: MessageService,
-  ) { }
+  ) {
+    this.editOptions = [
+      { name: "Tagi", class: "bi bi-tag"},
+      { name: "Nazwa", class: "bi bi-tag"},
+      { name: "Opis", class: "bi bi-tag"},
+    ]
+    this.selectOptions = [
+      { name: "Edytuj", class: "bi bi-tag"},
+      { name: "Usuń", class: "bi bi-tag"},
+    ]
+  }
 
   trimChips() {
-    let tags: string[] = this.form.get('tags')?.value;
+    let tags: string[] = this.changeTags.get('tags')?.value;
     let tagsToTrim: string[] = [];
     let tagsTrimmed: string[] = [];
     let uniqueTagsTrimmed: string[] = [];
@@ -40,7 +63,7 @@ export class PictureSettingsComponent implements OnInit {
         });
       });
     });
-    this.form.get('tags')?.setValue(uniqueTagsTrimmed);
+    this.changeTags.get('tags')?.setValue(uniqueTagsTrimmed);
     this.tags = uniqueTagsTrimmed;
   }
   onKeyDown(event: any) {
@@ -53,37 +76,67 @@ export class PictureSettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
+    this.changeTags = new FormGroup({
+      tags: new FormControl("", [
+        Validators.required
+        ])
+    });
+    this.changeName = new FormGroup({
       name: new FormControl("", [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(40)
-      ]),
+      ])
+    });
+    this.changeDesc = new FormGroup({
       desc: new FormControl("", [
+        Validators.required,
         Validators.maxLength(500)
-      ]),
-      tags: new FormControl(this.tags)
-    }, Validators.required);
-    this.tags = this.picture.tags;
+      ])
+    })
   }
 
-  submit(){
+  submitTags(){
     this.awaitSubmit = true;
     let model: PutPictureModel = {
-      name: this.form.get('name')?.value ?? "",
-      description: this.form.get('description')?.value ?? "",
       tags: this.tags
     }
+    this.putChanges(model);
     this.message.clear();
+  }
+  submitName(){
+    this.awaitSubmit = true;
+    let model: PutPictureModel = {
+      name: this.changeName.get('name')?.value
+    }
+    this.putChanges(model);
+    this.message.clear();
+  }
+  submitDesc(){
+    this.awaitSubmit = true;
+    let model: PutPictureModel = {
+      description: this.changeDesc.get('desc')?.value
+    }
+    this.putChanges(model);
+    this.message.clear();
+  }
+  delete() {
+    this.onDelete.emit();
+  }
+
+  private resetForms() {
+    this.changeTags.reset();
+    this.changeName.reset();
+    this.changeDesc.reset();
+  }
+  private putChanges(model: PutPictureModel) {
     this.http.putPictureRequest(model, this.picture.id).subscribe({
       next: (val) => {
-        if (val) {
-          this.picture.name = val.name;
-          if (this.tags) this.picture.tags = val.tags;
-          this.picture.description = val.description == "" || " " ? "brak opisu" : val.description;
-          this.message.add({severity:'success', summary: 'Sukces', detail: 'Zmiany zostały wprowadzone'});
-        }
-        this.form.reset();
+        this.picture.name = val.name;
+        if (this.tags) this.picture.tags = val.tags;
+        this.picture.description = val.description;
+        this.message.add({severity:'success', summary: 'Sukces', detail: 'Zmiany zostały wprowadzone'});
+        this.resetForms();
         this.awaitSubmit = false;
       }
     })

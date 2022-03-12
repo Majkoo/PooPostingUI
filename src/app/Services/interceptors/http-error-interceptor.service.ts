@@ -28,6 +28,11 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
               }
               return throwError(() => {return error});
             }
+            else if (error.status === 401 || error.status === 403) {
+              return throwError(() => {
+                this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Nie udało się wykonać operacji. Nie masz uprawnień.'});
+              });
+            }
             else if (error.status === 0) {
               return throwError(() => {
                 this.router.navigate(['/error0']);

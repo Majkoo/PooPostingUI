@@ -21,6 +21,8 @@ import { LoggedOutComponent } from './common-pages/logged-out/logged-out.compone
 import { PictureSettingsComponent } from './components/modals/picture-settings/picture-settings.component';
 import {PictureDetailsComponent} from "./components/modals/picture-details/picture-details.component";
 import { PictureAdminSettingsComponent } from './components/modals/picture-admin-settings/picture-admin-settings.component';
+import { ModalPicComponent } from './components/modals/modal-pic/modal-pic.component';
+import { ModalInfoComponent } from './components/modals/modal-info/modal-info.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { PictureAdminSettingsComponent } from './components/modals/picture-admin
     PictureDetailsComponent,
     PictureSettingsComponent,
     PictureAdminSettingsComponent,
+    ModalPicComponent,
+    ModalInfoComponent,
   ],
   imports: [
     CommonModule,

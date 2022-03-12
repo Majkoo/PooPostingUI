@@ -3,7 +3,6 @@ import {AuthServiceService} from "../../../../Services/data/auth-service.service
 import {Picture} from "../../../../Models/Picture";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
-import {HttpResponse} from "@angular/common/http";
 import {AccountModel} from "../../../../Models/AccountModel";
 
 @Component({

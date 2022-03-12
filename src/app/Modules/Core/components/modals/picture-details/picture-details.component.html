@@ -3,17 +3,24 @@
   <div class="col-12 text-left mb-2">
     <h2><strong>{{picture.name | titlecase}}</strong></h2>
   </div>
-
   <div class="col-12 col-md-8 text-center">
-    <img src="{{picture.url}}" alt="'{{picture.name}}' dodany przez {{picture.accountNickname}}" class="img-fluid mw border mb-2">
+    <app-modal-pic
+      [name]="picture.name"
+      [url]="picture.url"
+      [accountNickname]="picture.accountNickname"
+      [tags]="picture.tags">
+    </app-modal-pic>
+  </div>
 
-    <div class="d-flex gap-05 align-items-center justify-content-center flex-wrap">
-      <div *ngFor="let tag of picture.tags">
-        <p-tag><span class="bi bi-tag-fill"></span>{{tag}}</p-tag>
-      </div>
-    </div>
+  <div class="col-12 col-md-4 d-flex flex-column justify-content-between pt-3 pt-md-0">
 
-    <div class="d-flex align-items-center justify-content-center justify-content-center mt-3 gap-1">
+    <app-modal-info
+      [pictureAdded]="picture.pictureAdded"
+      [accountNickname]="picture.accountNickname"
+      [description]="picture.description">
+    </app-modal-info>
+
+    <div class="d-flex align-items-center justify-content-around justify-content-sm-center mt-md-3 gap-1 mb-md-5">
       <button class="mx-1 py-2" pButton pRipple (click)="like()" [disabled]="!isLoggedOn">
         <strong class="pr-2">{{picture.likeCount}}</strong>
         <span class="bi" [ngClass]="picture.isLiked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'" aria-label="like"></span>
@@ -23,26 +30,6 @@
         <strong class="pr-2">{{picture.dislikeCount}}</strong>
         <span class="bi" [ngClass]="picture.isDisliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="like"></span>
       </button>
-    </div>
-
-  </div>
-
-  <div class="col-12 col-md-4 d-flex flex-column justify-content-between pt-3 pt-md-0">
-    <div class="d-flex flex-column gap-05 pb-3 mb-4 border-bottom">
-      <div class="d-flex align-items-start justify-content-center justify-content-md-start" label="Osoba postująca obrazek">
-        <span class="bi bi-person-fill"></span>
-        <p><strong>{{picture.accountNickname}}</strong></p>
-      </div>
-
-      <div class="d-flex align-items-start justify-content-center justify-content-md-start" label="Data dodania obrazka">
-        <span class="bi bi-calendar"></span>
-        <p>Dodano: <strong>{{picture.pictureAdded | date: "dd/M/yy, HH:mm"}}</strong></p>
-      </div>
-
-      <div class="d-flex align-items-start justify-content-center justify-content-md-start" label="Opis obrazka">
-        <span class="bi bi-file-text-fill"></span>
-        <p><i>{{picture.description == undefined || "" || " " ? 'brak opisu' : picture.description}}</i></p>
-      </div>
     </div>
 
   </div>

@@ -43,7 +43,7 @@
 
 <p-dialog [(visible)]="showSettingsFlag" header="Ustawienia obrazka" position="center"
           [draggable]="false" [closeOnEscape]="true" (onHide)="enableScroll()">
-  <app-picture-settings [picture]="picture">
+  <app-picture-settings [picture]="picture" (onDelete)="delete()">
   </app-picture-settings>
 </p-dialog>
 
