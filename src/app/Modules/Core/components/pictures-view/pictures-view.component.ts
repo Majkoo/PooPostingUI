@@ -27,6 +27,7 @@ export class PicturesViewComponent implements OnInit{
       this.picture.url = this.configService.picturesUrl + this.picture.url;
     }
     this.updateLikes();
+    console.log(this.picture);
   }
 
   showDetails() {

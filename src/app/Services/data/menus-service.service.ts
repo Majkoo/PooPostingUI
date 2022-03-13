@@ -36,7 +36,7 @@ export class MenusServiceService {
         menuItems: [
           {
             label: "Zaloguj się",
-            class: "bi bi-box-arrow-in-right",
+            class: "bi bi-box-arrow-in-left",
             url: "login"
           },
           {

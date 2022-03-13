@@ -1,12 +1,9 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import { Picture } from 'src/app/Models/Picture';
 import { ConfigServiceService } from 'src/app/Services/data/config-service.service';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
-import {LikeModel} from "../../../../Models/LikeModel";
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
-import {Router} from "@angular/router";
 import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {Message, MessageService} from "primeng/api";
 
 @Component({
@@ -14,7 +11,7 @@ import {Message, MessageService} from "primeng/api";
   templateUrl: './picture.component.html',
   styleUrls: ['./picture.component.scss']
 })
-export class PictureComponent implements OnInit {
+export class PictureComponent implements OnInit, OnDestroy {
   @Input() picture!: Picture;
   showDetailsFlag: boolean = false;
   showSettingsFlag: boolean = false;
@@ -37,6 +34,9 @@ export class PictureComponent implements OnInit {
       this.picture.url = this.configService.picturesUrl + this.picture.url;
     }
     this.updatePicture();
+  }
+  ngOnDestroy() {
+    this.enableScroll();
   }
 
   showDetails() {
