@@ -8,11 +8,10 @@ p-chips {
   line-height: 15px;
 }
 .bi {
-  font-size: 16px;
+  font-size: clamp(0.95rem, 1400px, 1rem) !important;
 }
 .select-item {
-  font-size: 16px;
-  font-weight: bold;
+  font-size: clamp(0.95rem, 1400px, 1rem) !important;
 }
 .h-100 {
   height: 100%;

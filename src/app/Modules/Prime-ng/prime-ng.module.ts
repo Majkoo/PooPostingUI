@@ -19,6 +19,7 @@ import {DialogModule} from "primeng/dialog";
 import {CaptchaModule} from "primeng/captcha";
 import {KeyFilterModule} from "primeng/keyfilter";
 import {SelectButtonModule} from "primeng/selectbutton";
+import {TableModule} from "primeng/table";
 
 const PrimeNgComponents = [
   ChipsModule,
@@ -41,6 +42,7 @@ const PrimeNgComponents = [
   KeyFilterModule,
   SelectButtonModule,
   DataViewModule,
+  TableModule
 
 ]
 

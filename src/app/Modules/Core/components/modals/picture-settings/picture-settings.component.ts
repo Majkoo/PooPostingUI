@@ -35,12 +35,12 @@ export class PictureSettingsComponent implements OnInit {
   ) {
     this.editOptions = [
       { name: "Tagi", class: "bi bi-tag"},
-      { name: "Nazwa", class: "bi bi-tag"},
-      { name: "Opis", class: "bi bi-tag"},
+      { name: "Nazwa", class: "bi bi-balloon"},
+      { name: "Opis", class: "bi bi-file-earmark-text"},
     ]
     this.selectOptions = [
-      { name: "Edytuj", class: "bi bi-tag"},
-      { name: "Usuń", class: "bi bi-tag"},
+      { name: "Edytuj", class: "bi bi-pen"},
+      { name: "Usuń", class: "bi bi-trash3"},
     ]
   }
 

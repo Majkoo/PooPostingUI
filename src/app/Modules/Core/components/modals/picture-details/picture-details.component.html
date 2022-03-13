@@ -10,17 +10,7 @@
       [accountNickname]="picture.accountNickname"
       [tags]="picture.tags">
     </app-modal-pic>
-  </div>
-
-  <div class="col-12 col-md-4 d-flex flex-column justify-content-between pt-3 pt-md-0">
-
-    <app-modal-info
-      [pictureAdded]="picture.pictureAdded"
-      [accountNickname]="picture.accountNickname"
-      [description]="picture.description">
-    </app-modal-info>
-
-    <div class="d-flex align-items-center justify-content-around justify-content-sm-center mt-md-3 gap-1 mb-md-5">
+    <div class="d-flex align-items-center justify-content-center mt-4 pb-4 mb-md-0 gap-1 d-md-none border-bottom">
       <button class="mx-1 py-2" pButton pRipple (click)="like()" [disabled]="!isLoggedOn">
         <strong class="pr-2">{{picture.likeCount}}</strong>
         <span class="bi" [ngClass]="picture.isLiked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'" aria-label="like"></span>
@@ -31,7 +21,52 @@
         <span class="bi" [ngClass]="picture.isDisliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="like"></span>
       </button>
     </div>
+  </div>
 
+  <div class="col-12 col-md-4 d-flex flex-column justify-content-between pt-3 pt-md-0">
+    <div>
+      <app-modal-info
+        [pictureAdded]="picture.pictureAdded"
+        [accountNickname]="picture.accountNickname"
+        [description]="picture.description">
+      </app-modal-info>
+      <div class="d-flex justify-content-center mb-3 mb-xl-4">
+        <p-selectButton [options]="selectOptions" [(ngModel)]="selectValue" optionLabel="name">
+          <ng-template let-item>
+            <p class="select-item {{item.class}}"><span class="ml-1">{{item.name}}</span></p>
+          </ng-template>
+        </p-selectButton>
+      </div>
+      <p-table [value]="picture.likes" [scrollable]="true"
+               scrollHeight="18.5rem" styleClass="p-datatable-striped p-datatable-sm"
+               responsiveLayout="scroll" *ngIf="selectValue.name === 'Polubienia'">
+        <ng-template pTemplate="header">
+          <tr>
+            <th><span class="bi bi-person-fill mr-1"></span>Użytkownik</th>
+            <th><span class="bi bi-star-fill mr-1"></span>Ocena</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-like>
+          <tr>
+            <td>{{like.accountNickname}}</td>
+            <td><span [ngClass]="like.isLike ? 'bi bi-hand-thumbs-up' : 'bi bi-hand-thumbs-down-fill'"></span></td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <div *ngIf="selectValue.name === 'Komentarze'" class="text-center">
+        haha jeszcze nie ma komentarzy
+      </div>
+    </div>
+    <div class="d-none align-items-center justify-content-center mt-3 mb-4 mb-md-0 gap-1 d-md-flex">
+      <button class="mx-1 py-2" pButton pRipple (click)="like()" [disabled]="!isLoggedOn">
+        <strong class="pr-2">{{picture.likeCount}}</strong>
+        <span class="bi" [ngClass]="picture.isLiked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'" aria-label="like"></span>
+      </button>
+      <button class="mx-1 py-2" pButton pRipple (click)="dislike()" [disabled]="!isLoggedOn">
+        <strong class="pr-2">{{picture.dislikeCount}}</strong>
+        <span class="bi" [ngClass]="picture.isDisliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="like"></span>
+      </button>
+    </div>
   </div>
 
 </div>

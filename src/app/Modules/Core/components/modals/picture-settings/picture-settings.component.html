@@ -25,14 +25,14 @@
         <div class="d-flex justify-content-center mb-3">
           <p-selectButton [options]="selectOptions" [(ngModel)]="selectValue" optionLabel="name">
             <ng-template let-item>
-              <p class="select-item">{{item.name}}</p>
+              <p class="select-item {{item.class}}"><span class="ml-1">{{item.name}}</span></p>
             </ng-template>
           </p-selectButton>
         </div>
         <div class="d-flex justify-content-center mb-2" *ngIf="selectValue.name === 'Edytuj'">
           <p-selectButton [options]="editOptions" [(ngModel)]="editValue" optionLabel="name">
             <ng-template let-item>
-              <p class="select-item">{{item.name}}</p>
+              <p class="select-item {{item.class}}"><span class="ml-1">{{item.name}}</span></p>
             </ng-template>
           </p-selectButton>
         </div>

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
-import {Observable, tap, throwError} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 import {HttpParamsServiceService} from "./http-params-service.service";
 import { Picture } from 'src/app/Models/Picture';
 import { PicturePagedResult } from 'src/app/Models/PicturePagedResult';

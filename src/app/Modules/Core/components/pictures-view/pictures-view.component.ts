@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Picture} from "../../../../Models/Picture";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
+import {HttpServiceService} from "../../../../Services/http/http-service.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-pictures-view',
@@ -15,7 +17,9 @@ export class PicturesViewComponent implements OnInit{
 
   constructor(
     private configService: ConfigServiceService,
-    private scroll: ScrollServiceService
+    private scroll: ScrollServiceService,
+    private httpService: HttpServiceService,
+    private message: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +39,14 @@ export class PicturesViewComponent implements OnInit{
   }
   enableScroll() {
     this.scroll.enableScroll();
+  }
+
+  delete(){
+    this.httpService.deletePictureRequest(this.picture.id).subscribe({
+      next: () => {
+        this.message.add({severity:'warn', summary: 'Sukces', detail: `Obrazek "${this.picture.name}" został usunięty. Zobaczysz efekty po przeładowaniu wyników.`});
+      }
+    })
   }
 
   private updateLikes() {

@@ -7,7 +7,6 @@ import {AccountModel} from "../../Models/AccountModel";
 import {LikeModel} from "../../Models/LikeModel";
 import {HttpServiceService} from "../http/http-service.service";
 import {Picture} from "../../Models/Picture";
-import {HttpResponse} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -108,10 +107,11 @@ const devAccountInfo: UserInfoModel = {
         pictureAdded: "2014-02-03T18:33:58",
         likes: [
           {
-            "id": 1,
-            "accountId": "08d9ea60-4170-499c-8330-f6dfe54a1d98",
-            "pictureId": "08d9ea60-0591-4550-843d-465368cacf9b",
-            "isLike": true
+            id: 1,
+            accountNickname: "ShrekTheCreator",
+            accountId: "08d9ea60-4170-499c-8330-f6dfe54a1d98",
+            pictureId: "08d9ea60-0591-4550-843d-465368cacf9b",
+            isLike: true
           }
         ],
         isModifiable: true

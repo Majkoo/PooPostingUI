@@ -46,7 +46,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
               })
             }
 
-        }),
+        }), retry(1)
       );
   }
 }
