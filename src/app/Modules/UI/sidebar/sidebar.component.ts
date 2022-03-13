@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import { AuthServiceService } from 'src/app/Services/data/auth-service.service';
 import {Router} from "@angular/router";
+import {MenusServiceService} from "../../../Services/data/menus-service.service";
+import {MenuExpandableItem} from "../../../Models/MenuExpandableItem";
 
 @Component({
   selector: 'app-sidebar',
@@ -9,17 +11,24 @@ import {Router} from "@angular/router";
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-userInfo?: UserInfoModel;
+  userInfo?: UserInfoModel;
+  menuExpandableItems: MenuExpandableItem[];
+  loggedIn!: boolean;
 
   constructor(
     private authService: AuthServiceService,
+    private menuService: MenusServiceService,
     private router: Router,
-  ) { }
+  ) {
+    this.menuExpandableItems = menuService.getExpandableMenuItems();
+    this.loggedIn = this.authService.isUserLogged();
+  }
 
   ngOnInit(): void {
     this.userInfo = this.authService.getUserInfo();
     this.authService.userSubject.subscribe({
-      next: () => {
+      next: (val) => {
+        this.loggedIn = val;
         this.userInfo = this.authService.getUserInfo();
       }
     })
@@ -28,6 +37,8 @@ userInfo?: UserInfoModel;
   logout() {
     this.authService.logout();
   }
+
+
 
   toPostPicture() {
     this.router.navigate(['picture/post']);

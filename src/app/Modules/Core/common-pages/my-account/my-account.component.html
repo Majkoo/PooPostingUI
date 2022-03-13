@@ -1,12 +1,15 @@
-<main class="d-flex flex-column">
-  <h2 class="mb-2">{{userInfo.accountDto.nickname}}</h2>
+<main class="container">
 
-  <div class="d-flex flex-column mb-2">
-    <h3>Moje konto</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur dolore, exercitationem harum illo iure laboriosam libero ratione tenetur voluptate.</p>
+  <div class="d-flex flex-column">
+    <h2 class="mb-2">{{userInfo.accountDto.nickname}}</h2>
+
+    <div class="d-flex flex-column mb-2">
+      <h3>Moje konto</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur dolore, exercitationem harum illo iure laboriosam libero ratione tenetur voluptate.</p>
+    </div>
+
+    {{userInfo.accountDto.email}}
   </div>
-
-  {{userInfo.accountDto.email}}
 
 </main>
 

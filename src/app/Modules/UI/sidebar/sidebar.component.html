@@ -1,72 +1,33 @@
 <div class="sidebar shadow-sm">
   <div class="p-0 text-center disable-selection shadow-sm">
 
-    <p-accordion>
+    <p-accordion [multiple]="false">
 
-      <p-accordionTab [selected]="true"
-                      *ngIf="userInfo === undefined">
-        <ng-template pTemplate="header">
-          <div class="acc-tab-title py-1">
-            Zaloguj się lub zarejestruj!
+      <div *ngFor="let expandableItem of menuExpandableItems">
+        <p-accordionTab header="{{expandableItem.label}}"
+          [ngClass]="menuExpandableItems.indexOf(expandableItem) === 0 && loggedIn ? 'd-none' : ''"
+          [disabled]="!loggedIn === expandableItem.showWhileLoggedIn"
+          [selected]="
+          menuExpandableItems.indexOf(expandableItem) === 0 && !loggedIn ||
+          menuExpandableItems.indexOf(expandableItem) === 1 && loggedIn">
+
+          <div class="d-flex flex-column gap">
+            <div *ngFor="let item of expandableItem.menuItems">
+              <div *ngIf="item.label !== 'Wyloguj'">
+                <button pButton pRipple class="min-w-75 p-button-outlined"
+                        routerLink="{{item.url}}" label="{{item.label}}" icon="{{item.class}}">
+                </button>
+              </div>
+              <div *ngIf="item.label === 'Wyloguj'">
+                <button pButton pRipple class="w-75 p-button-outlined"
+                        (click)="logout()" label="{{item.label}}" icon="{{item.class}}">
+                </button>
+              </div>
+            </div>
           </div>
-        </ng-template>
-        <button pButton pRipple routerLink="/login" type="button" label="Zaloguj się"
-                class="p-button-outlined w-100 p-3 border" icon="bi bi-box-arrow-in-right">
-        </button>
 
-        <button pButton pRipple routerLink="/register" type="button" label="Zarejestruj się"
-                class="p-button-outlined w-100 mt-2 p-3 border" icon="bi bi-person-plus-fill">
-        </button>
-      </p-accordionTab>
-
-      <p-accordionTab [selected]="userInfo !== undefined" [disabled]="userInfo === undefined">
-        <ng-template pTemplate="header">
-          <div class="acc-tab-title">
-            <span class="bi bi-images pr-1"></span>
-            <span>Moje obrazki</span>
-          </div>
-        </ng-template>
-
-        <!--        content-->
-        <div *ngIf="userInfo">
-          <button pButton pRipple class="w-100 p-button-outlined"
-                  (click)="toPostPicture()" label="Wstaw obrazek">
-          </button>
-        </div>
-
-      </p-accordionTab>
-
-      <p-accordionTab [disabled]="userInfo === undefined" [selected]="false">
-
-        <ng-template pTemplate="header">
-          <div class="acc-tab-title">
-            <span class="bi bi-person-fill"></span>
-            <span>Moje konto</span>
-          </div>
-        </ng-template>
-
-        <!--        content-->
-        <div *ngIf="userInfo" [hidden]="!userInfo">
-          <p class="text-secondary mb-2">
-            Zalogowano jako {{userInfo!.accountDto.nickname}}
-          </p>
-          <button pRipple pButton class="w-75 mt-3 pl-2 py-1 pr-3"
-                  (click)="toMyAccount()" label="Moje konto">
-            <span class="bi bi-person-circle"></span>
-          </button>
-
-          <button pButton pRipple class="w-75 mt-3 pl-2 py-1 pr-3"
-                  (click)="toMyPictures()" label="Moje obrazki">
-            <span class="bi bi-images"></span>
-          </button>
-
-          <button pRipple pButton class="w-75 mt-3 pl-2 py-1 pr-3"
-                  (click)="logout()" label="Wyloguj">
-            <span class="bi bi-box-arrow-right"></span>
-          </button>
-
-        </div>
-      </p-accordionTab>
+        </p-accordionTab>
+      </div>
 
     </p-accordion>
 

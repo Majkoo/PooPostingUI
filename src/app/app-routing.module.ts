@@ -11,6 +11,7 @@ import {RouteGuardGuard} from "./Services/guards/route-guard.guard";
 import {SearchComponent} from "./Modules/Core/common-pages/search/search.component";
 import {HomepageComponent} from "./Modules/Core/common-pages/homepage/homepage.component";
 import {MyAccountComponent} from "./Modules/Core/common-pages/my-account/my-account.component";
+import {PopularComponent} from "./Modules/Core/common-pages/popular/popular.component";
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path: "register", component: RegisterComponent},
   {path: "logged-out", component: LoggedOutComponent},
   {path: "search", component: SearchComponent},
+  {path: "popular", component: PopularComponent},
 
   {path: "error500", component: Error500Component},
   {path: "error404", component: Error404Component},

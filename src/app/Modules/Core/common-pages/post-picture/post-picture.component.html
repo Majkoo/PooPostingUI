@@ -1,5 +1,6 @@
 <div class="main">
 
+  <div class="container">
     <div class="card mb-5">
       <div class="card-body">
 
@@ -9,7 +10,7 @@
             <h2>Wstaw obrazek</h2>
           </div>
 
-<!--          Picture name -->
+          <!--          Picture name -->
           <div class="text-left col-12 mt-3 mb-4">
             <span class="p-float-label">
               <input id="name-input" class="w-100" type="text"
@@ -36,7 +37,7 @@
             </span>
           </div>
 
-<!--          Picture Image -->
+          <!--          Picture Image -->
           <div class="mb-4 text-left col-12">
             <div class="row">
               <div class="w-100 col-12">
@@ -48,16 +49,16 @@
               <div class="text-center col-12">
                 <h5>Przytnij</h5>
                 <image-cropper class="border" #cropperInput
-                  [imageChangedEvent]="imageChangedEvent"
-                  [maintainAspectRatio]="true"
-                  [aspectRatio]="4 / 3"
-                  [resizeToWidth]="1024"
-                  format="webp"
-                  [containWithinAspectRatio]="true"
-                  (imageCropped)="imageCropped($event)"
-                  (imageLoaded)="imageLoaded()"
-                  (cropperReady)="cropperReady()"
-                  (loadImageFailed)="loadImageFailed()">
+                               [imageChangedEvent]="imageChangedEvent"
+                               [maintainAspectRatio]="true"
+                               [aspectRatio]="4 / 3"
+                               [resizeToWidth]="1024"
+                               format="webp"
+                               [containWithinAspectRatio]="true"
+                               (imageCropped)="imageCropped($event)"
+                               (imageLoaded)="imageLoaded()"
+                               (cropperReady)="cropperReady()"
+                               (loadImageFailed)="loadImageFailed()">
                 </image-cropper>
               </div>
               <small id="file-input-error-notselected" class="px-1 p-error block"
@@ -76,7 +77,7 @@
 
           </div>
 
-<!--          Picture Desc-->
+          <!--          Picture Desc-->
           <div class="mb-4 text-left col-12">
             <span class="p-float-label w-100">
               <textarea id="float-input" class="w-100" formControlName="description" rows="3" cols="30" pInputTextarea></textarea>
@@ -89,7 +90,7 @@
           </div>
 
 
-<!--          Picture tags-->
+          <!--          Picture tags-->
           <div class="mx-3 mb-4 w-100 text-left">
             <div class="p-float-label w-100">
               <p-chips #pChips
@@ -119,5 +120,6 @@
 
       </div>
     </div>
+  </div>
 
 </div>

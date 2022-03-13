@@ -23,6 +23,7 @@ import {PictureDetailsComponent} from "./components/modals/picture-details/pictu
 import { PictureAdminSettingsComponent } from './components/modals/picture-admin-settings/picture-admin-settings.component';
 import { ModalPicComponent } from './components/modals/modal-pic/modal-pic.component';
 import { ModalInfoComponent } from './components/modals/modal-info/modal-info.component';
+import { PopularComponent } from './common-pages/popular/popular.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ModalInfoComponent } from './components/modals/modal-info/modal-info.co
     PictureAdminSettingsComponent,
     ModalPicComponent,
     ModalInfoComponent,
+    PopularComponent,
   ],
   imports: [
     CommonModule,

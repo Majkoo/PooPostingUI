@@ -25,7 +25,7 @@
 
             <button class="mx-1 p-button-sm py-1" pButton pRipple (click)="dislike()" [disabled]="!isLoggedOn">
               <strong class="pr-2">{{picture.dislikeCount}}</strong>
-              <span class="bi" [ngClass]="picture.isDisliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="like"></span>
+              <span class="bi" [ngClass]="picture.isDisliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="dislike"></span>
             </button>
           </div>
 

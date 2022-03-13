@@ -42,7 +42,7 @@
         Masz okazję być pierwszą osobą, która to polubi!
       </p>
       <p-table [value]="picture.likes" [scrollable]="true"
-               scrollHeight="18.5rem" styleClass="p-datatable-striped p-datatable-sm"
+               scrollHeight="clamp(20rem, 1200px, 18.5rem)" styleClass="p-datatable-striped p-datatable-sm"
                responsiveLayout="scroll" *ngIf="selectValue.name === 'Polubienia' && picture.likes.length > 0">
         <ng-template pTemplate="header">
           <tr>
@@ -68,7 +68,7 @@
       </button>
       <button class="mx-1 py-2" pButton pRipple (click)="dislike()" [disabled]="!isLoggedOn">
         <strong class="pr-2">{{picture.dislikeCount}}</strong>
-        <span class="bi" [ngClass]="picture.isDisliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="like"></span>
+        <span class="bi" [ngClass]="picture.isDisliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="dislike"></span>
       </button>
     </div>
   </div>

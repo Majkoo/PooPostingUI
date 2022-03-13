@@ -23,7 +23,23 @@
         "files": [
           "/assets/**",
           "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/**",
+          "https://www.google.com/recaptcha/**"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "from-api",
+      "urls": ["/dashboard", "/settings"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 15,
+        "maxAge": "1h",
+        "timeout": "5s"
       }
     }
   ]
