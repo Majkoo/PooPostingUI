@@ -15,6 +15,8 @@ import { TokenInterceptorService } from './Services/interceptors/token-intercept
 import { HttpErrorInterceptorService } from './Services/interceptors/http-error-interceptor.service';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {PrimeNgModule} from "./Modules/prime-ng/prime-ng.module";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {
@@ -38,6 +40,12 @@ export function initializerFn(configService: ConfigServiceService){
     UIModule,
     BrowserAnimationsModule,
     PrimeNgModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     RouteGuardGuard,

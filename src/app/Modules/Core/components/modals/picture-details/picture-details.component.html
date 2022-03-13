@@ -3,7 +3,7 @@
   <div class="col-12 text-left mb-2">
     <h2><strong>{{picture.name | titlecase}}</strong></h2>
   </div>
-  <div class="col-12 col-md-8 text-center">
+  <div class="col-12 col-md-8 text-center d-flex flex-column justify-content-center align-items-center">
     <app-modal-pic
       [name]="picture.name"
       [url]="picture.url"
@@ -37,9 +37,13 @@
           </ng-template>
         </p-selectButton>
       </div>
+      <p *ngIf="selectValue.name === 'Polubienia' && picture.likes.length < 1"
+         class="text-muted text-center">
+        Masz okazję być pierwszą osobą, która to polubi!
+      </p>
       <p-table [value]="picture.likes" [scrollable]="true"
                scrollHeight="18.5rem" styleClass="p-datatable-striped p-datatable-sm"
-               responsiveLayout="scroll" *ngIf="selectValue.name === 'Polubienia'">
+               responsiveLayout="scroll" *ngIf="selectValue.name === 'Polubienia' && picture.likes.length > 0">
         <ng-template pTemplate="header">
           <tr>
             <th><span class="bi bi-person-fill mr-1"></span>Użytkownik</th>
