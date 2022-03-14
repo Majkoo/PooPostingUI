@@ -90,6 +90,12 @@ export class SearchComponent implements OnInit {
     this.fetchPictures();
   }
 
+  paginateAccs(val: any): void {
+    this.auth.updateLikes();
+    this.params.setSearchPageNumber(val.page+1);
+    this.fetchAccounts();
+  }
+
   private clearPictureResult() {
     this.picturesResult = {
       items:[],
@@ -111,6 +117,16 @@ export class SearchComponent implements OnInit {
     this.httpService.searchPicturesRequest().subscribe({
       next: (val: PicturePagedResult) => {
         this.picturesResult = val;
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    });
+  }
+
+  private fetchAccounts(): void {
+    this.httpService.searchAccountsRequest().subscribe({
+      next: (val: AccountPagedResult) => {
+        this.accountsResult = val;
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
       }

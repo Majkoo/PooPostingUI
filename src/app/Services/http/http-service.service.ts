@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {HttpParamsServiceService} from "./http-params-service.service";
 import { Picture } from 'src/app/Models/Picture';
 import { PicturePagedResult } from 'src/app/Models/PicturePagedResult';
@@ -17,11 +17,11 @@ import {PutPictureModel} from "../../Models/PutPictureModel";
   providedIn: 'root'
 })
 export class HttpServiceService {
-
   constructor(
     private http: HttpClient,
     private config: ConfigServiceService,
-    private params: HttpParamsServiceService) { }
+    private params: HttpParamsServiceService
+  ) { }
 
   getPicturesRequest(): Observable<PicturePagedResult>{
     return this.http

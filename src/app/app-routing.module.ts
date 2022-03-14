@@ -17,6 +17,13 @@ import {PopularComponent} from "./Modules/Core/common-pages/popular/popular.comp
 const routes: Routes = [
   {path: '', redirectTo: "/home", pathMatch: 'full'},
 
+  {path: "home", component: HomepageComponent},
+  {path: "login", component: LoginComponent},
+  {path: "register", component: RegisterComponent},
+  {path: "logged-out", component: LoggedOutComponent},
+  {path: "search", component: SearchComponent},
+  {path: "popular", component: PopularComponent},
+
   {
     path: "picture/post",
     component: PostPictureComponent,
@@ -32,13 +39,6 @@ const routes: Routes = [
     component: MyPicturesComponent,
     canActivate: [RouteGuardGuard]
   },
-
-  {path: "home", component: HomepageComponent},
-  {path: "login", component: LoginComponent},
-  {path: "register", component: RegisterComponent},
-  {path: "logged-out", component: LoggedOutComponent},
-  {path: "search", component: SearchComponent},
-  {path: "popular", component: PopularComponent},
 
   {path: "error500", component: Error500Component},
   {path: "error404", component: Error404Component},

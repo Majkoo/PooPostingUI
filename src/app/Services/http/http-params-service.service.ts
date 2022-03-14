@@ -38,7 +38,7 @@ export class HttpParamsServiceService {
     if (this.GetPQuery.likedTags){
       likedTags = this.GetPQuery.likedTags;
     } else {
-      likedTags = "default" + Math.random().toString(); // avoiding tag SEO cheating
+      likedTags = "default" + Math.random() ; // avoiding tag SEO cheating
     }
     return new HttpParams()
       .set('searchPhrase', this.GetPQuery.searchPhrase)
@@ -46,6 +46,7 @@ export class HttpParamsServiceService {
       .set('pageSize', this.GetPQuery.pageSize)
       .set('likedTags', likedTags);
   }
+
   getSearchPicParams(): HttpParams {
     return new HttpParams()
       .set('searchPhrase', this.SearchQuery.searchPhrase)
@@ -53,6 +54,7 @@ export class HttpParamsServiceService {
       .set('pageSize', this.SearchQuery.pageSize)
       .set('searchBy', this.SearchQuery.sortBy!.toString());
   }
+
   getSearchAccParams(): HttpParams {
     return new HttpParams()
       .set('searchPhrase', this.SearchQuery.searchPhrase)

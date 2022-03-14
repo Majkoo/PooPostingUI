@@ -86,8 +86,11 @@ export class PostPictureComponent {
     this.form.get('tags')?.setValue(uniqueTagsTrimmed);
     this.tags = uniqueTagsTrimmed;
   }
+  popChips() {
+    this.tags.pop();
+  }
   onKeyDown(event: any) {
-    if (event.key === ";" || event.key === " " || event.key === "," || event.key === "#") {
+    if (event.key === " ") {
       event.preventDefault();
       const element = event.target as HTMLElement;
       element.blur();

@@ -29,6 +29,18 @@
     </p-paginator>
   </nav>
 
+  <nav class="paginator w-100 shadow border" *ngIf="accountsResult.items.length">
+    <p-paginator [rows]="5" #paginatorAcc
+                 [totalRecords]="accountsResult.totalItems-1"
+                 (onPageChange)="paginateAccs($event)"
+                 [pageLinkSize]="4"
+                 [showCurrentPageReport]="true"
+                 [currentPageReportTemplate]="'{currentPage} z {totalPages}'"
+                 [showJumpToPageInput]="true"
+                 aria-label="Select page">
+    </p-paginator>
+  </nav>
+
 </main>
 
 

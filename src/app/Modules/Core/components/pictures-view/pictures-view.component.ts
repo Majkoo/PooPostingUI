@@ -48,6 +48,8 @@ export class PicturesViewComponent implements OnInit{
         this.message.add({severity:'warn', summary: 'Sukces', detail: `Obrazek "${this.picture.name}" został usunięty. Zobaczysz efekty po przeładowaniu wyników.`});
       }
     })
+    this.enableScroll();
+    this.showSettingsFlag = false;
   }
 
   private updateLikes() {

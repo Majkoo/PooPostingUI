@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {MenuItem} from "../../../Models/MenuItem";
 import {MenusServiceService} from "../../../Services/data/menus-service.service";
 import {MenuExpandableItem} from "../../../Models/MenuExpandableItem";
-import {AuthServiceService} from "../../../Services/data/auth-service.service";
 import {Router} from "@angular/router";
+import {HttpServiceService} from "../../../Services/http/http-service.service";
+import {AuthServiceService} from "../../../Services/data/auth-service.service";
 
 @Component({
   selector: 'app-navbar',
@@ -18,16 +19,17 @@ export class NavbarComponent implements OnInit{
 
   constructor(
     private menuService: MenusServiceService,
-    private auth: AuthServiceService,
-    private router: Router
+    private authService: AuthServiceService,
+    private router: Router,
+    private httpService: HttpServiceService,
   ) {
     this.menuItems = menuService.getMenuItems();
     this.menuExpandableItems = menuService.getExpandableMenuItems();
-    this.loggedIn = this.auth.isUserLogged();
+    this.loggedIn = this.authService.isUserLogged();
   }
 
   ngOnInit(): void {
-    this.auth.userSubject.subscribe({
+    this.authService.userSubject.subscribe({
       next: (val) => {
         this.loggedIn = val;
       }
@@ -35,10 +37,14 @@ export class NavbarComponent implements OnInit{
   }
 
   logout() {
-    this.auth.logout();
+    this.authService.logout();
     this.showSidebar = false;
     this.router.navigate(['logged-out']);
   }
 
+  toHomePage() {
+    this.showSidebar = false;
+    this.router.navigate(['/home']);
+  }
 
 }

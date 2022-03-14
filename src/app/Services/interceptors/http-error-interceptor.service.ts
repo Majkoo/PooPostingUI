@@ -16,37 +16,68 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
     ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let retryCount: number = 1;
+    let i: number = 0;
+
     return next.handle(req)
       .pipe(
+        retry(retryCount),
         catchError((error: HttpErrorResponse) => {
           this.message.clear();
-            if (error.status >= 400 && error.status < 500) {
-              if(error.status === 404) {
-                return throwError(() => {
-                  this.message.add({severity:'warn', summary: 'Niepowodzenie', detail: 'Nie udało się wykonać operacji. Zasób jest niedostępny. Prawdopodobnie został usunięty lub ukryty.'});
-                });
-              }
-              return throwError(() => {return error});
-            }
-            else if (error.status === 401 || error.status === 403) {
-              return throwError(() => {
-                this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Nie udało się wykonać operacji. Nie masz uprawnień.'});
-              });
-            }
-            else if (error.status === 0) {
-              return throwError(() => {
-                this.router.navigate(['/error0']);
-                console.error(error);
-              })
-            }
-            else {
-              return throwError(() => {
-                this.router.navigate(['/error500']);
-                console.error(error);
-              })
-            }
+          i++;
 
-        }), retry(1)
+          switch (error.status) {
+            case 0: {
+              return this.handle0Error(i, retryCount);
+            }
+            case 404: {
+              return (req.method === "GET") ? throwError(() => {}) : this.handle404Error(i, retryCount);
+            }
+            case 403: {
+              return this.handle403Error(i, retryCount);
+            }
+            case 401: {
+              return this.handle401Error(i, retryCount);
+            }
+            default: {
+              return throwError(() => console.error(error));
+            }
+          }
+          
+        })
       );
+  }
+
+  private handle404Error(i: number, retryCount: number) {
+    let errorFactory = () => {
+      this.message.add({
+        severity:'warn',
+        summary: 'Niepowodzenie',
+        detail: 'Nie udało się wykonać operacji. Zasób jest niedostępny. Prawdopodobnie został usunięty lub ukryty.'
+      });
+    }
+    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
+  }
+  private handle401Error(i: number, retryCount: number) {
+    let errorFactory = () => {
+      this.message.add({
+        severity:'error',
+        summary: 'Niepowodzenie',
+        detail: 'Nie udało się wykonać operacji. Do jej wykonania konieczne jest zalogowanie się.'});
+    }
+    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
+  }
+  private handle403Error(i: number, retryCount: number) {
+    let errorFactory = () => {
+      this.message.add({
+        severity:'error',
+        summary: 'Niepowodzenie',
+        detail: 'Nie udało się wykonać operacji. Nie masz uprawnień.'});
+    }
+    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
+  }
+  private handle0Error(i: number, retryCount: number) {
+    let errorFactory = () => {this.router.navigate(['/error500']);}
+    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
   }
 }

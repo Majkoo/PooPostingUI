@@ -76,6 +76,8 @@ export class PictureComponent implements OnInit, OnDestroy {
         this.message.add({severity:'warn', summary: 'Sukces', detail: `Obrazek "${this.picture.name}" został usunięty. Zobaczysz efekty po przeładowaniu wyników.`});
       }
     })
+    this.enableScroll();
+    this.showSettingsFlag = false;
   }
 
   likeObserver = {

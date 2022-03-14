@@ -89,7 +89,6 @@
             </small>
           </div>
 
-
           <!--          Picture tags-->
           <div class="mx-3 mb-4 w-100 text-left">
             <div class="p-float-label w-100">
@@ -98,7 +97,7 @@
                        formControlName="tags"
                        [allowDuplicate]="false"
                        [addOnTab]="true"
-                       (onAdd)="trimChips()" (keydown)="onKeyDown($event)" (touchend)="onKeyDown($event)" [addOnBlur]="true">
+                       (onAdd)="trimChips()" (onRemove)="popChips()" (keydown)="onKeyDown($event)" (touchend)="onKeyDown($event)" [addOnBlur]="true">
                 <ng-template let-item pTemplate="item">
                   <span class="bi bi-tag">{{item}}</span>
                 </ng-template>

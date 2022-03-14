@@ -48,7 +48,7 @@
                      formControlName="tags"
                      [allowDuplicate]="false"
                      [addOnTab]="true"
-                     (onAdd)="trimChips()" (keydown)="onKeyDown($event)" (touchend)="onKeyDown($event)" [addOnBlur]="true">
+                     (onAdd)="trimChips()" (onRemove)="popChips()" (keydown)="onKeyDown($event)" (touchend)="onKeyDown($event)" [addOnBlur]="true">
               <ng-template let-item pTemplate="item">
                 <span class="bi bi-tag">{{item}}</span>
               </ng-template>

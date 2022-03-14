@@ -23,7 +23,8 @@ export class HomepageComponent implements OnInit {
   constructor(
     private httpService: HttpServiceService,
     private params: HttpParamsServiceService,
-    private auth: AuthServiceService) {}
+    private auth: AuthServiceService
+  ) { }
 
   ngOnInit(): void {
     this.params.setPageNumber(1);
@@ -46,7 +47,6 @@ export class HomepageComponent implements OnInit {
       }
     });
   }
-
   private updateLikes(): void {
     if (this.auth.isUserLogged()){
       this.httpService.getAccountLikesRequest(this.auth.UserInfo?.accountDto.id)
