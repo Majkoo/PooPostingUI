@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Picture} from "../../../../../Models/Picture";
+import {PictureModel} from "../../../../../Models/ApiModels/PictureModel";
 
 @Component({
   selector: 'app-picture-admin-settings',
@@ -7,7 +7,7 @@ import {Picture} from "../../../../../Models/Picture";
   styleUrls: ['./picture-admin-settings.component.scss']
 })
 export class PictureAdminSettingsComponent {
-  @Input() picture!: Picture;
+  @Input() picture!: PictureModel;
   @Output() onDelete = new EventEmitter<void>();
   deletePhrase: string = "";
 

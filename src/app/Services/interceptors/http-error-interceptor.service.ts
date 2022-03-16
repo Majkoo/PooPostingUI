@@ -27,7 +27,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
           i++;
 
           switch (error.status) {
-            case 0: {
+            case (0 || 502 || 504): {
               return this.handle0Error(i, retryCount);
             }
             case 404: {
@@ -39,11 +39,20 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
             case 401: {
               return this.handle401Error(i, retryCount);
             }
+            case 400: {
+              return throwError(() => {return error});
+            }
             default: {
-              return throwError(() => console.error(error));
+              if(error.status <= 400 && error.status > 500) {
+                return this.handle4xxError(i, retryCount);
+              }
+              else if(error.status >= 500) {
+                return this.handle5xxError(i, retryCount);
+              }
+              return this.handle0Error(i, retryCount);
             }
           }
-          
+
         })
       );
   }
@@ -58,15 +67,6 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
     }
     return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
   }
-  private handle401Error(i: number, retryCount: number) {
-    let errorFactory = () => {
-      this.message.add({
-        severity:'error',
-        summary: 'Niepowodzenie',
-        detail: 'Nie udało się wykonać operacji. Do jej wykonania konieczne jest zalogowanie się.'});
-    }
-    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
-  }
   private handle403Error(i: number, retryCount: number) {
     let errorFactory = () => {
       this.message.add({
@@ -76,7 +76,32 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
     }
     return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
   }
+  private handle401Error(i: number, retryCount: number) {
+    let errorFactory = () => {
+      this.message.add({
+        severity:'error',
+        summary: 'Niepowodzenie',
+        detail: 'Nie udało się wykonać operacji. Do jej wykonania konieczne jest zalogowanie się.'});
+    }
+    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
+  }
+
   private handle0Error(i: number, retryCount: number) {
+    let errorFactory = () => {this.router.navigate(['/error0']);}
+    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
+  }
+
+  private handle4xxError(i: number, retryCount: number) {
+    let errorFactory = () => {
+      this.message.add({
+        severity:'error',
+        summary:'Błąd',
+        detail:'Wystąpił nieoczekiwany błąd. Przepraszamy za utrudnienia.'
+      })
+    }
+    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
+  }
+  private handle5xxError(i: number, retryCount: number) {
     let errorFactory = () => {this.router.navigate(['/error500']);}
     return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
   }

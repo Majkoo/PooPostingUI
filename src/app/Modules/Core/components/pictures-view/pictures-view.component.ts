@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Picture} from "../../../../Models/Picture";
+import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
@@ -11,7 +11,7 @@ import {MessageService} from "primeng/api";
   styleUrls: ['./pictures-view.component.scss']
 })
 export class PicturesViewComponent implements OnInit{
-  @Input() picture!: Picture;
+  @Input() picture!: PictureModel;
   showDetailsFlag: boolean = false;
   showSettingsFlag: boolean = false;
 

@@ -35,19 +35,22 @@
 
 </div>
 
-<p-dialog [(visible)]="showDetailsFlag" header="Szczegóły obrazka" position="center"
+<p-dialog [(visible)]="showDetailsFlag"
+          header="Szczegóły obrazka" position="center"
           [draggable]="false" [closeOnEscape]="true" (onHide)="enableScroll()">
   <app-picture-details [picture]="picture" [isLoggedOn]="isLoggedOn!">
   </app-picture-details>
 </p-dialog>
 
-<p-dialog [(visible)]="showSettingsFlag" header="Ustawienia obrazka" position="center"
+<p-dialog [(visible)]="showSettingsFlag"
+          header="Ustawienia obrazka" position="center"
           [draggable]="false" [closeOnEscape]="true" (onHide)="enableScroll()">
   <app-picture-settings [picture]="picture" (onDelete)="delete()">
   </app-picture-settings>
 </p-dialog>
 
-<p-dialog [(visible)]="showAdminSettingsFlag" header="Ustawienia administratorskie obrazka" position="center"
+<p-dialog [(visible)]="showAdminSettingsFlag"
+          header="Ustawienia administratorskie obrazka" position="center"
           [draggable]="false" [closeOnEscape]="true" (onHide)="enableScroll()">
   <app-picture-admin-settings [picture]="picture" (onDelete)="delete()">
   </app-picture-admin-settings>

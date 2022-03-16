@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {PicturePagedResult} from "../../../../Models/PicturePagedResult";
+import {PicturePagedResult} from "../../../../Models/ApiModels/PicturePagedResult";
 import {Router} from "@angular/router";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
-import {AccountPagedResult} from "../../../../Models/AccountPagedResult";
 import {MessageService} from "primeng/api";
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
+import {AccountPagedResult} from "../../../../Models/ApiModels/AccountPagedResult";
 
 @Component({
   selector: 'app-search',

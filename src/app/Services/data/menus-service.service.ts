@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {MenuItem} from "../../Models/MenuItem";
-import {MenuExpandableItem} from "../../Models/MenuExpandableItem";
+import {MenuItem} from "../../Models/MenuModels/MenuItem";
+import {MenuExpandableItem} from "../../Models/MenuModels/MenuExpandableItem";
 
 @Injectable({
   providedIn: 'root'

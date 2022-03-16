@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuItem} from "../../../Models/MenuItem";
+import {MenuItem} from "../../../Models/MenuModels/MenuItem";
 import {MenusServiceService} from "../../../Services/data/menus-service.service";
-import {MenuExpandableItem} from "../../../Models/MenuExpandableItem";
+import {MenuExpandableItem} from "../../../Models/MenuModels/MenuExpandableItem";
 import {Router} from "@angular/router";
 import {HttpServiceService} from "../../../Services/http/http-service.service";
 import {AuthServiceService} from "../../../Services/data/auth-service.service";

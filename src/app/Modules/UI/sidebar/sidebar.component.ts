@@ -3,7 +3,7 @@ import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import { AuthServiceService } from 'src/app/Services/data/auth-service.service';
 import {Router} from "@angular/router";
 import {MenusServiceService} from "../../../Services/data/menus-service.service";
-import {MenuExpandableItem} from "../../../Models/MenuExpandableItem";
+import {MenuExpandableItem} from "../../../Models/MenuModels/MenuExpandableItem";
 
 @Component({
   selector: 'app-sidebar',

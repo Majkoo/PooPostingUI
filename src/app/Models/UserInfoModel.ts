@@ -1,5 +1,5 @@
-﻿import {AccountModel} from "./AccountModel";
-import { LikeModel } from "./LikeModel";
+﻿import {AccountModel} from "./ApiModels/AccountModel";
+import {LikeModel} from "./ApiModels/LikeModel";
 
 export interface UserInfoModel {
   accountDto: AccountModel;

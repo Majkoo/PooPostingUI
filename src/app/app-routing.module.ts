@@ -12,6 +12,7 @@ import {SearchComponent} from "./Modules/Core/common-pages/search/search.compone
 import {HomepageComponent} from "./Modules/Core/common-pages/homepage/homepage.component";
 import {MyAccountComponent} from "./Modules/Core/common-pages/my-account/my-account.component";
 import {PopularComponent} from "./Modules/Core/common-pages/popular/popular.component";
+import {Error0Component} from "./Modules/Core/common-pages/errors/error0/error0.component";
 
 
 const routes: Routes = [
@@ -42,6 +43,7 @@ const routes: Routes = [
 
   {path: "error500", component: Error500Component},
   {path: "error404", component: Error404Component},
+  {path: "error0", component: Error0Component},
 
   {path: '**', redirectTo: '/error404', pathMatch: 'full'},
 ];

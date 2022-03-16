@@ -24,6 +24,9 @@ import { PictureAdminSettingsComponent } from './components/modals/picture-admin
 import { ModalPicComponent } from './components/modals/modal-pic/modal-pic.component';
 import { ModalInfoComponent } from './components/modals/modal-info/modal-info.component';
 import { PopularComponent } from './common-pages/popular/popular.component';
+import { Error0Component } from './common-pages/errors/error0/error0.component';
+import { LikeTableComponent } from './components/modals/like-table/like-table.component';
+import { CommentTableComponent } from './components/modals/comment-table/comment-table.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { PopularComponent } from './common-pages/popular/popular.component';
     ModalPicComponent,
     ModalInfoComponent,
     PopularComponent,
+    Error0Component,
+    LikeTableComponent,
+    CommentTableComponent,
   ],
   imports: [
     CommonModule,

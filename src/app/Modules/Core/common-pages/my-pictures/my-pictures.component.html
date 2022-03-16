@@ -17,6 +17,12 @@
       </app-pictures-view>
     </ng-template>
 
+    <ng-template pTemplate="footer">
+      <div class="w-100 d-flex justify-content-center align-items-center">
+        <small>{{picturesCount === 0 ? "Nie masz jeszcze obrazków." : "Ilość twoich obrazków: " + picturesCount }}</small>
+      </div>
+    </ng-template>
+
   </p-dataView>
 
 </div>

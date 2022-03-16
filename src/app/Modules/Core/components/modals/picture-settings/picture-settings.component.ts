@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Picture} from "../../../../../Models/Picture";
+import {PictureModel} from "../../../../../Models/ApiModels/PictureModel";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
-import {PutPictureModel} from "../../../../../Models/PutPictureModel";
+import {PutPictureModel} from "../../../../../Models/ApiModels/PutPictureModel";
 import {MessageService} from "primeng/api";
 import {SelectOption} from "../../../../../Models/SelectOption";
 
@@ -12,7 +12,7 @@ import {SelectOption} from "../../../../../Models/SelectOption";
   styleUrls: ['./picture-settings.component.scss']
 })
 export class PictureSettingsComponent implements OnInit {
-  @Input() picture!: Picture;
+  @Input() picture!: PictureModel;
   @Output() onDelete = new EventEmitter<void>();
   deletePhrase: string = "";
 

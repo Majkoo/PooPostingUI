@@ -2,16 +2,18 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, Subject} from "rxjs";
 import {HttpParamsServiceService} from "./http-params-service.service";
-import { Picture } from 'src/app/Models/Picture';
-import { PicturePagedResult } from 'src/app/Models/PicturePagedResult';
-import { LoginModel } from 'src/app/Models/LoginModel';
+import { PictureModel } from 'src/app/Models/ApiModels/PictureModel';
+import { PicturePagedResult } from 'src/app/Models/ApiModels/PicturePagedResult';
+import { LoginModel } from 'src/app/Models/ApiModels/LoginModel';
 import { UserInfoModel } from 'src/app/Models/UserInfoModel';
-import { RegisterModel } from 'src/app/Models/RegisterModel';
+import { RegisterModel } from 'src/app/Models/ApiModels/RegisterModel';
 import { ConfigServiceService } from '../data/config-service.service';
-import {LikeModel} from "../../Models/LikeModel";
-import { AccountPagedResult } from 'src/app/Models/AccountPagedResult';
-import {AccountModel} from "../../Models/AccountModel";
-import {PutPictureModel} from "../../Models/PutPictureModel";
+import {PutPictureModel} from "../../Models/ApiModels/PutPictureModel";
+import {LikeModel} from "../../Models/ApiModels/LikeModel";
+import {AccountPagedResult} from "../../Models/ApiModels/AccountPagedResult";
+import {AccountModel} from "../../Models/ApiModels/AccountModel";
+import {CommentModel} from "../../Models/ApiModels/CommentModel";
+import {PutPostCommentModel} from "../../Models/ApiModels/PutPostCommentModel";
 
 @Injectable({
   providedIn: 'root'
@@ -37,9 +39,9 @@ export class HttpServiceService {
         {params: this.params.getSearchPicParams()}
       );
   }
-  getPictureRequest(id?: string): Observable<Picture>{
+  getPictureRequest(id?: string): Observable<PictureModel>{
     return this.http
-      .get<Picture>(
+      .get<PictureModel>(
       `${this.config.apiUrl}/picture/${id}`
     );
   }
@@ -89,29 +91,43 @@ export class HttpServiceService {
         data
       );
   }
+  postCommentRequest(picId: string, data: PutPostCommentModel): Observable<CommentModel> {
+    return this.http
+      .post<CommentModel>(
+        `${this.config.apiUrl}/picture/${picId}/comment`,
+        data
+      );
+  }
+  deleteCommentRequest(picId: string, commId: string): Observable<CommentModel> {
+    return this.http
+      .delete<CommentModel>(
+        `${this.config.apiUrl}/picture/${picId}/comment/${commId}`,
+        {}
+      );
+  }
   deletePictureRequest(id: string): Observable<any> {
     return this.http
       .delete(
         `${this.config.apiUrl}/picture/${id}`
       );
   }
-  patchPictureLikeRequest(id: string): Observable<Picture> {
+  patchPictureLikeRequest(id: string): Observable<PictureModel> {
     return this.http
-      .patch<Picture>(
+      .patch<PictureModel>(
         `${this.config.apiUrl}/picture/${id}/voteup`,
         {}
       );
   }
-  patchPictureDislikeRequest(id: string): Observable<Picture> {
+  patchPictureDislikeRequest(id: string): Observable<PictureModel> {
     return this.http
-      .patch<Picture>(
+      .patch<PictureModel>(
         `${this.config.apiUrl}/picture/${id}/votedown`,
         {}
       );
   }
   putPictureRequest(data: PutPictureModel, id: string) {
     return this.http
-      .put<Picture>(
+      .put<PictureModel>(
         `${this.config.apiUrl}/picture/${id}`,
         data
       )

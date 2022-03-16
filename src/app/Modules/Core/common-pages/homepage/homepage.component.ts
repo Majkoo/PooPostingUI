@@ -1,9 +1,9 @@
 import {Component, OnInit,} from '@angular/core';
-import { PicturePagedResult } from 'src/app/Models/PicturePagedResult';
+import { PicturePagedResult } from 'src/app/Models/ApiModels/PicturePagedResult';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
-import {LikeModel} from "../../../../Models/LikeModel";
+import {LikeModel} from "../../../../Models/ApiModels/LikeModel";
 
 @Component({
   selector: 'app-body',

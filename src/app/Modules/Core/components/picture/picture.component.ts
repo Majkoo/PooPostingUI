@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
-import { Picture } from 'src/app/Models/Picture';
+import { PictureModel } from 'src/app/Models/ApiModels/PictureModel';
 import { ConfigServiceService } from 'src/app/Services/data/config-service.service';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
@@ -12,7 +12,7 @@ import {Message, MessageService} from "primeng/api";
   styleUrls: ['./picture.component.scss']
 })
 export class PictureComponent implements OnInit, OnDestroy {
-  @Input() picture!: Picture;
+  @Input() picture!: PictureModel;
   showDetailsFlag: boolean = false;
   showSettingsFlag: boolean = false;
   showAdminSettingsFlag: boolean = false;
@@ -83,7 +83,7 @@ export class PictureComponent implements OnInit, OnDestroy {
   likeObserver = {
     next: () => {
       this.httpService.getPictureRequest(this.picture.id).subscribe({
-        next: (value:Picture) => {
+        next: (value:PictureModel) => {
           this.picture.likes = value.likes;
           this.updatePicture();
         }

@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AccountModel} from "../../../../Models/AccountModel";
-import {LikeModel} from "../../../../Models/LikeModel";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
+import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
 
 @Component({
   selector: 'app-account',

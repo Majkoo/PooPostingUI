@@ -1,9 +1,9 @@
-﻿import {Picture} from "./Picture";
+﻿import {PictureModel} from "./PictureModel";
 
 export interface AccountModel {
   id: string;
   nickname: string;
   email: string;
-  pictures: Picture[];
+  pictures: PictureModel[];
   accountCreated: string;
 }

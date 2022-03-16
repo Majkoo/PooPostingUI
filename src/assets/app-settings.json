@@ -1,4 +1,4 @@
 ﻿{
-  "apiUrl": "https://pictures-api.migra.ml/api",
-  "picturesUrl": "https://pictures-api.migra.ml/"
+  "apiUrl": "https://dev-pictures-api.migra.ml/api",
+  "picturesUrl": "https://dev-pictures-api.migra.ml/"
 }

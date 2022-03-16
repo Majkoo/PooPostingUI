@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
-import {Picture} from "../../../../Models/Picture";
+import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
-import {AccountModel} from "../../../../Models/AccountModel";
+import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
 
 @Component({
   selector: 'app-my-pictures',
@@ -11,7 +11,8 @@ import {AccountModel} from "../../../../Models/AccountModel";
   styleUrls: ['./my-pictures.component.scss']
 })
 export class MyPicturesComponent implements OnInit {
-  pictures!: Picture[];
+  pictures!: PictureModel[];
+  picturesCount!: number;
   @ViewChild('dv') dataView: any;
 
   constructor(
@@ -28,6 +29,7 @@ export class MyPicturesComponent implements OnInit {
           this.pictures = value.pictures;
           this.pictures = this.sortByDate(this.pictures);
           this.pictures.forEach(p => p.url.startsWith("http") ? null : p.url = (this.configService.picturesUrl + p.url));
+          this.picturesCount = this.pictures.length;
         }
       });
   }
@@ -37,7 +39,7 @@ export class MyPicturesComponent implements OnInit {
     this.dataView.filter($event.target.value!, 'contains')
   }
 
-  private sortByDate(val: Picture[]): Picture[] {
+  private sortByDate(val: PictureModel[]): PictureModel[] {
     return val.sort((a, b) =>
       new Date(b.pictureAdded).getTime() - new Date(a.pictureAdded).getTime()
     );

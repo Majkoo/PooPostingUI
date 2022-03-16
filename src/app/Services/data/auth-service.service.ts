@@ -3,10 +3,10 @@ import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import {HttpParamsServiceService} from "../http/http-params-service.service";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs";
-import {AccountModel} from "../../Models/AccountModel";
-import {LikeModel} from "../../Models/LikeModel";
 import {HttpServiceService} from "../http/http-service.service";
-import {Picture} from "../../Models/Picture";
+import {PictureModel} from "../../Models/ApiModels/PictureModel";
+import {AccountModel} from "../../Models/ApiModels/AccountModel";
+import {LikeModel} from "../../Models/ApiModels/LikeModel";
 
 @Injectable({
   providedIn: 'root'
@@ -66,7 +66,7 @@ export class AuthServiceService {
         });
     }
   }
-  updatePictureLikes(picture: Picture): Picture {
+  updatePictureLikes(picture: PictureModel): PictureModel {
     picture.likeCount = picture.likes.filter(l => l.isLike).length;
     picture.dislikeCount = picture.likes.filter(l => !l.isLike).length;
     if (this.isUserLogged()) {
@@ -87,58 +87,14 @@ export class AuthServiceService {
 
 const devAccountInfo: UserInfoModel = {
   accountDto: {
-    id: "08d9ea60-058c-4f9c-8599-2cd37b693c34",
+    id: "08da076c-7009-4954-8a5a-56895ad5d268",
     nickname: "ShrekTheCreator",
     email: "test",
-    pictures: [
-      {
-        id: "08d9ea60-0591-4550-843d-465368cacf9b",
-        accountId: "08d9ea60-058c-4f9c-8599-2cd37b693c34",
-        accountNickname: "ShrekTheCreator",
-        name: "Shrek",
-        description: "Shrek",
-        tags: [
-          "shrek",
-          "green",
-          "handsomeMan",
-          "original"
-        ],
-        url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Focs-pl.oktawave.com%2Fv1%2FAUTH_2887234e-384a-4873-8bc5-405211db13a2%2Fsplay%2F2018%2F11%2Fshrek-reboot-film.jpeg&f=1&nofb=1",
-        pictureAdded: "2014-02-03T18:33:58",
-        likes: [
-          {
-            id: 1,
-            accountNickname: "ShrekTheCreator",
-            accountId: "08d9ea60-4170-499c-8330-f6dfe54a1d98",
-            pictureId: "08d9ea60-0591-4550-843d-465368cacf9b",
-            isLike: true
-          }
-        ],
-        isModifiable: true
-      },
-      {
-        id: "08d9ea60-0594-4175-8c57-4d5434a62ebb",
-        accountId: "08d9ea60-058c-4f9c-8599-2cd37b693c34",
-        accountNickname: "ShrekTheCreator",
-        name: "Shrek stoned",
-        description: "Shrek is stoned",
-        tags: [
-          "shrek",
-          "420",
-          "stoned",
-          "green",
-          "handsomeMan"
-        ],
-        url: "http://3.bp.blogspot.com/_GoN5EPxM4Y8/S-3O8XQippI/AAAAAAAAAJI/HkXJaFXTr1g/w1200-h630-p-k-no-nu/shrek1ta5.jpg",
-        pictureAdded: "2022-02-07T18:33:58",
-        likes: [],
-        isModifiable: true
-      }
-    ],
+    pictures: [],
     accountCreated: ""
   },
   likedTags: "",
-  authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZDllYTYwLTA1OGMtNGY5Yy04NTk5LTJjZDM3YjY5M2MzNCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJTaHJla1RoZUNyZWF0b3IiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIzIiwiZXhwIjoxNjQ4MjI1NjcwLCJpc3MiOiJodHRwczovL3BpY3R1cmVBcGkuY29tIiwiYXVkIjoiaHR0cHM6Ly9waWN0dXJlQXBpLmNvbSJ9.a2xs_yImMG4SlrosFumeyzQ0p0Sn5sUzZ_A5SO2xiXw",
+  authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZGEwNzZjLTcwMDktNDk1NC04YTVhLTU2ODk1YWQ1ZDI2OCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJTaHJla1RoZUNyZWF0b3IiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIzIiwiZXhwIjoxNjUyNjMyNDQ1LCJpc3MiOiJodHRwczovL3BpY3R1cmVBcGkuY29tIiwiYXVkIjoiaHR0cHM6Ly9waWN0dXJlQXBpLmNvbSJ9.bltC8WIP0jIgZSQWjQYL0CrEqbw0TAWdYpmBAhulCjc",
   likes: [],
 }
 

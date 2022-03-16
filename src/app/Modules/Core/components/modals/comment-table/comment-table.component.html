@@ -1,0 +1,37 @@
+<div class="table-container" *ngIf="comments.length > 0">
+  <div class="table">
+    <div class="w-100 bg-darker">
+      <div class="table-title p-2 border-bottom">
+        <span class="bi bi-chat-right-text-fill mr-1"></span>
+        <b>Komentarze</b>
+      </div>
+    </div>
+
+    <div class="scroll">
+      <div *ngFor="let comment of comments, index as i"
+           class="table-row border-bottom px-1 py-2 d-flex flex-column justify-content-center align-items-start"
+           [ngClass]="i%2 ? 'bg-darker' : ''">
+        <div class="d-flex w-100 flex-row align-items-center justify-content-between">
+          <div class="d-flex w-100 flex-row align-items-center justify-content-start">
+            <span [ngClass]="i%2 ? 'bi bi-person' : 'bi bi-person-fill' "></span>
+            <b>{{comment.authorNickname}}</b>:
+          </div>
+          <button pButton pRipple type="button" *ngIf="comment.isModifiable"
+                  (click)="delete(comment)" icon="bi bi-x" class="p-button p-0 p-button-danger">
+
+          </button>
+        </div>
+        <div class="px-3 py-1">
+          {{comment.text}}
+        </div>
+        <small class="w-100 d-flex justify-content-end text-muted">
+          Dodano: {{comment.commentAdded | timeago}}
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="comments.length === 0" class="text-muted text-center">
+  <p>Masz okazję być pierwszą osobą, która skomentuje ten obrazek!</p>
+</div>
+
