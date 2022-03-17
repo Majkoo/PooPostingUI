@@ -46,13 +46,13 @@
 </div>
 
 <p-dialog [(visible)]="showDetailsFlag" header="Szczegóły obrazka" position="center"
-          [draggable]="false" [closeOnEscape]="true" (onHide)="enableScroll()">
+          [draggable]="false" [closeOnEscape]="true">
   <app-picture-details [picture]="picture" [isLoggedOn]="true">
   </app-picture-details>
 </p-dialog>
 
 <p-dialog [(visible)]="showSettingsFlag" header="Ustawienia obrazka" position="center"
-          [draggable]="false" [closeOnEscape]="true" (onHide)="enableScroll()">
+          [draggable]="false" [closeOnEscape]="true">
   <app-picture-settings [picture]="picture" (onDelete)="delete()">
   </app-picture-settings>
 </p-dialog>

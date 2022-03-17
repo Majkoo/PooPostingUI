@@ -4,13 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ScrollServiceService {
+  scrollTopState: number;
 
-  constructor() { }
-
-  disableScroll() {
-    document.documentElement.style.overflowY = 'hidden';
+  constructor() {
+    this.scrollTopState = 0;
   }
-  enableScroll() {
-    document.documentElement.style.overflowY = 'auto';
+
+  scroll(val: number) {
+    document.body.scrollTop = val;
+  }
+
+  saveScrollState(val: number) {
+    this.scrollTopState = val;
   }
 }

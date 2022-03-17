@@ -2,7 +2,7 @@
 
   <p-card header="{{picture.name | titlecase}}" subheader="Dodano przez: {{picture.accountNickname}}, {{picture.pictureAdded | timeago}}"
           styleClass="p-card-shadow card text-center mx-3 mx-md-0">
-    <ng-template pTemplate="header" ></ng-template>
+    <ng-template pTemplate="header"></ng-template>
 
     <img src='{{this.picture.url}}' class="img-fluid" alt="{{picture.name}} by {{picture.accountNickname}}" title="{{picture.name}} by {{picture.accountNickname}}">
 
@@ -35,23 +35,25 @@
 
 </div>
 
-<p-dialog [(visible)]="showDetailsFlag"
+<p-dialog [(visible)]="showDetailsFlag" [modal]="true" [dismissableMask]="true"
           header="Szczegóły obrazka" position="center"
-          [draggable]="false" [closeOnEscape]="true" (onHide)="enableScroll()">
+          [draggable]="false" [closeOnEscape]="true">
   <app-picture-details [picture]="picture" [isLoggedOn]="isLoggedOn!">
   </app-picture-details>
 </p-dialog>
 
-<p-dialog [(visible)]="showSettingsFlag"
+<p-dialog [(visible)]="showSettingsFlag" *ngIf="picture.isModifiable"
+          [modal]="true" [dismissableMask]="true"
           header="Ustawienia obrazka" position="center"
-          [draggable]="false" [closeOnEscape]="true" (onHide)="enableScroll()">
+          [draggable]="false" [closeOnEscape]="true">
   <app-picture-settings [picture]="picture" (onDelete)="delete()">
   </app-picture-settings>
 </p-dialog>
 
-<p-dialog [(visible)]="showAdminSettingsFlag"
+<p-dialog [(visible)]="showAdminSettingsFlag" *ngIf="picture.isModifiable"
+          [modal]="true" [dismissableMask]="true"
           header="Ustawienia administratorskie obrazka" position="center"
-          [draggable]="false" [closeOnEscape]="true" (onHide)="enableScroll()">
+          [draggable]="false" [closeOnEscape]="true">
   <app-picture-admin-settings [picture]="picture" (onDelete)="delete()">
   </app-picture-admin-settings>
 </p-dialog>

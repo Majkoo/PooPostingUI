@@ -21,7 +21,6 @@ export class NavbarComponent implements OnInit{
     private menuService: MenusServiceService,
     private authService: AuthServiceService,
     private router: Router,
-    private httpService: HttpServiceService,
   ) {
     this.menuItems = menuService.getMenuItems();
     this.menuExpandableItems = menuService.getExpandableMenuItems();

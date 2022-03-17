@@ -1,6 +1,6 @@
 <div class="row">
 
-  <div class="col-12 text-left mb-2">
+  <div class="col-12 text-left mb-2 text-break">
     <h2><strong>{{picture.name | titlecase}}</strong></h2>
   </div>
   <div class="col-12 col-md-8 text-center d-flex flex-column justify-content-center align-items-center">
@@ -50,10 +50,15 @@
 
         <div class="mt-3 text-center">
           <form (ngSubmit)="comment()" [formGroup]="commentForm">
-            <textarea id="float-input" class="w-100" formControlName="text" rows="3" cols="30"
-                      placeholder="Napisz komentarz!" pInputTextarea></textarea>
-            <button pButton pRipple label="Zatwierdź" class="w-50" type="submit"
-                    [disabled]="commentForm.invalid && !awaitSubmit"></button>
+            <div class="d-flex flex-column">
+              <textarea id="comment-input" class="w-100" formControlName="text" rows="3" cols="30"
+                        placeholder="Napisz komentarz!" pInputTextarea></textarea>
+              <label for="comment-input" class="m-0 text-muted" *ngIf="!isLoggedOn">
+                <small>Aby dodać komentarz, konieczne jest zalogowanie się.</small>
+              </label>
+            </div>
+            <button pButton pRipple label="Zatwierdź" class="w-50 mt-2" type="submit"
+                    [disabled]="commentForm.invalid || awaitSubmit || !isLoggedOn"></button>
           </form>
         </div>
       </div>

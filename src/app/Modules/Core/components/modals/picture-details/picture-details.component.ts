@@ -23,7 +23,7 @@ export class PictureDetailsComponent implements OnInit{
   cols: any[];
 
   constructor(
-    private auth: AuthServiceService,
+    private authService: AuthServiceService,
     private httpService: HttpServiceService,
     private message: MessageService
   ) {
@@ -43,6 +43,7 @@ export class PictureDetailsComponent implements OnInit{
         Validators.maxLength(250)
       ])
     })
+    this.isLoggedOn = authService.isUserLogged();
   }
   ngOnInit() {
     this.updatePicture();
@@ -68,13 +69,13 @@ export class PictureDetailsComponent implements OnInit{
           this.message.add({
             severity:'warn',
             summary:'Sukces',
-            detail:'Pomyślnie usunięto komentarz!'
+            detail:'Pomyślnie usunięto komentarz!',
           });
         }
       })
   }
   updatePicture() {
-    this.picture = this.auth.updatePictureLikes(this.picture);
+    this.picture = this.authService.updatePictureLikes(this.picture);
     this.picture.likes.sort(l => l.isLike ? -1 : 0);
   }
 

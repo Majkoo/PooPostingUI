@@ -3,8 +3,28 @@
 @import "~primeicons/primeicons.css";
 @import "additional";
 
-$navbar-height: 76px;
+@media screen and (min-width: 1200px){
+  ::-webkit-scrollbar {
+    width: 14px;
+  }
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4);
+    background: transparent;
+    &:hover {
+      -webkit-box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.65);
+    }
+  }
+}
 
+$navbar-height: 75px;
+
+body {
+  overflow-y: scroll !important;
+}
 nav{
   position: sticky;
   position: -webkit-sticky;
@@ -24,6 +44,7 @@ footer{
   -webkit-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
 }
+
 
 .bi {
   font-size: 1.5rem;
@@ -78,9 +99,6 @@ a:hover {
   border: none !important;
 }
 
-.dialog-mask {
-  background-color: rgba(0, 0, 0, 0.4);
-}
 
 
 

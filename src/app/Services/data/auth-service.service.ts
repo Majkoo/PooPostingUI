@@ -87,14 +87,14 @@ export class AuthServiceService {
 
 const devAccountInfo: UserInfoModel = {
   accountDto: {
-    id: "08da076c-7009-4954-8a5a-56895ad5d268",
+    id: "08da079a-e101-43a4-860b-ec322f0b00c5",
     nickname: "ShrekTheCreator",
     email: "test",
     pictures: [],
     accountCreated: ""
   },
   likedTags: "",
-  authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZGEwNzZjLTcwMDktNDk1NC04YTVhLTU2ODk1YWQ1ZDI2OCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJTaHJla1RoZUNyZWF0b3IiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIzIiwiZXhwIjoxNjUyNjMyNDQ1LCJpc3MiOiJodHRwczovL3BpY3R1cmVBcGkuY29tIiwiYXVkIjoiaHR0cHM6Ly9waWN0dXJlQXBpLmNvbSJ9.bltC8WIP0jIgZSQWjQYL0CrEqbw0TAWdYpmBAhulCjc",
+  authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZGEwNzlhLWUxMDEtNDNhNC04NjBiLWVjMzIyZjBiMDBjNSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJTaHJla1RoZUNyZWF0b3IiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIzIiwiZXhwIjoxNjUyNzI4MDY1LCJpc3MiOiJodHRwczovL3BpY3R1cmVBcGkuY29tIiwiYXVkIjoiaHR0cHM6Ly9waWN0dXJlQXBpLmNvbSJ9.SoiJIYOqDXANICUskTF2wczE9HRAwkAqQTPwAy4l238",
   likes: [],
 }
 

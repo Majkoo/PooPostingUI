@@ -4,6 +4,7 @@ import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 import {LikeModel} from "../../../../Models/ApiModels/LikeModel";
+import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
 
 @Component({
   selector: 'app-body',
@@ -22,37 +23,41 @@ export class HomepageComponent implements OnInit {
 
   constructor(
     private httpService: HttpServiceService,
-    private params: HttpParamsServiceService,
-    private auth: AuthServiceService
+    private paramsService: HttpParamsServiceService,
+    private authService: AuthServiceService,
+    private scrollService: ScrollServiceService
   ) { }
 
   ngOnInit(): void {
-    this.params.setPageNumber(1);
+    this.paramsService.setPageNumber(1);
     this.updateLikes();
     this.fetchPictures();
   }
 
   paginate(val: any): void {
     this.updateLikes();
-    this.params.setPageNumber(val.page+1);
+    this.paramsService.setPageNumber(val.page+1);
     this.fetchPictures();
+  }
+
+  scroll(top: number) {
+    this.scrollService.scroll(top);
   }
 
   private fetchPictures(): void {
     this.httpService.getPicturesRequest().subscribe({
       next: (value: PicturePagedResult) => {
         this.result = value;
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+        this.scrollService.scroll(0);
       }
     });
   }
   private updateLikes(): void {
-    if (this.auth.isUserLogged()){
-      this.httpService.getAccountLikesRequest(this.auth.UserInfo?.accountDto.id)
+    if (this.authService.isUserLogged()){
+      this.httpService.getAccountLikesRequest(this.authService.UserInfo?.accountDto.id)
         .subscribe({
           next: (value: LikeModel[]) => {
-            this.auth.UserInfo!.likes = value;
+            this.authService.UserInfo!.likes = value;
           }
         });
     }

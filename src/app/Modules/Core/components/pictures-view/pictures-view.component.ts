@@ -27,19 +27,13 @@ export class PicturesViewComponent implements OnInit{
       this.picture.url = this.configService.picturesUrl + this.picture.url;
     }
     this.updateLikes();
-    console.log(this.picture);
   }
 
   showDetails() {
-    this.scroll.disableScroll();
     this.showDetailsFlag = true;
   }
   showSettings() {
-    this.scroll.disableScroll();
     this.showSettingsFlag = true;
-  }
-  enableScroll() {
-    this.scroll.enableScroll();
   }
 
   delete(){
@@ -48,7 +42,6 @@ export class PicturesViewComponent implements OnInit{
         this.message.add({severity:'warn', summary: 'Sukces', detail: `Obrazek "${this.picture.name}" został usunięty. Zobaczysz efekty po przeładowaniu wyników.`});
       }
     })
-    this.enableScroll();
     this.showSettingsFlag = false;
   }
 

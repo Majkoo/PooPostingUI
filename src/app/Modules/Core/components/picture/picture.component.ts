@@ -11,7 +11,7 @@ import {Message, MessageService} from "primeng/api";
   templateUrl: './picture.component.html',
   styleUrls: ['./picture.component.scss']
 })
-export class PictureComponent implements OnInit, OnDestroy {
+export class PictureComponent implements OnInit {
   @Input() picture!: PictureModel;
   showDetailsFlag: boolean = false;
   showSettingsFlag: boolean = false;
@@ -35,26 +35,16 @@ export class PictureComponent implements OnInit, OnDestroy {
     }
     this.updatePicture();
   }
-  ngOnDestroy() {
-    this.enableScroll();
-  }
 
   showDetails() {
-    this.scroll.disableScroll()
     this.showDetailsFlag = true;
   }
   showSettings() {
     if (this.auth.getUserInfo().accountDto.id === this.picture.accountId) {
-      this.scroll.disableScroll()
       this.showSettingsFlag = true;
     } else {
-      this.scroll.disableScroll()
       this.showAdminSettingsFlag = true;
     }
-  }
-  enableScroll() {
-    this.scroll.enableScroll()
-    this.updatePicture();
   }
 
   like(){
@@ -76,7 +66,6 @@ export class PictureComponent implements OnInit, OnDestroy {
         this.message.add({severity:'warn', summary: 'Sukces', detail: `Obrazek "${this.picture.name}" został usunięty. Zobaczysz efekty po przeładowaniu wyników.`});
       }
     })
-    this.enableScroll();
     this.showSettingsFlag = false;
   }
 
