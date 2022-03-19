@@ -13,12 +13,14 @@ import {HomepageComponent} from "./Modules/Core/common-pages/homepage/homepage.c
 import {MyAccountComponent} from "./Modules/Core/common-pages/my-account/my-account.component";
 import {PopularComponent} from "./Modules/Core/common-pages/popular/popular.component";
 import {Error0Component} from "./Modules/Core/common-pages/errors/error0/error0.component";
+import { TosComponent } from './Modules/Core/common-pages/tos/tos.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: "/home", pathMatch: 'full'},
 
   {path: "home", component: HomepageComponent},
+  {path: "tos", component: TosComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
   {path: "logged-out", component: LoggedOutComponent},

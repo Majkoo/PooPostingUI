@@ -27,6 +27,7 @@ import { PopularComponent } from './common-pages/popular/popular.component';
 import { Error0Component } from './common-pages/errors/error0/error0.component';
 import { LikeTableComponent } from './components/modals/like-table/like-table.component';
 import { CommentTableComponent } from './components/modals/comment-table/comment-table.component';
+import { TosComponent } from './common-pages/tos/tos.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CommentTableComponent } from './components/modals/comment-table/comment
     Error0Component,
     LikeTableComponent,
     CommentTableComponent,
+    TosComponent,
   ],
   imports: [
     CommonModule,
