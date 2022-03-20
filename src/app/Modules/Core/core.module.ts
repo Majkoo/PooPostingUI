@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HomepageComponent} from "./common-pages/homepage/homepage.component";
 import { PostPictureComponent } from './common-pages/post-picture/post-picture.component';
-import {PictureComponent} from "./components/picture/picture.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import { ImageCropperModule } from 'ngx-image-cropper';
 import {Error404Component} from "./common-pages/errors/error404/error404.component";
@@ -16,23 +15,25 @@ import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 import {TimeagoModule} from "ngx-timeago";
 import { AccountComponent } from './components/account/account.component';
 import { MyPicturesComponent } from './common-pages/my-pictures/my-pictures.component';
-import { PicturesViewComponent } from './components/pictures-view/pictures-view.component';
+import { PicturesViewComponent } from './common-pages/my-pictures/pictures-view/pictures-view.component';
 import { LoggedOutComponent } from './common-pages/logged-out/logged-out.component';
 import { PictureSettingsComponent } from './components/modals/picture-settings/picture-settings.component';
-import {PictureDetailsComponent} from "./components/modals/picture-details/picture-details.component";
 import { PictureAdminSettingsComponent } from './components/modals/picture-admin-settings/picture-admin-settings.component';
 import { ModalPicComponent } from './components/modals/modal-pic/modal-pic.component';
 import { ModalInfoComponent } from './components/modals/modal-info/modal-info.component';
 import { PopularComponent } from './common-pages/popular/popular.component';
 import { Error0Component } from './common-pages/errors/error0/error0.component';
-import { LikeTableComponent } from './components/modals/like-table/like-table.component';
-import { CommentTableComponent } from './components/modals/comment-table/comment-table.component';
+import { LikeTableComponent } from './common-pages/picture-details/like-table/like-table.component';
+import { CommentTableComponent } from './common-pages/picture-details/comment-table/comment-table.component';
+import {PictureDetailsComponent} from "./common-pages/picture-details/picture-details.component";
+import { PictureShareComponent } from './common-pages/picture-details/picture-share/picture-share.component';
+import { PicturePreviewComponent } from './components/picture-preview/picture-preview.component';
+import {GlobalPaginatorComponent} from "./components/global-paginator/global-paginator.component";
 
 @NgModule({
   declarations: [
     HomepageComponent,
     PostPictureComponent,
-    PictureComponent,
     Error404Component,
     Error500Component,
     SearchComponent,
@@ -51,6 +52,12 @@ import { CommentTableComponent } from './components/modals/comment-table/comment
     Error0Component,
     LikeTableComponent,
     CommentTableComponent,
+    PictureShareComponent,
+    PicturePreviewComponent,
+    PictureDetailsComponent,
+    HomepageComponent,
+    PostPictureComponent,
+    GlobalPaginatorComponent
   ],
   imports: [
     CommonModule,
@@ -62,10 +69,7 @@ import { CommentTableComponent } from './components/modals/comment-table/comment
     TimeagoModule.forRoot(),
   ],
   exports: [
-    HomepageComponent,
-    PictureDetailsComponent,
-    PostPictureComponent,
-    PictureComponent
+
   ]
 })
 export class CoreModule { }

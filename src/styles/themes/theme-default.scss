@@ -5177,9 +5177,8 @@ p-treeselect.ng-invalid.ng-dirty {
   box-shadow: 0 0 15px -5px rgba(138, 138, 138, 0.75);
   border: 1px solid #d3d3d3;
   border-radius: 3px;
-  margin-bottom: 2rem;
   .p-card-body {
-    padding: 0.5rem 0 1rem 0;
+    padding: 0;
   }
   .p-card-title {
     overflow-wrap: break-word;
@@ -5197,11 +5196,9 @@ p-treeselect.ng-invalid.ng-dirty {
   .p-card-content {
     padding: 0;
     background-color: variables.$surface-a;
-    border-bottom: 1px solid #d3d3d3;
-    border-top: 1px solid #d3d3d3;
   }
   .p-card-footer {
-    padding: 1rem 0 0 0;
+    padding: 0;
   }
 }
 .p-divider {
@@ -7328,9 +7325,6 @@ p-treeselect.ng-invalid.ng-dirty {
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.25rem 0.4rem;
-
-    margin-top: 0.275rem;
-
   border-radius: 3px;
   .p-tag-icon {
     margin-right: 0.25rem;

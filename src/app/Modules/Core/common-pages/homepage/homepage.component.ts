@@ -1,4 +1,4 @@
-import {Component, OnInit,} from '@angular/core';
+import {Component, OnInit, ViewChild,} from '@angular/core';
 import { PicturePagedResult } from 'src/app/Models/ApiModels/PicturePagedResult';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
@@ -13,13 +13,14 @@ import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.
 })
 
 export class HomepageComponent implements OnInit {
-
+  @ViewChild('customPaginator') paginator: any;
   result: PicturePagedResult = {
     items:[],
     page:0,
     pageSize: 0,
-    totalItems:0
+    totalItems: 0
   }
+  page!: number;
 
   constructor(
     private httpService: HttpServiceService,
@@ -29,26 +30,28 @@ export class HomepageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.paramsService.setPageNumber(1);
     this.updateLikes();
     this.fetchPictures();
+    this.updatePage();
+    this.paramsService.setPageNumber(this.page);
   }
 
   paginate(val: any): void {
     this.updateLikes();
-    this.paramsService.setPageNumber(val.page+1);
+    this.paramsService.setPageNumber(val+1);
+    this.updatePage();
     this.fetchPictures();
   }
-
   scroll(top: number) {
     this.scrollService.scroll(top);
   }
-
   private fetchPictures(): void {
     this.httpService.getPicturesRequest().subscribe({
       next: (value: PicturePagedResult) => {
         this.result = value;
         this.scrollService.scroll(0);
+        this.paginator.updateCurrentPage(this.page);
+        this.paginator.updatePages(value.totalItems);
       }
     });
   }
@@ -62,5 +65,9 @@ export class HomepageComponent implements OnInit {
         });
     }
   }
+  private updatePage(): void {
+    this.page = this.paramsService.getPageNumber();
+  }
 
 }
+

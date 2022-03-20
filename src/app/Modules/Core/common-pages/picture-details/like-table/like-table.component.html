@@ -1,0 +1,32 @@
+<div class="table-container border">
+  <div class="table">
+    <div class="w-100 d-flex flex-row py-2 px-2 pl-md-3 bg-darker border-bottom">
+      <div class="table-title justify-content-start ">
+        <span class="bi bi-person-fill mr-1"></span>
+        <b>Użytkownik</b>
+      </div>
+      <div class="table-title justify-content-center">
+        <span class="bi bi-star-fill mr-1"></span>
+        <b>Ocena</b>
+      </div>
+    </div>
+    <div class="scroll">
+      <div *ngIf="likes.length === 0" class="text-muted text-center py-3">
+        <p>Masz okazję być pierwszą osobą, która polubi ten obrazek!</p>
+      </div>
+      <ng-container *ngIf="likes.length > 0">
+        <div *ngFor="let like of likes, index as i" class="table-row border-bottom"
+             [ngClass]="i%2 ? 'bg-darker' : ''">
+          <div class="item py-3 pr-1 pl-1 pl-md-3 justify-content-start">
+            <span [ngClass]="i%2 ? 'bi bi-person' : 'bi bi-person-fill' "></span>
+            <span class="account-item" [routerLink]="'account/'+like.accountId">{{like.accountNickname | slice:0:22}}</span>
+          </div>
+          <div class="item py-3 px-1 justify-content-center">
+            <span [ngClass]="like.isLike ? 'bi bi-hand-thumbs-up' : 'bi bi-hand-thumbs-down-fill'"></span>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+

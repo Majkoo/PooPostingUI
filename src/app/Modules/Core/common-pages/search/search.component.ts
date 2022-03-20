@@ -86,13 +86,13 @@ export class SearchComponent implements OnInit {
 
   paginate(val: any): void {
     this.auth.updateLikes();
-    this.params.setSearchPageNumber(val.page+1);
+    this.params.setSearchPageNumber(val+1);
     this.fetchPictures();
   }
 
   paginateAccs(val: any): void {
     this.auth.updateLikes();
-    this.params.setSearchPageNumber(val.page+1);
+    this.params.setSearchPageNumber(val+1);
     this.fetchAccounts();
   }
 

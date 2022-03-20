@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
-import {ConfigServiceService} from "../../../../Services/data/config-service.service";
-import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
-import {HttpServiceService} from "../../../../Services/http/http-service.service";
+import {PictureModel} from "../../../../../Models/ApiModels/PictureModel";
+import {ConfigServiceService} from "../../../../../Services/data/config-service.service";
+import {ScrollServiceService} from "../../../../../Services/helpers/scroll-service.service";
+import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {MessageService} from "primeng/api";
 
 @Component({
@@ -12,14 +12,12 @@ import {MessageService} from "primeng/api";
 })
 export class PicturesViewComponent implements OnInit{
   @Input() picture!: PictureModel;
-  showDetailsFlag: boolean = false;
   showSettingsFlag: boolean = false;
 
   constructor(
     private configService: ConfigServiceService,
-    private scroll: ScrollServiceService,
     private httpService: HttpServiceService,
-    private message: MessageService
+    private messageService: MessageService,
   ) { }
 
   ngOnInit(): void {
@@ -29,17 +27,17 @@ export class PicturesViewComponent implements OnInit{
     this.updateLikes();
   }
 
-  showDetails() {
-    this.showDetailsFlag = true;
-  }
   showSettings() {
     this.showSettingsFlag = true;
   }
 
-  delete(){
+  delete() {
     this.httpService.deletePictureRequest(this.picture.id).subscribe({
       next: () => {
-        this.message.add({severity:'warn', summary: 'Sukces', detail: `Obrazek "${this.picture.name}" został usunięty. Zobaczysz efekty po przeładowaniu wyników.`});
+        this.messageService.add({
+          severity:'warn',
+          summary: 'Sukces',
+          detail: `Obrazek "${this.picture.name}" został usunięty. Zobaczysz efekty po przeładowaniu wyników.`});
       }
     })
     this.showSettingsFlag = false;

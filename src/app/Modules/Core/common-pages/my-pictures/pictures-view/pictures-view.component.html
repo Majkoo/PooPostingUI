@@ -35,7 +35,7 @@
 
     <div class="d-flex flex-row justify-content-center justify-content-sm-end align-items-center align-items-sm-end gap">
       <button pButton pRipple icon="bi bi-info-circle"
-              class="p-button-raised py-1 px-2" (click)="showDetails()">
+              class="p-button-raised py-1 px-2" routerLink="/picture/{{picture.id}}">
       </button>
       <button pButton pRipple icon="bi bi-gear"
               class="p-button-raised py-1 px-2" (click)="showSettings()">
@@ -44,17 +44,8 @@
   </div>
 
 </div>
-
-<p-dialog [(visible)]="showDetailsFlag" [blockScroll]="true"
-          header="Szczegóły obrazka" position="center"
-          [draggable]="false" [closeOnEscape]="true" [modal]="true" [dismissableMask]="true">
-  <app-picture-details [picture]="picture" [isLoggedOn]="true">
-  </app-picture-details>
-</p-dialog>
-
-<p-dialog [(visible)]="showSettingsFlag" [blockScroll]="true"
-          header="Ustawienia obrazka" position="center"
-          [draggable]="false" [closeOnEscape]="true" [modal]="true" [dismissableMask]="true">
+<p-dialog [(visible)]="showSettingsFlag" header="Ustawienia obrazka"
+          [modal]="true" [dismissableMask]="true" [draggable]="false">
   <app-picture-settings [picture]="picture" (onDelete)="delete()">
   </app-picture-settings>
 </p-dialog>

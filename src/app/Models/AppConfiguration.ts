@@ -3,4 +3,6 @@
   apiUrl: string;
   // @ts-ignore
   picturesUrl: string;
+  // @ts-ignore
+  appUrl: string;
 }

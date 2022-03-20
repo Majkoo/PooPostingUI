@@ -1,6 +1,4 @@
 .table-container {
-  height: min-content;
-  max-height: clamp(20rem, 1200px, 18.5rem);
   .table {
     width: 100%;
     margin: 0;
@@ -23,6 +21,14 @@
   background-color: rgb(250, 250, 250);
 }
 .scroll {
-  max-height: clamp(15rem, 1200px, 16rem);
-  overflow-y: scroll;
+  height: clamp(18rem, 1200px, 20rem);
+  overflow-y: auto;
+}
+.account-item {
+  overflow-wrap: break-word;
+  text-align: left;
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+  }
 }

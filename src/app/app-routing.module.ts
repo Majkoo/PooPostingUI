@@ -13,6 +13,11 @@ import {HomepageComponent} from "./Modules/Core/common-pages/homepage/homepage.c
 import {MyAccountComponent} from "./Modules/Core/common-pages/my-account/my-account.component";
 import {PopularComponent} from "./Modules/Core/common-pages/popular/popular.component";
 import {Error0Component} from "./Modules/Core/common-pages/errors/error0/error0.component";
+import {PictureSettingsComponent} from "./Modules/Core/components/modals/picture-settings/picture-settings.component";
+import {
+  PictureAdminSettingsComponent
+} from "./Modules/Core/components/modals/picture-admin-settings/picture-admin-settings.component";
+import {PictureDetailsComponent} from "./Modules/Core/common-pages/picture-details/picture-details.component";
 
 
 const routes: Routes = [
@@ -26,9 +31,28 @@ const routes: Routes = [
   {path: "popular", component: PopularComponent},
 
   {
-    path: "picture/post",
-    component: PostPictureComponent,
-    canActivate: [RouteGuardGuard]
+    path: "picture",
+    children: [
+      {
+        path: "post",
+        component: PostPictureComponent,
+        canActivate: [RouteGuardGuard],
+      },
+      {
+        path: ":id",
+        component: PictureDetailsComponent,
+        children:  [
+          {
+            path: "settings",
+            component: PictureSettingsComponent
+          },
+          {
+            path: "admin-settings",
+            component: PictureAdminSettingsComponent
+          }
+        ]
+      },
+    ]
   },
   {
     path: "my-account",

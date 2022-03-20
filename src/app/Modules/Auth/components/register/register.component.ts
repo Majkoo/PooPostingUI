@@ -5,6 +5,7 @@ import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { CustomValidators } from 'src/CustomValidators';
 import {MessageService} from "primeng/api";
 import {throwError} from "rxjs";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private httpService: HttpServiceService,
     private message: MessageService,
-    private router: Router,
+    private location: Location,
   ) {
     this.siteKey = "6Lfdv78eAAAAAJZcBW3ymM-3yaKieXyTTXFPNHcm";
   }
@@ -65,7 +66,7 @@ export class RegisterComponent implements OnInit {
     this.message.clear();
     this.httpService.postRegisterRequest(this.form.getRawValue()).subscribe({
       next: () => {
-        this.router.navigate(['login']);
+        this.location.back();
         this.message.add({severity:'success', summary: 'Sukces', detail: 'Zarejestrowano pomyślnie. Przeniesiono cię na stronę logowania.'});
       },
       error: (err) => {

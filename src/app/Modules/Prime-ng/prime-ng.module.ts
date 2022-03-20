@@ -19,7 +19,6 @@ import {DialogModule} from "primeng/dialog";
 import {CaptchaModule} from "primeng/captcha";
 import {KeyFilterModule} from "primeng/keyfilter";
 import {SelectButtonModule} from "primeng/selectbutton";
-import {TableModule} from "primeng/table";
 import {ScrollPanelModule} from "primeng/scrollpanel";
 import {MenubarModule} from "primeng/menubar";
 import {SidebarModule} from "primeng/sidebar";
@@ -45,7 +44,6 @@ const PrimeNgComponents = [
   KeyFilterModule,
   SelectButtonModule,
   DataViewModule,
-  TableModule,
   ScrollPanelModule,
   MenubarModule,
   SidebarModule

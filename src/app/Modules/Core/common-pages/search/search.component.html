@@ -7,10 +7,10 @@
   </app-search-panel>
 
   <div>
-    <app-picture
+    <app-picture-preview
       *ngFor="let picture of picturesResult!.items"
       [picture]="picture">
-    </app-picture>
+    </app-picture-preview>
     <app-account
       *ngFor="let account of accountsResult!.items"
       [account]="account">
@@ -18,29 +18,17 @@
   </div>
 
   <nav class="paginator w-100 shadow border" *ngIf="picturesResult.items.length">
-    <p-paginator [rows]="10" #paginator
-                 [totalRecords]="picturesResult.totalItems-1"
-                 (onPageChange)="paginate($event)"
-                 [pageLinkSize]="4"
-                 [showCurrentPageReport]="true"
-                 [currentPageReportTemplate]="'{currentPage} z {totalPages}'"
-                 [showJumpToPageInput]="true"
-                 aria-label="Select page">
-    </p-paginator>
+    <app-global-paginator #picPaginator
+                 [totalItems]="picturesResult.totalItems"
+                 [pageSize]="10" (onPaginate)="paginate($event)">
+    </app-global-paginator>
   </nav>
 
   <nav class="paginator w-100 shadow border" *ngIf="accountsResult.items.length">
-    <p-paginator [rows]="5" #paginatorAcc
-                 [totalRecords]="accountsResult.totalItems-1"
-                 (onPageChange)="paginateAccs($event)"
-                 [pageLinkSize]="4"
-                 [showCurrentPageReport]="true"
-                 [currentPageReportTemplate]="'{currentPage} z {totalPages}'"
-                 [showJumpToPageInput]="true"
-                 aria-label="Select page">
-    </p-paginator>
+    <app-global-paginator #accPaginator
+                          [totalItems]="picturesResult.totalItems"
+                          [pageSize]="5" (onPaginate)="paginateAccs($event)">
+    </app-global-paginator>
   </nav>
 
 </main>
-
-

@@ -17,6 +17,7 @@ export class ConfigServiceService extends AppConfiguration {
       .then(
         data => {
         this.apiUrl = data!.apiUrl;
+        this.appUrl = data!.appUrl;
         this.picturesUrl = data!.picturesUrl;
         console.log('Config successfully loaded')
       })

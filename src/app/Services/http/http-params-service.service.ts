@@ -8,8 +8,9 @@ import { SortSearchBy } from 'src/app/Enums/SortSearchBy';
   providedIn: 'root'
 })
 export class HttpParamsServiceService {
+  currentPaginatorState: number | null = null;
 
-  constructor() { }
+  constructor() {}
 
   GetPQuery: GetPQuery = {
     searchPhrase: "",
@@ -27,6 +28,9 @@ export class HttpParamsServiceService {
 
   setPageNumber(pageNumber: number): void{
     this.GetPQuery.pageNumber = pageNumber;
+  }
+  getPageNumber(): number {
+    return this.GetPQuery.pageNumber;
   }
   setSearchPageNumber(pageNumber: number): void{
     this.SearchQuery.pageNumber = pageNumber;

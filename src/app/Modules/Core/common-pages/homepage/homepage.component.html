@@ -1,17 +1,13 @@
 <main>
-  <app-picture
+  <app-picture-preview
     *ngFor="let picture of result!.items"
     [picture]="picture">
-  </app-picture>
+  </app-picture-preview>
 </main>
 
-<nav class="paginator w-100 shadow border" *ngIf="result.page">
-  <p-paginator [rows]="10" [totalRecords]="result.totalItems-1"
-               (onPageChange)="paginate($event)"
-               [pageLinkSize]="4"
-               [showCurrentPageReport]="true"
-               [currentPageReportTemplate]="'{currentPage} z {totalPages}'"
-               [showJumpToPageInput]="true"
-               aria-label="Select page">
-  </p-paginator>
+<nav class="paginator w-100 shadow border">
+    <app-global-paginator #customPaginator
+      [totalItems]="result.totalItems"
+      [pageSize]="10" (onPaginate)="paginate($event)">
+    </app-global-paginator>
 </nav>

@@ -11,6 +11,9 @@
 
   <div class="d-flex align-items-start justify-content-center justify-content-md-start" label="Opis obrazka">
     <span class="bi bi-file-text-fill"></span>
-    <p><i>{{!isWhitespace(description) ? "brak opisu" : description}}</i></p>
+    <p>
+        {{!isWhitespace(description) ? "brak opisu" : description | slice:0:75}}
+        <span *ngIf="description"><span *ngIf="description.length >= 75">...</span></span>
+    </p>
   </div>
 </div>

@@ -1,3 +1,4 @@
+@import "themes/_variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons";
 @import "~primeicons/primeicons.css";
@@ -44,8 +45,12 @@ footer{
   -webkit-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
 }
-
-
+.paginator {
+  margin-top: auto;
+  position: sticky;
+  bottom: 0;
+  background-color: #efefef;
+}
 .bi {
   font-size: 1.5rem;
   line-height: 1.5rem;
@@ -72,11 +77,6 @@ a:hover {
     left: 50%;
   }
 }
-.paginator {
-  position: sticky;
-  bottom: 0;
-  background-color: #efefef;
-}
 
 .p-dialog {
   @media screen and (max-width: 1140px) {
@@ -97,6 +97,9 @@ a:hover {
 .p-dataview-content, .p-dataview-header, .p-paginator-bottom {
   outline: 1px solid $gray-200 !important;
   border: none !important;
+}
+.bg-surface-gray {
+  background-color: $gray-200;
 }
 
 
