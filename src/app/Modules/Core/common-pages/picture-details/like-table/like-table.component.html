@@ -19,7 +19,7 @@
              [ngClass]="i%2 ? 'bg-darker' : ''">
           <div class="item py-3 pr-1 pl-1 pl-md-3 justify-content-start">
             <span [ngClass]="i%2 ? 'bi bi-person' : 'bi bi-person-fill' "></span>
-            <span class="account-item" [routerLink]="'account/'+like.accountId">{{like.accountNickname | slice:0:22}}</span>
+            <span class="account-link" [routerLink]="'/account/'+like.accountId">{{like.accountNickname | slice:0:22}}</span>
           </div>
           <div class="item py-3 px-1 justify-content-center">
             <span [ngClass]="like.isLike ? 'bi bi-hand-thumbs-up' : 'bi bi-hand-thumbs-down-fill'"></span>

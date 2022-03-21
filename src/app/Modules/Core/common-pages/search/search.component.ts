@@ -13,7 +13,10 @@ import {AccountPagedResult} from "../../../../Models/ApiModels/AccountPagedResul
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  @ViewChild('paginator') paginator: any;
+  @ViewChild('picPaginator') picPaginator: any;
+  @ViewChild('accPaginator') accPaginator: any;
+  picPage: number = 1;
+  accPage: number = 1;
 
   picturesResult: PicturePagedResult = {
     items:[],
@@ -30,13 +33,14 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private httpService: HttpServiceService,
-    private params: HttpParamsServiceService,
+    private paramsService: HttpParamsServiceService,
+    private messageService: MessageService,
+    private authService: AuthServiceService,
     private router: Router,
-    private message: MessageService,
-    private auth: AuthServiceService) {}
+  ) {}
 
   ngOnInit(): void {
-    this.params.setSearchPageNumber(1);
+    this.paramsService.setSearchPageNumber(1);
   }
 
   searchPictures() {
@@ -44,18 +48,20 @@ export class SearchComponent implements OnInit {
     this.httpService.searchPicturesRequest().subscribe({
       next: (val: PicturePagedResult) => {
         this.picturesResult = val;
-        this.message.add({
+        this.messageService.add({
           severity:'success',
           summary: 'Sukces',
-          detail: `Znaleziono ${val.totalItems} wyników dla "${this.params.SearchQuery.searchPhrase}"`
+          detail: `Znaleziono ${val.totalItems} wyników dla "${this.paramsService.SearchQuery.searchPhrase}"`
         });
         this.clearAccountsResult();
+        this.picPaginator.updateCurrentPage(val.page);
+        this.picPaginator.updatePages(val.totalItems);
       },
       error: () => {
-        this.message.add({
+        this.messageService.add({
           severity:'error',
           summary: 'Niepowodzenie',
-          detail: `Nie znaleziono żadnych wyników dla "${this.params.SearchQuery.searchPhrase}"`});
+          detail: `Nie znaleziono żadnych wyników dla "${this.paramsService.SearchQuery.searchPhrase}"`});
       }
     });
   }
@@ -64,18 +70,20 @@ export class SearchComponent implements OnInit {
     this.httpService.searchAccountsRequest().subscribe({
       next: (val: AccountPagedResult) => {
         this.accountsResult = val;
-        this.message.add({
+        this.messageService.add({
           severity:'success',
           summary: 'Sukces',
-          detail: `Znaleziono ${val.totalItems} wyników dla "${this.params.SearchQuery.searchPhrase}"`
+          detail: `Znaleziono ${val.totalItems} wyników dla "${this.paramsService.SearchQuery.searchPhrase}"`
         });
         this.clearPictureResult();
+        this.accPaginator.updateCurrentPage(val.page);
+        this.accPaginator.updatePages(val.totalItems);
       },
       error: () => {
-        this.message.add({
+        this.messageService.add({
           severity:'error',
           summary: 'Niepowodzenie',
-          detail: `Nie znaleziono żadnych wyników dla "${this.params.SearchQuery.searchPhrase}"`});
+          detail: `Nie znaleziono żadnych wyników dla "${this.paramsService.SearchQuery.searchPhrase}"`});
       }
     });
   }
@@ -85,14 +93,15 @@ export class SearchComponent implements OnInit {
   }
 
   paginate(val: any): void {
-    this.auth.updateLikes();
-    this.params.setSearchPageNumber(val+1);
+    this.authService.updateLikes();
+    this.paramsService.setSearchPageNumber(val+1);
+    this.updatePage();
     this.fetchPictures();
   }
-
   paginateAccs(val: any): void {
-    this.auth.updateLikes();
-    this.params.setSearchPageNumber(val+1);
+    this.authService.updateLikes();
+    this.paramsService.setSearchPageNumber(val+1);
+    this.updatePage();
     this.fetchAccounts();
   }
 
@@ -118,19 +127,25 @@ export class SearchComponent implements OnInit {
       next: (val: PicturePagedResult) => {
         this.picturesResult = val;
         document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+        this.picPaginator.updateCurrentPage(val.page);
+        this.picPaginator.updatePages(val.totalItems);
       }
     });
   }
-
   private fetchAccounts(): void {
     this.httpService.searchAccountsRequest().subscribe({
       next: (val: AccountPagedResult) => {
         this.accountsResult = val;
         document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+        this.accPaginator.updateCurrentPage(val.page);
+        this.accPaginator.updatePages(val.totalItems);
       }
     });
+  }
+
+  private updatePage(): void {
+    this.picPage = this.paramsService.getPageNumber();
+    this.accPage = this.paramsService.getPageNumber();
   }
 
 }

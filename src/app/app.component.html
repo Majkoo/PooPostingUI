@@ -1,6 +1,6 @@
 <div class="d-flex flex-column justify-content-between" style="height: 100vh">
   <div>
-    <div class="sticky-top">
+    <div class="nav-top">
       <app-navbar></app-navbar>
     </div>
 
@@ -14,10 +14,10 @@
         <app-sidebar class="col-12 col-md-4 col-lg-3 order-1 px-3 pt-2
         p-md-0 pl-md-4 order-md-2 mt-4 d-none d-md-block"
                      *ngIf="
-      !router.url.startsWith('/error') &&
-      router.url !== '/login' &&
-      router.url !== '/register' &&
-      router.url !== '/logged-out'">
+          !router.url.startsWith('/error') &&
+          router.url !== '/login' &&
+          router.url !== '/register' &&
+          router.url !== '/logged-out'">
         </app-sidebar>
 
       </div>

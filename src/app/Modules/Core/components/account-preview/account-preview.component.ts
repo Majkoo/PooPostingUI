@@ -1,13 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
+import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+  selector: 'app-account-preview',
+  templateUrl: './account-preview.component.html',
+  styleUrls: ['./account-preview.component.scss']
 })
-export class AccountComponent implements OnInit {
+export class AccountPreviewComponent implements OnInit {
+
   @Input() account!: AccountModel;
   constructor(
     private configService: ConfigServiceService

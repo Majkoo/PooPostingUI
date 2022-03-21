@@ -4,7 +4,6 @@ import { LoginComponent } from './Modules/Auth/components/login/login.component'
 import { RegisterComponent } from './Modules/Auth/components/register/register.component';
 import { LoggedOutComponent } from './Modules/Core/common-pages/logged-out/logged-out.component';
 import {PostPictureComponent} from "./Modules/Core/common-pages/post-picture/post-picture.component";
-import {MyPicturesComponent} from "./Modules/Core/common-pages/my-pictures/my-pictures.component";
 import {Error404Component} from "./Modules/Core/common-pages/errors/error404/error404.component";
 import {Error500Component} from "./Modules/Core/common-pages/errors/error500/error500.component";
 import {RouteGuardGuard} from "./Services/guards/route-guard.guard";
@@ -13,11 +12,8 @@ import {HomepageComponent} from "./Modules/Core/common-pages/homepage/homepage.c
 import {MyAccountComponent} from "./Modules/Core/common-pages/my-account/my-account.component";
 import {PopularComponent} from "./Modules/Core/common-pages/popular/popular.component";
 import {Error0Component} from "./Modules/Core/common-pages/errors/error0/error0.component";
-import {PictureSettingsComponent} from "./Modules/Core/components/modals/picture-settings/picture-settings.component";
-import {
-  PictureAdminSettingsComponent
-} from "./Modules/Core/components/modals/picture-admin-settings/picture-admin-settings.component";
 import {PictureDetailsComponent} from "./Modules/Core/common-pages/picture-details/picture-details.component";
+import {AccountDetailsComponent} from "./Modules/Core/common-pages/account-details/account-details.component";
 
 
 const routes: Routes = [
@@ -41,29 +37,29 @@ const routes: Routes = [
       {
         path: ":id",
         component: PictureDetailsComponent,
-        children:  [
-          {
-            path: "settings",
-            component: PictureSettingsComponent
-          },
-          {
-            path: "admin-settings",
-            component: PictureAdminSettingsComponent
-          }
-        ]
       },
     ]
   },
   {
+    path: "account",
+    children: [
+      {
+        path: ":id",
+        component: AccountDetailsComponent,
+      },
+    ]
+  },
+
+
+  {
     path: "my-account",
     component: MyAccountComponent,
-    canActivate: [RouteGuardGuard]
+    canActivate: [RouteGuardGuard],
   },
-  {
-    path: "my-account/picture",
-    component: MyPicturesComponent,
-    canActivate: [RouteGuardGuard]
-  },
+  // {
+  //   path: "my-account/picture",
+  //   canActivate: [RouteGuardGuard],
+  // },
 
   {path: "error500", component: Error500Component},
   {path: "error404", component: Error404Component},

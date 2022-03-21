@@ -1,0 +1,10 @@
+img {
+  aspect-ratio: 16/10;
+}
+.account-link {
+  cursor: pointer;
+  width: max-content;
+  &:hover{
+    text-decoration: underline;
+  }
+}

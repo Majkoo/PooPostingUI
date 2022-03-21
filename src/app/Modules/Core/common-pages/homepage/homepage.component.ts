@@ -49,7 +49,7 @@ export class HomepageComponent implements OnInit {
     this.httpService.getPicturesRequest().subscribe({
       next: (value: PicturePagedResult) => {
         this.result = value;
-        this.scrollService.scroll(0);
+        this.scroll(0);
         this.paginator.updateCurrentPage(this.page);
         this.paginator.updatePages(value.totalItems);
       }

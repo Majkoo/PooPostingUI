@@ -1,0 +1,20 @@
+<div *ngIf="account != undefined" class="mb-4">
+  <p-card>
+    <p-header class="d-flex justify-content-center">
+      <h3 routerLink="/account/{{account.id}}" class="account-link">{{account.nickname}}</h3>
+    </p-header>
+
+    <div class="row justify-content-center">
+      <div class="col-4" *ngFor="let picture of account.pictures | slice:0:3">
+        <h5 class="text-break">{{picture.name}}</h5>
+        <img src="{{picture.url}}" alt="{{picture.name}}" class="img-fluid">
+      </div>
+      <div *ngIf="!account.pictures.length" class="col-12">
+        <div class="d-flex justify-content-center">
+          <span class="text-muted text-center">Brak obrazków</span>
+        </div>
+      </div>
+    </div>
+
+  </p-card>
+</div>

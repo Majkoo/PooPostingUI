@@ -1,15 +1,28 @@
 import { Injectable } from '@angular/core';
 import {MenuItem} from "../../Models/MenuModels/MenuItem";
 import {MenuExpandableItem} from "../../Models/MenuModels/MenuExpandableItem";
+import {AuthServiceService} from "./auth-service.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenusServiceService {
-  menuExpandableItems: MenuExpandableItem[];
-  menuItems: MenuItem[];
+  menuExpandableItems!: MenuExpandableItem[];
+  menuItems!: MenuItem[];
 
-  constructor() {
+  constructor(
+  ) {
+    this.refreshItems();
+  }
+
+  getMenuItems() {
+    return this.menuItems;
+  }
+  getExpandableMenuItems() {
+    return this.menuExpandableItems;
+  }
+
+  refreshItems() {
     this.menuItems = [
       {
         label: "Strona główna",
@@ -68,12 +81,7 @@ export class MenusServiceService {
           {
             label: "Konto",
             class: "bi bi-person-circle",
-            url: "my-account"
-          },
-          {
-            label: "Obrazki",
-            class: "bi bi-file-image",
-            url: "my-account/picture"
+            url: "my-account",
           },
           {
             label: "Wyloguj",
@@ -83,12 +91,5 @@ export class MenusServiceService {
         ]
       },
     ];
-  }
-
-  getMenuItems() {
-   return this.menuItems;
-  }
-  getExpandableMenuItems() {
-    return this.menuExpandableItems;
   }
 }

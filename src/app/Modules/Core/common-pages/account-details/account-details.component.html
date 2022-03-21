@@ -1,0 +1,64 @@
+<div *ngIf="account" class="px-3 px-md-0">
+
+  <div class="mb-3 d-flex align-items-center justify-content-between">
+    <button pButton pRipple label="Powrót" icon="bi bi-arrow-return-left" class="px-3" (click)="return()"></button>
+    <button pButton pRipple label="Ustawienia" icon="bi bi-gear-fill" class="px-3"
+            (click)="showAccountSettings()" *ngIf="isVisitorAccOwner"></button>
+  </div>
+
+  <h2 class="text-center">
+    <b>Szczegóły konta</b>
+  </h2>
+  <div class="mt-2 ml-3">
+    <div class="d-flex justify-content-start align-items-center account-nickname">
+      <span class="bi bi-person-fill"></span>
+      <p>{{account.nickname}}</p>
+    </div>
+    <div class="d-flex justify-content-start align-items-center mt-2">
+      <span class="bi bi-calendar-month mr-1"></span>
+      <p>{{account.accountCreated | date}}</p>
+    </div>
+    <div class="d-flex justify-content-start align-items-center mt-2" *ngIf="isVisitorAccOwner">
+      <span class="bi bi-envelope mr-1"></span>
+      <p>{{account.email}}</p>
+    </div>
+  </div>
+
+  <div class="my-4 mb-md-5 px-2" *ngIf="account.pictures.length">
+    <p-dataView #dv [value]="account.pictures" [paginator]="true" [rows]="10" filterBy="name">
+      <ng-template pTemplate="header">
+        <div class="d-flex justify-content-center justify-content-sm-between align-items-center flex-wrap gap-2">
+          <h5 class="text-center text-sm-left">Obrazki użytkownika <b>{{account.nickname}}</b></h5>
+          <span class="p-input-icon-left md:mb-0 d-flex align-items-center">
+            <i class="pi pi-search"></i>
+            <input type="search" pInputText placeholder="Znajdź obrazek" (input)="filter($event)">
+          </span>
+        </div>
+      </ng-template>
+
+      <ng-template let-picture pTemplate="listItem" class="border">
+        <app-picture-table
+          [picture]="picture"
+          [isVisitorOwner]="isVisitorAccOwner">
+        </app-picture-table>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <div class="d-flex justify-content-center align-items-center">
+          <p class="text-muted">Łączna liczba obrazków: {{account.pictures.length}}</p>
+        </div>
+      </ng-template>
+    </p-dataView>
+  </div>
+
+  <div class="my-4 px-2" *ngIf="!account.pictures.length">
+    <p class="text-muted text-center">Ten użytkownik nie zapostował jeszcze żadnego obrazka.</p>
+  </div>
+
+
+  <p-dialog [(visible)]="showAccountSettingsFlag" header="Ustawienia konta"
+            [modal]="true" [dismissableMask]="true" [draggable]="false">
+    <app-account-settings></app-account-settings>
+  </p-dialog>
+
+</div>

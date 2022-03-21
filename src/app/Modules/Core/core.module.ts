@@ -13,9 +13,6 @@ import { SearchPanelComponent } from './components/search-panel/search-panel.com
 import { MyAccountComponent } from './common-pages/my-account/my-account.component';
 import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 import {TimeagoModule} from "ngx-timeago";
-import { AccountComponent } from './components/account/account.component';
-import { MyPicturesComponent } from './common-pages/my-pictures/my-pictures.component';
-import { PicturesViewComponent } from './common-pages/my-pictures/pictures-view/pictures-view.component';
 import { LoggedOutComponent } from './common-pages/logged-out/logged-out.component';
 import { PictureSettingsComponent } from './components/modals/picture-settings/picture-settings.component';
 import { PictureAdminSettingsComponent } from './components/modals/picture-admin-settings/picture-admin-settings.component';
@@ -29,6 +26,10 @@ import {PictureDetailsComponent} from "./common-pages/picture-details/picture-de
 import { PictureShareComponent } from './common-pages/picture-details/picture-share/picture-share.component';
 import { PicturePreviewComponent } from './components/picture-preview/picture-preview.component';
 import {GlobalPaginatorComponent} from "./components/global-paginator/global-paginator.component";
+import { AccountPreviewComponent } from './components/account-preview/account-preview.component';
+import { AccountDetailsComponent } from './common-pages/account-details/account-details.component';
+import { PictureTableComponent } from './common-pages/account-details/picture-table/picture-table.component';
+import { AccountSettingsComponent } from './components/modals/account-settings/account-settings.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +40,6 @@ import {GlobalPaginatorComponent} from "./components/global-paginator/global-pag
     SearchComponent,
     SearchPanelComponent,
     MyAccountComponent,
-    AccountComponent,
-    MyPicturesComponent,
-    PicturesViewComponent,
     LoggedOutComponent,
     PictureDetailsComponent,
     PictureSettingsComponent,
@@ -54,10 +52,13 @@ import {GlobalPaginatorComponent} from "./components/global-paginator/global-pag
     CommentTableComponent,
     PictureShareComponent,
     PicturePreviewComponent,
-    PictureDetailsComponent,
     HomepageComponent,
     PostPictureComponent,
-    GlobalPaginatorComponent
+    GlobalPaginatorComponent,
+    AccountPreviewComponent,
+    AccountDetailsComponent,
+    PictureTableComponent,
+    AccountSettingsComponent,
   ],
   imports: [
     CommonModule,

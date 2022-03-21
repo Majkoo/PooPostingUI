@@ -67,6 +67,9 @@ export class PictureDetailsComponent {
             if(!this.picture.url.startsWith("http")){
               this.picture.url = this.configService.picturesUrl + this.picture.url;
             }
+          },
+          error: () => {
+            this.router.navigate(['/error404']);
           }
         });
       }
@@ -127,8 +130,8 @@ export class PictureDetailsComponent {
     this.showShareFlag = true;
   }
   return() {
-    // this.location.back();
-    this.router.navigate(['/home'])
+    this.location.back();
+    // this.router.navigate(['/home'])
   }
 
   likeObserver = {

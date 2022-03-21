@@ -1,7 +1,17 @@
 <div *ngIf="picture != undefined" [id]="picture.id" class="pb-1">
 
-  <p-card header="{{picture.name | titlecase}}" subheader="Dodano przez: {{picture.accountNickname}}, {{picture.pictureAdded | timeago}}"
-          styleClass="p-card-shadow card text-center mx-3 mx-md-0 pt-1 mb-4">
+  <p-card styleClass="p-card-shadow card text-center mx-3 mx-md-0 pt-1 mb-4">
+
+    <ng-template pTemplate="header">
+      <div class="p-card-title text-center mt-1">{{picture.name | titlecase}}</div>
+      <div class="p-card-subtitle d-flex flex-row justify-content-center align-items-center gap-1 flex-wrap">
+        Dodano przez:
+        <span>
+          <span class="account-link" [routerLink]="'/account/'+picture.accountId">{{picture.accountNickname}}</span>,
+        </span>
+        {{picture.pictureAdded | timeago}}
+      </div>
+    </ng-template>
 
     <img src='{{this.picture.url}}' class="img-fluid" alt="{{picture.name}} by {{picture.accountNickname}}" title="{{picture.name}} by {{picture.accountNickname}}">
 

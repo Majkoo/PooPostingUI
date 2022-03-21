@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private location: Location,
     private authService: AuthServiceService,
     private httpService: HttpServiceService,
-    private message: MessageService) {}
+    private messageService: MessageService) {}
 
 
   ngOnInit(): void {
@@ -32,21 +32,21 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.awaitSubmit = true;
-    this.message.clear();
+    this.messageService.clear();
     this.httpService
       .postLoginRequest(this.form.getRawValue())
       .subscribe({
         next: (v: UserInfoModel) => {
           if (v) {
             this.authService.setUserInfo(v);
-            this.message.add({severity:'success', summary: 'Sukces', detail: 'Zalogowano pomyślnie.'});
+            this.messageService.add({severity:'success', summary: 'Sukces', detail: 'Zalogowano pomyślnie.'});
             this.location.back();
             this.awaitSubmit = false;
           }
         },
         error: (err) => {
           if (err.error === "Invalid nickname or password") {
-            this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Podano błędne dane logowania.', key: "login-failed"});
+            this.messageService.add({severity:'error', summary: 'Niepowodzenie', detail: 'Podano błędne dane logowania.', key: "login-failed"});
             this.awaitSubmit = false;
           }
         }

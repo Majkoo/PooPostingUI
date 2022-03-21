@@ -34,7 +34,6 @@ export function initializerFn(configService: ConfigServiceService){
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-
     AuthModule,
     CoreModule,
     UIModule,

@@ -24,11 +24,4 @@
   height: clamp(18rem, 1200px, 20rem);
   overflow-y: auto;
 }
-.account-item {
-  overflow-wrap: break-word;
-  text-align: left;
-  cursor: pointer;
-  &:hover{
-    text-decoration: underline;
-  }
-}
+

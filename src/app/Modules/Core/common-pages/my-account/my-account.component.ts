@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
-import {UserInfoModel} from "../../../../Models/UserInfoModel";
+import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-my-account',
-  templateUrl: './my-account.component.html',
-  styleUrls: ['./my-account.component.scss']
+  template: '',
+  styles: ['']
 })
 export class MyAccountComponent implements OnInit {
-  constructor(private auth: AuthServiceService) { }
-  userInfo!: UserInfoModel;
+  constructor(
+    private authService: AuthServiceService,
+    private location: Location,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
-    this.userInfo = this.auth.getUserInfo();
+    this.router.navigate([`/account/${this.authService.getUserInfo().accountDto.id}`]);
+    this.location.go('/home')
   }
 
 }

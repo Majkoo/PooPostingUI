@@ -26,10 +26,11 @@ $navbar-height: 75px;
 body {
   overflow-y: scroll !important;
 }
-nav{
+.nav-top {
   position: sticky;
   position: -webkit-sticky;
   top: 0 !important;
+  z-index: 999;
   box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -webkit-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
@@ -47,6 +48,7 @@ footer{
 }
 .paginator {
   margin-top: auto;
+  position: -webkit-sticky;
   position: sticky;
   bottom: 0;
   background-color: #efefef;
@@ -64,11 +66,26 @@ a:hover {
 .bt {
   border-top: 2px solid $gray-200 !important;
 }
+.gap-1 {
+  gap: 0.25rem;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.account-link {
+  overflow-wrap: break-word;
+  text-align: left;
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+  }
+}
 
 .toast {
   position: fixed;
   bottom: 3em;
-  right: 0.5em;
+  right: 0.75em;
   font-size: 0.875rem;
   padding: 0.2rem 0.5rem;
   @media only screen and(max-width: 766px) {
@@ -93,7 +110,6 @@ a:hover {
     padding-top: 1rem !important;
   }
 }
-
 .p-dataview-content, .p-dataview-header, .p-paginator-bottom {
   outline: 1px solid $gray-200 !important;
   border: none !important;

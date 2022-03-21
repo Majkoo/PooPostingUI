@@ -18,7 +18,7 @@
           <div class="d-flex w-100 flex-row align-items-center justify-content-between">
             <div class="d-flex w-100 flex-row align-items-center justify-content-start">
               <span [ngClass]="i%2 ? 'bi bi-person' : 'bi bi-person-fill' "></span>
-              <b class="account-item" [routerLink]="'account/'+comment.authorId">{{comment.authorNickname}}</b><b>:</b>
+              <b class="account-link" [routerLink]="'/account/'+comment.authorId">{{comment.authorNickname}}</b><b>:</b>
             </div>
             <button pButton pRipple type="button" *ngIf="comment.isModifiable"
                     (click)="delete(comment)" icon="bi bi-x" class="p-button p-0 p-button-danger">

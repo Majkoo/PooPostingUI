@@ -22,14 +22,6 @@
         display: flex;
         align-items: center;
       }
-      .account-item {
-        overflow-wrap: break-word;
-        text-align: left;
-        cursor: pointer;
-        &:hover{
-          text-decoration: underline;
-        }
-      }
     }
   }
 }

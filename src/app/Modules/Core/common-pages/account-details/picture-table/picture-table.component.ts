@@ -1,17 +1,18 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PictureModel} from "../../../../../Models/ApiModels/PictureModel";
 import {ConfigServiceService} from "../../../../../Services/data/config-service.service";
-import {ScrollServiceService} from "../../../../../Services/helpers/scroll-service.service";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {MessageService} from "primeng/api";
+import {AuthServiceService} from "../../../../../Services/data/auth-service.service";
 
 @Component({
-  selector: 'app-pictures-view',
-  templateUrl: './pictures-view.component.html',
-  styleUrls: ['./pictures-view.component.scss']
+  selector: 'app-picture-table',
+  templateUrl: './picture-table.component.html',
+  styleUrls: ['./picture-table.component.scss']
 })
-export class PicturesViewComponent implements OnInit{
+export class PictureTableComponent implements OnInit {
   @Input() picture!: PictureModel;
+  @Input() isVisitorOwner!: boolean;
   showSettingsFlag: boolean = false;
 
   constructor(
@@ -47,5 +48,6 @@ export class PicturesViewComponent implements OnInit{
     this.picture.likeCount = this.picture.likes.filter(l => l.isLike).length;
     this.picture.dislikeCount = this.picture.likes.filter(l => !l.isLike).length;
   }
+
 
 }

@@ -3,12 +3,12 @@ html{
   overflow: hidden;
   width: auto !important;
 
-  font-family: Roboto, "Helvetica Neue", sans-serif !important;
   font-size: clamp(12.5px, 1.5vw, 16px);
 }
-h1,h2,h3,h4,h5,h6,p{
+h1,h2,h3,h4,h5,h6,p,b,small,strong{
   margin: 0 !important;
   padding: 0 !important;
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
 }
 .disable-selection, img {
   -webkit-touch-callout: none; /* iOS Safari                         */
