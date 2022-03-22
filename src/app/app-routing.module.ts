@@ -14,12 +14,14 @@ import {PopularComponent} from "./Modules/Core/common-pages/popular/popular.comp
 import {Error0Component} from "./Modules/Core/common-pages/errors/error0/error0.component";
 import {PictureDetailsComponent} from "./Modules/Core/common-pages/picture-details/picture-details.component";
 import {AccountDetailsComponent} from "./Modules/Core/common-pages/account-details/account-details.component";
+import { TosComponent } from './Modules/Core/common-pages/tos/tos.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: "/home", pathMatch: 'full'},
 
   {path: "home", component: HomepageComponent},
+  {path: "tos", component: TosComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
   {path: "logged-out", component: LoggedOutComponent},

@@ -20,8 +20,6 @@ import { ModalPicComponent } from './components/modals/modal-pic/modal-pic.compo
 import { ModalInfoComponent } from './components/modals/modal-info/modal-info.component';
 import { PopularComponent } from './common-pages/popular/popular.component';
 import { Error0Component } from './common-pages/errors/error0/error0.component';
-import { LikeTableComponent } from './common-pages/picture-details/like-table/like-table.component';
-import { CommentTableComponent } from './common-pages/picture-details/comment-table/comment-table.component';
 import {PictureDetailsComponent} from "./common-pages/picture-details/picture-details.component";
 import { PictureShareComponent } from './common-pages/picture-details/picture-share/picture-share.component';
 import { PicturePreviewComponent } from './components/picture-preview/picture-preview.component';
@@ -30,6 +28,7 @@ import { AccountPreviewComponent } from './components/account-preview/account-pr
 import { AccountDetailsComponent } from './common-pages/account-details/account-details.component';
 import { PictureTableComponent } from './common-pages/account-details/picture-table/picture-table.component';
 import { AccountSettingsComponent } from './components/modals/account-settings/account-settings.component';
+import { TosComponent } from './common-pages/tos/tos.component';
 
 @NgModule({
   declarations: [
@@ -48,8 +47,6 @@ import { AccountSettingsComponent } from './components/modals/account-settings/a
     ModalInfoComponent,
     PopularComponent,
     Error0Component,
-    LikeTableComponent,
-    CommentTableComponent,
     PictureShareComponent,
     PicturePreviewComponent,
     HomepageComponent,
@@ -59,6 +56,7 @@ import { AccountSettingsComponent } from './components/modals/account-settings/a
     AccountDetailsComponent,
     PictureTableComponent,
     AccountSettingsComponent,
+    TosComponent,
   ],
   imports: [
     CommonModule,
