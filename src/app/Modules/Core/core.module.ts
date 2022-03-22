@@ -29,6 +29,8 @@ import { AccountDetailsComponent } from './common-pages/account-details/account-
 import { PictureTableComponent } from './common-pages/account-details/picture-table/picture-table.component';
 import { AccountSettingsComponent } from './components/modals/account-settings/account-settings.component';
 import { TosComponent } from './common-pages/tos/tos.component';
+import {LikeTableComponent} from "./common-pages/picture-details/like-table/like-table.component";
+import {CommentTableComponent} from "./common-pages/picture-details/comment-table/comment-table.component";
 
 @NgModule({
   declarations: [
@@ -54,8 +56,10 @@ import { TosComponent } from './common-pages/tos/tos.component';
     GlobalPaginatorComponent,
     AccountPreviewComponent,
     AccountDetailsComponent,
-    PictureTableComponent,
     AccountSettingsComponent,
+    LikeTableComponent,
+    CommentTableComponent,
+    PictureTableComponent,
     TosComponent,
   ],
   imports: [
