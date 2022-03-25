@@ -5,11 +5,13 @@ import {RegisterComponent} from "./components/register/register.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import {PrimeNgModule} from "../prime-ng/prime-ng.module";
+import {LoggedOutComponent} from "./components/logged-out/logged-out.component";
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoggedOutComponent
   ],
     imports: [
       CommonModule,

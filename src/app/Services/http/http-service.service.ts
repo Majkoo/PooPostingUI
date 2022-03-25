@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, Subject} from "rxjs";
+import {Observable, Subject, tap} from "rxjs";
 import {HttpParamsServiceService} from "./http-params-service.service";
 import { PictureModel } from 'src/app/Models/ApiModels/PictureModel';
 import { PicturePagedResult } from 'src/app/Models/ApiModels/PicturePagedResult';

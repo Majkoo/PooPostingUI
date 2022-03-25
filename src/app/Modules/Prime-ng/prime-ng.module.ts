@@ -22,6 +22,8 @@ import {SelectButtonModule} from "primeng/selectbutton";
 import {ScrollPanelModule} from "primeng/scrollpanel";
 import {MenubarModule} from "primeng/menubar";
 import {SidebarModule} from "primeng/sidebar";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {CarouselModule} from "primeng/carousel";
 
 const PrimeNgComponents = [
   ChipsModule,
@@ -46,7 +48,9 @@ const PrimeNgComponents = [
   DataViewModule,
   ScrollPanelModule,
   MenubarModule,
-  SidebarModule
+  SidebarModule,
+  ProgressSpinnerModule,
+  CarouselModule
 
 ]
 

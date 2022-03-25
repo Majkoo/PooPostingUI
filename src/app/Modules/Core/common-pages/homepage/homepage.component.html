@@ -1,11 +1,15 @@
-<main>
+<main class="home-site">
+  <div class="d-flex flex-column justify-content-center align-items-center custom-spinner-container" *ngIf="!result.page">
+    <div class="text-muted text-center mt-5 mb-3 font-weight-bold loading-title">Wczytywanie obrazków...</div>
+    <p-progressSpinner styleClass="custom-spinner" animationDuration="0.5s" strokeWidth="5" fill="#efefef"></p-progressSpinner>
+  </div>
   <app-picture-preview
     *ngFor="let picture of result!.items"
     [picture]="picture">
   </app-picture-preview>
 </main>
 
-<nav class="paginator w-100 shadow border" [ngClass]="result.items.length ? '' : 'd-none'">
+<nav class="paginator w-100 shadow border" [ngClass]="result.page ? '' : 'd-none'">
     <app-global-paginator #customPaginator
       [totalItems]="result.totalItems"
       [pageSize]="10" (onPaginate)="paginate($event)">

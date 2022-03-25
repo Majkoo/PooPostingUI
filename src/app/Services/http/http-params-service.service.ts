@@ -3,6 +3,7 @@ import {HttpParams} from "@angular/common/http";
 import { GetPQuery } from 'src/app/Models/GetPQuery';
 import { SearchQuery } from 'src/app/Models/SearchQuery';
 import { SortSearchBy } from 'src/app/Enums/SortSearchBy';
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,18 @@ import { SortSearchBy } from 'src/app/Enums/SortSearchBy';
 export class HttpParamsServiceService {
   currentPaginatorState: number | null = null;
 
-  constructor() {}
+  homePageSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
+  searchPicPageSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
+  searchAccPageSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
+
+
+  constructor() {
+    this.homePageSubject.subscribe({
+      next: (val) => {
+        this.GetPQuery.pageNumber = val;
+      }
+    });
+  }
 
   GetPQuery: GetPQuery = {
     searchPhrase: "",

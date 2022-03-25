@@ -5,6 +5,8 @@ import { HttpParamsServiceService } from 'src/app/Services/http/http-params-serv
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 import {LikeModel} from "../../../../Models/ApiModels/LikeModel";
 import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
+import {map, Observable} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-body',
@@ -20,38 +22,48 @@ export class HomepageComponent implements OnInit {
     pageSize: 0,
     totalItems: 0
   }
-  page!: number;
+  pageObservable: Observable<number> = new Observable<number>();
 
   constructor(
     private httpService: HttpServiceService,
     private paramsService: HttpParamsServiceService,
     private authService: AuthServiceService,
-    private scrollService: ScrollServiceService
+    private scrollService: ScrollServiceService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.updateLikes();
-    this.fetchPictures();
-    this.updatePage();
-    this.paramsService.setPageNumber(this.page);
+    this.pageObservable = this.route.params.pipe(map(p => p['pageNumber']));
+    this.pageObservable.subscribe({
+      next: (val) => {
+        this.paramsService.homePageSubject.next(val);
+      }
+    })
+    this.paramsService.homePageSubject.subscribe({
+      next: () => {
+        this.updateLikes();
+        this.fetchPictures();
+      }
+    })
   }
-
   paginate(val: any): void {
-    this.updateLikes();
-    this.paramsService.setPageNumber(val+1);
-    this.updatePage();
-    this.fetchPictures();
+    this.router.navigate([`home/page/${val+1}`])
   }
   scroll(top: number) {
     this.scrollService.scroll(top);
   }
+
   private fetchPictures(): void {
     this.httpService.getPicturesRequest().subscribe({
       next: (value: PicturePagedResult) => {
+        this.scrollService.scroll(0);
         this.result = value;
-        this.scroll(0);
-        this.paginator.updateCurrentPage(this.page);
+        this.paginator.updateCurrentPage(this.paramsService.getPageNumber());
         this.paginator.updatePages(value.totalItems);
+      },
+      error: () => {
+        this.router.navigate(['/home/page/1'])
       }
     });
   }
@@ -64,9 +76,6 @@ export class HomepageComponent implements OnInit {
           }
         });
     }
-  }
-  private updatePage(): void {
-    this.page = this.paramsService.getPageNumber();
   }
 
 }

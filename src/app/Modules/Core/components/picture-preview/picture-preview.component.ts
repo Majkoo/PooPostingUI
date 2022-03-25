@@ -11,14 +11,15 @@ import {AuthServiceService} from "../../../../Services/data/auth-service.service
 })
 export class PicturePreviewComponent implements OnInit {
   @Input() picture!: PictureModel;
+  // change this to input
   isLoggedOn: boolean = false;
 
   constructor(
     private configService: ConfigServiceService,
     private httpService: HttpServiceService,
-    private auth: AuthServiceService,
+    private authService: AuthServiceService,
   ) {
-    this.isLoggedOn = this.auth.isUserLogged();
+    this.isLoggedOn = this.authService.isUserLogged();
   }
 
   ngOnInit(): void {
@@ -37,7 +38,7 @@ export class PicturePreviewComponent implements OnInit {
       .subscribe(this.likeObserver)
   }
   updatePicture() {
-    this.picture = this.auth.updatePictureLikes(this.picture);
+    this.picture = this.authService.updatePictureLikes(this.picture);
   }
 
   likeObserver = {

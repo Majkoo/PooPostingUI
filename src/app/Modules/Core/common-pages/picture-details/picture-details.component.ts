@@ -10,6 +10,7 @@ import {ConfigServiceService} from "../../../../Services/data/config-service.ser
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
 import {CommentModel} from "../../../../Models/ApiModels/CommentModel";
 import {Location} from "@angular/common";
+import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
 
 @Component({
   selector: 'app-picture-details',
@@ -49,32 +50,24 @@ export class PictureDetailsComponent {
 
   constructor(
     private authService: AuthServiceService,
+    private locationService: LocationServiceService,
     private configService: ConfigServiceService,
     private httpService: HttpServiceService,
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private location: Location,
     private router: Router
   ) {
     this.isLoggedOn = authService.isUserLogged();
     this.id = route.params.pipe(map(p => p['id']));
-    this.id.subscribe({
-      next: (val) => {
-        this.httpService.getPictureRequest(val).subscribe({
-          next: (pic: PictureModel) => {
-            this.picture = pic;
-            this.updatePicture();
-            if(!this.picture.url.startsWith("http")){
-              this.picture.url = this.configService.picturesUrl + this.picture.url;
-            }
-          },
-          error: () => {
-            this.router.navigate(['/error404']);
-          }
-        });
-      }
-    })
+    this.initialSubscribe();
 
+    // this.authService.userSubject.subscribe({
+    //   next: (val) => {
+    //     if (val) {
+    //       this.initialSubscribe();
+    //     }
+    //   }
+    // })
   }
   like() {
     this.httpService.patchPictureLikeRequest(this.picture.id)
@@ -130,10 +123,27 @@ export class PictureDetailsComponent {
     this.showShareFlag = true;
   }
   return() {
-    this.location.back();
-    // this.router.navigate(['/home'])
+    this.locationService.goBack();
   }
 
+  initialSubscribe() {
+    this.id.subscribe({
+      next: (val) => {
+        this.httpService.getPictureRequest(val).subscribe({
+          next: (pic: PictureModel) => {
+            this.picture = pic;
+            this.updatePicture();
+            if(!this.picture.url.startsWith("http")){
+              this.picture.url = this.configService.picturesUrl + this.picture.url;
+            }
+          },
+          error: () => {
+            this.router.navigate(['/error404']);
+          }
+        });
+      }
+    })
+  }
   likeObserver = {
     next: () => {
       this.httpService.getPictureRequest(this.picture.id).subscribe({

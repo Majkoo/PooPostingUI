@@ -13,7 +13,6 @@ import { SearchPanelComponent } from './components/search-panel/search-panel.com
 import { MyAccountComponent } from './common-pages/my-account/my-account.component';
 import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 import {TimeagoModule} from "ngx-timeago";
-import { LoggedOutComponent } from './common-pages/logged-out/logged-out.component';
 import { PictureSettingsComponent } from './components/modals/picture-settings/picture-settings.component';
 import { PictureAdminSettingsComponent } from './components/modals/picture-admin-settings/picture-admin-settings.component';
 import { ModalPicComponent } from './components/modals/modal-pic/modal-pic.component';
@@ -31,6 +30,7 @@ import { AccountSettingsComponent } from './components/modals/account-settings/a
 import { TosComponent } from './common-pages/tos/tos.component';
 import {LikeTableComponent} from "./common-pages/picture-details/like-table/like-table.component";
 import {CommentTableComponent} from "./common-pages/picture-details/comment-table/comment-table.component";
+import { PictureSliderCardComponent } from './common-pages/popular/picture-slider-card/picture-slider-card.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,6 @@ import {CommentTableComponent} from "./common-pages/picture-details/comment-tabl
     SearchComponent,
     SearchPanelComponent,
     MyAccountComponent,
-    LoggedOutComponent,
     PictureDetailsComponent,
     PictureSettingsComponent,
     PictureAdminSettingsComponent,
@@ -61,6 +60,7 @@ import {CommentTableComponent} from "./common-pages/picture-details/comment-tabl
     CommentTableComponent,
     PictureTableComponent,
     TosComponent,
+    PictureSliderCardComponent,
   ],
   imports: [
     CommonModule,

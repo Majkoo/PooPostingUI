@@ -6,6 +6,7 @@ import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {MessageService} from "primeng/api";
 import {UserInfoModel} from "../../../../Models/UserInfoModel";
 import {Location} from "@angular/common";
+import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   awaitSubmit: boolean = false;
 
   constructor(
-    private location: Location,
+    private locationService: LocationServiceService,
     private authService: AuthServiceService,
     private httpService: HttpServiceService,
     private messageService: MessageService) {}
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
           if (v) {
             this.authService.setUserInfo(v);
             this.messageService.add({severity:'success', summary: 'Sukces', detail: 'Zalogowano pomyślnie.'});
-            this.location.back();
+            this.locationService.goHomepage();
             this.awaitSubmit = false;
           }
         },

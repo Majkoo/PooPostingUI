@@ -7,6 +7,7 @@ import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
 import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
 import {Location} from "@angular/common";
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
+import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
 
 @Component({
   selector: 'app-account-details',
@@ -24,11 +25,11 @@ export class AccountDetailsComponent {
 
   constructor(
     private router: Router,
-    private location: Location,
     private route: ActivatedRoute,
     private httpService: HttpServiceService,
     private authService: AuthServiceService,
     private configService: ConfigServiceService,
+    private locationService: LocationServiceService,
   ) {
     this.id = route.params.pipe(map(p => p['id']));
     this.id.subscribe({
@@ -37,6 +38,13 @@ export class AccountDetailsComponent {
           .subscribe(this.initialObserver);
       }
     })
+    // this.authService.userSubject.subscribe({
+    //   next: (val) => {
+    //     if (val) {
+    //       this.isVisitorAccOwner = this.isVisitorAccOwnerCheck();
+    //     }
+    //   }
+    // })
   }
 
   filter($event: any) {
@@ -47,7 +55,7 @@ export class AccountDetailsComponent {
     this.showAccountSettingsFlag = true;
   }
   return(): void {
-    this.location.back();
+    this.locationService.goBack();
   }
 
   private initialObserver = {
@@ -55,13 +63,19 @@ export class AccountDetailsComponent {
       this.account = acc;
       this.fixPicUrls(this.account);
       this.sortByDate(this.account.pictures);
-      this.isVisitorAccOwner = (this.account.id === this.authService.getUserInfo().accountDto.id);
+      this.isVisitorAccOwner = this.isVisitorAccOwnerCheck();
     },
     error: () => {
       this.router.navigate(['/error404']);
     }
   }
 
+  private isVisitorAccOwnerCheck(): boolean {
+    let result = (this.authService.getUserInfo() && this.account)
+      ? (this.account.id === this.authService.getUserInfo().accountDto.id)
+      : false;
+    return result;
+  }
   private fixPicUrls(acc: AccountModel): void {
     acc.pictures.forEach(p =>
       !p.url.startsWith('http')

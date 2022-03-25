@@ -5,6 +5,7 @@ import {MenuExpandableItem} from "../../../Models/MenuModels/MenuExpandableItem"
 import {Router} from "@angular/router";
 import {HttpServiceService} from "../../../Services/http/http-service.service";
 import {AuthServiceService} from "../../../Services/data/auth-service.service";
+import {LocationServiceService} from "../../../Services/helpers/location-service.service";
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +19,7 @@ export class NavbarComponent implements OnInit{
   loggedIn: boolean;
 
   constructor(
+    private locationService: LocationServiceService,
     private menuService: MenusServiceService,
     private authService: AuthServiceService,
     private router: Router,
@@ -43,7 +45,7 @@ export class NavbarComponent implements OnInit{
 
   toHomePage() {
     this.showSidebar = false;
-    this.router.navigate(['/home']);
+    this.locationService.goHomepageAndReset();
   }
 
 }

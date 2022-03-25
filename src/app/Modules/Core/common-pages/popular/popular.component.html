@@ -1,1 +1,90 @@
-<p>popular works!</p>
+<div class="d-flex flex-column justify-content-start mb-3 pb-3 bb px-2 px-md-0 gap-2">
+  <h1 class="title">Popularne:</h1>
+  <p-selectButton [options]="selectOptions" [(ngModel)]="selectValue" optionLabel="name">
+    <ng-template let-item>
+      <p class="select-item {{item.class}}"><span class="ml-1">{{item.name}}</span></p>
+    </ng-template>
+  </p-selectButton>
+</div>
+
+<div class="mb-4" *ngIf="selectValue === selectOptions[0]">
+  <div class="d-flex justify-content-center align-items-center mb-2">
+    <h2>Obrazki najczęściej:</h2>
+  </div>
+  <div class="d-flex justify-content-center mb-3">
+    <p-selectButton [options]="pictureOptions" [(ngModel)]="pictureValue" optionLabel="name">
+      <ng-template let-item>
+        <p class="select-item {{item.class}}"><span class="ml-1">{{item.name}}</span></p>
+      </ng-template>
+    </p-selectButton>
+  </div>
+
+  <p-carousel *ngIf="popular.MostCommentedPics.length"
+              [ngClass]="pictureValue === pictureOptions[0] ? '' : 'd-none'"
+              [value]="popular.MostCommentedPics" [autoplayInterval]="5340"
+              [responsiveOptions]="responsiveOptions" [numVisible]="2" [circular]="true">
+    <ng-template let-item pTemplate="item">
+      <div class="slider-container d-flex flex-column justify-content-center align-items-center">
+        <app-picture-slider-card [picture]="item" [showCommentCount]="true"></app-picture-slider-card>
+      </div>
+    </ng-template>
+  </p-carousel>
+  <p-carousel *ngIf="popular.MostVotedPics.length"
+              [ngClass]="pictureValue === pictureOptions[2] ? '' : 'd-none'"
+              [value]="popular.MostVotedPics" [autoplayInterval]="4610"
+              [responsiveOptions]="responsiveOptions" [numVisible]="2" [circular]="true">
+    <ng-template let-item pTemplate="item">
+      <div class="slider-container d-flex flex-column justify-content-center align-items-center">
+        <app-picture-slider-card [picture]="item" [showLikeCount]="true"></app-picture-slider-card>
+      </div>
+    </ng-template>
+  </p-carousel>
+  <p-carousel *ngIf="popular.MostLikedPics.length"
+              [ngClass]="pictureValue === pictureOptions[1] ? '' : 'd-none'"
+              [value]="popular.MostLikedPics" [autoplayInterval]="5000"
+              [responsiveOptions]="responsiveOptions" [numVisible]="2" [circular]="true">
+    <ng-template let-item pTemplate="item">
+      <div class="slider-container d-flex flex-column justify-content-center align-items-center">
+        <app-picture-slider-card [picture]="item" [showLikeCount]="true"></app-picture-slider-card>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>
+
+<div *ngIf="selectValue === selectOptions[1]">
+  <div class="d-flex justify-content-center align-items-center mb-2">
+    <h2>Konta z największą ilością:</h2>
+  </div>
+  <div class="d-flex justify-content-center mb-3">
+    <p-selectButton [options]="accountOptions" [(ngModel)]="accountValue" optionLabel="name">
+      <ng-template let-item>
+        <p class="select-item {{item.class}}"><span class="ml-1">{{item.name}}</span></p>
+      </ng-template>
+    </p-selectButton>
+  </div>
+
+  <p-carousel *ngIf="popular.MostLikedAccs.length"
+              [ngClass]="accountValue === accountOptions[0] ? '' : 'd-none'"
+              [value]="popular.MostLikedAccs" [autoplayInterval]="4610"
+              [responsiveOptions]="responsiveOptions" [numVisible]="2" [circular]="true">
+    <ng-template let-item pTemplate="item">
+      <div class="slider-container d-flex flex-column justify-content-center align-items-center">
+        {{item.nickname}}
+        <br>
+        (ilosc likow w sumie)
+      </div>
+    </ng-template>
+  </p-carousel>
+  <p-carousel *ngIf="popular.MostPicAccs.length"
+              [ngClass]="accountValue === accountOptions[1] ? '' : 'd-none'"
+              [value]="popular.MostPicAccs" [autoplayInterval]="5340"
+              [responsiveOptions]="responsiveOptions" [numVisible]="2" [circular]="true">
+    <ng-template let-item pTemplate="item">
+      <div class="slider-container d-flex flex-column justify-content-center align-items-center">
+        {{item.nickname}}
+        {{item.pictures.length}}
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>
+
