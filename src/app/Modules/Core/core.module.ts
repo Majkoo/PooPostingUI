@@ -31,6 +31,7 @@ import { TosComponent } from './common-pages/tos/tos.component';
 import {LikeTableComponent} from "./common-pages/picture-details/like-table/like-table.component";
 import {CommentTableComponent} from "./common-pages/picture-details/comment-table/comment-table.component";
 import { PictureSliderCardComponent } from './common-pages/popular/picture-slider-card/picture-slider-card.component';
+import { AccountAdminSettingsComponent } from './components/modals/account-admin-settings/account-admin-settings.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { PictureSliderCardComponent } from './common-pages/popular/picture-slide
     PictureTableComponent,
     TosComponent,
     PictureSliderCardComponent,
+    AccountAdminSettingsComponent,
   ],
   imports: [
     CommonModule,

@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {PopularModel} from "../../../../Models/ApiModels/PopularModel";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
-import {PicturePagedResult} from "../../../../Models/ApiModels/PicturePagedResult";
-import {AccountPagedResult} from "../../../../Models/ApiModels/AccountPagedResult";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 import {SelectOption} from "../../../../Models/SelectOption";
-import {SelectItem} from "primeng/api";
+import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
 
 @Component({
   selector: 'app-popular',
@@ -16,11 +14,11 @@ import {SelectItem} from "primeng/api";
 })
 export class PopularComponent implements OnInit {
   popular: PopularModel = {
-    MostCommentedPics: [],
-    MostLikedPics: [],
-    MostVotedPics: [],
-    MostLikedAccs: [],
-    MostPicAccs: [],
+    mostCommentedPictures: [],
+    mostLikedPictures: [],
+    mostVotedPictures: [],
+    mostLikedAccounts: [],
+    mostPostedAccounts: [],
   };
   selectOptions: SelectOption[];
   selectValue: SelectOption;
@@ -61,29 +59,29 @@ export class PopularComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.httpService.getPicturesRequest().subscribe({
-      next: (val: PicturePagedResult) => {
-        this.popular.MostVotedPics = val.items.slice(0,5);
-        this.popular.MostCommentedPics = val.items.slice(0,5);
-        this.popular.MostLikedPics = val.items.slice(0,5);
+    this.httpService.getPopularRequest().subscribe({
+      next: (val: PopularModel) => {
+        this.popular = val;
 
-        this.popular.MostVotedPics.forEach(p => this.updatePicture(p));
-        this.popular.MostCommentedPics.forEach(p => this.updatePicture(p));
-        this.popular.MostLikedPics.forEach(p => this.updatePicture(p));
+        this.popular.mostVotedPictures.forEach(p => this.updatePicture(p));
+        this.popular.mostCommentedPictures.forEach(p => this.updatePicture(p));
+        this.popular.mostLikedPictures.forEach(p => this.updatePicture(p));
+        this.popular.mostLikedAccounts.forEach(p => this.updateAccount(p));
+        this.popular.mostPostedAccounts.forEach(p => this.updateAccount(p));
       }
     });
-    this.httpService.searchAccountsRequest().subscribe({
-      next: (val: AccountPagedResult) => {
-        this.popular.MostLikedAccs = val.items.slice(0,5);
-        this.popular.MostPicAccs = val.items.slice(0,5);
-      }
-    })
   }
 
-  updatePicture(picture: PictureModel): void {
+  private updatePicture(picture: PictureModel): void {
     picture = this.authService.updatePictureLikes(picture);
     if(!picture.url.startsWith("http")){
       picture.url = this.configService.picturesUrl + picture.url;
     }
+  }
+  private updateAccount(account: AccountModel): void {
+    account.commentCount = 0;
+    account.pictures.forEach(p => account.commentCount! += p.comments.length);
+    account.likeCount = 0;
+    account.pictures.forEach(p => p.likes.forEach(l => l.isLike? account.likeCount!++ : null))
   }
 }

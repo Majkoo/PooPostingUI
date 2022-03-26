@@ -26,7 +26,7 @@
   }
 }
 .bg-darker {
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(250, 250, 250) !important;
 }
 .scroll {
   height: clamp(28rem, 1200px, 28rem);

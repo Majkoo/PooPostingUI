@@ -10,6 +10,7 @@ import {AuthServiceService} from "../../../../../Services/data/auth-service.serv
 })
 export class PictureSliderCardComponent implements OnInit {
   @Input() picture!: PictureModel;
+  @Input() index!: number;
   @Input() showCommentCount: boolean = false;
   @Input() showLikeCount: boolean = false;
 

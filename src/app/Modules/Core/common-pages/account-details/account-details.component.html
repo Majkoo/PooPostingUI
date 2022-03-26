@@ -3,7 +3,7 @@
   <div class="mb-3 d-flex align-items-center justify-content-between">
     <button pButton pRipple label="Powrót" icon="bi bi-arrow-return-left" class="px-3" (click)="return()"></button>
     <button pButton pRipple label="Ustawienia" icon="bi bi-gear-fill" class="px-3"
-            (click)="showAccountSettings()" *ngIf="isVisitorAccOwner"></button>
+            (click)="showAccountSettings()" *ngIf="account.isModifiable"></button>
   </div>
 
   <h2 class="text-center">
@@ -59,6 +59,10 @@
   <p-dialog [(visible)]="showAccountSettingsFlag" header="Ustawienia konta"
             [modal]="true" [dismissableMask]="true" [draggable]="false">
     <app-account-settings></app-account-settings>
+  </p-dialog>
+  <p-dialog [(visible)]="showAdminAccountSettingsFlag" header="Ustawienia administratorskie konta"
+            [modal]="true" [dismissableMask]="true" [draggable]="false">
+    <app-account-admin-settings></app-account-admin-settings>
   </p-dialog>
 
 </div>

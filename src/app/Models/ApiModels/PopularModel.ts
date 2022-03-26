@@ -2,10 +2,10 @@ import {AccountModel} from "./AccountModel";
 import {PictureModel} from "./PictureModel";
 
 export interface PopularModel {
-  MostPicAccs: AccountModel[],
-  MostLikedAccs: AccountModel[],
+  mostPostedAccounts: AccountModel[],
+  mostLikedAccounts: AccountModel[],
 
-  MostLikedPics: PictureModel[],
-  MostCommentedPics: PictureModel[],
-  MostVotedPics: PictureModel[]
+  mostLikedPictures: PictureModel[],
+  mostCommentedPictures: PictureModel[],
+  mostVotedPictures: PictureModel[]
 }

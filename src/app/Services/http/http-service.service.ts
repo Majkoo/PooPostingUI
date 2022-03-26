@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, Subject, tap} from "rxjs";
+import {map, Observable, Subject, tap} from "rxjs";
 import {HttpParamsServiceService} from "./http-params-service.service";
 import { PictureModel } from 'src/app/Models/ApiModels/PictureModel';
 import { PicturePagedResult } from 'src/app/Models/ApiModels/PicturePagedResult';
@@ -14,6 +14,7 @@ import {AccountPagedResult} from "../../Models/ApiModels/AccountPagedResult";
 import {AccountModel} from "../../Models/ApiModels/AccountModel";
 import {CommentModel} from "../../Models/ApiModels/CommentModel";
 import {PutPostCommentModel} from "../../Models/ApiModels/PutPostCommentModel";
+import {PopularModel} from "../../Models/ApiModels/PopularModel";
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,12 @@ export class HttpServiceService {
     return this.http
       .get<LikeModel[]>(
         `${this.config.apiUrl}/account/${id}/likes`
+      );
+  }
+  getPopularRequest(): Observable<PopularModel> {
+    return this.http
+      .get<PopularModel>(
+        `${this.config.apiUrl}/popular`
       );
   }
   postLoginRequest(data: LoginModel): Observable<UserInfoModel> {

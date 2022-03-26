@@ -8,6 +8,7 @@ import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
 import {Location} from "@angular/common";
 import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
+import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modify-service.service";
 
 @Component({
   selector: 'app-account-details',
@@ -20,7 +21,7 @@ export class AccountDetailsComponent {
 
   @ViewChild('dv') dataView: any;
   showAccountSettingsFlag: boolean = false;
-  isVisitorAdmin: boolean = false;
+  showAdminAccountSettingsFlag: boolean = false;
   isVisitorAccOwner: boolean =  false;
 
   constructor(
@@ -30,6 +31,7 @@ export class AccountDetailsComponent {
     private authService: AuthServiceService,
     private configService: ConfigServiceService,
     private locationService: LocationServiceService,
+    private allowModifyService: AllowModifyServiceService,
   ) {
     this.id = route.params.pipe(map(p => p['id']));
     this.id.subscribe({
@@ -52,7 +54,11 @@ export class AccountDetailsComponent {
     this.dataView.filter($event.target.value!, 'contains')
   }
   showAccountSettings(): void {
-    this.showAccountSettingsFlag = true;
+    if (this.isVisitorAccOwner) {
+      this.showAccountSettingsFlag = true;
+    } else {
+      this.showAdminAccountSettingsFlag = true;
+    }
   }
   return(): void {
     this.locationService.goBack();
@@ -64,6 +70,7 @@ export class AccountDetailsComponent {
       this.fixPicUrls(this.account);
       this.sortByDate(this.account.pictures);
       this.isVisitorAccOwner = this.isVisitorAccOwnerCheck();
+      this.allowModifyService.allowModifyAccount(acc);
     },
     error: () => {
       this.router.navigate(['/error404']);

@@ -9,8 +9,8 @@ import {AuthServiceService} from "../../../../Services/data/auth-service.service
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
 import {CommentModel} from "../../../../Models/ApiModels/CommentModel";
-import {Location} from "@angular/common";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
+import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modify-service.service";
 
 @Component({
   selector: 'app-picture-details',
@@ -54,6 +54,7 @@ export class PictureDetailsComponent {
     private configService: ConfigServiceService,
     private httpService: HttpServiceService,
     private messageService: MessageService,
+    private allowModifyService: AllowModifyServiceService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -85,6 +86,7 @@ export class PictureDetailsComponent {
   updatePicture() {
     this.picture = this.authService.updatePictureLikes(this.picture);
     this.picture.likes.sort(l => l.isLike ? -1 : 0);
+    this.allowModifyService.allowModifyPicture(this.picture);
   }
   deleteComment($event: CommentModel) {
     this.httpService.deleteCommentRequest(this.picture.id, $event.id)

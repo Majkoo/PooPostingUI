@@ -24,6 +24,7 @@ import {MenubarModule} from "primeng/menubar";
 import {SidebarModule} from "primeng/sidebar";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {CarouselModule} from "primeng/carousel";
+import {TableModule} from "primeng/table";
 
 const PrimeNgComponents = [
   ChipsModule,
@@ -50,7 +51,8 @@ const PrimeNgComponents = [
   MenubarModule,
   SidebarModule,
   ProgressSpinnerModule,
-  CarouselModule
+  CarouselModule,
+  TableModule,
 
 ]
 

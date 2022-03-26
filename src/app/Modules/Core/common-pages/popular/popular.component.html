@@ -7,7 +7,7 @@
   </p-selectButton>
 </div>
 
-<div class="mb-4" *ngIf="selectValue === selectOptions[0]">
+<div *ngIf="selectValue === selectOptions[0]" class="mb-4 px-2">
   <div class="d-flex justify-content-center align-items-center mb-2">
     <h2>Obrazki najczęściej:</h2>
   </div>
@@ -19,39 +19,44 @@
     </p-selectButton>
   </div>
 
-  <p-carousel *ngIf="popular.MostCommentedPics.length"
+  <p-carousel *ngIf="popular.mostCommentedPictures.length"
               [ngClass]="pictureValue === pictureOptions[0] ? '' : 'd-none'"
-              [value]="popular.MostCommentedPics" [autoplayInterval]="5340"
+              [value]="popular.mostCommentedPictures" [autoplayInterval]="5340"
               [responsiveOptions]="responsiveOptions" [numVisible]="2" [circular]="true">
     <ng-template let-item pTemplate="item">
       <div class="slider-container d-flex flex-column justify-content-center align-items-center">
-        <app-picture-slider-card [picture]="item" [showCommentCount]="true"></app-picture-slider-card>
+        <app-picture-slider-card [picture]="item" [index]="popular.mostCommentedPictures.indexOf(item)+1"
+                                 [showLikeCount]="true" [showCommentCount]="true">
+        </app-picture-slider-card>
       </div>
     </ng-template>
   </p-carousel>
-  <p-carousel *ngIf="popular.MostVotedPics.length"
+  <p-carousel *ngIf="popular.mostVotedPictures.length"
               [ngClass]="pictureValue === pictureOptions[2] ? '' : 'd-none'"
-              [value]="popular.MostVotedPics" [autoplayInterval]="4610"
+              [value]="popular.mostVotedPictures" [autoplayInterval]="4610"
               [responsiveOptions]="responsiveOptions" [numVisible]="2" [circular]="true">
     <ng-template let-item pTemplate="item">
       <div class="slider-container d-flex flex-column justify-content-center align-items-center">
-        <app-picture-slider-card [picture]="item" [showLikeCount]="true"></app-picture-slider-card>
+        <app-picture-slider-card [picture]="item" [index]="popular.mostVotedPictures.indexOf(item)+1"
+                                 [showLikeCount]="true" [showCommentCount]="true">
+        </app-picture-slider-card>
       </div>
     </ng-template>
   </p-carousel>
-  <p-carousel *ngIf="popular.MostLikedPics.length"
+  <p-carousel *ngIf="popular.mostLikedPictures.length"
               [ngClass]="pictureValue === pictureOptions[1] ? '' : 'd-none'"
-              [value]="popular.MostLikedPics" [autoplayInterval]="5000"
+              [value]="popular.mostLikedPictures" [autoplayInterval]="5000"
               [responsiveOptions]="responsiveOptions" [numVisible]="2" [circular]="true">
     <ng-template let-item pTemplate="item">
       <div class="slider-container d-flex flex-column justify-content-center align-items-center">
-        <app-picture-slider-card [picture]="item" [showLikeCount]="true"></app-picture-slider-card>
+        <app-picture-slider-card [picture]="item" [index]="popular.mostLikedPictures.indexOf(item)+1"
+                                 [showLikeCount]="true" [showCommentCount]="true">
+        </app-picture-slider-card>
       </div>
     </ng-template>
   </p-carousel>
 </div>
-
-<div *ngIf="selectValue === selectOptions[1]">
+<div *ngIf="selectValue === selectOptions[1]" class="mb-5 px-2">
   <div class="d-flex justify-content-center align-items-center mb-2">
     <h2>Konta z największą ilością:</h2>
   </div>
@@ -63,28 +68,110 @@
     </p-selectButton>
   </div>
 
-  <p-carousel *ngIf="popular.MostLikedAccs.length"
-              [ngClass]="accountValue === accountOptions[0] ? '' : 'd-none'"
-              [value]="popular.MostLikedAccs" [autoplayInterval]="4610"
-              [responsiveOptions]="responsiveOptions" [numVisible]="2" [circular]="true">
-    <ng-template let-item pTemplate="item">
-      <div class="slider-container d-flex flex-column justify-content-center align-items-center">
-        {{item.nickname}}
-        <br>
-        (ilosc likow w sumie)
-      </div>
+  <p-table *ngIf="popular.mostLikedAccounts.length" [styleClass]="'p-datatable-gridlines'"
+           [ngClass]="accountValue === accountOptions[0] ? '' : 'd-none'"
+           [value]="popular.mostLikedAccounts" [responsiveLayout]="'scroll'">
+    <ng-template pTemplate="header">
+      <tr>
+        <th rowspan="2" class="text-center text-break">Konto</th>
+        <th colspan="3" >Obrazki</th>
+      </tr>
+      <tr>
+        <th>Ilość</th>
+        <th>Polubienia<span class="text-muted">*</span></th>
+        <th>Komentarze<span class="text-muted">*</span></th>
+      </tr>
     </ng-template>
-  </p-carousel>
-  <p-carousel *ngIf="popular.MostPicAccs.length"
-              [ngClass]="accountValue === accountOptions[1] ? '' : 'd-none'"
-              [value]="popular.MostPicAccs" [autoplayInterval]="5340"
-              [responsiveOptions]="responsiveOptions" [numVisible]="2" [circular]="true">
-    <ng-template let-item pTemplate="item">
-      <div class="slider-container d-flex flex-column justify-content-center align-items-center">
-        {{item.nickname}}
-        {{item.pictures.length}}
-      </div>
+    <ng-template pTemplate="body" let-account>
+        <tr [ngClass]="popular.mostLikedAccounts.indexOf(account)%2 ? 'bg-darker' : ''">
+          <td class="pr-2 pr-sm-3">
+            <b>{{popular.mostLikedAccounts.indexOf(account)+1}}. </b>
+            <span routerLink="/account/{{account.id}}" class="account-link">{{account.nickname}}</span>
+          </td>
+          <td>
+            <div class="td-icon-data">
+              <span class="bi mr-1"
+                    [ngClass]="popular.mostLikedAccounts.indexOf(account)%2 ? 'bi-image-fill' : 'bi-image'">
+              </span>
+              {{account.pictures.length}}
+            </div>
+          </td>
+          <td>
+            <div class="td-icon-data">
+              <span class="bi mr-1"
+                    [ngClass]="popular.mostLikedAccounts.indexOf(account)%2 ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'">
+              </span>
+              {{account.likeCount}}
+            </div>
+          </td>
+          <td>
+            <div class="td-icon-data">
+              <span class="bi mr-1"
+                    [ngClass]="popular.mostLikedAccounts.indexOf(account)%2 ? 'bi-chat-right-text-fill' : 'bi-chat-right-text'">
+              </span>
+              {{account.commentCount}}
+            </div>
+          </td>
+        </tr>
     </ng-template>
-  </p-carousel>
+  </p-table>
+  <p-table *ngIf="popular.mostPostedAccounts.length" [styleClass]="'p-datatable-gridlines'"
+           [ngClass]="accountValue === accountOptions[1] ? '' : 'd-none'"
+           [value]="popular.mostPostedAccounts" [responsiveLayout]="'scroll'">
+    <ng-template pTemplate="header">
+      <tr>
+        <th rowspan="2" class="text-center text-break">Konto</th>
+        <th colspan="3" >Obrazki</th>
+      </tr>
+      <tr>
+        <th>Ilość</th>
+        <th>Polubienia<span class="text-muted">*</span></th>
+        <th>Komentarze<span class="text-muted">*</span></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-account>
+      <tr [ngClass]="popular.mostPostedAccounts.indexOf(account)%2 ? 'bg-darker' : ''">
+        <td class="pr-2 pr-sm-3">
+          <b>{{popular.mostPostedAccounts.indexOf(account)+1}}. </b>
+          <span routerLink="/account/{{account.id}}" class="account-link">{{account.nickname}}</span>
+        </td>
+        <td>
+          <div class="td-icon-data">
+              <span class="bi mr-1"
+                    [ngClass]="popular.mostPostedAccounts.indexOf(account)%2 ? 'bi-image-fill' : 'bi-image'">
+              </span>
+            {{account.pictures.length}}
+          </div>
+        </td>
+        <td>
+          <div class="td-icon-data">
+              <span class="bi mr-1"
+                    [ngClass]="popular.mostPostedAccounts.indexOf(account)%2 ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'">
+              </span>
+            {{account.likeCount}}
+          </div>
+        </td>
+        <td>
+          <div class="td-icon-data">
+              <span class="bi mr-1"
+                    [ngClass]="popular.mostPostedAccounts.indexOf(account)%2 ? 'bi-chat-right-text-fill' : 'bi-chat-right-text'">
+              </span>
+            {{account.commentCount}}
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div class="text-center text-muted mt-2"><b>*</b> - Suma polubień/komentarzy pod wszystkimi obrazkami autora</div>
 </div>
 
+
+
+
+<div *ngIf="!popular.mostPostedAccounts.length && !popular.mostCommentedPictures.length &&
+            !popular.mostLikedAccounts.length && !popular.mostVotedPictures.length &&
+            !popular.mostLikedPictures.length"
+     class="d-flex flex-column justify-content-center align-items-center mb-4">
+  <h3 class="text-muted text-break mt-3 loading-title font-weight-bold">Wczytywanie rankingów...</h3>
+  <p-progressSpinner styleClass="custom-spinner" animationDuration="0.5s" strokeWidth="5" fill="#efefef"></p-progressSpinner>
+</div>
