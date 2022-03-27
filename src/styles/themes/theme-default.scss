@@ -7313,7 +7313,7 @@ p-treeselect.ng-invalid.ng-dirty {
   }
 }
 .p-skeleton {
-  background-color: variables.$surface-c;
+  background-color: colors.$gray-300;
   border-radius: 3px;
   &:after {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));

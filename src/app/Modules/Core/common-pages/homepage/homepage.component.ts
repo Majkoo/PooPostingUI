@@ -55,9 +55,10 @@ export class HomepageComponent implements OnInit {
   }
 
   private fetchPictures(): void {
+    this.result.items = [];
+    this.scrollService.scroll(0);
     this.httpService.getPicturesRequest().subscribe({
       next: (value: PicturePagedResult) => {
-        this.scrollService.scroll(0);
         this.result = value;
         this.paginator.updateCurrentPage(this.paramsService.getPageNumber());
         this.paginator.updatePages(value.totalItems);
