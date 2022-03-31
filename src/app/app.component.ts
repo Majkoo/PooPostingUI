@@ -1,9 +1,10 @@
 import {Component, isDevMode, OnInit} from '@angular/core';
 import {MessageService, PrimeNGConfig} from "primeng/api";
 import {Router} from "@angular/router";
-import {AuthServiceService} from "./Services/data/auth-service.service";
 import {UserInfoModel} from "./Models/UserInfoModel";
 import {HttpServiceService} from "./Services/http/http-service.service";
+import {LocalStorageServiceService} from "./Services/data/local-storage-service.service";
+import {SessionStorageServiceService} from "./Services/data/session-storage-service.service";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
@@ -12,10 +13,10 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  public route: string = "";
-
+  isLoaded: boolean = false;
   constructor(
-    private authService: AuthServiceService,
+    private sessionStorageService: SessionStorageServiceService,
+    private localStorageService: LocalStorageServiceService,
     private httpService: HttpServiceService,
     private primeNgConfig: PrimeNGConfig,
     private messageService: MessageService,
@@ -25,36 +26,33 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if (isDevMode()){
-      this.httpService
-        .postLoginRequest({
-          nickname: "ShrekTheCreator",
-          password: "ILoveShrex"
-        }).subscribe(this.adminLoginObserver)
-
+    let jwtDetails = this.localStorageService.getJwtDetails();
+    if (jwtDetails) {
+      this.httpService.postLsLoginRequest(jwtDetails)
+        .subscribe(this.initialLoginObserver);
+    } else {
+      this.isLoaded = true;
     }
-    // login from cookies
   }
 
-  private adminLoginObserver = {
+  private initialLoginObserver = {
     next: (val: UserInfoModel) => {
       if (val) {
-        this.authService.setUserInfo(val);
-        this.messageService.add({
-          severity:'warn',
-          summary: 'Sukces',
-          detail: `Pomyślnie zalogowano na konto ${val.accountDto.nickname}.`});
+        if (this.sessionStorageService.isSessionStorageEmpty()) {
+          this.messageService.add({
+            severity:'success',
+            summary: 'Sukces',
+            detail: `Automatycznie zalogowano na konto ${val.accountDto.nickname}.`});
+        }
+        this.sessionStorageService.updateSessionInfo(val);
+        this.isLoaded = true;
       }
     },
-    error: (err: HttpErrorResponse) => {
-      if (err.error === "Invalid nickname or password") {
-        this.messageService.add({
-          severity:'error',
-          summary: 'Nie udało się automatycznie zalogować.',
-          detail: 'Spróbuj edytować linijki 31 oraz 32 w pliku "src/app/app.component.ts"',
-          sticky: true,
-        });
-      }
+    error: () => {
+      localStorage.clear();
+      sessionStorage.clear();
+      this.sessionStorageService.userSubject.next(false);
+      this.isLoaded = true;
     }
   }
 

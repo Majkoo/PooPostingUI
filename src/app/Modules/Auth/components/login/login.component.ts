@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import { AuthServiceService } from 'src/app/Services/data/auth-service.service';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {MessageService} from "primeng/api";
 import {UserInfoModel} from "../../../../Models/UserInfoModel";
-import {Location} from "@angular/common";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
+import {LocalStorageServiceService} from "../../../../Services/data/local-storage-service.service";
+import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 
 @Component({
   selector: 'app-login',
@@ -18,11 +17,11 @@ export class LoginComponent implements OnInit {
   awaitSubmit: boolean = false;
 
   constructor(
+    private sessionStorageService: SessionStorageServiceService,
+    private localStorageService: LocalStorageServiceService,
     private locationService: LocationServiceService,
-    private authService: AuthServiceService,
     private httpService: HttpServiceService,
     private messageService: MessageService) {}
-
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -39,9 +38,11 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (v: UserInfoModel) => {
           if (v) {
-            this.authService.setUserInfo(v);
+            this.sessionStorageService.userSubject.next(true);
+            this.sessionStorageService.updateSessionInfo(v);
+            this.localStorageService.saveJwtDetails({jwtToken: v.authToken, guid: v.accountDto.id});
             this.messageService.add({severity:'success', summary: 'Sukces', detail: 'Zalogowano pomyślnie.'});
-            this.locationService.goHomepage();
+            this.locationService.goBack();
             this.awaitSubmit = false;
           }
         },

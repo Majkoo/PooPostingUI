@@ -15,6 +15,7 @@ import {AccountModel} from "../../Models/ApiModels/AccountModel";
 import {CommentModel} from "../../Models/ApiModels/CommentModel";
 import {PutPostCommentModel} from "../../Models/ApiModels/PutPostCommentModel";
 import {PopularModel} from "../../Models/ApiModels/PopularModel";
+import {LsJwtDetails} from "../../Models/ApiModels/LsJwtDetails";
 
 @Injectable({
   providedIn: 'root'
@@ -81,6 +82,13 @@ export class HttpServiceService {
     return this.http
       .post<UserInfoModel>(
         `${this.config.apiUrl}/account/login`,
+        data,
+        {responseType: "json",});
+  }
+  postLsLoginRequest(data: LsJwtDetails): Observable<UserInfoModel> {
+    return this.http
+      .post<UserInfoModel>(
+        `${this.config.apiUrl}/account/verifyJwt`,
         data,
         {responseType: "json",});
   }

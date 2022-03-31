@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
-import { Observable } from 'rxjs/internal/Observable';
-import {catchError, retry} from "rxjs/operators";
-import {throwError} from "rxjs";
+import {Observable} from 'rxjs/internal/Observable';
+import {catchError, delay, mergeMap, retryWhen} from "rxjs/operators";
+import {of, throwError} from "rxjs";
 import {Router} from "@angular/router";
 import {MessageService} from "primeng/api";
+
+export const retryCount: number = 2;
+export const delayMs: number = 2000;
 
 @Injectable({
   providedIn: 'root'
@@ -14,95 +17,93 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
     private router: Router,
     private message: MessageService,
     ) { }
-
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let retryCount: number = 1;
-    let i: number = 0;
-
+    this.message.clear();
     return next.handle(req)
       .pipe(
-        retry(retryCount),
+        retryWhen((error) => {
+          return error.pipe(
+            mergeMap((error, index) => {
+              if (index < retryCount) return of(error).pipe(delay(delayMs));
+              throw error;
+            })
+          );
+        }),
         catchError((error: HttpErrorResponse) => {
-          this.message.clear();
-          i++;
-
-          switch (error.status) {
-            case (0 || 502 || 504): {
-              return this.handle0Error(i, retryCount);
-            }
-            case 404: {
-              return (req.method === "GET") ? throwError(() => {}) : this.handle404Error(i, retryCount);
-            }
-            case 403: {
-              return this.handle403Error(i, retryCount);
-            }
-            case 401: {
-              return this.handle401Error(i, retryCount);
-            }
-            case 400: {
-              return throwError(() => {return error});
-            }
-            default: {
-              if(error.status <= 400 && error.status > 500) {
-                return this.handle4xxError(i, retryCount);
-              }
-              else if(error.status >= 500) {
-                return this.handle5xxError(i, retryCount);
-              }
-              return this.handle0Error(i, retryCount);
-            }
-          }
-
+          return this.handleError(error.status, req, error);
         })
       );
   }
 
-  private handle404Error(i: number, retryCount: number) {
-    let errorFactory = () => {
-      this.message.add({
-        severity:'warn',
-        summary: 'Niepowodzenie',
-        detail: 'Nie udało się wykonać operacji. Zasób jest niedostępny. Prawdopodobnie został usunięty lub ukryty.'
-      });
+  private handleError(status: number, req?: HttpRequest<any>, error?: HttpErrorResponse) {
+    console.error(
+      `=============================================================\n` +
+      `Error status: ${status}\n` +
+      `Error json: ${JSON.stringify(error)}\n` +
+      `Request json: ${JSON.stringify(req)}\n` +
+      `=============================================================\n`
+    );
+    switch (status) {
+      case (400): {
+        return throwError(() => {
+          this.message.add({
+            severity:'error',
+            summary:'Błąd',
+            detail:'Wystąpił nieoczekiwany błąd. Przepraszamy za utrudnienia.'
+          })
+          console.log(error)
+        });
+      }
+      case (401): {
+        return throwError(() => {
+          this.message.add({
+            severity:'error',
+            summary: 'Niepowodzenie',
+            detail: 'Nie udało się wykonać operacji. Do jej wykonania konieczne jest zalogowanie się.'});
+        });
+      }
+      case (403): {
+        return throwError(() => {
+          this.message.add({
+            severity:'error',
+            summary: 'Niepowodzenie',
+            detail: 'Nie udało się wykonać operacji. Nie masz uprawnień.'});
+        });
+      }
+      case (404): {
+        return throwError(() => {
+          this.message.add({
+            severity:'warn',
+            summary: 'Niepowodzenie',
+            detail: 'Nie udało się wykonać operacji. Zasób jest niedostępny. Prawdopodobnie został usunięty lub ukryty.'
+          });
+        })
+      }
+      case (0): {
+        return throwError(() => {
+          this.router.navigate(['/error0']);
+        })
+      }
+      default: {
+        let statusStr = status.toString()
+
+        if (statusStr.startsWith("4")) {
+          return throwError(() => {
+            this.message.add({
+              severity:'error',
+              summary:'Błąd',
+              detail:'Wystąpił nieoczekiwany błąd. Przepraszamy za utrudnienia.'
+            });
+          })
+        }
+        else if (statusStr.startsWith("5")) {
+          return throwError(() => {
+            this.router.navigate(['/error500']);
+          });
+        }
+        return throwError(() => {});
+      }
     }
-    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
-  }
-  private handle403Error(i: number, retryCount: number) {
-    let errorFactory = () => {
-      this.message.add({
-        severity:'error',
-        summary: 'Niepowodzenie',
-        detail: 'Nie udało się wykonać operacji. Nie masz uprawnień.'});
-    }
-    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
-  }
-  private handle401Error(i: number, retryCount: number) {
-    let errorFactory = () => {
-      this.message.add({
-        severity:'error',
-        summary: 'Niepowodzenie',
-        detail: 'Nie udało się wykonać operacji. Do jej wykonania konieczne jest zalogowanie się.'});
-    }
-    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
   }
 
-  private handle0Error(i: number, retryCount: number) {
-    let errorFactory = () => {this.router.navigate(['/error0']);}
-    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
-  }
-
-  private handle4xxError(i: number, retryCount: number) {
-    let errorFactory = () => {
-      this.message.add({
-        severity:'error',
-        summary:'Błąd',
-        detail:'Wystąpił nieoczekiwany błąd. Przepraszamy za utrudnienia.'
-      })
-    }
-    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
-  }
-  private handle5xxError(i: number, retryCount: number) {
-    let errorFactory = () => {this.router.navigate(['/error500']);}
-    return (i === retryCount) ? throwError(errorFactory) : throwError(() => {});
-  }
 }

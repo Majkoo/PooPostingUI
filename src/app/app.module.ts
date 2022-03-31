@@ -9,7 +9,6 @@ import { CoreModule } from './Modules/Core/core.module';
 import { AuthModule } from './Modules/Auth/auth.module';
 import {UIModule} from "./Modules/UI/ui.module";
 import { AppConfiguration } from './Models/AppConfiguration';
-import { RouteGuardGuard } from './Services/guards/route-guard.guard';
 import { ConfigServiceService } from './Services/data/config-service.service';
 import { TokenInterceptorService } from './Services/interceptors/token-interceptor.service';
 import { HttpErrorInterceptorService } from './Services/interceptors/http-error-interceptor.service';
@@ -42,7 +41,6 @@ export function initializerFn(configService: ConfigServiceService){
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
   ],
   providers: [
-    RouteGuardGuard,
     MessageService,
     ConfirmationService,
     {

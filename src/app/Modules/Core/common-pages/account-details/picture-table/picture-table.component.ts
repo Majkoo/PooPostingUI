@@ -3,7 +3,6 @@ import {PictureModel} from "../../../../../Models/ApiModels/PictureModel";
 import {ConfigServiceService} from "../../../../../Services/data/config-service.service";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {MessageService} from "primeng/api";
-import {AuthServiceService} from "../../../../../Services/data/auth-service.service";
 
 @Component({
   selector: 'app-picture-table',

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {MenuItem} from "../../Models/MenuModels/MenuItem";
 import {MenuExpandableItem} from "../../Models/MenuModels/MenuExpandableItem";
-import {AuthServiceService} from "./auth-service.service";
 
 @Injectable({
   providedIn: 'root'

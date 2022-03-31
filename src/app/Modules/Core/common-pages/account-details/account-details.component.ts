@@ -5,10 +5,9 @@ import {HttpServiceService} from "../../../../Services/http/http-service.service
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
 import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
-import {Location} from "@angular/common";
-import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
 import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modify-service.service";
+import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 
 @Component({
   selector: 'app-account-details',
@@ -28,10 +27,10 @@ export class AccountDetailsComponent {
     private router: Router,
     private route: ActivatedRoute,
     private httpService: HttpServiceService,
-    private authService: AuthServiceService,
     private configService: ConfigServiceService,
     private locationService: LocationServiceService,
     private allowModifyService: AllowModifyServiceService,
+    private sessionStorageService: SessionStorageServiceService,
   ) {
     this.id = route.params.pipe(map(p => p['id']));
     this.id.subscribe({
@@ -40,13 +39,6 @@ export class AccountDetailsComponent {
           .subscribe(this.initialObserver);
       }
     })
-    // this.authService.userSubject.subscribe({
-    //   next: (val) => {
-    //     if (val) {
-    //       this.isVisitorAccOwner = this.isVisitorAccOwnerCheck();
-    //     }
-    //   }
-    // })
   }
 
   filter($event: any) {
@@ -78,8 +70,9 @@ export class AccountDetailsComponent {
   }
 
   private isVisitorAccOwnerCheck(): boolean {
-    let result = (this.authService.getUserInfo() && this.account)
-      ? (this.account.id === this.authService.getUserInfo().accountDto.id)
+    if (this.sessionStorageService.getSessionInfo() !== null) return false;
+    let result = (this.sessionStorageService.getSessionInfo() && this.account)
+      ? (this.account.id === this.sessionStorageService.getSessionInfo()!.accountDto.id)
       : false;
     return result;
   }

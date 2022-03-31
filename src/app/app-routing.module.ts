@@ -7,7 +7,6 @@ import { PostPictureComponent } from "./Modules/Core/common-pages/post-picture/p
 import { Error404Component } from "./Modules/Core/common-pages/errors/error404/error404.component";
 import { Error500Component } from "./Modules/Core/common-pages/errors/error500/error500.component";
 import { Error0Component } from "./Modules/Core/common-pages/errors/error0/error0.component";
-import { RouteGuardGuard } from "./Services/guards/route-guard.guard";
 import { SearchComponent } from "./Modules/Core/common-pages/search/search.component";
 import { HomepageComponent } from "./Modules/Core/common-pages/homepage/homepage.component";
 import { MyAccountComponent } from "./Modules/Core/common-pages/my-account/my-account.component";
@@ -15,6 +14,8 @@ import { PopularComponent } from "./Modules/Core/common-pages/popular/popular.co
 import { PictureDetailsComponent } from "./Modules/Core/common-pages/picture-details/picture-details.component";
 import { AccountDetailsComponent } from "./Modules/Core/common-pages/account-details/account-details.component";
 import { TosComponent } from './Modules/Core/common-pages/tos/tos.component';
+import {IsNotLoggedOnRouteGuardGuard} from "./Services/guards/is-not-logged-on-route-guard.guard";
+import {IsLoggedOnRouteGuardGuard} from "./Services/guards/is-logged-on-route-guard.guard";
 
 
 const routes: Routes = [
@@ -24,11 +25,21 @@ const routes: Routes = [
   {path: "home/page/:pageNumber", component: HomepageComponent},
   {path: "search/:pageNumber", component: SearchComponent},
 
-  {path: "login", component: LoginComponent},
-  {path: "register", component: RegisterComponent},
+
   {path: "logged-out", component: LoggedOutComponent},
   {path: "popular", component: PopularComponent},
   {path: "tos", component: TosComponent},
+
+  {
+    path: "login",
+    component: LoginComponent,
+    canActivate: [IsLoggedOnRouteGuardGuard]
+  },
+  {
+    path: "register",
+    component: RegisterComponent,
+    canActivate: [IsLoggedOnRouteGuardGuard]
+  },
 
   {
     path: "picture",
@@ -36,7 +47,7 @@ const routes: Routes = [
       {
         path: "post",
         component: PostPictureComponent,
-        canActivate: [RouteGuardGuard],
+        canActivate: [IsNotLoggedOnRouteGuardGuard],
       },
       {
         path: ":id",
@@ -57,7 +68,7 @@ const routes: Routes = [
   {
     path: "my-account",
     component: MyAccountComponent,
-    canActivate: [RouteGuardGuard],
+    canActivate: [IsNotLoggedOnRouteGuardGuard],
   },
 
   { path: "error500", component: Error500Component },

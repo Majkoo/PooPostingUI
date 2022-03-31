@@ -3,9 +3,9 @@ import {PopularModel} from "../../../../Models/ApiModels/PopularModel";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
-import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 import {SelectOption} from "../../../../Models/SelectOption";
 import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
+import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 
 @Component({
   selector: 'app-popular',
@@ -36,9 +36,9 @@ export class PopularComponent implements OnInit {
   ];
 
   constructor(
+    private sessionStorageService: SessionStorageServiceService,
     private httpService: HttpServiceService,
     private configService: ConfigServiceService,
-    private authService: AuthServiceService,
   ) {
     this.selectOptions = [
       { name: "Obrazki", class: "bi bi-image-fill"},
@@ -73,7 +73,7 @@ export class PopularComponent implements OnInit {
   }
 
   private updatePicture(picture: PictureModel): void {
-    picture = this.authService.updatePictureLikes(picture);
+    picture = this.sessionStorageService.updatePictureLikes(picture);
     if(!picture.url.startsWith("http")){
       picture.url = this.configService.picturesUrl + picture.url;
     }

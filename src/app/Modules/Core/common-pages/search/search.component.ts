@@ -4,8 +4,8 @@ import {Router} from "@angular/router";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
 import {MessageService} from "primeng/api";
-import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 import {AccountPagedResult} from "../../../../Models/ApiModels/AccountPagedResult";
+import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 
 @Component({
   selector: 'app-search',
@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
     private httpService: HttpServiceService,
     private paramsService: HttpParamsServiceService,
     private messageService: MessageService,
-    private authService: AuthServiceService,
+    private sessionStorageService: SessionStorageServiceService,
     private router: Router,
   ) {}
 
@@ -93,13 +93,13 @@ export class SearchComponent implements OnInit {
   }
 
   paginate(val: any): void {
-    this.authService.updateLikes();
+    this.sessionStorageService.updateLikes();
     this.paramsService.setSearchPageNumber(val+1);
     this.updatePage();
     this.fetchPictures();
   }
   paginateAccs(val: any): void {
-    this.authService.updateLikes();
+    this.sessionStorageService.updateLikes();
     this.paramsService.setSearchPageNumber(val+1);
     this.updatePage();
     this.fetchAccounts();

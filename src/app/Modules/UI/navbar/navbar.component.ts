@@ -3,9 +3,9 @@ import {MenuItem} from "../../../Models/MenuModels/MenuItem";
 import {MenusServiceService} from "../../../Services/data/menus-service.service";
 import {MenuExpandableItem} from "../../../Models/MenuModels/MenuExpandableItem";
 import {Router} from "@angular/router";
-import {HttpServiceService} from "../../../Services/http/http-service.service";
-import {AuthServiceService} from "../../../Services/data/auth-service.service";
 import {LocationServiceService} from "../../../Services/helpers/location-service.service";
+import {SessionStorageServiceService} from "../../../Services/data/session-storage-service.service";
+import {LocalStorageServiceService} from "../../../Services/data/local-storage-service.service";
 
 @Component({
   selector: 'app-navbar',
@@ -19,18 +19,19 @@ export class NavbarComponent implements OnInit{
   loggedIn: boolean;
 
   constructor(
+    private sessionStorageService: SessionStorageServiceService,
+    private localStorageService: LocalStorageServiceService,
     private locationService: LocationServiceService,
     private menuService: MenusServiceService,
-    private authService: AuthServiceService,
     private router: Router,
   ) {
     this.menuItems = menuService.getMenuItems();
     this.menuExpandableItems = menuService.getExpandableMenuItems();
-    this.loggedIn = this.authService.isUserLogged();
+    this.loggedIn = this.sessionStorageService.isLoggedOn();
   }
 
   ngOnInit(): void {
-    this.authService.userSubject.subscribe({
+    this.sessionStorageService.userSubject.subscribe({
       next: (val) => {
         this.loggedIn = val;
       }
@@ -38,7 +39,7 @@ export class NavbarComponent implements OnInit{
   }
 
   logout() {
-    this.authService.logout();
+    this.localStorageService.logout();
     this.showSidebar = false;
     this.router.navigate(['logged-out']);
   }

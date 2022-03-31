@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { CustomValidators } from 'src/CustomValidators';
 import {MessageService} from "primeng/api";
-import {throwError} from "rxjs";
 import {Location} from "@angular/common";
 
 @Component({

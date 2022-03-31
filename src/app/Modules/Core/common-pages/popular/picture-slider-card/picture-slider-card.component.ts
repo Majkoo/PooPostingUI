@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PictureModel} from "../../../../../Models/ApiModels/PictureModel";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
-import {AuthServiceService} from "../../../../../Services/data/auth-service.service";
+import {SessionStorageServiceService} from "../../../../../Services/data/session-storage-service.service";
 
 @Component({
   selector: 'app-picture-slider-card',
@@ -16,7 +16,7 @@ export class PictureSliderCardComponent implements OnInit {
 
   constructor(
     private httpService: HttpServiceService,
-    private authService: AuthServiceService,
+    private sessionStorageService: SessionStorageServiceService,
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class PictureSliderCardComponent implements OnInit {
       .subscribe(this.likeObserver)
   }
   updatePicture() {
-    this.picture = this.authService.updatePictureLikes(this.picture);
+    this.picture = this.sessionStorageService.updatePictureLikes(this.picture);
   }
 
   likeObserver = {

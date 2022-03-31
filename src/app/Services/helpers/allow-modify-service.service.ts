@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {PictureModel} from "../../Models/ApiModels/PictureModel";
-import {AuthServiceService} from "../data/auth-service.service";
 import {AccountModel} from "../../Models/ApiModels/AccountModel";
+import {SessionStorageServiceService} from "../data/session-storage-service.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,19 +9,19 @@ import {AccountModel} from "../../Models/ApiModels/AccountModel";
 export class AllowModifyServiceService {
 
   constructor(
-    private authService: AuthServiceService
+    private sessionStorageService: SessionStorageServiceService,
   ) { }
 
   allowModifyPicture(pic: PictureModel) {
-    let userInfo = this.authService.getUserInfo()
+    let userInfo = this.sessionStorageService.getSessionInfo();
     if(userInfo){
-      pic.isModifiable = (pic.accountId === userInfo.accountDto.id) || (userInfo.accountDto.roleId === 3);
+      pic.isModifiable = (pic.accountId === userInfo.accountDto.id) || (userInfo.accountDto.roleId == "3");
     }
   }
   allowModifyAccount(acc: AccountModel) {
-    let userInfo = this.authService.getUserInfo()
+    let userInfo = this.sessionStorageService.getSessionInfo();
     if(userInfo){
-      acc.isModifiable = (acc.id === userInfo.accountDto.id) || (userInfo.accountDto.roleId === 3);
+      acc.isModifiable = (acc.id === userInfo.accountDto.id) || (userInfo.accountDto.roleId == "3");
     }
   }
 

@@ -2,11 +2,11 @@ import {Component, OnInit, ViewChild,} from '@angular/core';
 import { PicturePagedResult } from 'src/app/Models/ApiModels/PicturePagedResult';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
-import {AuthServiceService} from "../../../../Services/data/auth-service.service";
 import {LikeModel} from "../../../../Models/ApiModels/LikeModel";
 import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
 import {map, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
+import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 
 @Component({
   selector: 'app-body',
@@ -26,8 +26,8 @@ export class HomepageComponent implements OnInit {
 
   constructor(
     private httpService: HttpServiceService,
+    private sessionStorageService: SessionStorageServiceService,
     private paramsService: HttpParamsServiceService,
-    private authService: AuthServiceService,
     private scrollService: ScrollServiceService,
     private route: ActivatedRoute,
     private router: Router
@@ -64,16 +64,18 @@ export class HomepageComponent implements OnInit {
         this.paginator.updatePages(value.totalItems);
       },
       error: () => {
-        this.router.navigate(['/home/page/1'])
+        if (this.result.page !== 0) {
+          this.router.navigate(['/home/page/1']);
+        }
       }
     });
   }
   private updateLikes(): void {
-    if (this.authService.isUserLogged()){
-      this.httpService.getAccountLikesRequest(this.authService.UserInfo?.accountDto.id)
+    if (this.sessionStorageService.isLoggedOn()){
+      this.httpService.getAccountLikesRequest(this.sessionStorageService.getSessionInfo()?.accountDto.id)
         .subscribe({
           next: (value: LikeModel[]) => {
-            this.authService.UserInfo!.likes = value;
+            this.sessionStorageService.getSessionInfo()!.likes = value;
           }
         });
     }
