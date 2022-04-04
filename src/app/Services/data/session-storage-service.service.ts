@@ -23,9 +23,7 @@ export class SessionStorageServiceService {
 
   pushError(err: ErrorInfoModel) {
     let errors = this.getLogs()
-    console.log(errors);
     errors.errors.push(err);
-    console.error(errors);
     sessionStorage.setItem("errorLogs", JSON.stringify(errors));
   }
 

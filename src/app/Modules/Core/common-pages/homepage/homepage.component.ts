@@ -64,7 +64,7 @@ export class HomepageComponent implements OnInit {
         this.paginator.updatePages(value.totalItems);
       },
       error: () => {
-        if (this.result.page !== 0) {
+        if (this.result.page === 0) {
           this.router.navigate(['/home/page/1']);
         }
       }

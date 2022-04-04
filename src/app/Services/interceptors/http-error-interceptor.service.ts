@@ -41,22 +41,13 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
     this.message.clear();
     let date = new Date();
     let errMsg: ErrorInfoModel = {
-      date: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} , ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+      date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
       status: status.toString(),
       error: error,
       request: req
     }
     this.sessionStorageService.pushError(errMsg);
     switch (status) {
-      case (400): {
-        return throwError(() => {
-          this.message.add({
-            severity:'error',
-            summary:'Błąd',
-            detail:'Wystąpił nieoczekiwany błąd. Przepraszamy za utrudnienia.'
-          });
-        });
-      }
       case (401): {
         return throwError(() => {
           this.message.add({
@@ -77,11 +68,20 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
       }
       case (404): {
         return throwError(() => {
+          if (req.method !== "GET") {
+            this.message.add({
+              severity:'warn',
+              summary: 'Niepowodzenie',
+              detail: 'Nie udało się wykonać operacji. Zasób jest niedostępny. Prawdopodobnie został usunięty lub ukryty.'
+            });
+            return error;
+          }
           this.message.add({
             severity:'warn',
             summary: 'Niepowodzenie',
-            detail: 'Nie udało się wykonać operacji. Zasób jest niedostępny. Prawdopodobnie został usunięty lub ukryty.'
+            detail: 'Wystąpił błąd. Przekierowano cię na stronę główną.'
           });
+          return error;
         })
       }
       case (0): {
@@ -94,11 +94,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
 
         if (statusStr.startsWith("4")) {
           return throwError(() => {
-            this.message.add({
-              severity:'error',
-              summary:'Błąd',
-              detail:'Wystąpił nieoczekiwany błąd. Przepraszamy za utrudnienia.'
-            });
+            return error;
           })
         }
         else if (statusStr.startsWith("5")) {

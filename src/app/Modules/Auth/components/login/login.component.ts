@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
         error: (err) => {
           if (err.error === "Invalid nickname or password") {
             this.messageService.add({severity:'error', summary: 'Niepowodzenie', detail: 'Podano błędne dane logowania.', key: "login-failed"});
-            this.awaitSubmit = false;
           }
+          this.awaitSubmit = false;
         }
       })
   }
