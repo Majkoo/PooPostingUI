@@ -70,11 +70,8 @@ export class AccountDetailsComponent {
   }
 
   private isVisitorAccOwnerCheck(): boolean {
-    if (this.sessionStorageService.getSessionInfo() !== null) return false;
-    let result = (this.sessionStorageService.getSessionInfo() && this.account)
-      ? (this.account.id === this.sessionStorageService.getSessionInfo()!.accountDto.id)
-      : false;
-    return result;
+    if (this.sessionStorageService.getSessionInfo() === null) return false;
+    return (this.account.id === this.sessionStorageService.getSessionInfo()!.accountDto.id);
   }
   private fixPicUrls(acc: AccountModel): void {
     acc.pictures.forEach(p =>

@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Observable} from 'rxjs/internal/Observable';
-import {catchError, delay, mergeMap, retryWhen} from "rxjs/operators";
+import {catchError, delay, mergeMap, retryWhen, tap} from "rxjs/operators";
 import {of, throwError} from "rxjs";
 import {Router} from "@angular/router";
 import {MessageService} from "primeng/api";
+import {SessionStorageServiceService} from "../data/session-storage-service.service";
+import {ErrorInfoModel} from "../../Models/ErrorInfoModel";
 
 export const retryCount: number = 2;
 export const delayMs: number = 2000;
@@ -16,9 +18,9 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
   constructor(
     private router: Router,
     private message: MessageService,
+    private sessionStorageService: SessionStorageServiceService,
     ) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.message.clear();
     return next.handle(req)
       .pipe(
         retryWhen((error) => {
@@ -35,14 +37,16 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
       );
   }
 
-  private handleError(status: number, req?: HttpRequest<any>, error?: HttpErrorResponse) {
-    console.error(
-      `=============================================================\n` +
-      `Error status: ${status}\n` +
-      `Error json: ${JSON.stringify(error)}\n` +
-      `Request json: ${JSON.stringify(req)}\n` +
-      `=============================================================\n`
-    );
+  private handleError(status: number, req: HttpRequest<any>, error: HttpErrorResponse) {
+    this.message.clear();
+    let date = new Date();
+    let errMsg: ErrorInfoModel = {
+      date: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} , ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+      status: status.toString(),
+      error: error,
+      request: req
+    }
+    this.sessionStorageService.pushError(errMsg);
     switch (status) {
       case (400): {
         return throwError(() => {
@@ -50,8 +54,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
             severity:'error',
             summary:'Błąd',
             detail:'Wystąpił nieoczekiwany błąd. Przepraszamy za utrudnienia.'
-          })
-          console.log(error)
+          });
         });
       }
       case (401): {
@@ -59,7 +62,8 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
           this.message.add({
             severity:'error',
             summary: 'Niepowodzenie',
-            detail: 'Nie udało się wykonać operacji. Do jej wykonania konieczne jest zalogowanie się.'});
+            detail: 'Nie udało się wykonać operacji. Do jej wykonania konieczne jest zalogowanie się.'
+          });
         });
       }
       case (403): {
@@ -67,7 +71,8 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
           this.message.add({
             severity:'error',
             summary: 'Niepowodzenie',
-            detail: 'Nie udało się wykonać operacji. Nie masz uprawnień.'});
+            detail: 'Nie udało się wykonać operacji. Nie masz uprawnień.'
+          });
         });
       }
       case (404): {

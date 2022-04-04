@@ -4,17 +4,29 @@ import {LikeModel} from "../../Models/ApiModels/LikeModel";
 import {PictureModel} from "../../Models/ApiModels/PictureModel";
 import {HttpServiceService} from "../http/http-service.service";
 import {Subject} from "rxjs";
+import {ErrorLogModel} from "../../Models/ErrorLogModel";
+import {ErrorInfoModel} from "../../Models/ErrorInfoModel";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionStorageServiceService {
   userSubject: Subject<boolean> = new Subject<boolean>(); // on login/logout
+  errorLogs!: ErrorLogModel;
 
   constructor(
     private httpService: HttpServiceService,
   ) {
     this.userSubject.next(false);
+    this.updateLogs();
+  }
+
+  pushError(err: ErrorInfoModel) {
+    let errors = this.getLogs()
+    console.log(errors);
+    errors.errors.push(err);
+    console.error(errors);
+    sessionStorage.setItem("errorLogs", JSON.stringify(errors));
   }
 
   updateSessionInfo(val: UserInfoModel) {
@@ -35,7 +47,6 @@ export class SessionStorageServiceService {
     let sessionInfo = this.getSessionInfo();
     return !(sessionInfo === null);
   }
-
 
   updateLikes(): void {
     if (this.isLoggedOn()){
@@ -67,4 +78,17 @@ export class SessionStorageServiceService {
     return picture;
   }
 
+
+
+  getLogs() {
+    this.updateLogs();
+    return this.errorLogs;
+  }
+  private updateLogs() {
+    if (sessionStorage.getItem("errorLogs")) {
+      this.errorLogs = JSON.parse(sessionStorage.getItem("errorLogs")!);
+    } else {
+      this.errorLogs = { errors: [] };
+    }
+  }
 }
