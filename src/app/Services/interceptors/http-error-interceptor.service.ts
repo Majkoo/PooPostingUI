@@ -55,6 +55,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
             summary: 'Niepowodzenie',
             detail: 'Nie udało się wykonać operacji. Do jej wykonania konieczne jest zalogowanie się.'
           });
+          return error;
         });
       }
       case (403): {
@@ -64,6 +65,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
             summary: 'Niepowodzenie',
             detail: 'Nie udało się wykonać operacji. Nie masz uprawnień.'
           });
+          return error;
         });
       }
       case (404): {
@@ -76,33 +78,23 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
             });
             return error;
           }
-          this.message.add({
-            severity:'warn',
-            summary: 'Niepowodzenie',
-            detail: 'Wystąpił błąd. Przekierowano cię na stronę główną.'
-          });
           return error;
         })
       }
       case (0): {
         return throwError(() => {
           this.router.navigate(['/error0']);
+          return error;
         })
       }
       default: {
-        let statusStr = status.toString()
-
-        if (statusStr.startsWith("4")) {
-          return throwError(() => {
-            return error;
-          })
-        }
-        else if (statusStr.startsWith("5")) {
+        if (status.toString().startsWith("5")) {
           return throwError(() => {
             this.router.navigate(['/error500']);
+            return error;
           });
         }
-        return throwError(() => {});
+        return throwError(() => {return error;});
       }
     }
   }

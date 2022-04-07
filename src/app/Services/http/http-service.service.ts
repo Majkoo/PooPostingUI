@@ -16,6 +16,7 @@ import {CommentModel} from "../../Models/ApiModels/CommentModel";
 import {PutPostCommentModel} from "../../Models/ApiModels/PutPostCommentModel";
 import {PopularModel} from "../../Models/ApiModels/PopularModel";
 import {LsJwtDetails} from "../../Models/ApiModels/LsJwtDetails";
+import {PutAccountModel} from "../../Models/ApiModels/PutAccountModel";
 
 @Injectable({
   providedIn: 'root'
@@ -126,6 +127,12 @@ export class HttpServiceService {
         `${this.config.apiUrl}/picture/${id}`
       );
   }
+  deleteAccountRequest(id: string): Observable<any> {
+    return this.http
+      .delete(
+        `${this.config.apiUrl}/account/${id}`
+      );
+  }
   patchPictureLikeRequest(id: string): Observable<PictureModel> {
     return this.http
       .patch<PictureModel>(
@@ -145,7 +152,14 @@ export class HttpServiceService {
       .put<PictureModel>(
         `${this.config.apiUrl}/picture/${id}`,
         data
-      )
+      );
+  }
+  putAccountRequest(data: PutAccountModel) {
+    return this.http
+      .put<boolean>(
+        `${this.config.apiUrl}/account/update`,
+        data
+      );
   }
 
 

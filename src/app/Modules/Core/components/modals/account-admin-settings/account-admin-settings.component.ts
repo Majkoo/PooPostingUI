@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AccountModel} from "../../../../../Models/ApiModels/AccountModel";
 
 @Component({
   selector: 'app-account-admin-settings',
   templateUrl: './account-admin-settings.component.html',
   styleUrls: ['./account-admin-settings.component.scss']
 })
-export class AccountAdminSettingsComponent implements OnInit {
+export class AccountAdminSettingsComponent {
+  @Input() account!: AccountModel
+  @Output() onBan: EventEmitter<void> = new EventEmitter<void>();
+  banPhrase: string = "";
 
-  constructor() { }
-
-  ngOnInit(): void {
+  banAccount() {
+    this.banPhrase = "";
+    this.onBan.emit();
   }
-
 }

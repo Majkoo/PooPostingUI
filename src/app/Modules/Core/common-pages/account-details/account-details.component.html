@@ -6,23 +6,46 @@
             (click)="showAccountSettings()" *ngIf="account.isModifiable"></button>
   </div>
 
-  <h2 class="text-center">
-    <b>Szczegóły konta</b>
-  </h2>
-  <div class="mt-2 ml-3">
-    <div class="d-flex justify-content-start align-items-center account-nickname">
-      <span class="bi bi-person-fill"></span>
-      <p>{{account.nickname}}</p>
-    </div>
-    <div class="d-flex justify-content-start align-items-center mt-2">
-      <span class="bi bi-calendar-month mr-1"></span>
-      <p>{{account.accountCreated | date}}</p>
-    </div>
-    <div class="d-flex justify-content-start align-items-center mt-2" *ngIf="isVisitorAccOwner">
-      <span class="bi bi-envelope mr-1"></span>
-      <p>{{account.email}}</p>
-    </div>
+  <div class="text-center mb-3">
+    <h2 class="font-weight-bold mb-2">Szczegóły konta</h2>
+    <h4>
+      <span class="d-flex justify-content-center align-items-center">
+        <span class="bi bi-person-fill"></span>
+        <span>{{account.nickname}}</span>
+        <span *ngIf="isVisitorAccOwner">&nbsp;(ty)</span>
+      </span>
+    </h4>
   </div>
+  <h5 class="font-weight-bold">Informacje o koncie:</h5>
+  <ul>
+    <li *ngIf="isVisitorAccOwner">
+        <span class="li-item">
+          <span class="bi bi-envelope mr-1"></span>
+          <b>Adres e-mail:</b>
+        </span>
+      <span class="ml-4">
+          {{account.email}}
+        </span>
+    </li>
+    <li>
+        <span class="li-item">
+          <span class="bi bi-calendar mr-1"></span>
+          <b>Konto utworzone:</b>
+        </span>
+      <span class="ml-4">
+          {{account.accountCreated | date:"hh:mm, dd/MM/yyyy"}}
+        </span>
+    </li>
+    <li>
+        <span class="li-item">
+          <span class="bi bi-images mr-1"></span>
+          <b>Ilość obrazków:</b>
+        </span>
+      <span class="ml-4">
+          {{account.pictures.length}}
+        </span>
+    </li>
+  </ul>
 
   <div class="my-4 mb-md-5 px-2" *ngIf="account.pictures.length">
     <p-dataView #dv [value]="account.pictures" [paginator]="true" [rows]="10" filterBy="name">
@@ -58,11 +81,11 @@
 
   <p-dialog [(visible)]="showAccountSettingsFlag" header="Ustawienia konta"
             [modal]="true" [dismissableMask]="true" [draggable]="false">
-    <app-account-settings></app-account-settings>
+    <app-account-settings [account]="account" (onSubmit)="closeModals()"></app-account-settings>
   </p-dialog>
   <p-dialog [(visible)]="showAdminAccountSettingsFlag" header="Ustawienia administratorskie konta"
             [modal]="true" [dismissableMask]="true" [draggable]="false">
-    <app-account-admin-settings></app-account-admin-settings>
+    <app-account-admin-settings [account]="account" (onBan)="banAccount()"></app-account-admin-settings>
   </p-dialog>
 
 </div>

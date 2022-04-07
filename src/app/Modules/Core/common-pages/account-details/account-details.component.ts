@@ -8,6 +8,7 @@ import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
 import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modify-service.service";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-account-details',
@@ -26,6 +27,7 @@ export class AccountDetailsComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private messageService: MessageService,
     private httpService: HttpServiceService,
     private configService: ConfigServiceService,
     private locationService: LocationServiceService,
@@ -35,6 +37,15 @@ export class AccountDetailsComponent {
     this.id = route.params.pipe(map(p => p['id']));
     this.id.subscribe({
       next: (val) => {
+        if (val === "00000000-0000-0000-0000-000000000000") {
+          this.locationService.goBack();
+          this.messageService.add({
+            severity: "warn",
+            summary: "Przekiewowano cię z powrotem",
+            detail: "Ten użytkownik jest zbanowany. Nie można przeglądać jego profilu."
+          })
+          return;
+        }
         this.httpService.getAccountRequest(val)
           .subscribe(this.initialObserver);
       }
@@ -54,6 +65,34 @@ export class AccountDetailsComponent {
   }
   return(): void {
     this.locationService.goBack();
+  }
+
+  banAccount() {
+    this.httpService.deleteAccountRequest(this.account.id)
+      .subscribe({
+        next: (val) => {
+          if(val) {
+            this.messageService.add({
+              severity: "warn",
+              summary: `Sukces`,
+              detail: `Konto ${this.account.nickname} zostało zbanowane.`
+            });
+            this.locationService.goBack();
+          }
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: "error",
+            summary: `Niepowodzenie`,
+            detail: `Nie udało się zbanować konta ${this.account.nickname}. Sprawdź szczegóły w logach.`
+          });
+        }
+      })
+  }
+
+  closeModals() {
+    this.showAdminAccountSettingsFlag = false;
+    this.showAccountSettingsFlag = false;
   }
 
   private initialObserver = {

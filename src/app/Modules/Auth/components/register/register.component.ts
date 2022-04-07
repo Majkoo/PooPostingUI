@@ -33,7 +33,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.isNickNameTaken = false;
-    // @ts-ignore
     this.form = new FormGroup({
       nickname: new FormControl(null, [
         Validators.required,

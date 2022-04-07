@@ -44,6 +44,27 @@ export class PictureSettingsComponent implements OnInit {
     ]
   }
 
+  ngOnInit(): void {
+    this.changeTags = new FormGroup({
+      tags: new FormControl("", [
+        Validators.required
+      ])
+    });
+    this.changeName = new FormGroup({
+      name: new FormControl("", [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(40)
+      ])
+    });
+    this.changeDesc = new FormGroup({
+      desc: new FormControl("", [
+        Validators.required,
+        Validators.maxLength(500)
+      ])
+    })
+  }
+
   trimChips() {
     let tags: string[] = this.changeTags.get('tags')?.value;
     let tagsToTrim: string[] = [];
@@ -78,26 +99,7 @@ export class PictureSettingsComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.changeTags = new FormGroup({
-      tags: new FormControl("", [
-        Validators.required
-        ])
-    });
-    this.changeName = new FormGroup({
-      name: new FormControl("", [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(40)
-      ])
-    });
-    this.changeDesc = new FormGroup({
-      desc: new FormControl("", [
-        Validators.required,
-        Validators.maxLength(500)
-      ])
-    })
-  }
+
 
   submitTags(){
     this.awaitSubmit = true;
