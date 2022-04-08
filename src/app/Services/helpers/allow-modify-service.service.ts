@@ -16,6 +16,9 @@ export class AllowModifyServiceService {
     let userInfo = this.sessionStorageService.getSessionInfo();
     if(userInfo){
       pic.isModifiable = (pic.accountId === userInfo.accountDto.id) || (userInfo.accountDto.roleId == "3");
+      if (userInfo.accountDto.roleId == "3") {
+        pic.comments.forEach(c => c.isModifiable = true);
+      }
     }
   }
   allowModifyAccount(acc: AccountModel) {

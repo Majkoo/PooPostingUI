@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {PrimeNgModule} from "../Prime-ng/prime-ng.module";
+import { LogsComponent } from './logs/logs.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LogsComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    PrimeNgModule
   ]
 })
 export class DebugModule { }

@@ -16,6 +16,7 @@ import { AccountDetailsComponent } from "./Modules/Core/common-pages/account-det
 import { TosComponent } from './Modules/Core/common-pages/tos/tos.component';
 import {IsNotLoggedOnRouteGuardGuard} from "./Services/guards/is-not-logged-on-route-guard.guard";
 import {IsLoggedOnRouteGuardGuard} from "./Services/guards/is-logged-on-route-guard.guard";
+import {LogsComponent} from "./Modules/Debug/logs/logs.component";
 
 
 const routes: Routes = [
@@ -25,10 +26,14 @@ const routes: Routes = [
   {path: "home/page/:pageNumber", component: HomepageComponent},
   {path: "search/:pageNumber", component: SearchComponent},
 
+  {path: "debug/logs", component: LogsComponent},
+
+
 
   {path: "logged-out", component: LoggedOutComponent},
   {path: "popular", component: PopularComponent},
   {path: "tos", component: TosComponent},
+
 
   {
     path: "login",

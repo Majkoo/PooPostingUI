@@ -13,9 +13,11 @@ import { ConfigServiceService } from './Services/data/config-service.service';
 import { TokenInterceptorService } from './Services/interceptors/token-interceptor.service';
 import { HttpErrorInterceptorService } from './Services/interceptors/http-error-interceptor.service';
 import {ConfirmationService, MessageService} from "primeng/api";
-import {PrimeNgModule} from "./Modules/prime-ng/prime-ng.module";
+import {PrimeNgModule} from "./Modules/Prime-ng/prime-ng.module";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {DebugModule} from "./Modules/Debug/debug.module";
+import {TerminalService} from "primeng/terminal";
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {
@@ -38,11 +40,11 @@ export function initializerFn(configService: ConfigServiceService){
     UIModule,
     BrowserAnimationsModule,
     PrimeNgModule,
+    DebugModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
   ],
   providers: [
     MessageService,
-    ConfirmationService,
     {
       provide: AppConfiguration,
       deps: [HttpClient],

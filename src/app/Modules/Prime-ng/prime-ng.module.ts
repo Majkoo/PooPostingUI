@@ -54,8 +54,7 @@ const PrimeNgComponents = [
   ProgressSpinnerModule,
   CarouselModule,
   TableModule,
-  SkeletonModule
-
+  SkeletonModule,
 ]
 
 @NgModule({

@@ -1,0 +1,15 @@
+pre {
+  color: darkred;
+  background-color: rgba(248, 248, 248, 0.71);
+  overflow: scroll;
+  margin-bottom: 0;
+}
+.p-accordion-header-link {
+  justify-content: start;
+}
+.headerSpan {
+  font-weight: normal;
+  b {
+    color: darkred;
+  }
+}

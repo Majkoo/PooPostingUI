@@ -11,7 +11,7 @@ import {UIModule} from "../UI/ui.module";
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SearchPanelComponent } from './components/search-panel/search-panel.component';
 import { MyAccountComponent } from './common-pages/my-account/my-account.component';
-import {PrimeNgModule} from "../prime-ng/prime-ng.module";
+import {PrimeNgModule} from "../Prime-ng/prime-ng.module";
 import {TimeagoModule} from "ngx-timeago";
 import { PictureSettingsComponent } from './components/modals/picture-settings/picture-settings.component';
 import { PictureAdminSettingsComponent } from './components/modals/picture-admin-settings/picture-admin-settings.component';
