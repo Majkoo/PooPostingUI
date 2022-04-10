@@ -84,7 +84,7 @@
             </span>
           </div>
 
-          <div class="text-left col-12 mb-4">
+          <div class="text-left col-12 mb-3">
             <span class="p-float-label">
               <input id="conf-input" class="w-100" type="password"
                      [ngClass]="form.get('confirmPassword')!.touched ? 'ng-dirty' : ''"
@@ -104,10 +104,19 @@
                 Hasła nie są takie same
               </small>
             </span>
+            <div class="d-flex justify-content-center mt-2">
+              <small class="text-danger text-center m-auto font-weight-bold">
+                Rejestrując się zgadzasz się na
+                <span class="link" (click)="openLink('/tos')">politykę prywatności</span> oraz
+                <span class="link" (click)="openLink('/rulebook')">regulamin strony</span>.
+              </small>
+            </div>
           </div>
 
+
+
           <div class="d-flex w-100 justify-content-center mb-3">
-            <p-captcha [siteKey]="siteKey" (onResponse)="passCaptcha()"></p-captcha>
+            <p-captcha [siteKey]="siteKey" (onResponse)="passCaptcha()" (onExpire)="captchaPassed = false"></p-captcha>
           </div>
 
           <div class="col-12">

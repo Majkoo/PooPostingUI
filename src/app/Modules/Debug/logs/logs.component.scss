@@ -13,3 +13,10 @@ pre {
     color: darkred;
   }
 }
+textarea, .message-label, .form-label {
+  max-width: 90vw;
+  .label-paragraph {
+    max-width: 70ch;
+    margin: auto !important;
+  }
+}

@@ -1,8 +1,9 @@
-<div class="container">
-  <h2 class="mb-3">Lista błędów HTTP w obecnej sesji</h2>
+<div class="px-3 px-md-0">
+  <h2 class="mb-4">Zgłaszanie błędów</h2>
 
-  <div class="mb-4" *ngIf="logs.errors">
-    <p-accordion [activeIndex]="0" >
+  <div class="mb-5">
+    <h4 class="mb-3 font-weight-normal">Lista automatycznie wyłapanych błędów HTTP w bieżącej sesji:</h4>
+    <p-accordion [activeIndex]="logs.errors.length-1" *ngIf="logs.errors.length">
       <p-accordionTab style="justify-content: flex-start"
                       *ngFor="let displayLog of logs.errors, index as i">
         <ng-template pTemplate="header">
@@ -25,17 +26,35 @@
         </ng-template>
       </p-accordionTab>
     </p-accordion>
+    <p-accordion *ngIf="!logs.errors.length" [activeIndex]="0">
+      <p-accordionTab header="Brak błędów HTTP w bieżącej sesji.">
+        <div class="border">
+          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi2-prod.mirror.co.uk%2Fincoming%2Farticle6469391.ece%2FALTERNATES%2Fs810%2FShrek.jpg&f=1&nofb=1"
+               alt="Brak błędów" class="img-fluid">
+        </div>
+      </p-accordionTab>
+    </p-accordion>
 
-    <div class="w-100 text-center mt-3" *ngIf="isLoggedOn">
-      <button pButton pRipple label="Wyślij logi do programisty" icon="bi bi-send" (click)="sendErrorLogs()" [disabled]="!canSendLogs"></button>
-    </div>
-  </div>
-
-  <div *ngIf="!logs.errors.length">
-    <p>Brak błędów do wyświetlenia</p>
-    <div class="my-3 border">
-      <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi2-prod.mirror.co.uk%2Fincoming%2Farticle6469391.ece%2FALTERNATES%2Fs810%2FShrek.jpg&f=1&nofb=1"
-           alt="Brak błędów" class="img-fluid">
+<!--    Contact form -->
+    <div class="w-100 text-center mt-5">
+      <div class="form-label mb-2">
+        <h4>Chcesz zgłosić błąd?</h4>
+        <h6>Postaraj się go opisać w poniższym formularzu.</h6>
+      </div>
+      <small class="text-muted text-center my-1 message-label w-100">
+        <p class="label-paragraph font-weight-bold">Postaraj się opisać, podczas wykonywania jakiej akcji na stronie wystąpił błąd.</p>
+        <p class="label-paragraph">Do programisty zostaną wysłane podstawowe informacje o twoim koncie, logi dotyczące błędów (jeżeli istnieją), które wystąpiły w obecnej sesji, oraz Twój opis błędu.</p>
+      </small>
+      <form class="d-flex flex-column justify-content-center align-items-center">
+        <span class="p-float-label mt-4 mb-2">
+          <textarea pInputTextarea name="email content" id="emailMessage" cols="60" rows="5" [disabled]="!isLoggedOn" [(ngModel)]="userMsg"></textarea>
+          <label for="emailMessage">Opis błędu</label>
+        </span>
+        <button pButton pRipple label="Wyślij wiadomość do programisty" icon="bi bi-send"
+                (click)="sendErrorLogs()" [disabled]="!canSendLogs || (userMsg.length < 4) || !isLoggedOn"></button>
+        <small class="text-danger text-center mt-1" *ngIf="!canSendLogs">Twoje logi zostały już wysłane.</small>
+        <small class="text-danger text-center mt-1" *ngIf="!isLoggedOn">Aby zgłosić błąd, użytkownik musi być zalogowany.</small>
+      </form>
     </div>
   </div>
 </div>

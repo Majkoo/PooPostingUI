@@ -30,7 +30,7 @@ export class SearchPanelComponent {
         value: 0,
         disabled: false
       }),
-      searchPhrase: new FormControl("", Validators.required),
+      searchPhrase: new FormControl(""),
     })
   }
 

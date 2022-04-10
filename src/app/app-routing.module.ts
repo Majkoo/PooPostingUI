@@ -27,9 +27,7 @@ const routes: Routes = [
   {path: "home/page/:pageNumber", component: HomepageComponent},
   {path: "search/:pageNumber", component: SearchComponent},
 
-  {path: "debug/logs", component: LogsComponent},
-
-
+  {path: "report", component: LogsComponent},
 
   {path: "logged-out", component: LoggedOutComponent},
   {path: "popular", component: PopularComponent},

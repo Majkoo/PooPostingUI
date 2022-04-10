@@ -4,6 +4,7 @@ import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { CustomValidators } from 'src/CustomValidators';
 import {MessageService} from "primeng/api";
 import {Location} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -27,6 +28,7 @@ export class RegisterComponent implements OnInit {
     private httpService: HttpServiceService,
     private message: MessageService,
     private location: Location,
+    private router: Router
   ) {
     this.siteKey = "6Lfdv78eAAAAAJZcBW3ymM-3yaKieXyTTXFPNHcm";
   }
@@ -75,5 +77,10 @@ export class RegisterComponent implements OnInit {
       }
     });
 
+  }
+
+  openLink(url: string){
+    let currentWebUrl = this.location.path().split("/")[0]
+    window.open(url, "_blank");
   }
 }

@@ -1,5 +1,5 @@
 ﻿{
-  "appUrl": "https://pictures.migra.ml",
+  "appUrl": "http://localhost:4200",
   "apiUrl": "https://dev-pictures-api.migra.ml/api",
   "picturesUrl": "https://dev-pictures-api.migra.ml/"
 }

@@ -10,7 +10,7 @@ h1,h2,h3,h4,h5,h6,p,b,small,strong{
   padding: 0 !important;
   font-family: Roboto, "Helvetica Neue", sans-serif !important;
 }
-.disable-selection, img {
+.disable-selection, img, .link, .account-link {
   -webkit-touch-callout: none; /* iOS Safari                         */
   -webkit-user-select: none; /* Safari                             */
   -khtml-user-select: none; /* Konqueror HTML                     */

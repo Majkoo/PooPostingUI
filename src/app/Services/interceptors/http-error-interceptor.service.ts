@@ -26,7 +26,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
         retryWhen((error) => {
           return error.pipe(
             mergeMap((error, index) => {
-              if (index < retryCount) return of(error).pipe(delay(delayMs));
+              if ((index < retryCount) && !((req.method === "GET") && (error.status === 404))) return of(error).pipe(delay(delayMs));
               throw error;
             })
           );

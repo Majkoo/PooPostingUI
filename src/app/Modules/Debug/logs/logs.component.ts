@@ -18,6 +18,8 @@ export class LogsComponent implements OnInit {
   canSendLogs: boolean = true;
   isLoggedOn: boolean = false;
 
+  userMsg: string = "";
+
   constructor(
     private clipboard: Clipboard,
     private messageService: MessageService,
@@ -50,7 +52,7 @@ export class LogsComponent implements OnInit {
   }
 
   sendErrorLogs() {
-    this.httpService.postSendLogsRequest(this.emailBuilderService.buildEmail(this.logs))
+    this.httpService.postSendLogsRequest(this.emailBuilderService.buildEmail(this.logs, this.userMsg))
     .subscribe({
       next: val => {
         if (val) {
