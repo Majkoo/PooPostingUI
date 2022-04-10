@@ -27,7 +27,6 @@ import { AccountPreviewComponent } from './components/account-preview/account-pr
 import { AccountDetailsComponent } from './common-pages/account-details/account-details.component';
 import { PictureTableComponent } from './common-pages/account-details/picture-table/picture-table.component';
 import { AccountSettingsComponent } from './components/modals/account-settings/account-settings.component';
-import { TosComponent } from './common-pages/tos/tos.component';
 import {LikeTableComponent} from "./common-pages/picture-details/like-table/like-table.component";
 import {CommentTableComponent} from "./common-pages/picture-details/comment-table/comment-table.component";
 import { PictureSliderCardComponent } from './common-pages/popular/picture-slider-card/picture-slider-card.component';
@@ -61,7 +60,6 @@ import { PictureSkeletonComponent } from './components/picture-skeleton/picture-
     LikeTableComponent,
     CommentTableComponent,
     PictureTableComponent,
-    TosComponent,
     PictureSliderCardComponent,
     AccountAdminSettingsComponent,
     PictureSkeletonComponent,

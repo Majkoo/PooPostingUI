@@ -25,6 +25,10 @@
         </ng-template>
       </p-accordionTab>
     </p-accordion>
+
+    <div class="w-100 text-center mt-3" *ngIf="isLoggedOn">
+      <button pButton pRipple label="Wyślij logi do programisty" icon="bi bi-send" (click)="sendErrorLogs()" [disabled]="!canSendLogs"></button>
+    </div>
   </div>
 
   <div *ngIf="!logs.errors.length">

@@ -13,10 +13,11 @@ import { MyAccountComponent } from "./Modules/Core/common-pages/my-account/my-ac
 import { PopularComponent } from "./Modules/Core/common-pages/popular/popular.component";
 import { PictureDetailsComponent } from "./Modules/Core/common-pages/picture-details/picture-details.component";
 import { AccountDetailsComponent } from "./Modules/Core/common-pages/account-details/account-details.component";
-import { TosComponent } from './Modules/Core/common-pages/tos/tos.component';
 import {IsNotLoggedOnRouteGuardGuard} from "./Services/guards/is-not-logged-on-route-guard.guard";
 import {IsLoggedOnRouteGuardGuard} from "./Services/guards/is-logged-on-route-guard.guard";
 import {LogsComponent} from "./Modules/Debug/logs/logs.component";
+import {TosComponent} from "./Modules/Tos/tos/tos.component";
+import {RulebookComponent} from "./Modules/Tos/rulebook/rulebook.component";
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: "logged-out", component: LoggedOutComponent},
   {path: "popular", component: PopularComponent},
   {path: "tos", component: TosComponent},
+  {path: "rulebook", component: RulebookComponent},
 
 
   {

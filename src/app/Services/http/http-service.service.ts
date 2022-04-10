@@ -17,6 +17,7 @@ import {PutPostCommentModel} from "../../Models/ApiModels/PutPostCommentModel";
 import {PopularModel} from "../../Models/ApiModels/PopularModel";
 import {LsJwtDetails} from "../../Models/ApiModels/LsJwtDetails";
 import {PutAccountModel} from "../../Models/ApiModels/PutAccountModel";
+import {PostSendLogsModel} from "../../Models/ApiModels/PostSendLogsModel";
 
 @Injectable({
   providedIn: 'root'
@@ -113,6 +114,13 @@ export class HttpServiceService {
         `${this.config.apiUrl}/picture/${picId}/comment`,
         data
       );
+  }
+  postSendLogsRequest(data: PostSendLogsModel) {
+    return this.http
+      .post<boolean>(
+        `${this.config.apiUrl}/mail`,
+        data
+      )
   }
   deleteCommentRequest(picId: string, commId: string): Observable<CommentModel> {
     return this.http
