@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
+import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 
 @Component({
   selector: 'app-my-account',
@@ -10,14 +11,18 @@ import {SessionStorageServiceService} from "../../../../Services/data/session-st
 })
 export class MyAccountComponent implements OnInit {
   constructor(
-    private sessionStorageService: SessionStorageServiceService,
+    private userDataService: UserDataServiceService,
     private location: Location,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.router.navigate([`/account/${this.sessionStorageService.getSessionInfo()?.accountDto.id}`]);
-    this.location.go('/home')
+    if(this.userDataService.isUserLoggedOn()) {
+      this.router.navigate([`/account/${this.userDataService.getUserInfo()?.accountDto.id}`]);
+      this.location.go('/home');
+    } else {
+      this.router.navigate(['/home']);
+    }
   }
 
 }

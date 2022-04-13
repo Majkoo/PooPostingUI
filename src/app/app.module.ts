@@ -8,16 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './Modules/Core/core.module';
 import { AuthModule } from './Modules/Auth/auth.module';
 import {UIModule} from "./Modules/UI/ui.module";
-import { AppConfiguration } from './Models/AppConfiguration';
+import { AppConfiguration } from './Models/JsonModels/AppConfiguration';
 import { ConfigServiceService } from './Services/data/config-service.service';
 import { TokenInterceptorService } from './Services/interceptors/token-interceptor.service';
 import { HttpErrorInterceptorService } from './Services/interceptors/http-error-interceptor.service';
-import {ConfirmationService, MessageService} from "primeng/api";
+import { MessageService} from "primeng/api";
 import {PrimeNgModule} from "./Modules/Prime-ng/prime-ng.module";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {DebugModule} from "./Modules/Debug/debug.module";
-import {TerminalService} from "primeng/terminal";
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {

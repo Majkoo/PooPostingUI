@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {ErrorInfoModel} from "../../Models/ErrorInfoModel";
-import {ErrorLogModel} from "../../Models/ErrorLogModel";
+import {ErrorLogModel} from "../../Models/JsonModels/ErrorLogModel";
 import {PostSendLogsModel} from "../../Models/ApiModels/PostSendLogsModel";
 import {SessionStorageServiceService} from "../data/session-storage-service.service";
 import {Location} from "@angular/common";
 import {ConfigServiceService} from "../data/config-service.service";
+import {UserDataServiceService} from "../data/user-data-service.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +12,18 @@ import {ConfigServiceService} from "../data/config-service.service";
 export class EmailBuilderServiceService {
 
   constructor(
-    private sessionStorageService: SessionStorageServiceService,
+    private userDataService: UserDataServiceService,
     private location: Location,
     private config: ConfigServiceService,
   ) { }
 
   buildEmail(errorLogs: ErrorLogModel, userMsg: string): PostSendLogsModel {
+    let user = this.userDataService.getUserInfo();
     return {
-      emailSubject: `Error Log | Użytkownik: ${this.sessionStorageService.getSessionInfo()?.accountDto.nickname}`,
+      emailSubject: `Zgłoszenie błędu | Użytkownik: ${user?.accountDto.nickname}`,
       emailBody: `<p>
-                    <span style="font-size: 18px; line-height: 24px"><b>Error Log</b></div><br>
-                    <span style="font-size: 16px; line-height: 24px">Wysłano przez użytkownika: ${this.sessionStorageService.getSessionInfo()?.accountDto.nickname}, ${this.sessionStorageService.getSessionInfo()?.accountDto.email}</span>
+                    <span style="font-size: 18px; line-height: 24px"><b>Zgłoszenie błędu</b></div><br>
+                    <span style="font-size: 16px; line-height: 24px">Wysłano przez użytkownika: ${user.accountDto.nickname}, ${user?.accountDto.email}</span>
                   </p>
                   <p>
                     <b>Wiadomość od użytkownika:</b><br> <div style="margin-left: 32px; max-width: 100ch"><i>${userMsg}</i></div>

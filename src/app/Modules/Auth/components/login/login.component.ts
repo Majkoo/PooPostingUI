@@ -6,6 +6,7 @@ import {UserInfoModel} from "../../../../Models/UserInfoModel";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
 import {LocalStorageServiceService} from "../../../../Services/data/local-storage-service.service";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
+import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,9 @@ export class LoginComponent implements OnInit {
     private localStorageService: LocalStorageServiceService,
     private locationService: LocationServiceService,
     private httpService: HttpServiceService,
-    private messageService: MessageService) {}
+    private messageService: MessageService,
+    private userDataService: UserDataServiceService,
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -38,8 +41,8 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (v: UserInfoModel) => {
           if (v) {
-            this.sessionStorageService.userSubject.next(true);
-            this.sessionStorageService.updateSessionInfo(v);
+            this.userDataService.userSubject.next(true);
+            this.userDataService.setUserInfo(v);
             this.localStorageService.saveJwtDetails({jwtToken: v.authToken, guid: v.accountDto.id});
             this.messageService.add({severity:'success', summary: 'Sukces', detail: 'Zalogowano pomyślnie.'});
             this.locationService.goBack();

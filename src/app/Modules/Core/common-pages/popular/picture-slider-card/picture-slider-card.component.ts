@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PictureModel} from "../../../../../Models/ApiModels/PictureModel";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {SessionStorageServiceService} from "../../../../../Services/data/session-storage-service.service";
+import {UserDataServiceService} from "../../../../../Services/data/user-data-service.service";
 
 @Component({
   selector: 'app-picture-slider-card',
@@ -16,7 +17,7 @@ export class PictureSliderCardComponent implements OnInit {
 
   constructor(
     private httpService: HttpServiceService,
-    private sessionStorageService: SessionStorageServiceService,
+    private userDataService: UserDataServiceService,
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +32,7 @@ export class PictureSliderCardComponent implements OnInit {
       .subscribe(this.likeObserver)
   }
   updatePicture() {
-    this.picture = this.sessionStorageService.updatePictureLikes(this.picture);
+    this.picture = this.userDataService.updatePictureLikes(this.picture);
   }
 
   likeObserver = {

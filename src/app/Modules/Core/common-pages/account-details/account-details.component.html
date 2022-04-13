@@ -9,39 +9,38 @@
   <div class="text-center mb-3">
     <h2 class="font-weight-bold mb-2">Szczegóły konta</h2>
     <h4>
-      <span class="d-flex justify-content-center align-items-center">
+      <span class="d-flex justify-content-center align-items-center mb-4 mb-lg-3">
         <span class="bi bi-person-fill"></span>
         <span>{{account.nickname}}</span>
         <span *ngIf="isVisitorAccOwner">&nbsp;(ty)</span>
       </span>
     </h4>
   </div>
-  <h5 class="font-weight-bold">Informacje o koncie:</h5>
-  <ul>
+  <ul class="d-flex flex-column flex-md-row justify-content-around align-items-center">
     <li *ngIf="isVisitorAccOwner">
-        <span class="li-item">
+        <span class="li-item mt-2 mt-lg-0 w-100">
           <span class="bi bi-envelope mr-1"></span>
           <b>Adres e-mail:</b>
         </span>
-      <span class="ml-4">
+        <span class="text-center w-100">
           {{account.email}}
         </span>
     </li>
     <li>
-        <span class="li-item">
+        <span class="li-item mt-2 mt-lg-0 w-100">
           <span class="bi bi-calendar mr-1"></span>
           <b>Konto utworzone:</b>
         </span>
-      <span class="ml-4">
+        <span class="text-center w-100">
           {{account.accountCreated | date:"hh:mm, dd/MM/yyyy"}}
         </span>
     </li>
     <li>
-        <span class="li-item">
+        <span class="li-item mt-2 mt-lg-0 w-100">
           <span class="bi bi-images mr-1"></span>
           <b>Ilość obrazków:</b>
         </span>
-      <span class="ml-4">
+        <span class="text-center w-100">
           {{account.pictures.length}}
         </span>
     </li>

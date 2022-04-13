@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import { AppConfiguration } from 'src/app/Models/AppConfiguration';
+import { AppConfiguration } from 'src/app/Models/JsonModels/AppConfiguration';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,13 @@ export class ConfigServiceService extends AppConfiguration {
       .toPromise()
       .then(
         data => {
-        this.apiUrl = data!.apiUrl;
-        this.appUrl = data!.appUrl;
-        this.picturesUrl = data!.picturesUrl;
+          this.appTitle = data!.appTitle;
+          this.apiUrl = data!.apiUrl;
+          this.appUrl = data!.appUrl;
+          this.picturesUrl = data!.picturesUrl;
+          this.serviceAdmin = data!.serviceAdmin;
+          this.serviceAdminEmail = data!.serviceAdminEmail;
+          this.hostingProvider = data!.hostingProvider;
         console.log('Config successfully loaded')
       })
       .catch(() => {

@@ -2,22 +2,23 @@ import { Injectable } from '@angular/core';
 import {CanActivate} from '@angular/router';
 import {SessionStorageServiceService} from "../data/session-storage-service.service";
 import {LocationServiceService} from "../helpers/location-service.service";
+import {UserDataServiceService} from "../data/user-data-service.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class IsLoggedOnRouteGuardGuard implements CanActivate {
   constructor(
-    private sessionStorageService: SessionStorageServiceService,
-    private locationSercice: LocationServiceService,
+    private userDataService: UserDataServiceService,
+    private locationService: LocationServiceService,
   ) {
   }
 
   canActivate(): boolean {
-    if (!this.sessionStorageService.isLoggedOn()) {
+    if (!this.userDataService.isUserLoggedOn()) {
       return true;
     } else {
-      this.locationSercice.goBack();
+      this.locationService.goBack();
       return false;
     }
   }

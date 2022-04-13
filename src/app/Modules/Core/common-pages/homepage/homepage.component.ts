@@ -7,6 +7,7 @@ import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.
 import {map, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
+import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 
 @Component({
   selector: 'app-body',
@@ -26,7 +27,7 @@ export class HomepageComponent implements OnInit {
 
   constructor(
     private httpService: HttpServiceService,
-    private sessionStorageService: SessionStorageServiceService,
+    private userDataService: UserDataServiceService,
     private paramsService: HttpParamsServiceService,
     private scrollService: ScrollServiceService,
     private route: ActivatedRoute,
@@ -71,11 +72,11 @@ export class HomepageComponent implements OnInit {
     });
   }
   private updateLikes(): void {
-    if (this.sessionStorageService.isLoggedOn()){
-      this.httpService.getAccountLikesRequest(this.sessionStorageService.getSessionInfo()?.accountDto.id)
+    if (this.userDataService.isUserLoggedOn()){
+      this.httpService.getAccountLikesRequest(this.userDataService.getUserInfo()?.accountDto.id)
         .subscribe({
           next: (value: LikeModel[]) => {
-            this.sessionStorageService.getSessionInfo()!.likes = value;
+            this.userDataService.UserInfo!.likes = value;
           }
         });
     }

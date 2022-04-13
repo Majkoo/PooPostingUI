@@ -6,6 +6,7 @@ import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
 import {SelectOption} from "../../../../Models/SelectOption";
 import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
+import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 
 @Component({
   selector: 'app-popular',
@@ -36,7 +37,7 @@ export class PopularComponent implements OnInit {
   ];
 
   constructor(
-    private sessionStorageService: SessionStorageServiceService,
+    private userDataService: UserDataServiceService,
     private httpService: HttpServiceService,
     private configService: ConfigServiceService,
   ) {
@@ -73,7 +74,7 @@ export class PopularComponent implements OnInit {
   }
 
   private updatePicture(picture: PictureModel): void {
-    picture = this.sessionStorageService.updatePictureLikes(picture);
+    picture = this.userDataService.updatePictureLikes(picture);
     if(!picture.url.startsWith("http")){
       picture.url = this.configService.picturesUrl + picture.url;
     }

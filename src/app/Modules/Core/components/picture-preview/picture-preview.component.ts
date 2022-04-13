@@ -3,6 +3,7 @@ import { PictureModel } from 'src/app/Models/ApiModels/PictureModel';
 import { ConfigServiceService } from 'src/app/Services/data/config-service.service';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
+import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 
 @Component({
   selector: 'app-picture-preview',
@@ -15,11 +16,11 @@ export class PicturePreviewComponent implements OnInit {
   isLoggedOn: boolean = false;
 
   constructor(
-    private sessionStorageService: SessionStorageServiceService,
+    private userDataService: UserDataServiceService,
     private configService: ConfigServiceService,
     private httpService: HttpServiceService,
   ) {
-    this.isLoggedOn = this.sessionStorageService.isLoggedOn();
+    this.isLoggedOn = this.userDataService.isUserLoggedOn();
   }
 
   ngOnInit(): void {
@@ -38,7 +39,7 @@ export class PicturePreviewComponent implements OnInit {
       .subscribe(this.likeObserver)
   }
   updatePicture() {
-    this.picture = this.sessionStorageService.updatePictureLikes(this.picture);
+    this.picture = this.userDataService.updatePictureLikes(this.picture);
   }
 
   likeObserver = {

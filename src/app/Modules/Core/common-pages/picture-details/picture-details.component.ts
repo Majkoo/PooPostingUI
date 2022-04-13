@@ -11,6 +11,7 @@ import {CommentModel} from "../../../../Models/ApiModels/CommentModel";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
 import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modify-service.service";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
+import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 
 @Component({
   selector: 'app-picture-details',
@@ -49,7 +50,7 @@ export class PictureDetailsComponent {
   showShareFlag: boolean = false;
 
   constructor(
-    private sessionStorageService: SessionStorageServiceService,
+    private userDataService: UserDataServiceService,
     private locationService: LocationServiceService,
     private configService: ConfigServiceService,
     private httpService: HttpServiceService,
@@ -58,7 +59,7 @@ export class PictureDetailsComponent {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.isLoggedOn = sessionStorageService.isLoggedOn();
+    this.isLoggedOn = userDataService.isUserLoggedOn();
     this.id = route.params.pipe(map(p => p['id']));
     this.initialSubscribe();
   }
@@ -77,7 +78,7 @@ export class PictureDetailsComponent {
       .subscribe(this.commentObserver);
   }
   updatePicture() {
-    this.picture = this.sessionStorageService.updatePictureLikes(this.picture);
+    this.picture = this.userDataService.updatePictureLikes(this.picture);
     this.picture.likes.sort(l => l.isLike ? -1 : 0);
     this.allowModifyService.allowModifyPicture(this.picture);
   }
@@ -108,7 +109,7 @@ export class PictureDetailsComponent {
   }
 
   showSettings() {
-    if(this.picture.accountId === this.sessionStorageService.getSessionInfo()?.accountDto.id) {
+    if(this.picture.accountId === this.userDataService.getUserInfo()?.accountDto.id) {
       this.showSettingsFlag = true;
     } else {
       this.showAdminSettingsFlag = true;

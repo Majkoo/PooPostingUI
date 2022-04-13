@@ -8,16 +8,22 @@
   font-size: 1.5rem;
   font-weight: 600;
 }
-li {
-  margin-top: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  word-break: break-word;
+ul {
+  padding: 0;
+  li {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    word-break: break-word;
+  }
+  .li-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 }
-.li-item {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
+
+

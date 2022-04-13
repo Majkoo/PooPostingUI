@@ -1,5 +1,10 @@
 ﻿{
+  "appTitle": "PicturesUI",
   "appUrl": "http://localhost:4200",
   "apiUrl": "https://dev-pictures-api.migra.ml/api",
-  "picturesUrl": "https://dev-pictures-api.migra.ml/"
+  "picturesUrl": "https://dev-pictures-api.migra.ml/",
+
+  "serviceAdmin": "Michał Grabka",
+  "serviceAdminEmail": "migra.picturesUI@gmail.com",
+  "hostingProvider": "Jakub Mrugalski"
 }

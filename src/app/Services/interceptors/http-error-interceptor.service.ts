@@ -6,7 +6,7 @@ import {of, throwError} from "rxjs";
 import {Router} from "@angular/router";
 import {MessageService} from "primeng/api";
 import {SessionStorageServiceService} from "../data/session-storage-service.service";
-import {ErrorInfoModel} from "../../Models/ErrorInfoModel";
+import {ErrorInfoModel} from "../../Models/JsonModels/ErrorInfoModel";
 
 export const retryCount: number = 2;
 export const delayMs: number = 2000;
@@ -50,6 +50,11 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
     switch (status) {
       case (401): {
         return throwError(() => {
+          if (error.error) {
+            if (error.error.contains("auth token")) {
+              return error;
+            }
+          }
           this.message.add({
             severity:'error',
             summary: 'Niepowodzenie',

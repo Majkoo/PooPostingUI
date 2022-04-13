@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {SessionStorageServiceService} from "../../../Services/data/session-storage-service.service";
-import {ErrorLogModel} from "../../../Models/ErrorLogModel";
-import {ErrorInfoModel} from "../../../Models/ErrorInfoModel";
+import {ErrorLogModel} from "../../../Models/JsonModels/ErrorLogModel";
+import {ErrorInfoModel} from "../../../Models/JsonModels/ErrorInfoModel";
 import {Clipboard} from "@angular/cdk/clipboard";
 import {MessageService} from "primeng/api";
 import {EmailBuilderServiceService} from "../../../Services/helpers/email-builder-service.service";
 import {HttpServiceService} from "../../../Services/http/http-service.service";
+import {UserDataServiceService} from "../../../Services/data/user-data-service.service";
 
 @Component({
   selector: 'app-logs',
@@ -24,13 +25,14 @@ export class LogsComponent implements OnInit {
     private clipboard: Clipboard,
     private messageService: MessageService,
     private sessionStorageService: SessionStorageServiceService,
+    private userDataService: UserDataServiceService,
     private emailBuilderService: EmailBuilderServiceService,
     private httpService: HttpServiceService,
   ) { }
 
   ngOnInit(): void {
     this.logs = this.sessionStorageService.getLogs();
-    this.isLoggedOn = this.sessionStorageService.isLoggedOn();
+    this.isLoggedOn = this.userDataService.isUserLoggedOn();
     if(this.logs) {
       this.logs.errors.forEach((err) => {
         this.displayLogs.push(JSON.stringify(err, null, '\t'));
@@ -76,5 +78,14 @@ export class LogsComponent implements OnInit {
   }
   stringToBool(val: string | undefined | null) {
     return val == "true";
+  }
+
+  parseDate(val: string) {
+    let hms = val.split(',')[1];
+    let h = hms.split(":")[0];
+    let m = hms.split(":")[1];
+    let s = hms.split(":")[2];
+    let timeParsed = `${h.length > 1 ? h : "0" + h}:${m.length > 1 ? m : "0" + h}:${s.length > 1 ? s : "0" + s}`;
+    return timeParsed;
   }
 }

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {LsJwtDetails} from "../../Models/ApiModels/LsJwtDetails";
-import {UserInfoModel} from "../../Models/UserInfoModel";
-import {Route, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {SessionStorageServiceService} from "./session-storage-service.service";
+import {UserDataServiceService} from "./user-data-service.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class LocalStorageServiceService {
 
   constructor(
     private router: Router,
-    private sessionStorageService: SessionStorageServiceService,
+    private userDataService: UserDataServiceService,
   ) { }
 
   saveJwtDetails(val: LsJwtDetails) {
@@ -28,7 +28,7 @@ export class LocalStorageServiceService {
   logout() {
       localStorage.clear();
       sessionStorage.clear();
-      this.sessionStorageService.userSubject.next(false);
+      this.userDataService.userSubject.next(false);
       this.router.navigate(['/logged-out']);
     }
 

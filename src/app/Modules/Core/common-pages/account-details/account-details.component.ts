@@ -9,6 +9,7 @@ import {LocationServiceService} from "../../../../Services/helpers/location-serv
 import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modify-service.service";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 import {MessageService} from "primeng/api";
+import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 
 @Component({
   selector: 'app-account-details',
@@ -32,7 +33,7 @@ export class AccountDetailsComponent {
     private configService: ConfigServiceService,
     private locationService: LocationServiceService,
     private allowModifyService: AllowModifyServiceService,
-    private sessionStorageService: SessionStorageServiceService,
+    private userDataService: UserDataServiceService,
   ) {
     this.id = route.params.pipe(map(p => p['id']));
     this.id.subscribe({
@@ -109,8 +110,8 @@ export class AccountDetailsComponent {
   }
 
   private isVisitorAccOwnerCheck(): boolean {
-    if (this.sessionStorageService.getSessionInfo() === null) return false;
-    return (this.account.id === this.sessionStorageService.getSessionInfo()!.accountDto.id);
+    if (!this.userDataService.isUserLoggedOn()) return false;
+    return (this.account.id === this.userDataService.getUserInfo()!.accountDto.id);
   }
   private fixPicUrls(acc: AccountModel): void {
     acc.pictures.forEach(p =>
