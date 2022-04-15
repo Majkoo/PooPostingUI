@@ -25,19 +25,19 @@
 
   <div class="d-flex flex-row flex-sm-column justify-content-between info-wrapper p-2 p-sm-0 mr-sm-1">
     <div class="d-flex flex-row justify-content-center justify-content-sm-around">
-      <button pButton disabled label="{{picture.likeCount}}"
+      <button pButton disabled label="{{picture.likeCount}}" attr.aria-label="Oceny pozytywne obrazka {{picture.name}}"
               icon="bi bi-hand-thumbs-up-fill" class="p-button-text px-1 py-1">
       </button>
-      <button pButton disabled label="{{picture.dislikeCount}}"
+      <button pButton disabled label="{{picture.dislikeCount}}" attr.aria-label="Oceny negatywne obrazka {{picture.name}}"
               icon="bi bi-hand-thumbs-down-fill" class="p-button-text px-1 py-1">
       </button>
     </div>
 
     <div class="d-flex flex-row justify-content-center justify-content-sm-end align-items-center align-items-sm-end gap">
-      <button pButton pRipple icon="bi bi-info-circle"
+      <button pButton pRipple icon="bi bi-info-circle" attr.aria-label="Obrazek {{picture.name}}"
               class="p-button-raised py-1 px-2" routerLink="/picture/{{picture.id}}">
       </button>
-      <button pButton pRipple icon="bi bi-gear" *ngIf="isVisitorOwner"
+      <button pButton pRipple icon="bi bi-gear" *ngIf="isVisitorOwner" attr.aria-label="Ustawienia obrazka {{picture.name}}"
               class="p-button-raised py-1 px-2" (click)="showSettings()">
       </button>
     </div>

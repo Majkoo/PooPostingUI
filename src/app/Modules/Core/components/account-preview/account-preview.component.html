@@ -1,7 +1,8 @@
 <div *ngIf="account != undefined" class="mb-4">
   <p-card>
     <p-header class="d-flex justify-content-center">
-      <h3 routerLink="/account/{{account.id}}" class="account-link">{{account.nickname}}</h3>
+      <h3 routerLink="/account/{{account.id}}" class="account-link"
+          attr.aria-label="Konto {{account.nickname}}">{{account.nickname}}</h3>
     </p-header>
 
     <div class="row justify-content-center">

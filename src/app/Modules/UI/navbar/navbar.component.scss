@@ -2,10 +2,14 @@
 .h-75 {
   height: 75px !important;
 }
-
+.logo-img {
+  width: 55px;
+  height: 55px;
+}
 .menu-link {
   cursor: pointer;
   color: rgba(255, 255, 255, 0.7);
+
   .bi {
     font-size: 22px;
     display: flex;

@@ -15,8 +15,8 @@ export class LocationServiceService {
   ) { }
 
   goBack(): void {
-    // @ts-ignore
-    if(window.history.length > 2) {
+    //@ts-ignore
+    if(this.location.getState().navigationId > 1 && window.history.length > 2) {
       this.location.back();
     } else {
       this.goHomepage();
@@ -24,11 +24,11 @@ export class LocationServiceService {
   }
 
   goHomepageAndReset(): void {
-    this.router.navigate(['/home/page/1']);
+    this.router.navigate(['/home/1'])
   }
 
   goHomepage(): void {
-    this.router.navigate([`/home/page/${this.paramsService.GetPQuery.pageNumber}`]);
+    this.router.navigate([`/home/${this.paramsService.GetPQuery.pageNumber}`]);
   }
 
   goError404(): void {

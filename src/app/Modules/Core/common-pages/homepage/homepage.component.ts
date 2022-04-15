@@ -6,7 +6,6 @@ import {LikeModel} from "../../../../Models/ApiModels/LikeModel";
 import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
 import {map, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 
 @Component({
@@ -46,10 +45,10 @@ export class HomepageComponent implements OnInit {
         this.updateLikes();
         this.fetchPictures();
       }
-    })
+    });
   }
   paginate(val: any): void {
-    this.router.navigate([`home/page/${val+1}`])
+    this.router.navigate([`home/${val+1}`])
   }
   scroll(top: number) {
     this.scrollService.scroll(top);
@@ -66,7 +65,7 @@ export class HomepageComponent implements OnInit {
       },
       error: () => {
         if (this.result.page === 0) {
-          this.router.navigate(['/home/page/1']);
+          this.router.navigate(['/home/1']);
         }
       }
     });

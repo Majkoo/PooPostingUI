@@ -15,12 +15,12 @@
             <div *ngFor="let item of expandableItem.menuItems">
               <div *ngIf="item.label !== 'Wyloguj'">
                 <button pButton pRipple class="min-w-75 p-button-outlined"
-                        routerLink="{{item.url}}" label="{{item.label}}" icon="{{item.class}}">
+                        routerLink="{{item.url}}" label="{{item.label}}" icon="{{item.class}}" attr.aria-label="{{item.label}}">
                 </button>
               </div>
               <div *ngIf="item.label === 'Wyloguj'">
                 <button pButton pRipple class="w-75 p-button-outlined"
-                        (click)="logout()" label="{{item.label}}" icon="{{item.class}}">
+                        (click)="logout()" label="{{item.label}}" icon="{{item.class}}" attr.aria-label="{{item.label}}">
                 </button>
               </div>
             </div>

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {LsJwtDetails} from "../../Models/ApiModels/LsJwtDetails";
 import {Router} from "@angular/router";
-import {SessionStorageServiceService} from "./session-storage-service.service";
 import {UserDataServiceService} from "./user-data-service.service";
 
 @Injectable({
@@ -25,11 +24,20 @@ export class LocalStorageServiceService {
     return null;
   }
 
+  cookiesAlertAccepted() {
+    localStorage.setItem('cookiesAlertShown', 'true');
+  }
+  isCookiesAlertAccepted(): boolean {
+    return localStorage.getItem('cookiesAlertShown') ? localStorage.getItem('cookiesAlertShown') === "true": false;
+  }
+
   logout() {
-      localStorage.clear();
-      sessionStorage.clear();
-      this.userDataService.userSubject.next(false);
-      this.router.navigate(['/logged-out']);
+      this.router.navigate(['/logged-out']).then(val => {
+        if (val) {
+          localStorage.clear();
+          this.userDataService.userSubject.next(false);
+        }
+      });
     }
 
 }

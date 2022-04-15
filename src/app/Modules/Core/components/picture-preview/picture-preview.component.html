@@ -7,14 +7,16 @@
       <div class="p-card-subtitle d-flex flex-row justify-content-center align-items-center gap-1 flex-wrap">
         Dodano przez:
         <span>
-          <span class="account-link" [routerLink]="'/account/'+picture.accountId">{{picture.accountNickname}}</span>,
+          <span class="account-link" [routerLink]="'/account/'+picture.accountId"
+                attr.aria-label="Konto {{picture.accountNickname}}">{{picture.accountNickname}}</span>,
         </span>
         {{picture.pictureAdded | timeago}}
       </div>
     </ng-template>
 
-    <div class="img-wrapper">
-      <img src='{{this.picture.url}}' class="img-fluid w-100" alt="{{picture.name}} by {{picture.accountNickname}}" title="{{picture.name}} by {{picture.accountNickname}}">
+    <div class="img-wrapper" attr.aria-label="Obrazek {{picture.name}}">
+      <img src='{{this.picture.url}}' class="img-fluid w-100" alt="{{picture.name}} by {{picture.accountNickname}}"
+           attr.aria-label='"{{picture.name}}" dodany przez {{picture.accountNickname}}'>
     </div>
 
     <ng-template pTemplate="footer">
@@ -22,10 +24,12 @@
 
         <div class="d-flex ml-3">
           <div class="d-none d-sm-block">
-            <button pButton pRipple [routerLink]="'/picture/'+picture.id" icon="bi bi-info-circle" label="Szczegóły" name="Szczegóły"></button>
+            <button pButton pRipple [routerLink]="'/picture/'+picture.id" icon="bi bi-info-circle" class="px-3"
+                    label="Szczegóły" name="Szczegóły" attr.aria-label='Szczegóły obrazka "{{picture.name}}"'></button>
           </div>
           <div class="d-block d-sm-none">
-            <button pButton pRipple [routerLink]="'/picture/'+picture.id" icon="bi bi-info-circle" name="Szczegóły"></button>
+            <button pButton pRipple [routerLink]="'/picture/'+picture.id" icon="bi bi-info-circle"
+                    name="Szczegóły" attr.aria-label='Szczegóły obrazka "{{picture.name}}"'></button>
           </div>
         </div>
 

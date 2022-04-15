@@ -21,10 +21,11 @@ import {RulebookComponent} from "./Modules/Tos/rulebook/rulebook.component";
 
 
 const routes: Routes = [
-  {path: '', redirectTo: "/home/page/1", pathMatch: 'full'},
-  {path: 'home', redirectTo: "/home/page/1", pathMatch: 'full'},
+  {path: '', redirectTo: "/home/1", pathMatch: 'full'},
+  {path: 'home/page/:pageNumberOld', redirectTo: "/home/1", pathMatch: 'full'},
 
-  {path: "home/page/:pageNumber", component: HomepageComponent},
+  {path: 'home', redirectTo: "/home/1", pathMatch: 'full'},
+  {path: "home/:pageNumber", component: HomepageComponent},
   {path: "search/:pageNumber", component: SearchComponent},
 
   {path: "report", component: LogsComponent},

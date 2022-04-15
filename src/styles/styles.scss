@@ -68,7 +68,7 @@ h1,h2,h3,h4,h5,h6 {
     min-height: calc(100vh - 75px - 60px);
   }
 }
-.sidebar{
+.sidebar {
   position: -webkit-sticky;
   position: sticky;
   top: calc(76px + 1.5rem);
@@ -170,4 +170,12 @@ a:hover {
 }
 .color-primary{
   color: $primary-color;
+}
+.cookies-alert {
+  max-width: 1100px !important;
+  width: max-content !important;
+  margin: 0 !important;
+  padding: 0 1rem;
+  opacity: 0.9 !important;
+  bottom: 0.25rem !important;
 }

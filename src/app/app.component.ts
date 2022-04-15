@@ -26,6 +26,7 @@ export class AppComponent implements OnInit{
   ) {
     this.primeNgConfig.ripple = true;
     this.appTitle = config.appTitle;
+
   }
 
   ngOnInit(): void {
@@ -36,6 +37,18 @@ export class AppComponent implements OnInit{
     } else {
       this.isLoaded = true;
     }
+    setTimeout(() => {
+      if (!this.localStorageService.isCookiesAlertAccepted()) {
+        this.messageService.add({
+          key: "cookiesAlert",
+          sticky: true,
+          closable: false,
+          severity: "success",
+          summary: "Ten serwis korzysta z ciasteczek.",
+          detail: "Pozostając na tej witrynie, zgadzasz się na ich używanie."
+        })
+      }
+    }, 5000);
   }
 
   canShowSidebar() {
@@ -43,6 +56,11 @@ export class AppComponent implements OnInit{
       this.router.url !== '/login' &&
       this.router.url !== '/register' &&
       this.router.url !== '/logged-out';
+  }
+
+  onCookieAlertAccept() {
+    this.localStorageService.cookiesAlertAccepted();
+    this.messageService.clear("cookiesAlert");
   }
 
   private initialLoginObserver = {

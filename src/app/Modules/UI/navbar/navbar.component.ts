@@ -7,6 +7,7 @@ import {LocationServiceService} from "../../../Services/helpers/location-service
 import {SessionStorageServiceService} from "../../../Services/data/session-storage-service.service";
 import {LocalStorageServiceService} from "../../../Services/data/local-storage-service.service";
 import {UserDataServiceService} from "../../../Services/data/user-data-service.service";
+import {HttpParamsServiceService} from "../../../Services/http/http-params-service.service";
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +16,7 @@ import {UserDataServiceService} from "../../../Services/data/user-data-service.s
 })
 export class NavbarComponent implements OnInit{
   @Input() appTitle!: string;
+  currentHomePage!: number;
   menuItems: MenuItem[];
   menuExpandableItems: MenuExpandableItem[];
   showSidebar: boolean = false;
@@ -26,6 +28,7 @@ export class NavbarComponent implements OnInit{
     private locationService: LocationServiceService,
     private menuService: MenusServiceService,
     private router: Router,
+    private paramsService: HttpParamsServiceService,
   ) {
     this.menuItems = menuService.getMenuItems();
     this.menuExpandableItems = menuService.getExpandableMenuItems();
@@ -38,6 +41,7 @@ export class NavbarComponent implements OnInit{
         this.loggedIn = val;
       }
     })
+    this.currentHomePage = this.paramsService.getPageNumber();
   }
 
   logout() {

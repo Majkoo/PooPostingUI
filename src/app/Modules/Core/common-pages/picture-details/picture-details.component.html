@@ -18,7 +18,7 @@
       <div class="text-break px-3 py-1">
         <h3 class="mb-2">{{picture.name | titlecase}}</h3>
         <p class="text-center text-break d-flex justify-content-center align-items-center">
-          <a routerLink="/account/{{picture.accountId}}" class="d-inline-flex">
+          <a routerLink="/account/{{picture.accountId}}" class="d-inline-flex" attr.aria-label="Konto {{picture.accountNickname}}">
             <span class="bi bi-person-fill"></span>{{picture.accountNickname}}
           </a>, {{picture.pictureAdded | date}}
         </p>

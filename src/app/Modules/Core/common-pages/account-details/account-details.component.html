@@ -1,8 +1,10 @@
 <div *ngIf="account" class="px-3 px-md-0">
 
   <div class="mb-3 d-flex align-items-center justify-content-between">
-    <button pButton pRipple label="Powrót" icon="bi bi-arrow-return-left" class="px-3" (click)="return()"></button>
+    <button pButton pRipple label="Powrót" icon="bi bi-arrow-return-left" class="px-3" (click)="return()"
+            attr.aria-label="Powrót do poprzedniej strony"></button>
     <button pButton pRipple label="Ustawienia" icon="bi bi-gear-fill" class="px-3"
+            attr.aria-label="Ustawienia konta {{account.nickname}}"
             (click)="showAccountSettings()" *ngIf="account.isModifiable"></button>
   </div>
 

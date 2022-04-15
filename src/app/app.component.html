@@ -1,4 +1,56 @@
-<div class="d-flex flex-column justify-content-between" style="height: 100vh" *ngIf="isLoaded">
+<div [ngClass]="isLoaded ? 'd-none' : 'd-block sr-only'">
+  <header class="nav-top">
+    <nav>
+      <ul class="d-flex p-3 justify-content-center gap-2">
+        <li>
+          <a href="home/1">Strona domowa</a>
+        </li>
+        <li>
+          <a href="popular">Popularne obrazki</a>
+        </li>
+        <li>
+          <a href="search/1">Szukaj obrazka</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <nav>
+      <ul class="d-flex flex-column p-3 align-items-center gap-2">
+        <li>
+          <a href="login">Zaloguj się</a>
+        </li>
+        <li>
+          <a href="register">Zarejestruj się</a>
+        </li>
+        <li>
+          <a href="my-account">Moje konto</a>
+        </li>
+        <li>
+          <a href="logged-out">Wylogowano cię</a>
+        </li>
+      </ul>
+    </nav>
+  </main>
+  <footer>
+    <ul class="d-flex p-3 justify-content-center gap-2">
+      <li>
+        <a href="tos">Polityka prywatności</a>
+      </li>
+      <li>
+        <a href="rulebook">Regulamin strony</a>
+      </li>
+      <li>
+        <a href="report">Zgłoś błąd</a>
+      </li>
+    </ul>
+    <div class="d-flex justify-content-center p-3 pt-1">
+      <a href="https://migra.ml">Autor strony</a>
+    </div>
+  </footer>
+</div>
+
+<div *ngIf="isLoaded" class="d-flex flex-column justify-content-between" style="height: 100vh">
   <div>
     <div class="nav-top">
       <app-navbar [appTitle]="appTitle"></app-navbar>
@@ -26,3 +78,17 @@
 </div>
 
 <p-toast position="bottom-right"></p-toast>
+<p-toast position="bottom-center" key="cookiesAlert" styleClass="cookies-alert">
+  <ng-template let-message pTemplate="message">
+    <div class="d-flex flex-column w-100">
+      <div class="text-center">
+        <h4 class="mb-2">{{message.summary}}</h4>
+        <p>{{message.detail}}</p>
+      </div>
+      <div class="d-flex justify-content-center gap-2 mt-2">
+        <button pButton pRipple label="OK" class="p-button-sm" (click)="onCookieAlertAccept()"></button>
+      </div>
+    </div>
+
+  </ng-template>
+</p-toast>
