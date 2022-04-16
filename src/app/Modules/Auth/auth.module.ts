@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {LoginComponent} from "./components/login/login.component";
-import {RegisterComponent} from "./components/register/register.component";
+import {LoginComponent} from "./pages/login/login.component";
+import {RegisterComponent} from "./pages/register/register.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import {PrimeNgModule} from "../Prime-ng/prime-ng.module";
-import {LoggedOutComponent} from "./components/logged-out/logged-out.component";
+import {LoggedOutComponent} from "./pages/logged-out/logged-out.component";
+import {AuthRoutingModule} from "./auth-routing.module";
 
 @NgModule({
   declarations: [
@@ -13,16 +13,12 @@ import {LoggedOutComponent} from "./components/logged-out/logged-out.component";
     RegisterComponent,
     LoggedOutComponent
   ],
-    imports: [
-      CommonModule,
-      FormsModule,
-      ReactiveFormsModule,
-      AppRoutingModule,
-      PrimeNgModule
-    ],
-  exports: [
-    LoginComponent,
-    RegisterComponent
-  ]
+  imports: [
+    AuthRoutingModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PrimeNgModule,
+  ],
 })
 export class AuthModule { }

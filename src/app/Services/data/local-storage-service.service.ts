@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {LsJwtDetails} from "../../Models/ApiModels/LsJwtDetails";
 import {Router} from "@angular/router";
 import {UserDataServiceService} from "./user-data-service.service";
 
@@ -13,15 +12,28 @@ export class LocalStorageServiceService {
     private userDataService: UserDataServiceService,
   ) { }
 
-  saveJwtDetails(val: LsJwtDetails) {
-    localStorage.setItem('jwtDetails', JSON.stringify(val));
+  saveJwtToken(val: string) {
+    localStorage.setItem('jwtToken', val);
   }
-  getJwtDetails(): LsJwtDetails | null {
-    let jwtDetailsString = localStorage.getItem('jwtDetails');
-    if (jwtDetailsString) {
-      return JSON.parse(jwtDetailsString);
+  saveJwtUid(val: string) {
+    localStorage.setItem('uid', val);
+  }
+  getJwtToken(): string | null {
+    let jwtTokenString = localStorage.getItem('jwtToken');
+    if (jwtTokenString) {
+      return jwtTokenString;
     }
     return null;
+  }
+  getJwtUid(): string | null {
+    let jwtTokenString = localStorage.getItem('uid');
+    if (jwtTokenString) {
+      return jwtTokenString;
+    }
+    return null;
+  }
+  isUserDataSaved(): boolean {
+    return localStorage.getItem('jwtToken') != null && localStorage.getItem('uid') != null;
   }
 
   cookiesAlertAccepted() {
@@ -32,12 +44,7 @@ export class LocalStorageServiceService {
   }
 
   logout() {
-      this.router.navigate(['/logged-out']).then(val => {
-        if (val) {
-          localStorage.clear();
-          this.userDataService.userSubject.next(false);
-        }
-      });
-    }
+    this.userDataService.logout();
+  }
 
 }

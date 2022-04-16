@@ -47,12 +47,6 @@ export class NavbarComponent implements OnInit{
   logout() {
     this.localStorageService.logout();
     this.showSidebar = false;
-    this.router.navigate(['logged-out']);
-  }
-
-  toHomePage() {
-    this.showSidebar = false;
-    this.locationService.goHomepageAndReset();
   }
 
 }

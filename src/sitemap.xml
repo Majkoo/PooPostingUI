@@ -13,27 +13,27 @@
     <lastmod>2022-04-15T12:00:00+01:00</lastmod>
   </url>
   <url>
-    <loc>https://pictures.migra.ml/tos</loc>
+    <loc>https://pictures.migra.ml/tos/privacy-policy</loc>
     <lastmod>2022-04-15T12:00:00+01:00</lastmod>
   </url>
   <url>
-    <loc>https://pictures.migra.ml/rulebook</loc>
+    <loc>https://pictures.migra.ml/tos/rulebook</loc>
     <lastmod>2022-04-15T12:00:00+01:00</lastmod>
   </url>
   <url>
-    <loc>https://pictures.migra.ml/login</loc>
+    <loc>https://pictures.migra.ml/auth/login</loc>
     <lastmod>2022-04-15T12:00:00+01:00</lastmod>
   </url>
   <url>
-    <loc>https://pictures.migra.ml/register</loc>
+    <loc>https://pictures.migra.ml/auth/register</loc>
     <lastmod>2022-04-15T12:00:00+01:00</lastmod>
   </url>
   <url>
-    <loc>https://pictures.migra.ml/logged-out</loc>
+    <loc>https://pictures.migra.ml/auth/logged-out</loc>
     <lastmod>2022-04-15T12:00:00+01:00</lastmod>
   </url>
   <url>
-    <loc>https://pictures.migra.ml/my-account</loc>
+    <loc>https://pictures.migra.ml/account/my-account</loc>
     <lastmod>2022-04-15T12:00:00+01:00</lastmod>
   </url>
   <url>

@@ -1,0 +1,139 @@
+<div class="main">
+  <div class="container pt-4 pb-3 pt-md-5 w-100 w-lg-50">
+
+    <div class="card">
+      <div class="card-header text-center">
+        <h2>Rejestracja</h2>
+      </div>
+      <div class="card-body">
+
+        <form class="text-center row" typeof="submit" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+          <div class="text-left col-12 mt-3 mb-4">
+            <span class="p-float-label">
+              <input id="nickname-input" class="w-100" type="text"
+                     [ngClass]="form.get('nickname')!.touched ? 'ng-dirty' : ''"
+                     [ngClass]="isNickNameTaken ? 'ng-dirty ng-invalid ng-touched' : ''"
+                     formControlName="nickname" pInputText>
+              <label for="nickname-input">
+                Nazwa użytkownika
+                <span class="text-danger">*</span>
+              </label>
+            </span>
+            <span *ngIf="form.get('nickname')!.touched && form.get('nickname')!.invalid">
+              <small id="nickname-input-error-required" class="px-1 p-error block"
+                     *ngIf="form.get('nickname')!.errors!['required']">
+                Proszę wypełnić to pole
+              </small>
+              <small id="nickname-input-error-minlength" class="px-1 p-error block"
+                     *ngIf="form.get('nickname')!.errors!['minlength']">
+                Nazwa użytkownika powinna zawierać co najmniej 4 znaki
+              </small>
+              <small id="nickname-input-error-maxlength" class="px-1 p-error block"
+                     *ngIf="form.get('nickname')!.errors!['maxlength']">
+                Nazwa użytkownika powinna zawierać maksymalnie 16 znaków
+              </small>
+            </span>
+            <small id="nickname-input-error" class="px-1 p-error block"
+                   *ngIf="isNickNameTaken">
+              Ta nazwa użytkownika jest zajęta
+            </small>
+          </div>
+
+          <div class="text-left col-12 mb-4">
+            <span class="p-float-label">
+              <input id="email-input" class="w-100" type="text" [pKeyFilter]="blockSpace"
+                     [ngClass]="form.get('email')!.touched ? 'ng-dirty' : ''"
+                     formControlName="email" pInputText>
+              <label for="email-input">
+                E-mail
+                <span class="text-danger">*</span>
+              </label>
+            </span>
+            <span *ngIf="form.get('email')!.touched && form.get('email')!.invalid">
+              <small id="email-input-error-required" class="px-1 p-error block"
+                     *ngIf="form.get('email')!.errors!['required']">
+                Proszę wypełnić to pole
+              </small>
+              <small id="email-input-error" class="px-1 p-error block"
+                     *ngIf="form.get('email')!.errors!['email']">
+                Proszę wpisać poprawny adres e-mail
+              </small>
+            </span>
+          </div>
+
+          <div class="text-left col-12 mb-4">
+            <span class="p-float-label">
+              <input id="password-input" class="w-100" type="password"
+                     [ngClass]="form.get('password')!.touched ? 'ng-dirty' : ''"
+                     formControlName="password" pInputText>
+              <label for="password-input">
+                Hasło
+                <span class="text-danger">*</span>
+              </label>
+            </span>
+            <span *ngIf="form.get('password')!.touched && form.get('password')!.invalid">
+              <small id="password-input-error-required" class="px-1 p-error block"
+                     *ngIf="form.get('password')!.errors!['required']">
+                Proszę wypełnić to pole
+              </small>
+              <small id="password-input-error" class="px-1 p-error block"
+                     *ngIf="form.get('password')!.errors!['minlength']">
+                Hasło powinno zawierać co najmniej 8 znaków
+              </small>
+            </span>
+          </div>
+
+          <div class="text-left col-12 mb-3">
+            <span class="p-float-label">
+              <input id="conf-input" class="w-100" type="password"
+                     [ngClass]="form.get('confirmPassword')!.touched ? 'ng-dirty' : ''"
+                     formControlName="confirmPassword" pInputText>
+              <label for="conf-input">
+                Powtórz hasło
+                <span class="text-danger">*</span>
+              </label>
+            </span>
+            <span *ngIf="form.get('confirmPassword')!.touched && form.get('confirmPassword')!.invalid">
+              <small id="conf-password-input-error-required" class="px-1 p-error block"
+                     *ngIf="form.get('confirmPassword')!.errors!['required']">
+                Proszę wypełnić to pole
+              </small>
+              <small id="conf-password-input-error" class="px-1 p-error block"
+                     *ngIf="form.get('confirmPassword')!.errors!['mustMatch']">
+                Hasła nie są takie same
+              </small>
+            </span>
+            <div class="d-flex justify-content-center mt-2">
+              <small class="text-danger text-center m-auto font-weight-bold">
+                Rejestrując się zgadzasz się na
+                <span class="link" (click)="openLink('/tos/privacy-policy')">politykę prywatności</span> oraz
+                <span class="link" (click)="openLink('/tos/rulebook')">regulamin strony</span>.
+              </small>
+            </div>
+          </div>
+
+
+
+          <div class="d-flex w-100 justify-content-center mb-3">
+            <p-captcha [siteKey]="siteKey" (onResponse)="passCaptcha()" (onExpire)="captchaPassed = false"></p-captcha>
+          </div>
+
+          <div class="col-12">
+            <button pButton type="submit" class="p-button-primary px-5 py-2 border"
+                    [disabled]="form.invalid || !captchaPassed || awaitSubmit ">Zarejestruj się
+            </button>
+          </div>
+
+
+        </form>
+
+      </div>
+    </div>
+
+    <div class="col-12 text-center py-2">
+      <a routerLink="/auth/login" class="register-link underline">Masz już konto? Zaloguj się!</a>
+    </div>
+
+  </div>
+</div>

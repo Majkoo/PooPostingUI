@@ -13,10 +13,10 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (this.localStorageService.getJwtDetails()?.jwtToken) {
+    if (this.localStorageService.getJwtToken()) {
       let tokenizedReq = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.localStorageService.getJwtDetails()?.jwtToken}`
+          Authorization: `Bearer ${this.localStorageService.getJwtToken()}`
         }
       });
       return next.handle(tokenizedReq);

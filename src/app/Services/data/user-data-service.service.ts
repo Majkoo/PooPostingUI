@@ -46,9 +46,13 @@ export class UserDataServiceService {
   }
 
   logout() {
-    this.UserInfo = undefined;
-    this.userSubject.next(false);
-    this.router.navigate(['/logged-out']);
+    this.router.navigate(['auth/logged-out'])
+      .then(() => {
+        this.UserInfo = undefined;
+        this.userSubject.next(false);
+        localStorage.removeItem('jwtToken');
+        localStorage.removeItem('uid');
+      });
   }
 
   updateLikes(): void {

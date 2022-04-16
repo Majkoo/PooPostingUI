@@ -6,6 +6,7 @@ import {HttpServiceService} from "./Services/http/http-service.service";
 import {LocalStorageServiceService} from "./Services/data/local-storage-service.service";
 import {ConfigServiceService} from "./Services/data/config-service.service";
 import {UserDataServiceService} from "./Services/data/user-data-service.service";
+import {LsJwtDetails} from "./Models/ApiModels/LsJwtDetails";
 
 @Component({
   selector: 'app-root',
@@ -30,8 +31,11 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    let jwtDetails = this.localStorageService.getJwtDetails();
-    if (jwtDetails) {
+    let jwtDetails: LsJwtDetails = {
+      jwtToken: `${this.localStorageService.getJwtToken()}`,
+      uid: `${this.localStorageService.getJwtUid()}`
+    };
+    if (this.localStorageService.isUserDataSaved()) {
       this.httpService.postLsLoginRequest(jwtDetails)
         .subscribe(this.initialLoginObserver);
     } else {
@@ -52,10 +56,8 @@ export class AppComponent implements OnInit{
   }
 
   canShowSidebar() {
-    return !this.router.url.startsWith('/error') &&
-      this.router.url !== '/login' &&
-      this.router.url !== '/register' &&
-      this.router.url !== '/logged-out';
+    return  !this.router.url.startsWith('/error') &&
+            !this.router.url.startsWith('/auth');
   }
 
   onCookieAlertAccept() {

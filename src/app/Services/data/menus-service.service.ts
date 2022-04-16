@@ -49,12 +49,12 @@ export class MenusServiceService {
           {
             label: "Zaloguj się",
             class: "bi bi-box-arrow-in-left",
-            url: "login"
+            url: "auth/login"
           },
           {
             label: "Zarejestruj się",
             class: "bi bi-person-plus",
-            url: "register"
+            url: "auth/register"
           }
         ]
       },
@@ -80,12 +80,12 @@ export class MenusServiceService {
           {
             label: "Konto",
             class: "bi bi-person-circle",
-            url: "my-account",
+            url: "account/my-account",
           },
           {
             label: "Wyloguj",
             class: "bi bi-box-arrow-right",
-            url: "logged-out"
+            url: "auth/logged-out"
           }
         ]
       },

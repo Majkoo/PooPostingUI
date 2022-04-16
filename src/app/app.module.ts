@@ -1,12 +1,8 @@
 import {APP_INITIALIZER, NgModule} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CoreModule } from './Modules/Core/core.module';
-import { AuthModule } from './Modules/Auth/auth.module';
 import {UIModule} from "./Modules/UI/ui.module";
 import { AppConfiguration } from './Models/JsonModels/AppConfiguration';
 import { ConfigServiceService } from './Services/data/config-service.service';
@@ -16,7 +12,10 @@ import { MessageService} from "primeng/api";
 import {PrimeNgModule} from "./Modules/Prime-ng/prime-ng.module";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import {DebugModule} from "./Modules/Debug/debug.module";
+import {SharedModule} from "./Modules/Shared/shared.module";
+import {HomeModule} from "./Modules/Home/home.module";
+import { DateAgoPipe } from './Pipes/date-ago.pipe';
+import {ReportModule} from "./Modules/Report/report.module";
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {
@@ -29,18 +28,15 @@ export function initializerFn(configService: ConfigServiceService){
     AppComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
     HttpClientModule,
-    AuthModule,
-    CoreModule,
-    UIModule,
     BrowserAnimationsModule,
-    PrimeNgModule,
-    DebugModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    PrimeNgModule,
+    SharedModule,
+    ReportModule,
+    HomeModule,
+    UIModule,
   ],
   providers: [
     MessageService,
@@ -65,6 +61,9 @@ export function initializerFn(configService: ConfigServiceService){
       deps: [ConfigServiceService],
       useFactory: initializerFn
     }
+  ],
+  exports: [
+    DateAgoPipe
   ],
   bootstrap: [AppComponent]
 })
