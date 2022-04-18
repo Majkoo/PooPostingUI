@@ -48,20 +48,19 @@ export class HomepageComponent implements OnInit {
     });
   }
   paginate(val: any): void {
+    this.scrollService.resetScrollState();
+    this.scrollService.loadScrollState();
     this.router.navigate([`home/${val+1}`])
-  }
-  scroll(top: number) {
-    this.scrollService.scroll(top);
   }
 
   private fetchPictures(): void {
     this.result.items = [];
-    this.scrollService.scroll(0);
     this.httpService.getPicturesRequest().subscribe({
       next: (value: PicturePagedResult) => {
         this.result = value;
         this.paginator.updateCurrentPage(this.paramsService.getPageNumber());
         this.paginator.updatePages(value.totalItems);
+        this.scrollService.loadScrollState();
       },
       error: () => {
         if (this.result.page === 0) {

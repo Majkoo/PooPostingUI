@@ -1,7 +1,7 @@
 ﻿import {
-  Form,
   FormGroup
 } from '@angular/forms';
+import {ItemName} from "./app/Regexes/ItemName";
 
 export class CustomValidators {
   constructor() {}
@@ -23,5 +23,4 @@ export class CustomValidators {
       return null;
     };
   }
-
 }

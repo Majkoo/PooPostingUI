@@ -74,7 +74,14 @@ h1,h2,h3,h4,h5,h6 {
   top: calc(76px + 1.5rem);
   transition: 100ms ease;
 }
-
+.form-label{
+  margin: 2px;
+  font-weight: 600;
+  color: $gray-600;
+}
+.mb-form-input {
+  margin-bottom: 1.875rem;
+}
 .paginator {
   position: -webkit-sticky;
   position: sticky;

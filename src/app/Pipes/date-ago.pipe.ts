@@ -59,7 +59,7 @@ export class DateAgoPipe implements PipeTransform {
     }
   }
 
-  strangePolishRulesCheck(time: number) {
+  strangePolishRulesCheck(time: number): boolean {
     return ((Math.floor(time) >= 2 && Math.floor(time) <= 4) || (Math.floor(time) % 10 === 2 || Math.floor(time) % 10 === 3 || Math.floor(time) % 10 === 4) && (Math.floor(time) >= 20));
   }
 

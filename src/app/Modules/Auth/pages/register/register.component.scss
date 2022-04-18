@@ -21,3 +21,16 @@ h2 {
   font-weight: bold;
   letter-spacing: .5px;
 }
+.p-error.d-block {
+  margin: 0 5px !important;
+  margin-top: 2px !important;
+}
+input {
+  width: 100%;
+}
+.errors {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}

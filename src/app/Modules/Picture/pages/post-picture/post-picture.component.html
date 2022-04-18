@@ -13,7 +13,7 @@
           <!--          Picture name -->
           <div class="text-left col-12 mt-3 mb-4">
             <span class="p-float-label">
-              <input id="name-input" class="w-100" type="text"
+              <input id="name-input" class="w-100" type="text" [pKeyFilter]="isName" [pValidateOnly]="true"
                      [ngClass]="form.get('name')!.touched ? 'ng-dirty' : ''"
                      formControlName="name" pInputText>
               <label for="name-input">
@@ -33,6 +33,12 @@
               <small id="name-input-error-maxlength" class="px-1 p-error block"
                      *ngIf="form.get('name')!.errors!['maxlength']">
                 Nazwa obrazka powinna zawierać maksymalnie 40 znaków
+              </small>
+              <small id="name-input-error-regex-mismatch" class="px-1 p-error block"
+                     *ngIf="!form.get('name')!.errors!['required'] &&
+                     !form.get('name')!.errors!['minlength'] &&
+                     !form.get('name')!.errors!['maxlength']">
+                Nazwa obrazka nie może zaczynać i kończyć się spacją, oraz nie może posiadać wielu spacji obok siebie
               </small>
             </span>
           </div>

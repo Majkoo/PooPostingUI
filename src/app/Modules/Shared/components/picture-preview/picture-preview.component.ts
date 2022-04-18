@@ -3,6 +3,7 @@ import { PictureModel } from 'src/app/Models/ApiModels/PictureModel';
 import { ConfigServiceService } from 'src/app/Services/data/config-service.service';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
+import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
 
 @Component({
   selector: 'app-picture-preview',
@@ -18,6 +19,7 @@ export class PicturePreviewComponent implements OnInit {
     private userDataService: UserDataServiceService,
     private configService: ConfigServiceService,
     private httpService: HttpServiceService,
+    private scrollService: ScrollServiceService,
   ) {
     this.isLoggedOn = this.userDataService.isUserLoggedOn();
   }
@@ -50,6 +52,10 @@ export class PicturePreviewComponent implements OnInit {
         }
       })
     },
+  }
+
+  saveScrollState() {
+    this.scrollService.saveScrollState();
   }
 
 }

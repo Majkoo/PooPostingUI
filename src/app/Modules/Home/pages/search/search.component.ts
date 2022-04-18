@@ -7,6 +7,7 @@ import {MessageService} from "primeng/api";
 import {AccountPagedResult} from "../../../../Models/ApiModels/AccountPagedResult";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
+import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
 
 @Component({
   selector: 'app-search',
@@ -37,9 +38,11 @@ export class SearchComponent implements OnInit {
     private paramsService: HttpParamsServiceService,
     private messageService: MessageService,
     private userDataService: UserDataServiceService,
+    private scrollService: ScrollServiceService,
   ) {}
 
   ngOnInit(): void {
+    this.scrollService.loadScrollState();
     this.paramsService.setSearchPageNumber(1);
   }
 
@@ -56,6 +59,7 @@ export class SearchComponent implements OnInit {
         this.clearAccountsResult();
         this.picPaginator.updateCurrentPage(val.page);
         this.picPaginator.updatePages(val.totalItems);
+        this.scrollService.loadScrollState();
       },
       error: () => {
         this.messageService.add({
@@ -78,6 +82,7 @@ export class SearchComponent implements OnInit {
         this.clearPictureResult();
         this.accPaginator.updateCurrentPage(val.page);
         this.accPaginator.updatePages(val.totalItems);
+        this.scrollService.loadScrollState();
       },
       error: () => {
         this.messageService.add({
@@ -88,17 +93,23 @@ export class SearchComponent implements OnInit {
     });
   }
   clearSearch() {
+    this.scrollService.resetScrollState();
+    this.scrollService.loadScrollState();
     this.clearAccountsResult();
     this.clearPictureResult();
   }
 
   paginate(val: any): void {
+    this.scrollService.resetScrollState();
+    this.scrollService.loadScrollState();
     this.userDataService.updateLikes();
     this.paramsService.setSearchPageNumber(val+1);
     this.updatePage();
     this.fetchPictures();
   }
   paginateAccs(val: any): void {
+    this.scrollService.resetScrollState();
+    this.scrollService.loadScrollState();
     this.userDataService.updateLikes();
     this.paramsService.setSearchPageNumber(val+1);
     this.updatePage();

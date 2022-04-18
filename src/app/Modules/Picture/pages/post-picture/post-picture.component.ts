@@ -7,6 +7,7 @@ import {MessageService} from "primeng/api";
 import {HttpErrorResponse} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
+import {ItemName} from "../../../../Regexes/ItemName";
 
 @Component({
   selector: 'app-post-picture',
@@ -17,6 +18,7 @@ export class PostPictureComponent {
   form!: FormGroup;
   image!: File;
   tags: string[] = [];
+  isName: RegExp = ItemName;
 
   siteKey!: string;
   captchaPassed: boolean = false;

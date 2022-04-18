@@ -3,8 +3,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { CustomValidators } from 'src/CustomValidators';
 import {MessageService} from "primeng/api";
-import {Location} from "@angular/common";
 import {Router} from "@angular/router";
+import {BlockSpace} from "../../../../Regexes/BlockSpace";
+import {ItemName} from "../../../../Regexes/ItemName";
 
 @Component({
   selector: 'app-register',
@@ -13,11 +14,12 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
-  blockSpace: RegExp = /[^\s]/;
+  blockSpace: RegExp = BlockSpace;
+  isName: RegExp = ItemName;
+  formDisabled: boolean = false;
 
   siteKey!: string;
   captchaPassed: boolean = false;
-  awaitSubmit: boolean = false;
   isNickNameTaken: boolean = false;
 
   passCaptcha() {
@@ -27,7 +29,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private httpService: HttpServiceService,
     private message: MessageService,
-    private location: Location,
+    private router: Router
   ) {
     this.siteKey = "6Lfdv78eAAAAAJZcBW3ymM-3yaKieXyTTXFPNHcm";
   }
@@ -59,26 +61,33 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.form.disable()
+    this.disableForm();
     this.isNickNameTaken = false;
     this.message.clear();
     this.httpService.postRegisterRequest(this.form.getRawValue()).subscribe({
       next: () => {
-        this.location.back();
+        this.router.navigate(["/auth/login"]);
         this.message.add({severity:'success', summary: 'Sukces', detail: 'Zarejestrowano pomyślnie. Przeniesiono cię na stronę logowania.'});
       },
       error: (err) => {
-        this.awaitSubmit = false;
         this.message.add({severity:'error', summary: 'Sukces', detail: 'Nie udało się zarejestrować. Sprawdź błędy.'});
         if (err.error.errors || err.error.errors.Nickname === "That nickname is taken") {
           this.isNickNameTaken = true;
         }
+        this.enableForm();
       }
     });
-
   }
 
   openLink(url: string){
     window.open(url, "_blank");
+  }
+  private disableForm() {
+    this.form.disable();
+    this.formDisabled = true;
+  }
+  private enableForm() {
+    this.form.enable();
+    this.formDisabled = false;
   }
 }

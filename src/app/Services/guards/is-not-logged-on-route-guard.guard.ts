@@ -18,16 +18,7 @@ export class IsNotLoggedOnRouteGuardGuard implements CanActivate {
     if (this.userDataService.isUserLoggedOn()) {
       return true;
     } else {
-      this.router.navigate(['/login']).then(val => {
-        if (val) {
-          this.messageService.add({
-            life: 7500,
-            severity: 'warn',
-            summary: 'Przekierowano cię na stronę logowania.',
-            detail: 'Aby udać się na tą podstronę, należy się zalogować.'
-          })
-        }
-      });
+      this.router.navigate(['/home/1']);
       return false;
     }
   }

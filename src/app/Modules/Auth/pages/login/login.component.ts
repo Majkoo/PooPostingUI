@@ -15,7 +15,7 @@ import {UserDataServiceService} from "../../../../Services/data/user-data-servic
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
-  awaitSubmit: boolean = false;
+  formDisabled: boolean = false;
 
   constructor(
     private sessionStorageService: SessionStorageServiceService,
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private httpService: HttpServiceService,
     private messageService: MessageService,
     private userDataService: UserDataServiceService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.messageService.clear();
+    this.disableForm();
     this.httpService
       .postLoginRequest(this.form.getRawValue())
       .subscribe({
@@ -46,16 +47,24 @@ export class LoginComponent implements OnInit {
             this.localStorageService.saveJwtUid(v.accountDto.id);
             this.messageService.add({severity:'success', summary: 'Sukces', detail: 'Zalogowano pomyślnie.'});
             this.locationService.goBack();
-            this.awaitSubmit = false;
           }
         },
         error: (err) => {
           if (err.error === "Invalid nickname or password") {
             this.messageService.add({severity:'error', summary: 'Niepowodzenie', detail: 'Podano błędne dane logowania.', key: "login-failed"});
+            this.enableForm();
           }
-          this.awaitSubmit = false;
         }
       })
+  }
+
+  private disableForm() {
+    this.form.disable();
+    this.formDisabled = true;
+  }
+  private enableForm() {
+    this.form.enable();
+    this.formDisabled = false;
   }
 
 }

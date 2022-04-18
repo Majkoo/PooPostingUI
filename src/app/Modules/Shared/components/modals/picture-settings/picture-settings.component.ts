@@ -5,6 +5,7 @@ import {HttpServiceService} from "../../../../../Services/http/http-service.serv
 import {PutPictureModel} from "../../../../../Models/ApiModels/PutPictureModel";
 import {MessageService} from "primeng/api";
 import {SelectOption} from "../../../../../Models/SelectOption";
+import {ItemName} from "../../../../../Regexes/ItemName";
 
 @Component({
   selector: 'app-picture-settings',
@@ -15,6 +16,7 @@ export class PictureSettingsComponent implements OnInit {
   @Input() picture!: PictureModel;
   @Output() onDelete = new EventEmitter<void>();
   deletePhrase: string = "";
+  isName: RegExp = ItemName;
 
   changeTags!: FormGroup;
   changeName!: FormGroup;

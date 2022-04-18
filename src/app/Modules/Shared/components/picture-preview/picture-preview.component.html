@@ -24,11 +24,11 @@
 
         <div class="d-flex ml-3">
           <div class="d-none d-sm-block">
-            <button pButton pRipple [routerLink]="'/picture/'+picture.id" icon="bi bi-info-circle" class="px-3"
+            <button pButton pRipple (click)="saveScrollState()" [routerLink]="'/picture/'+picture.id" icon="bi bi-info-circle" class="px-3"
                     label="Szczegóły" name="Szczegóły" attr.aria-label='Szczegóły obrazka "{{picture.name}}"'></button>
           </div>
           <div class="d-block d-sm-none">
-            <button pButton pRipple [routerLink]="'/picture/'+picture.id" icon="bi bi-info-circle"
+            <button pButton pRipple (click)="saveScrollState()" [routerLink]="'/picture/'+picture.id" icon="bi bi-info-circle"
                     name="Szczegóły" attr.aria-label='Szczegóły obrazka "{{picture.name}}"'></button>
           </div>
         </div>

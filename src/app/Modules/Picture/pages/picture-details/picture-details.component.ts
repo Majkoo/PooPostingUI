@@ -12,6 +12,7 @@ import {LocationServiceService} from "../../../../Services/helpers/location-serv
 import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modify-service.service";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
+import {ItemName} from "../../../../Regexes/ItemName";
 
 @Component({
   selector: 'app-picture-details',
@@ -48,6 +49,7 @@ export class PictureDetailsComponent {
   showSettingsFlag: boolean = false;
   showAdminSettingsFlag: boolean = false;
   showShareFlag: boolean = false;
+  isValidComment: RegExp = ItemName;
 
   constructor(
     private userDataService: UserDataServiceService,
@@ -81,6 +83,7 @@ export class PictureDetailsComponent {
     this.picture = this.userDataService.updatePictureLikes(this.picture);
     this.picture.likes.sort(l => l.isLike ? -1 : 0);
     this.allowModifyService.allowModifyPicture(this.picture);
+    this.picture.tags = this.picture.tags.filter(t => t != '');
   }
   deleteComment($event: CommentModel) {
     this.httpService.deleteCommentRequest(this.picture.id, $event.id)
@@ -92,6 +95,13 @@ export class PictureDetailsComponent {
             summary:'Sukces',
             detail:'Pomyślnie usunięto komentarz!',
           });
+        },
+        error: () => {
+          this.messageService.add({
+            severity:'error',
+            summary: 'Niepowodzenie',
+            detail: `Nie udało się usunąć komentarza.`
+          });
         }
       })
   }
@@ -101,7 +111,15 @@ export class PictureDetailsComponent {
         this.messageService.add({
           severity:'warn',
           summary: 'Sukces',
-          detail: `Obrazek "${this.picture.name}" został usunięty. Zobaczysz efekty po przeładowaniu wyników.`});
+          detail: `Obrazek "${this.picture.name}" został usunięty. Zobaczysz efekty po przeładowaniu wyników.`
+        });
+      },
+      error: () => {
+        this.messageService.add({
+          severity:'error',
+          summary: 'Niepowodzenie',
+          detail: `Nie udało się usunąć obrazka "${this.picture.name}".`
+        });
       }
     })
     this.showSettingsFlag = false;
@@ -149,6 +167,13 @@ export class PictureDetailsComponent {
         }
       })
     },
+    error: () => {
+      this.messageService.add({
+        severity:'error',
+        summary: 'Niepowodzenie',
+        detail: `Coś poszło nie tak.`
+      });
+    }
   }
   commentObserver = {
     next: (val: CommentModel) => {
@@ -159,6 +184,13 @@ export class PictureDetailsComponent {
         severity:'success',
         summary:'Sukces',
         detail:'Pomyślnie skomentowano!'
+      });
+    },
+    error: () => {
+      this.messageService.add({
+        severity:'error',
+        summary: 'Niepowodzenie',
+        detail: `Coś poszło nie tak.`
       });
     }
   }

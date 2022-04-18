@@ -11,25 +11,24 @@
          alt="{{picture.name}}, dodano przez: {{picture.accountNickname}}">
 
     <ng-template pTemplate="header">
-      <h2 class="text-center py-2"><b>Szczegóły obrazka</b></h2>
+      <h2 class="text-center py-2"><b>{{picture.name | titlecase}}</b></h2>
     </ng-template>
 
     <ng-template pTemplate="body">
-      <div class="text-break px-3 py-1">
-        <h3 class="mb-2">{{picture.name | titlecase}}</h3>
+      <div class="text-break px-3 py-2">
         <p class="text-center text-break d-flex justify-content-center align-items-center">
           <a routerLink="/account/{{picture.accountId}}" class="d-inline-flex" attr.aria-label="Konto {{picture.accountNickname}}">
             <span class="bi bi-person-fill"></span>{{picture.accountNickname}}
-          </a>, {{picture.pictureAdded | date}}
+          </a>, {{picture.pictureAdded | date:'dd.MM.YYYY'}}
         </p>
-        <div class="d-flex justify-content-center align-items-center mb-2 mt-1 text-muted text-break">
+        <div class="d-flex justify-content-center align-items-center mt-1 text-muted text-break">
           <p class="px-2 px-md-4 px-lg-5 d-flex justify-content-center align-items-center">
             <span class="bi bi-card-text mr-1" *ngIf="!picture.description"></span>
             {{picture.description ? picture.description : "Brak opisu"}}
           </p>
         </div>
 
-        <div class="d-flex flex-wrap justify-content-center mb-2 gap">
+        <div class="d-flex flex-wrap justify-content-center mt-2 mb-1 gap" *ngIf="picture.tags.length">
           <p-tag *ngFor="let tag of picture.tags">
             <span class="bi bi-tag-fill"></span>{{tag}}
           </p-tag>
@@ -81,10 +80,25 @@
           <form (ngSubmit)="comment()" [formGroup]="commentForm">
             <div class="d-flex flex-column">
               <textarea id="comment-input" class="w-100" formControlName="text" rows="3" cols="30"
-                        placeholder="Napisz komentarz!" pInputTextarea></textarea>
-              <label for="comment-input" class="m-0 text-muted" *ngIf="!isLoggedOn">
+                        placeholder="Napisz komentarz!" pInputTextarea [pKeyFilter]="isValidComment" [pValidateOnly]="true"></textarea>
+              <small class="m-0 text-muted" *ngIf="!isLoggedOn">
                 <small>Aby dodać komentarz, konieczne jest zalogowanie się.</small>
-              </label>
+              </small>
+              <span *ngIf="commentForm.invalid">
+                <small *ngIf="commentForm.get('text')!.errors!['minlength']" class="p-error d-block">
+                  Komentarz musi zawierać co najmniej 4 znaki
+                </small>
+                <small *ngIf="commentForm.get('text')!.errors!['maxlength']" class="p-error d-block">
+                  Maksymalna długość komentarza to 250 znaków
+                </small>
+                <small class="p-error d-block"
+                       *ngIf="!commentForm.get('text')!.errors!['minlength'] &&
+                        !commentForm.get('text')!.errors!['maxlength'] &&
+                        !commentForm.get('text')!.errors!['required']">
+                Komentarz nie może zaczynać i kończyć się spacją, oraz nie może posiadać wielu spacji obok siebie
+              </small>
+              </span>
+
             </div>
             <button pButton pRipple label="Zatwierdź" class="px-5 mt-3" type="submit"
                     [disabled]="commentForm.invalid || awaitSubmit || !isLoggedOn"></button>
