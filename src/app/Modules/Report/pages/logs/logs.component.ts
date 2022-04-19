@@ -7,6 +7,7 @@ import {MessageService} from "primeng/api";
 import {EmailBuilderServiceService} from "../../../../Services/helpers/email-builder-service.service";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
+import {Meta, Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-logs',
@@ -28,7 +29,10 @@ export class LogsComponent implements OnInit {
     private userDataService: UserDataServiceService,
     private emailBuilderService: EmailBuilderServiceService,
     private httpService: HttpServiceService,
-  ) { }
+    private title: Title
+  ) {
+    this.title.setTitle(`PicturesUI - Zgłoś błąd`);
+  }
 
   ngOnInit(): void {
     this.logs = this.sessionStorageService.getLogs();

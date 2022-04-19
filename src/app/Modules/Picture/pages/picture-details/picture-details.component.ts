@@ -10,9 +10,9 @@ import {HttpServiceService} from "../../../../Services/http/http-service.service
 import {CommentModel} from "../../../../Models/ApiModels/CommentModel";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
 import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modify-service.service";
-import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {ItemName} from "../../../../Regexes/ItemName";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-picture-details',
@@ -59,8 +59,10 @@ export class PictureDetailsComponent {
     private messageService: MessageService,
     private allowModifyService: AllowModifyServiceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) {
+    this.title.setTitle('PicturesUI');
     this.isLoggedOn = userDataService.isUserLoggedOn();
     this.id = route.params.pipe(map(p => p['id']));
     this.initialSubscribe();
@@ -150,6 +152,7 @@ export class PictureDetailsComponent {
             if(!this.picture.url.startsWith("http")){
               this.picture.url = this.configService.picturesUrl + this.picture.url;
             }
+            this.title.setTitle(`PicturesUI - Obrazek ${pic.name}`);
           },
           error: () => {
             this.router.navigate(['/error404']);

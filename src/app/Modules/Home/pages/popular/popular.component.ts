@@ -7,6 +7,7 @@ import {SelectOption} from "../../../../Models/SelectOption";
 import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-popular',
@@ -40,7 +41,9 @@ export class PopularComponent implements OnInit {
     private userDataService: UserDataServiceService,
     private httpService: HttpServiceService,
     private configService: ConfigServiceService,
+    private title: Title
   ) {
+    this.title.setTitle('PicturesUI - Popularne');
     this.selectOptions = [
       { name: "Obrazki", class: "bi bi-image-fill"},
       { name: "Konta", class: "bi bi-person-fill"},

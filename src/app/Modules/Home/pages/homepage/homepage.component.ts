@@ -7,6 +7,7 @@ import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.
 import {map, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
+import {Meta, Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-body',
@@ -30,8 +31,11 @@ export class HomepageComponent implements OnInit {
     private paramsService: HttpParamsServiceService,
     private scrollService: ScrollServiceService,
     private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+    private title: Title
+  ) {
+    this.title.setTitle('PicturesUI - Strona główna');
+  }
 
   ngOnInit(): void {
     this.pageObservable = this.route.params.pipe(map(p => p['pageNumber']));

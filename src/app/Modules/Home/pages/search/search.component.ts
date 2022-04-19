@@ -1,13 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PicturePagedResult} from "../../../../Models/ApiModels/PicturePagedResult";
-import {Router} from "@angular/router";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
 import {MessageService} from "primeng/api";
 import {AccountPagedResult} from "../../../../Models/ApiModels/AccountPagedResult";
-import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-search',
@@ -39,7 +38,10 @@ export class SearchComponent implements OnInit {
     private messageService: MessageService,
     private userDataService: UserDataServiceService,
     private scrollService: ScrollServiceService,
-  ) {}
+    private title: Title
+  ) {
+    this.title.setTitle('PicturesUI - Panel wyszukiwania');
+  }
 
   ngOnInit(): void {
     this.scrollService.loadScrollState();

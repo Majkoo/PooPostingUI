@@ -6,6 +6,7 @@ import {MessageService} from "primeng/api";
 import {Router} from "@angular/router";
 import {BlockSpace} from "../../../../Regexes/BlockSpace";
 import {ItemName} from "../../../../Regexes/ItemName";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-register',
@@ -29,9 +30,12 @@ export class RegisterComponent implements OnInit {
   constructor(
     private httpService: HttpServiceService,
     private message: MessageService,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) {
     this.siteKey = "6Lfdv78eAAAAAJZcBW3ymM-3yaKieXyTTXFPNHcm";
+    this.title.setTitle(`PicturesUI - Rejestracja`);
+
   }
 
   ngOnInit(): void {

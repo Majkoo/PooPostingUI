@@ -8,6 +8,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
 import {ItemName} from "../../../../Regexes/ItemName";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-post-picture',
@@ -42,8 +43,10 @@ export class PostPictureComponent {
     private formBuilder: FormBuilder,
     private httpService: HttpServiceService,
     private message: MessageService,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) {
+    this.title.setTitle(`PicturesUI - Wstaw obrazek`);
     this.siteKey = "6Lfdv78eAAAAAJZcBW3ymM-3yaKieXyTTXFPNHcm";
 
     this.form  = this.formBuilder.group({

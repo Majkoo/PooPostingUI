@@ -7,7 +7,7 @@
       <div class="p-card-subtitle d-flex flex-row justify-content-center align-items-center gap-1 flex-wrap">
         Dodano przez:
         <span>
-          <span class="account-link" [routerLink]="'/account/'+picture.accountId"
+          <span class="account-link" (click)="saveScrollState()" [routerLink]="'/account/'+picture.accountId"
                 attr.aria-label="Konto {{picture.accountNickname}}">{{picture.accountNickname}}</span>,
         </span>
         {{picture.pictureAdded | dateAgo}}

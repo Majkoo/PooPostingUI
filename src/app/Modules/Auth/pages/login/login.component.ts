@@ -7,6 +7,7 @@ import {LocationServiceService} from "../../../../Services/helpers/location-serv
 import {LocalStorageServiceService} from "../../../../Services/data/local-storage-service.service";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,10 @@ export class LoginComponent implements OnInit {
     private httpService: HttpServiceService,
     private messageService: MessageService,
     private userDataService: UserDataServiceService,
-  ) { }
+    private title: Title
+  ) {
+    this.title.setTitle(`PicturesUI - Logowanie`);
+  }
 
   ngOnInit(): void {
     this.form = new FormGroup({

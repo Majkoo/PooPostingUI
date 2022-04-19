@@ -10,6 +10,7 @@ import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modi
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 import {MessageService} from "primeng/api";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-account-details',
@@ -34,7 +35,9 @@ export class AccountDetailsComponent {
     private locationService: LocationServiceService,
     private allowModifyService: AllowModifyServiceService,
     private userDataService: UserDataServiceService,
+    private title: Title
   ) {
+    this.title.setTitle('PicturesUI');
     this.id = route.params.pipe(map(p => p['id']));
     this.id.subscribe({
       next: (val) => {
@@ -103,6 +106,7 @@ export class AccountDetailsComponent {
       this.sortByDate(this.account.pictures);
       this.isVisitorAccOwner = this.isVisitorAccOwnerCheck();
       this.allowModifyService.allowModifyAccount(acc);
+      this.title.setTitle(`PicturesUI - Użytkownik ${acc.nickname}`);
     },
     error: () => {
       this.router.navigate(['/error404']);
