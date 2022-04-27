@@ -37,7 +37,6 @@ export class AccountDetailsComponent {
     private userDataService: UserDataServiceService,
     private title: Title
   ) {
-    this.title.setTitle('PicturesUI');
     this.id = route.params.pipe(map(p => p['id']));
     this.id.subscribe({
       next: (val) => {

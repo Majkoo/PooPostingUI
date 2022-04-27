@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-error500',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Error500Component implements OnInit {
 
-  constructor() { }
+  constructor(
+    private title: Title
+  ) { }
 
   ngOnInit(): void {
+    this.title.setTitle('PicturesUI - Błąd 500')
   }
 
 }

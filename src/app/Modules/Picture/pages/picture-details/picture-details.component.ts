@@ -62,7 +62,6 @@ export class PictureDetailsComponent {
     private router: Router,
     private title: Title
   ) {
-    this.title.setTitle('PicturesUI');
     this.isLoggedOn = userDataService.isUserLoggedOn();
     this.id = route.params.pipe(map(p => p['id']));
     this.initialSubscribe();
