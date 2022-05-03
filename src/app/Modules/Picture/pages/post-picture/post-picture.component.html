@@ -1,2 +1,2 @@
-<app-nsfwjs-check *ngIf="currentStep === 1" [img]="img" (onSubmit)="goto(2, $event)"></app-nsfwjs-check>
-<app-post-form *ngIf="currentStep === 2" (onBack)="goto(1, $event)"></app-post-form>
+<app-nsfwjs-check *ngIf="currentStep === 1" (onSubmit)="goto(2)"></app-nsfwjs-check>
+<app-post-form *ngIf="currentStep === 2" (onBack)="goto(1)"></app-post-form>

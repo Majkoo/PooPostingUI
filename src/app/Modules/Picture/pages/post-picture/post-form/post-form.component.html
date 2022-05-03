@@ -42,41 +42,9 @@
         </div>
 
         <!--          Picture Image -->
-        <div class="mb-4 text-left col-12">
-          <div class="row">
-            <div class="w-100 col-12">
-              <input type="file" class="w-100" formControlName="img" (change)="fileChangeEvent($event)"/>
-            </div>
-          </div>
-
-          <div class="row mt-2 justify-content-center">
-            <div class="text-center col-12">
-              <h5>Przytnij</h5>
-              <image-cropper class="border" #cropperInput
-                             [imageChangedEvent]="imageChangedEvent"
-                             [maintainAspectRatio]="true"
-                             [aspectRatio]="4 / 3"
-                             [resizeToWidth]="1024"
-                             format="webp"
-                             [containWithinAspectRatio]="true"
-                             (imageCropped)="imageCropped($event)"
-                             (imageLoaded)="imageLoaded()"
-                             (cropperReady)="cropperReady()"
-                             (loadImageFailed)="loadImageFailed()">
-              </image-cropper>
-            </div>
-            <small id="file-input-error-notselected" class="px-1 p-error block"
-                   *ngIf="form.get('img')!.errors && form.get('img')!.touched">
-              Proszę wybrać obrazek
-            </small>
-            <small id="file-input-error-invalid" class="px-1 p-error block"
-                   *ngIf="(imgError && form.get('img')!.touched) && !(form.get('img')!.errors)">
-              Nieobsługiwany format pliku
-            </small>
-            <small id="file-input-error-notsafe" class="px-1 p-error block"
-                   *ngIf="!isSafe">
-              Wykryto nieodpowiednie treści
-            </small>
+        <div class="mb-4 col-12 d-flex justify-content-center">
+          <div class="w-100">
+            <app-cropper (onCrop)="onCrop($event)"></app-cropper>
           </div>
 
         </div>
@@ -118,7 +86,7 @@
         <div class="col-12">
           <div class="d-flex gap-2 w-100 justify-content-center">
             <button pButton pRipple (click)="back()" class="px-5">Cofnij</button>
-            <button pButton pRipple (click)="submit()" class="px-5" [disabled]="form.invalid || !captchaPassed || awaitSubmit || imgError">Wyślij</button>
+            <button pButton pRipple (click)="submit()" class="px-5" [disabled]="form.invalid || !captchaPassed || awaitSubmit || !isImgReady">Wyślij</button>
           </div>
         </div>
 

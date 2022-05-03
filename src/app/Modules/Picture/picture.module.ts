@@ -10,25 +10,27 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PictureRoutingModule} from "./picture-routing.module";
 import { NsfwjsCheckComponent } from './pages/post-picture/nsfwjs-check/nsfwjs-check.component';
 import { PostFormComponent } from './pages/post-picture/post-form/post-form.component';
+import { CropperComponent } from './pages/post-picture/post-form/cropper/cropper.component';
 import {ImageCropperModule} from "ngx-image-cropper";
 
 @NgModule({
     declarations: [
-        PictureDetailsComponent,
-        CommentTableComponent,
-        LikeTableComponent,
-        PictureShareComponent,
-        NsfwjsCheckComponent,
-        PostFormComponent,
+      PictureDetailsComponent,
+      CommentTableComponent,
+      LikeTableComponent,
+      PictureShareComponent,
+      NsfwjsCheckComponent,
+      PostFormComponent,
+      CropperComponent,
     ],
     imports: [
       FormsModule,
-        CommonModule,
-        SharedModule,
-        PrimeNgModule,
-        ReactiveFormsModule,
-        PictureRoutingModule,
-      ImageCropperModule
+      CommonModule,
+      SharedModule,
+      PrimeNgModule,
+      ReactiveFormsModule,
+      PictureRoutingModule,
+      ImageCropperModule,
     ],
   exports: [
     PostFormComponent,

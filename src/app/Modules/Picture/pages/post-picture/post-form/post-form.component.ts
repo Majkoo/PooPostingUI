@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ItemName} from "../../../../../Regexes/ItemName";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {MessageService} from "primeng/api";
 import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
-import {ImageCroppedEvent} from "ngx-image-cropper";
+import {PostPictureServiceService} from "../../../../../Services/data/post-picture-service.service";
 
 @Component({
   selector: 'app-post-form',
@@ -13,34 +13,29 @@ import {ImageCroppedEvent} from "ngx-image-cropper";
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent {
-  @Output() onBack: EventEmitter<File> = new EventEmitter<File>();
-  @Input() img: File | undefined;
+  @Output() onBack: EventEmitter<null> = new EventEmitter<null>();
 
   form!: FormGroup;
-  image!: File;
   tags: string[] = [];
   isName: RegExp = ItemName;
-
+  isImgReady: boolean = false;
 
   siteKey!: string;
   captchaPassed: boolean = false;
   awaitSubmit: boolean = false;
-  imgError: boolean = false;
-  isSafe: boolean = true;
   passCaptcha() {
     this.captchaPassed = true;
   }
 
   clearErrors(){
     this.awaitSubmit = false;
-    this.imgError = false;
-    this.isSafe = true;
   }
 
   @ViewChild('cropperInput') CropperInput: any;
   @ViewChild('pChips') ChipsInput: any;
 
   constructor(
+    private ppService: PostPictureServiceService,
     private formBuilder: FormBuilder,
     private httpService: HttpServiceService,
     private message: MessageService,
@@ -55,9 +50,6 @@ export class PostFormComponent {
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(40)
-      ]),
-      img: new FormControl(undefined, [
-        Validators.required
       ]),
       description: new FormControl("", [
         Validators.maxLength(500)
@@ -104,77 +96,43 @@ export class PostFormComponent {
     }
   }
 
-  // image cropper
-  imageChangedEvent: any;
-  croppedImage: any;
-
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-    this.clearErrors();
-  }
-  imageCropped(event: ImageCroppedEvent) {
-    const Blob =  this.dataURItoBlob(event.base64!);
-    let file = new File([Blob], "picture")
-    this.image = file;
-    this.clearErrors();
-  }
-  imageLoaded() {
-    this.clearErrors();
-  }
-  cropperReady() {
-    this.clearErrors();
-  }
-  loadImageFailed() {
-    this.clearErrors();
-  }
   private tagsToString(tags: string[]): string{
     let result = ""
     tags.forEach(tag => result += (tag + " "));
     return result.slice(0, result.length - 1);
   }
 
-  //stackOverflow
-  private dataURItoBlob(dataURI: string) {
-    const binary = atob(dataURI.split(',')[1]);
-    const array = [];
-    for (let i = 0; i < binary.length; i++) {
-      array.push(binary.charCodeAt(i));
-    }
-    return new Blob([new Uint8Array(array)], {
-      type: 'image/png'
-    });
+  onCrop(bool: boolean) {
+    this.isImgReady = bool;
   }
 
   //send form data
   submit(){
     this.awaitSubmit = true;
     let fData: FormData = new FormData;
-    fData.append("file", this.image)
-    fData.append("name", this.form.getRawValue().name)
-    fData.append("description", this.form.getRawValue().description)
-    fData.append("tags", this.tagsToString(this.tags))
+    if (this.ppService.getCroppedImg()) {
+      fData.append("file", this.ppService.getCroppedImg()!)
+      fData.append("name", this.form.getRawValue().name)
+      fData.append("description", this.form.getRawValue().description)
+      fData.append("tags", this.tagsToString(this.tags))
+    }
     this.message.clear();
     this.httpService.postPictureRequest(fData).subscribe({
       next: () => {
         this.router.navigate(["./home"]);
         this.message.add({severity:'success', summary: 'Sukces', detail: 'Obrazek został umieszczony na stronie'});
         this.clearErrors();
+        this.ppService.garbageCollect();
       },
-      error: (err) => {
-        switch (err.error) {
-          case ("nsfw picture"):
-            this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Wykryto nieodpowiednie treści. Obrazek nie został zapostowany.'});
-            this.isSafe = false;
-            break;
-        }
+      error: () => {
+        this.message.add({severity:'error', summary: 'Niepowodzenie', detail: 'Coś poszło nie tak. Przepraszamy za utrudnienia.'});
         this.awaitSubmit = false;
       }
     });
   }
 
   back() {
-    this.onBack.emit(this.img);
+    this.onBack.emit();
   }
-
 
 }

@@ -6,15 +6,8 @@ import {Component} from '@angular/core';
   styleUrls: ['./post-picture.component.scss']
 })
 export class PostPictureComponent {
-  img: File | undefined;
   currentStep: number = 1;
-
-  goto(val: number, file: File) {
-    this.updateImg(file);
+  goto(val: number) {
     this.currentStep = val;
-  }
-
-  private updateImg(file: File) {
-    this.img = file
   }
 }

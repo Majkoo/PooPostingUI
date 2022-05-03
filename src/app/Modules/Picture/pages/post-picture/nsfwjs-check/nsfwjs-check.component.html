@@ -1,6 +1,6 @@
 <div class="card mb-5">
   <div class="card-body">
-    <h2 class="mb-2">Prześlij obrazek</h2>
+    <h2 class="mb-2 text-center">Prześlij obrazek</h2>
     <form [formGroup]="myForm" class="text-center d-flex flex-column justify-content-center align-items-center" (ngSubmit)="submit()">
 
       <div *ngIf="filePath && filePath !== ''" class="img-preview p-2 w-100" [ngClass]="isNsfw ? 'border-red' : 'border'">

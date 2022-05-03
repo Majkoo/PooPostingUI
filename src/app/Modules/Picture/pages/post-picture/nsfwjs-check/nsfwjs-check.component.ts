@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {PictureClassifiedModel} from "../../../../../Models/ApiModels/PictureClassifiedModel";
+import {PostPictureServiceService} from "../../../../../Services/data/post-picture-service.service";
 
 @Component({
   selector: 'app-nsfwjs-check',
@@ -9,8 +10,7 @@ import {PictureClassifiedModel} from "../../../../../Models/ApiModels/PictureCla
   styleUrls: ['./nsfwjs-check.component.scss']
 })
 export class NsfwjsCheckComponent implements OnInit {
-  @Output() onSubmit: EventEmitter<File> = new EventEmitter<File>();
-  @Input() img: File | undefined;
+  @Output() onSubmit: EventEmitter<null> = new EventEmitter<null>();
 
   filePath: string = "";
   myForm: FormGroup;
@@ -18,18 +18,17 @@ export class NsfwjsCheckComponent implements OnInit {
   nsfwSummary: string = '';
 
   constructor(
+    private ppService: PostPictureServiceService,
     private formBuilder: FormBuilder,
     private httpService: HttpServiceService
   ) {
     this.myForm = this.formBuilder.group({
       img: [null]
     })
+    this.ppService.getImg();
   }
 
   ngOnInit() {
-    if (this.img) {
-      console.log(this.img);
-    }
   }
 
   imagePreview(e: any) {
@@ -47,7 +46,7 @@ export class NsfwjsCheckComponent implements OnInit {
 
       let img = new FormData();
       img.append('file', file);
-      this.img = img.get('file') as File;
+      this.ppService.setImg(img.get('file') as File);
       this.httpService.postClassifyPictureRequest(img)
         .subscribe((value: PictureClassifiedModel) => {
           this.isNsfw = value.isNsfw;
@@ -57,8 +56,8 @@ export class NsfwjsCheckComponent implements OnInit {
   }
 
   submit() {
-    if (this.img) {
-      this.onSubmit.emit(this.img);
+    if (this.ppService.getImg()) {
+      this.onSubmit.emit();
     }
   }
 

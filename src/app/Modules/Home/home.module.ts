@@ -8,7 +8,6 @@ import {SearchComponent} from "./pages/search/search.component";
 import {SharedModule} from "../Shared/shared.module";
 import {PrimeNgModule} from "../Prime-ng/prime-ng.module";
 import {ReactiveFormsModule} from "@angular/forms";
-import {ImageCropperModule} from "ngx-image-cropper";
 import {PictureModule} from "../Picture/picture.module";
 
 @NgModule({
@@ -24,7 +23,6 @@ import {PictureModule} from "../Picture/picture.module";
     SharedModule,
     PrimeNgModule,
     ReactiveFormsModule,
-    ImageCropperModule,
     PictureModule
   ]
 })
