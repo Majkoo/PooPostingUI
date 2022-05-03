@@ -4,11 +4,7 @@ import { Error404Component } from "./Modules/Shared/pages/error404/error404.comp
 import { Error500Component } from "./Modules/Shared/pages/error500/error500.component";
 import { Error0Component } from "./Modules/Shared/pages/error0/error0.component";
 import { HomepageComponent } from "./Modules/Home/pages/homepage/homepage.component";
-import { MyAccountComponent } from "./Modules/Account/pages/my-account/my-account.component";
 import { PopularComponent } from "./Modules/Home/pages/popular/popular.component";
-import { PictureDetailsComponent } from "./Modules/Picture/pages/picture-details/picture-details.component";
-import { AccountDetailsComponent } from "./Modules/Account/pages/account-details/account-details.component";
-import {IsNotLoggedOnRouteGuardGuard} from "./Services/guards/is-not-logged-on-route-guard.guard";
 import {LogsComponent} from "./Modules/Report/pages/logs/logs.component";
 import {SearchComponent} from "./Modules/Home/pages/search/search.component";
 

@@ -18,6 +18,7 @@ import {PopularModel} from "../../Models/ApiModels/PopularModel";
 import {LsJwtDetails} from "../../Models/ApiModels/LsJwtDetails";
 import {PutAccountModel} from "../../Models/ApiModels/PutAccountModel";
 import {PostSendLogsModel} from "../../Models/ApiModels/PostSendLogsModel";
+import {PictureClassifiedModel} from "../../Models/ApiModels/PictureClassifiedModel";
 
 @Injectable({
   providedIn: 'root'
@@ -105,6 +106,13 @@ export class HttpServiceService {
     return this.http
       .post(
         `${this.config.apiUrl}/picture/create`,
+        data
+      );
+  }
+  postClassifyPictureRequest(data: FormData): Observable<PictureClassifiedModel> {
+    return this.http
+      .post<PictureClassifiedModel>(
+        `${this.config.apiUrl}/picture/classify`,
         data
       );
   }

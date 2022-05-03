@@ -1,0 +1,19 @@
+<div class="card mb-5">
+  <div class="card-body">
+    <h2 class="mb-2">Prześlij obrazek</h2>
+    <form [formGroup]="myForm" class="text-center d-flex flex-column justify-content-center align-items-center" (ngSubmit)="submit()">
+
+      <div *ngIf="filePath && filePath !== ''" class="img-preview p-2 w-100" [ngClass]="isNsfw ? 'border-red' : 'border'">
+        <img [src]="filePath" [alt]="'Obrazek'">
+      </div>
+      <small class="text-danger font-weight-bold pt-2 mb-3" *ngIf="isNsfw">
+        Wykryto nieodpowiednie treści ({{nsfwSummary}}). Spróbuj przesłać inny obrazek.
+      </small>
+
+      <input type="file" class="my-3" accept="image/*" (change)="imagePreview($event)"/>
+
+      <button pButton pRipple label="Dalej" icon="bi bi-arrow-right-square" [disabled]="isNsfw !== false"></button>
+
+    </form>
+  </div>
+</div>

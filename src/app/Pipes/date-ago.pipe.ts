@@ -45,13 +45,13 @@ export class DateAgoPipe implements PipeTransform {
       }
       case (4): {
         if(Math.floor(time) === 1) return `${this.string[4]}ąc`;
-        if (this.strangePolishRulesCheck(time)) return `${this.string[2]}ące`;
+        if (this.strangePolishRulesCheck(time)) return `${this.string[4]}ące`;
         return `${this.string[4]}ęcy`;
       }
       case (5): {
-        if(Math.floor(time) === 1) return `${this.string[4]}rok`;
-        if (this.strangePolishRulesCheck(time)) return `${this.string[2]}lata`;
-        return `${this.string[4]}lat`;
+        if(Math.floor(time) === 1) return `${this.string[5]}rok`;
+        if (this.strangePolishRulesCheck(time)) return `${this.string[5]}lata`;
+        return `${this.string[5]}lat`;
       }
       default: {
         return "dawno";
@@ -60,7 +60,9 @@ export class DateAgoPipe implements PipeTransform {
   }
 
   strangePolishRulesCheck(time: number): boolean {
-    return ((Math.floor(time) >= 2 && Math.floor(time) <= 4) || (Math.floor(time) % 10 === 2 || Math.floor(time) % 10 === 3 || Math.floor(time) % 10 === 4) && (Math.floor(time) >= 20));
+    return ((Math.floor(time) >= 2 && Math.floor(time) <= 4) ||
+        (Math.floor(time) % 10 === 2 || Math.floor(time) % 10 === 3 ||
+        Math.floor(time) % 10 === 4) && (Math.floor(time) >= 20));
   }
 
 }

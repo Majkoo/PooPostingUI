@@ -9,6 +9,7 @@ import {SharedModule} from "../Shared/shared.module";
 import {PrimeNgModule} from "../Prime-ng/prime-ng.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ImageCropperModule} from "ngx-image-cropper";
+import {PictureModule} from "../Picture/picture.module";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {ImageCropperModule} from "ngx-image-cropper";
     SharedModule,
     PrimeNgModule,
     ReactiveFormsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    PictureModule
   ]
 })
 export class HomeModule { }
