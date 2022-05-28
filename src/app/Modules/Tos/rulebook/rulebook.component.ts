@@ -19,8 +19,4 @@ export class RulebookComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toTos(){
-    this.router.navigate(['/tos']);
-  }
-
 }

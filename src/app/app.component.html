@@ -1,56 +1,4 @@
-<div [ngClass]="isLoaded ? 'd-none' : 'd-block sr-only'">
-  <header class="nav-top">
-    <nav>
-      <ul class="d-flex p-3 justify-content-center gap-2">
-        <li>
-          <a href="home/1">Strona domowa</a>
-        </li>
-        <li>
-          <a href="popular">Popularne obrazki</a>
-        </li>
-        <li>
-          <a href="search/1">Szukaj obrazka</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <nav>
-      <ul class="d-flex flex-column p-3 align-items-center gap-2">
-        <li>
-          <a href="auth/login">Zaloguj się</a>
-        </li>
-        <li>
-          <a href="auth/register">Zarejestruj się</a>
-        </li>
-        <li>
-          <a href="account/my-account">Moje konto</a>
-        </li>
-        <li>
-          <a href="auth/logged-out">Wylogowano cię</a>
-        </li>
-      </ul>
-    </nav>
-  </main>
-  <footer>
-    <ul class="d-flex p-3 justify-content-center gap-2">
-      <li>
-        <a href="tos">Polityka prywatności</a>
-      </li>
-      <li>
-        <a href="rulebook">Regulamin strony</a>
-      </li>
-      <li>
-        <a href="report">Zgłoś błąd</a>
-      </li>
-    </ul>
-    <div class="d-flex justify-content-center p-3 pt-1">
-      <a href="https://migra.ml">Autor strony</a>
-    </div>
-  </footer>
-</div>
-
-<div *ngIf="isLoaded" class="d-flex flex-column justify-content-between" style="height: 100vh">
+<div class="d-flex flex-column justify-content-between" style="height: 100vh">
   <div>
     <div class="nav-top">
       <app-navbar [appTitle]="appTitle"></app-navbar>
@@ -58,13 +6,15 @@
 
     <main class="container">
       <div class="row justify-content-center">
-
         <div class="col-12 col-md-8 col-lg-8 order-2 order-md-1 mt-4 p-0">
-          <router-outlet></router-outlet>
+          <div class="sr-only">
+            <h1>PicturesUI</h1>
+            <p>PicturesUI to portal społecznościowy. Załóż konto i przeglądaj, dodawaj, komentuj, oraz oceniaj obrazki innych użytkowników!</p>
+          </div>
+          <router-outlet *ngIf="isLoaded"></router-outlet>
         </div>
-
         <app-sidebar class="col-12 col-md-4 col-lg-3 order-1 px-3 pt-2
-        p-md-0 pl-md-4 order-md-2 mt-4 d-none d-md-block"
+        p-md-0 pl-md-4 order-md-2 mt-4 d-none d-md-block "
                      *ngIf="canShowSidebar()">
         </app-sidebar>
 

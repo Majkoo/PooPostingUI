@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {UserInfoModel} from "./Models/UserInfoModel";
 import {HttpServiceService} from "./Services/http/http-service.service";
 import {LocalStorageServiceService} from "./Services/data/local-storage-service.service";
-import {ConfigServiceService} from "./Services/data/config-service.service";
 import {UserDataServiceService} from "./Services/data/user-data-service.service";
 import {LsJwtDetails} from "./Models/ApiModels/LsJwtDetails";
 
@@ -14,8 +13,8 @@ import {LsJwtDetails} from "./Models/ApiModels/LsJwtDetails";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+  appTitle: string = "PicturesUI";
   isLoaded: boolean = false;
-  appTitle: string;
   constructor(
     private userDataService: UserDataServiceService,
     private localStorageService: LocalStorageServiceService,
@@ -23,11 +22,8 @@ export class AppComponent implements OnInit{
     private primeNgConfig: PrimeNGConfig,
     private messageService: MessageService,
     private router: Router,
-    private config: ConfigServiceService,
   ) {
     this.primeNgConfig.ripple = true;
-    this.appTitle = config.appTitle;
-
   }
 
   ngOnInit(): void {

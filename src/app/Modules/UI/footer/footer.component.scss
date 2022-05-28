@@ -18,8 +18,13 @@ p {
 .bi {
   font-size: 1.2rem;
 }
-.span-link {
-  font-size: 1.5rem;
+a.span-link {
+  font-size: 1.875rem;
   text-decoration: none;
+  letter-spacing: -0.05rem;
   width: max-content;
+  font-family: "Calibri", sans-serif;
+  font-style: italic;
+  color: #757575;
+  font-weight: 800;
 }

@@ -1,18 +1,10 @@
 ﻿export abstract class AppConfiguration{
   // @ts-ignore
-  appTitle: string;
-
+  appWebUrl: string;
   // @ts-ignore
-  apiUrl: string;
+  picturesApiUrl: string;
   // @ts-ignore
-  picturesUrl: string;
+  emailApiUrl: string;
   // @ts-ignore
-  appUrl: string;
-
-  // @ts-ignore
-  serviceAdmin: string;
-  // @ts-ignore
-  serviceAdminEmail: string;
-  // @ts-ignore
-  hostingProvider: string;
+  captchaKey: string;
 }

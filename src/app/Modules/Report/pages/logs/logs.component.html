@@ -52,8 +52,8 @@
           <label for="emailMessage">Opis błędu</label>
         </span>
         <button pButton pRipple label="Wyślij wiadomość do programisty" icon="bi bi-send"
-                (click)="sendErrorLogs()" [disabled]="!canSendLogs || (userMsg.length < 4) || userMsg.length > 1000 || !isLoggedOn"></button>
-        <small class="text-danger text-center mt-1" *ngIf="!canSendLogs">Twoje logi zostały już wysłane.</small>
+                (click)="sendErrorLogs()" [disabled]="canSendLogs !== true || (userMsg.length < 4) || userMsg.length > 1000 || !isLoggedOn"></button>
+        <small class="text-danger text-center mt-1" *ngIf="canSendLogs === false">Twoje logi zostały już wysłane.</small>
         <small class="text-danger text-center mt-1" *ngIf="!isLoggedOn">Aby zgłosić błąd, użytkownik musi być zalogowany.</small>
       </form>
     </div>

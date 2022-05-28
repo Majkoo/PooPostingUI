@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map, Observable, Subject, tap} from "rxjs";
+import {Observable} from "rxjs";
 import {HttpParamsServiceService} from "./http-params-service.service";
 import { PictureModel } from 'src/app/Models/ApiModels/PictureModel';
 import { PicturePagedResult } from 'src/app/Models/ApiModels/PicturePagedResult';
@@ -28,152 +28,162 @@ export class HttpServiceService {
     private http: HttpClient,
     private config: ConfigServiceService,
     private params: HttpParamsServiceService
-  ) { }
+  ) {}
 
   getPicturesRequest(): Observable<PicturePagedResult>{
     return this.http
       .get<PicturePagedResult>(
-      `${this.config.apiUrl}/picture`,
+      `${this.config.picturesApiUrl}/api/picture`,
       {params: this.params.getGetPicParams()}
     );
   }
   searchPicturesRequest(): Observable<PicturePagedResult>{
     return this.http
       .get<PicturePagedResult>(
-        `${this.config.apiUrl}/picture/search`,
+        `${this.config.picturesApiUrl}/api/picture/search`,
         {params: this.params.getSearchPicParams()}
       );
   }
   getPictureRequest(id?: string): Observable<PictureModel>{
     return this.http
       .get<PictureModel>(
-      `${this.config.apiUrl}/picture/${id}`
+      `${this.config.picturesApiUrl}/api/picture/${id}`
     );
   }
   getPictureLikesRequest(id?: string): Observable<LikeModel[]>{
     return this.http
       .get<LikeModel[]>(
-        `${this.config.apiUrl}/picture/${id}/likes`
+        `${this.config.picturesApiUrl}/api/picture/${id}/likes`
       );
   }
   searchAccountsRequest(): Observable<AccountPagedResult>{
     return this.http
       .get<AccountPagedResult>(
-        `${this.config.apiUrl}/account`,
+        `${this.config.picturesApiUrl}/api/account`,
         {params: this.params.getSearchAccParams()}
       );
   }
   getAccountRequest(id: string): Observable<AccountModel>{
     return this.http
       .get<AccountModel>(
-        `${this.config.apiUrl}/account/${id}`
+        `${this.config.picturesApiUrl}/api/account/${id}`
       );
   }
   getAccountLikesRequest(id?: string): Observable<LikeModel[]>{
     return this.http
       .get<LikeModel[]>(
-        `${this.config.apiUrl}/account/${id}/likes`
+        `${this.config.picturesApiUrl}/api/account/${id}/likes`
       );
   }
   getPopularRequest(): Observable<PopularModel> {
     return this.http
       .get<PopularModel>(
-        `${this.config.apiUrl}/popular`
+        `${this.config.picturesApiUrl}/api/popular`
       );
   }
   postLoginRequest(data: LoginModel): Observable<UserInfoModel> {
     return this.http
       .post<UserInfoModel>(
-        `${this.config.apiUrl}/account/login`,
+        `${this.config.picturesApiUrl}/api/account/login`,
         data,
         {responseType: "json",});
   }
   postLsLoginRequest(data: LsJwtDetails): Observable<UserInfoModel> {
     return this.http
       .post<UserInfoModel>(
-        `${this.config.apiUrl}/account/verifyJwt`,
+        `${this.config.picturesApiUrl}/api/account/verifyJwt`,
         data,
         {responseType: "json",});
   }
   postRegisterRequest(data: RegisterModel): Observable<any> {
     return this.http
       .post(
-        `${this.config.apiUrl}/account/register`,
+        `${this.config.picturesApiUrl}/api/account/register`,
         data,
         {responseType: "json",});
   }
   postPictureRequest(data: FormData): Observable<any> {
     return this.http
       .post(
-        `${this.config.apiUrl}/picture/create`,
+        `${this.config.picturesApiUrl}/api/picture/create`,
         data
       );
   }
   postClassifyPictureRequest(data: FormData): Observable<PictureClassifiedModel> {
     return this.http
       .post<PictureClassifiedModel>(
-        `${this.config.apiUrl}/picture/classify`,
+        `${this.config.picturesApiUrl}/api/picture/classify`,
         data
       );
   }
   postCommentRequest(picId: string, data: PutPostCommentModel): Observable<CommentModel> {
     return this.http
       .post<CommentModel>(
-        `${this.config.apiUrl}/picture/${picId}/comment`,
+        `${this.config.picturesApiUrl}/api/picture/${picId}/comment`,
         data
       );
   }
+
   postSendLogsRequest(data: PostSendLogsModel) {
     return this.http
       .post<boolean>(
-        `${this.config.apiUrl}/mail`,
+        `${this.config.emailApiUrl}/api/contact/sendErrorEmail`,
         data
       )
   }
+  postCheckEmailSendingAvailability() {
+    return this.http
+      .post<boolean>(
+        `${this.config.emailApiUrl}/api/contact/check`,
+        {}
+      )
+  }
+
+
   deleteCommentRequest(picId: string, commId: string): Observable<CommentModel> {
     return this.http
       .delete<CommentModel>(
-        `${this.config.apiUrl}/picture/${picId}/comment/${commId}`,
+        `${this.config.picturesApiUrl}/api/picture/${picId}/comment/${commId}`,
         {}
       );
   }
   deletePictureRequest(id: string): Observable<any> {
     return this.http
       .delete(
-        `${this.config.apiUrl}/picture/${id}`
+        `${this.config.picturesApiUrl}/api/picture/${id}`
       );
   }
   deleteAccountRequest(id: string): Observable<any> {
     return this.http
       .delete(
-        `${this.config.apiUrl}/account/${id}`
+        `${this.config.picturesApiUrl}/api/account/${id}`
       );
   }
   patchPictureLikeRequest(id: string): Observable<PictureModel> {
     return this.http
       .patch<PictureModel>(
-        `${this.config.apiUrl}/picture/${id}/voteup`,
+        `${this.config.picturesApiUrl}/api/picture/${id}/voteup`,
         {}
       );
   }
   patchPictureDislikeRequest(id: string): Observable<PictureModel> {
     return this.http
       .patch<PictureModel>(
-        `${this.config.apiUrl}/picture/${id}/votedown`,
+        `${this.config.picturesApiUrl}/api/picture/${id}/votedown`,
         {}
       );
   }
   putPictureRequest(data: PutPictureModel, id: string) {
     return this.http
       .put<PictureModel>(
-        `${this.config.apiUrl}/picture/${id}`,
+        `${this.config.picturesApiUrl}/api/picture/${id}`,
         data
       );
   }
   putAccountRequest(data: PutAccountModel) {
     return this.http
       .put<boolean>(
-        `${this.config.apiUrl}/account/update`,
+        `${this.config.picturesApiUrl}/api/account/update`,
         data
       );
   }

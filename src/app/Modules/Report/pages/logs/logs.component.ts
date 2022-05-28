@@ -7,7 +7,7 @@ import {MessageService} from "primeng/api";
 import {EmailBuilderServiceService} from "../../../../Services/helpers/email-builder-service.service";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
-import {Meta, Title} from "@angular/platform-browser";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-logs',
@@ -17,7 +17,7 @@ import {Meta, Title} from "@angular/platform-browser";
 export class LogsComponent implements OnInit {
   logs!: ErrorLogModel;
   displayLogs: string[] = [];
-  canSendLogs: boolean = true;
+  canSendLogs?: boolean = undefined;
   isLoggedOn: boolean = false;
 
   userMsg: string = "";
@@ -42,9 +42,10 @@ export class LogsComponent implements OnInit {
         this.displayLogs.push(JSON.stringify(err, null, '\t'));
       })
     }
-    if(this.stringToBool(sessionStorage.getItem('errLogsSent'))){
-      this.canSendLogs = false;
-    }
+    this.httpService.postCheckEmailSendingAvailability()
+      .subscribe(val => {
+        this.canSendLogs = val;
+      })
   }
 
   copyErrorLog(error: ErrorInfoModel) {
@@ -62,13 +63,13 @@ export class LogsComponent implements OnInit {
     .subscribe({
       next: (val: boolean) => {
         if (val) {
-          sessionStorage.setItem('errLogsSent', 'true');
           this.canSendLogs = false;
           this.messageService.add({
             severity: 'success',
             summary: 'Sukces!',
-            detail: `Pomyślnie wysłano obecne error logi do programisty!`,
+            detail: `Pomyślnie wysłano wiadomość oraz error logi do programisty!`,
           })
+          this.userMsg = "";
         }
       }
     })
@@ -92,4 +93,5 @@ export class LogsComponent implements OnInit {
     let timeParsed = `${h.length > 1 ? h : "0" + h}:${m.length > 1 ? m : "0" + h}:${s.length > 1 ? s : "0" + s}`;
     return timeParsed;
   }
+
 }

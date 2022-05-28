@@ -16,15 +16,11 @@ export class ConfigServiceService extends AppConfiguration {
       .toPromise()
       .then(
         data => {
-          this.appTitle = data!.appTitle;
-          this.apiUrl = data!.apiUrl;
-          this.appUrl = data!.appUrl;
-          this.picturesUrl = data!.picturesUrl;
-          this.serviceAdmin = data!.serviceAdmin;
-          this.serviceAdminEmail = data!.serviceAdminEmail;
-          this.hostingProvider = data!.hostingProvider;
-        console.log('Config successfully loaded')
-      })
+          this.appWebUrl = data!.appWebUrl;
+          this.picturesApiUrl = data!.picturesApiUrl;
+          this.emailApiUrl = data!.emailApiUrl;
+          this.captchaKey = data!.captchaKey;
+        })
       .catch(() => {
         console.error('Could not load configuration')
       })

@@ -18,7 +18,7 @@ export class PictureShareComponent {
     private clipboard: Clipboard,
     private router: Router
   ) {
-    this.url = this.configService.appUrl + this.router.url;
+    this.url = this.configService.appWebUrl + this.router.url;
   }
 
   copyUrl(textToCopy: string) {

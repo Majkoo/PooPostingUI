@@ -1,5 +1,7 @@
 export interface PostSendLogsModel {
-  emailSubject: string,
-  emailBody: string,
-  emailJsonLog?: string
+  firstName: string;
+  emailAddress: string;
+  text: string;
+  sendingApp: string;
+  jsonLogsAttachment: string
 }

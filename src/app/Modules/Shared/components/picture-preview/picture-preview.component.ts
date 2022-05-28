@@ -26,7 +26,7 @@ export class PicturePreviewComponent implements OnInit {
 
   ngOnInit(): void {
     if(!this.picture.url.startsWith("http")){
-      this.picture.url = this.configService.picturesUrl + this.picture.url;
+      this.picture.url = this.configService.picturesApiUrl + "/" + this.picture.url;
     }
     this.updatePicture();
   }

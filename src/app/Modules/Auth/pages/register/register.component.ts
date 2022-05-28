@@ -7,6 +7,8 @@ import {Router} from "@angular/router";
 import {BlockSpace} from "../../../../Regexes/BlockSpace";
 import {ItemName} from "../../../../Regexes/ItemName";
 import {Title} from "@angular/platform-browser";
+import {ConfigServiceService} from "../../../../Services/data/config-service.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-register',
@@ -23,22 +25,25 @@ export class RegisterComponent implements OnInit {
   captchaPassed: boolean = false;
   isNickNameTaken: boolean = false;
 
+  appUrl: string = "";
+
   passCaptcha() {
     this.captchaPassed = true;
   }
 
   constructor(
+    private configService: ConfigServiceService,
     private httpService: HttpServiceService,
     private message: MessageService,
     private router: Router,
-    private title: Title
+    private title: Title,
   ) {
-    this.siteKey = "6Lfdv78eAAAAAJZcBW3ymM-3yaKieXyTTXFPNHcm";
+    this.siteKey = this.configService.captchaKey;
     this.title.setTitle(`PicturesUI - Rejestracja`);
-
   }
 
   ngOnInit(): void {
+    this.appUrl = this.configService.appWebUrl;
     this.isNickNameTaken = false;
     this.form = new FormGroup({
       nickname: new FormControl(null, [

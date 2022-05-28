@@ -149,7 +149,7 @@ export class PictureDetailsComponent {
             this.picture = pic;
             this.updatePicture();
             if(!this.picture.url.startsWith("http")){
-              this.picture.url = this.configService.picturesUrl + this.picture.url;
+              this.picture.url = this.configService.picturesApiUrl + "/" + this.picture.url;
             }
             this.title.setTitle(`PicturesUI - Obrazek ${pic.name}`);
           },
@@ -187,13 +187,7 @@ export class PictureDetailsComponent {
         summary:'Sukces',
         detail:'Pomyślnie skomentowano!'
       });
-    },
-    error: () => {
-      this.messageService.add({
-        severity:'error',
-        summary: 'Niepowodzenie',
-        detail: `Coś poszło nie tak.`
-      });
+      this.commentForm.reset();
     }
   }
 }

@@ -5,7 +5,6 @@ import {ConfigServiceService} from "../../../../Services/data/config-service.ser
 import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
 import {SelectOption} from "../../../../Models/SelectOption";
 import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
-import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {Title} from "@angular/platform-browser";
 
@@ -79,7 +78,7 @@ export class PopularComponent implements OnInit {
   private updatePicture(picture: PictureModel): void {
     picture = this.userDataService.updatePictureLikes(picture);
     if(!picture.url.startsWith("http")){
-      picture.url = this.configService.picturesUrl + picture.url;
+      picture.url = this.configService.picturesApiUrl + "/" + picture.url;
     }
   }
   private updateAccount(account: AccountModel): void {

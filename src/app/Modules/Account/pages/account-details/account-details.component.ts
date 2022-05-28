@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {map, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
@@ -7,7 +7,6 @@ import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
 import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
 import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modify-service.service";
-import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
 import {MessageService} from "primeng/api";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {Title} from "@angular/platform-browser";
@@ -83,13 +82,6 @@ export class AccountDetailsComponent {
             this.locationService.goBack();
           }
         },
-        error: (err) => {
-          this.messageService.add({
-            severity: "error",
-            summary: `Niepowodzenie`,
-            detail: `Nie udało się zbanować konta ${this.account.nickname}. Sprawdź szczegóły w logach.`
-          });
-        }
       })
   }
 
@@ -119,7 +111,7 @@ export class AccountDetailsComponent {
   private fixPicUrls(acc: AccountModel): void {
     acc.pictures.forEach(p =>
       !p.url.startsWith('http')
-        ? p.url = `${this.configService.picturesUrl}${p.url}`
+        ? p.url = `${this.configService.picturesApiUrl}/${p.url}`
         : null);
   }
   private sortByDate(val: PictureModel[]): PictureModel[] {

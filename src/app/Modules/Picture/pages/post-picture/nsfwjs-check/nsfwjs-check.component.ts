@@ -15,7 +15,6 @@ export class NsfwjsCheckComponent implements OnInit {
   filePath: string = "";
   myForm: FormGroup;
   isNsfw: boolean | undefined;
-  nsfwSummary: string = '';
 
   constructor(
     private ppService: PostPictureServiceService,
@@ -43,15 +42,15 @@ export class NsfwjsCheckComponent implements OnInit {
         this.filePath = reader.result as string;
       }
       reader.readAsDataURL(file);
-
       let img = new FormData();
       img.append('file', file);
       this.ppService.setImg(img.get('file') as File);
+
       this.httpService.postClassifyPictureRequest(img)
         .subscribe((value: PictureClassifiedModel) => {
-          this.isNsfw = value.isNsfw;
-          if (value.isNsfw) this.nsfwSummary = value.predictedLabel;
+          this.isNsfw = (value.adult >=4) || (value.violence >=4) || (value.racy === 5);
         });
+
     }
   }
 

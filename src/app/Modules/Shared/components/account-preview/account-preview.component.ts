@@ -16,7 +16,7 @@ export class AccountPreviewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.account.pictures.forEach(p => p.url.startsWith("http") ? null : p.url = this.configService.picturesUrl+p.url);
+    this.account.pictures.forEach(p => p.url.startsWith("http") ? null : p.url = this.configService.picturesApiUrl+p.url);
     this.account.pictures = this.sortByDate(this.account.pictures);
   }
 

@@ -107,8 +107,8 @@
           <div class="d-flex justify-content-center mb-3 w-75">
             <small class="text-danger text-center m-auto font-weight-bold">
               Rejestrując się zgadzasz się na
-              <span class="link" (click)="openLink('/tos/privacy-policy')">politykę prywatności</span> oraz
-              <span class="link" (click)="openLink('/tos/rulebook')">regulamin strony</span>.
+              <a rel="Polityka prywatności" href="https://migra.ml/polityka-prywatnosci" target="_blank" class="link text-danger" >politykę prywatności</a> oraz
+              <a rel="Regulamin" [routerLink]="'/tos/rulebook'" target="_blank" class="link text-danger" >regulamin strony</a>.
             </small>
           </div>
 

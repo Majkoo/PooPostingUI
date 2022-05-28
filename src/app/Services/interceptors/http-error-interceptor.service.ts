@@ -86,12 +86,6 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
           return error;
         })
       }
-      case (0): {
-        return throwError(() => {
-          this.router.navigate(['/error0']);
-          return error;
-        })
-      }
       default: {
         if (status.toString().startsWith("5")) {
           return throwError(() => {
@@ -99,6 +93,11 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
             return error;
           });
         }
+        this.message.add({
+          severity:'error',
+          summary: 'Niepowodzenie',
+          detail: 'Coś poszło nie tak. Przeraszamy za utrudnienia.'
+        });
         return throwError(() => {return error;});
       }
     }
