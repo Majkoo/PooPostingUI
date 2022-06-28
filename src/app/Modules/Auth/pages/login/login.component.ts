@@ -47,8 +47,10 @@ export class LoginComponent implements OnInit {
           if (v) {
             this.userDataService.userSubject.next(true);
             this.userDataService.setUserInfo(v);
+
             this.localStorageService.saveJwtToken(v.authToken);
-            this.localStorageService.saveJwtUid(v.accountDto.id);
+            this.localStorageService.saveJwtUid(v.uid);
+
             this.messageService.add({severity:'success', summary: 'Sukces', detail: 'Zalogowano pomyślnie.'});
             this.locationService.goBack();
           }

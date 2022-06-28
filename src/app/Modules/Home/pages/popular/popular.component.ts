@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {PopularModel} from "../../../../Models/ApiModels/PopularModel";
+import {PopularModel} from "../../../../Models/ApiModels/Get/PopularModel";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
-import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
-import {SelectOption} from "../../../../Models/SelectOption";
-import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
+import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
+import {SelectOption} from "../../../../Models/QueryModels/SelectOption";
+import {AccountModel} from "../../../../Models/ApiModels/Get/AccountModel";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {Title} from "@angular/platform-browser";
 
@@ -65,26 +65,8 @@ export class PopularComponent implements OnInit {
     this.httpService.getPopularRequest().subscribe({
       next: (val: PopularModel) => {
         this.popular = val;
-
-        this.popular.mostVotedPictures.forEach(p => this.updatePicture(p));
-        this.popular.mostCommentedPictures.forEach(p => this.updatePicture(p));
-        this.popular.mostLikedPictures.forEach(p => this.updatePicture(p));
-        this.popular.mostLikedAccounts.forEach(p => this.updateAccount(p));
-        this.popular.mostPostedAccounts.forEach(p => this.updateAccount(p));
       }
     });
   }
 
-  private updatePicture(picture: PictureModel): void {
-    picture = this.userDataService.updatePictureLikes(picture);
-    if(!picture.url.startsWith("http")){
-      picture.url = this.configService.picturesApiUrl + "/" + picture.url;
-    }
-  }
-  private updateAccount(account: AccountModel): void {
-    account.commentCount = 0;
-    account.pictures.forEach(p => account.commentCount! += p.comments.length);
-    account.likeCount = 0;
-    account.pictures.forEach(p => p.likes.forEach(l => l.isLike? account.likeCount!++ : null))
-  }
 }

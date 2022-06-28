@@ -42,11 +42,11 @@
         <div>
           <button class="mx-1 py-2" pButton pRipple (click)="like()" [disabled]="!isLoggedOn">
             <strong class="pr-2">{{picture.likeCount}}</strong>
-            <span class="bi" [ngClass]="picture.isLiked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'" aria-label="like"></span>
+            <span class="bi" [ngClass]="picture.likeState === 1 ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'" aria-label="like"></span>
           </button>
           <button class="mx-1 py-2" pButton pRipple (click)="dislike()" [disabled]="!isLoggedOn">
             <strong class="pr-2">{{picture.dislikeCount}}</strong>
-            <span class="bi" [ngClass]="picture.isDisliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="like"></span>
+            <span class="bi" [ngClass]="picture.likeState === 2 ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="like"></span>
           </button>
         </div>
         <button class="justify-self-start mx-1" pButton pRipple icon="bi bi-share-fill" (click)="showShare()"></button>

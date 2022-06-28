@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AccountModel} from "../../../../../Models/ApiModels/AccountModel";
+import {AccountModel} from "../../../../../Models/ApiModels/Get/AccountModel";
 
 @Component({
   selector: 'app-account-admin-settings',

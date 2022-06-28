@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
+import {AccountModel} from "../../../../Models/ApiModels/Get/AccountModel";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
-import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
+import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
 
 @Component({
   selector: 'app-account-preview',
@@ -16,7 +16,7 @@ export class AccountPreviewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.account.pictures.forEach(p => p.url.startsWith("http") ? null : p.url = this.configService.picturesApiUrl+p.url);
+    this.account.pictures.forEach(p => p.url.startsWith("http") ? null : p.url = this.configService.picturesApiUrl+"/"+p.url);
     this.account.pictures = this.sortByDate(this.account.pictures);
   }
 

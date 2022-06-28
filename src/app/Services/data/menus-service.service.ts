@@ -36,7 +36,7 @@ export class MenusServiceService {
       {
         label: "Odkrywaj",
         class: "bi bi-search",
-        url: "search/1"
+        url: "search"
       },
     ];
     this.menuExpandableItems = [

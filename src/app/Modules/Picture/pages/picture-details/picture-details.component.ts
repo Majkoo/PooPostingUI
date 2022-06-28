@@ -3,13 +3,12 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {map, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
-import {SelectOption} from "../../../../Models/SelectOption";
+import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
+import {SelectOption} from "../../../../Models/QueryModels/SelectOption";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
-import {CommentModel} from "../../../../Models/ApiModels/CommentModel";
+import {CommentModel} from "../../../../Models/ApiModels/Get/CommentModel";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
-import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modify-service.service";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {ItemName} from "../../../../Regexes/ItemName";
 import {Title} from "@angular/platform-browser";
@@ -57,7 +56,6 @@ export class PictureDetailsComponent {
     private configService: ConfigServiceService,
     private httpService: HttpServiceService,
     private messageService: MessageService,
-    private allowModifyService: AllowModifyServiceService,
     private route: ActivatedRoute,
     private router: Router,
     private title: Title
@@ -81,11 +79,9 @@ export class PictureDetailsComponent {
       .subscribe(this.commentObserver);
   }
   updatePicture() {
-    this.picture = this.userDataService.updatePictureLikes(this.picture);
     this.picture.likes.sort(l => l.isLike ? -1 : 0);
-    this.allowModifyService.allowModifyPicture(this.picture);
-    this.picture.tags = this.picture.tags.filter(t => t != '');
   }
+
   deleteComment($event: CommentModel) {
     this.httpService.deleteCommentRequest(this.picture.id, $event.id)
       .subscribe({

@@ -1,9 +1,4 @@
-﻿import {AccountModel} from "./ApiModels/AccountModel";
-import {LikeModel} from "./ApiModels/LikeModel";
-
-export interface UserInfoModel {
-  accountDto: AccountModel;
-  likedTags: string;
+﻿export interface UserInfoModel {
   authToken: string;
-  likes: LikeModel[];
+  uid: string;
 }

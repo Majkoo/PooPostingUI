@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PictureModel} from "../../../../../Models/ApiModels/PictureModel";
+import {PictureModel} from "../../../../../Models/ApiModels/Get/PictureModel";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
-import {SessionStorageServiceService} from "../../../../../Services/data/session-storage-service.service";
-import {UserDataServiceService} from "../../../../../Services/data/user-data-service.service";
+import {LikeResult} from "../../../../../Models/ApiModels/Patch/LikeResult";
 
 @Component({
   selector: 'app-picture-slider-card',
@@ -17,7 +16,6 @@ export class PictureSliderCardComponent implements OnInit {
 
   constructor(
     private httpService: HttpServiceService,
-    private userDataService: UserDataServiceService,
   ) { }
 
   ngOnInit(): void {
@@ -31,18 +29,13 @@ export class PictureSliderCardComponent implements OnInit {
     this.httpService.patchPictureDislikeRequest(this.picture.id)
       .subscribe(this.likeObserver)
   }
-  updatePicture() {
-    this.picture = this.userDataService.updatePictureLikes(this.picture);
-  }
 
   likeObserver = {
-    next: () => {
-      this.httpService.getPictureRequest(this.picture.id).subscribe({
-        next: (value:PictureModel) => {
-          this.picture.likes = value.likes;
-          this.updatePicture();
-        }
-      })
+    next: (v: LikeResult) => {
+      this.picture.likeCount = v.likeCount;
+      this.picture.dislikeCount = v.dislikeCount;
+      this.picture.likes = v.likes;
+      this.picture.likeState = v.likeState;
     },
   }
 

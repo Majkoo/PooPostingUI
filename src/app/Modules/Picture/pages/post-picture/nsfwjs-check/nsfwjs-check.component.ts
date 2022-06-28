@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
-import {PictureClassifiedModel} from "../../../../../Models/ApiModels/PictureClassifiedModel";
+import {PictureClassifiedModel} from "../../../../../Models/ApiModels/Post/PictureClassifiedModel";
 import {PostPictureServiceService} from "../../../../../Services/data/post-picture-service.service";
 
 @Component({

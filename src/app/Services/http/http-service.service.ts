@@ -2,23 +2,25 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {HttpParamsServiceService} from "./http-params-service.service";
-import { PictureModel } from 'src/app/Models/ApiModels/PictureModel';
-import { PicturePagedResult } from 'src/app/Models/ApiModels/PicturePagedResult';
-import { LoginModel } from 'src/app/Models/ApiModels/LoginModel';
+import { PictureModel } from 'src/app/Models/ApiModels/Get/PictureModel';
+import { PicturePagedResult } from 'src/app/Models/ApiModels/Get/PicturePagedResult';
+import { LoginModel } from 'src/app/Models/ApiModels/Post/LoginModel';
 import { UserInfoModel } from 'src/app/Models/UserInfoModel';
-import { RegisterModel } from 'src/app/Models/ApiModels/RegisterModel';
+import { RegisterModel } from 'src/app/Models/ApiModels/Post/RegisterModel';
 import { ConfigServiceService } from '../data/config-service.service';
-import {PutPictureModel} from "../../Models/ApiModels/PutPictureModel";
-import {LikeModel} from "../../Models/ApiModels/LikeModel";
-import {AccountPagedResult} from "../../Models/ApiModels/AccountPagedResult";
-import {AccountModel} from "../../Models/ApiModels/AccountModel";
-import {CommentModel} from "../../Models/ApiModels/CommentModel";
-import {PutPostCommentModel} from "../../Models/ApiModels/PutPostCommentModel";
-import {PopularModel} from "../../Models/ApiModels/PopularModel";
-import {LsJwtDetails} from "../../Models/ApiModels/LsJwtDetails";
-import {PutAccountModel} from "../../Models/ApiModels/PutAccountModel";
-import {PostSendLogsModel} from "../../Models/ApiModels/PostSendLogsModel";
-import {PictureClassifiedModel} from "../../Models/ApiModels/PictureClassifiedModel";
+import {PutPictureModel} from "../../Models/ApiModels/Post/PutPictureModel";
+import {LikeModel} from "../../Models/ApiModels/Get/LikeModel";
+import {AccountPagedResult} from "../../Models/ApiModels/Get/AccountPagedResult";
+import {AccountModel} from "../../Models/ApiModels/Get/AccountModel";
+import {CommentModel} from "../../Models/ApiModels/Get/CommentModel";
+import {PutPostCommentModel} from "../../Models/ApiModels/Post/PutPostCommentModel";
+import {PopularModel} from "../../Models/ApiModels/Get/PopularModel";
+import {LsJwtDetails} from "../../Models/ApiModels/Post/LsJwtDetails";
+import {PutAccountModel} from "../../Models/ApiModels/Post/PutAccountModel";
+import {PostSendLogsModel} from "../../Models/ApiModels/Post/PostSendLogsModel";
+import {PictureClassifiedModel} from "../../Models/ApiModels/Post/PictureClassifiedModel";
+import {LikeState} from "../../Enums/LikeState";
+import {LikeResult} from "../../Models/ApiModels/Patch/LikeResult";
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +39,13 @@ export class HttpServiceService {
       {params: this.params.getGetPicParams()}
     );
   }
+  getPersonalizedPicturesRequest(): Observable<PictureModel[]>{
+    return this.http
+      .get<PictureModel[]>(
+        `${this.config.picturesApiUrl}/api/picture/personalized`,
+        {params: this.params.getGetPicParams()}
+      );
+  }
   searchPicturesRequest(): Observable<PicturePagedResult>{
     return this.http
       .get<PicturePagedResult>(
@@ -44,6 +53,7 @@ export class HttpServiceService {
         {params: this.params.getSearchPicParams()}
       );
   }
+
   getPictureRequest(id?: string): Observable<PictureModel>{
     return this.http
       .get<PictureModel>(
@@ -159,6 +169,7 @@ export class HttpServiceService {
         `${this.config.picturesApiUrl}/api/account/${id}`
       );
   }
+
   patchPictureLikeRequest(id: string): Observable<PictureModel> {
     return this.http
       .patch<PictureModel>(
@@ -173,6 +184,7 @@ export class HttpServiceService {
         {}
       );
   }
+
   putPictureRequest(data: PutPictureModel, id: string) {
     return this.http
       .put<PictureModel>(

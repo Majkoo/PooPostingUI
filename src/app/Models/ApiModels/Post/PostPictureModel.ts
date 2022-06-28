@@ -1,6 +1,6 @@
 ﻿export interface PostPictureModel {
   name: string;
-  file: any;
+  file: File;
   description: string;
   tags: string;
 }

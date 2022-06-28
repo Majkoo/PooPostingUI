@@ -5,7 +5,8 @@ import {UserInfoModel} from "./Models/UserInfoModel";
 import {HttpServiceService} from "./Services/http/http-service.service";
 import {LocalStorageServiceService} from "./Services/data/local-storage-service.service";
 import {UserDataServiceService} from "./Services/data/user-data-service.service";
-import {LsJwtDetails} from "./Models/ApiModels/LsJwtDetails";
+import {LsJwtDetails} from "./Models/ApiModels/Post/LsJwtDetails";
+import {ScrollServiceService} from "./Services/helpers/scroll-service.service";
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,14 @@ import {LsJwtDetails} from "./Models/ApiModels/LsJwtDetails";
 export class AppComponent implements OnInit{
   appTitle: string = "PicturesUI";
   isLoaded: boolean = false;
+
   constructor(
     private userDataService: UserDataServiceService,
     private localStorageService: LocalStorageServiceService,
     private httpService: HttpServiceService,
     private primeNgConfig: PrimeNGConfig,
     private messageService: MessageService,
+    private scrollService: ScrollServiceService,
     private router: Router,
   ) {
     this.primeNgConfig.ripple = true;
@@ -34,7 +37,8 @@ export class AppComponent implements OnInit{
     if (this.localStorageService.isUserDataSaved()) {
       this.httpService.postLsLoginRequest(jwtDetails)
         .subscribe(this.initialLoginObserver);
-    } else {
+    }
+    else {
       this.isLoaded = true;
     }
     setTimeout(() => {
@@ -49,6 +53,21 @@ export class AppComponent implements OnInit{
         })
       }
     }, 5000);
+
+    document.body.addEventListener('scroll', () => {
+      let body = document.querySelector('body')!;
+      let scrollBottom = (body.scrollHeight - (body.scrollTop + body.offsetHeight));
+      let bodyHeight = (body.scrollHeight - body.offsetHeight);
+      if ((scrollBottom > 5000 ? scrollBottom/bodyHeight < 0.25 : true) && scrollBottom < 1100) {
+        if (!this.scrollService.bottomSubject.value) {
+          this.scrollService.bottomSubject.next(true);
+        }
+      } else {
+        if (this.scrollService.bottomSubject.value) {
+          this.scrollService.bottomSubject.next(false);
+        }
+      }
+    })
   }
 
   canShowSidebar() {

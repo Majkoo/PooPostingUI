@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PictureModel} from "../../../../../Models/ApiModels/PictureModel";
+import {PictureModel} from "../../../../../Models/ApiModels/Get/PictureModel";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
-import {PutPictureModel} from "../../../../../Models/ApiModels/PutPictureModel";
+import {PutPictureModel} from "../../../../../Models/ApiModels/Post/PutPictureModel";
 import {MessageService} from "primeng/api";
-import {SelectOption} from "../../../../../Models/SelectOption";
+import {SelectOption} from "../../../../../Models/QueryModels/SelectOption";
 import {ItemName} from "../../../../../Regexes/ItemName";
 
 @Component({

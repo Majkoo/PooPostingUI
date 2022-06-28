@@ -26,6 +26,7 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {CarouselModule} from "primeng/carousel";
 import {TableModule} from "primeng/table";
 import {SkeletonModule} from "primeng/skeleton";
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 const PrimeNgComponents = [
   ChipsModule,
@@ -55,6 +56,8 @@ const PrimeNgComponents = [
   CarouselModule,
   TableModule,
   SkeletonModule,
+  InfiniteScrollModule,
+
 ]
 
 @NgModule({

@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {PicturePagedResult} from "../../../../Models/ApiModels/PicturePagedResult";
+import {PicturePagedResult} from "../../../../Models/ApiModels/Get/PicturePagedResult";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
 import {MessageService} from "primeng/api";
-import {AccountPagedResult} from "../../../../Models/ApiModels/AccountPagedResult";
+import {AccountPagedResult} from "../../../../Models/ApiModels/Get/AccountPagedResult";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
 import {Title} from "@angular/platform-browser";
@@ -104,7 +104,6 @@ export class SearchComponent implements OnInit {
   paginate(val: any): void {
     this.scrollService.resetScrollState();
     this.scrollService.loadScrollState();
-    this.userDataService.updateLikes();
     this.paramsService.setSearchPageNumber(val+1);
     this.updatePage();
     this.fetchPictures();
@@ -112,7 +111,6 @@ export class SearchComponent implements OnInit {
   paginateAccs(val: any): void {
     this.scrollService.resetScrollState();
     this.scrollService.loadScrollState();
-    this.userDataService.updateLikes();
     this.paramsService.setSearchPageNumber(val+1);
     this.updatePage();
     this.fetchAccounts();

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MessageService} from "primeng/api";
-import {PictureModel} from "../../../../../Models/ApiModels/PictureModel";
+import {PictureModel} from "../../../../../Models/ApiModels/Get/PictureModel";
 import {ConfigServiceService} from "../../../../../Services/data/config-service.service";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 

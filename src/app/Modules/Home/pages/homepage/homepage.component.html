@@ -1,20 +1,8 @@
-<div class="px-3 px-md-0">
-  <div *ngIf="!result.items.length">
-    <div *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]">
-      <app-picture-skeleton></app-picture-skeleton>
-    </div>
-  </div>
+<div class="px-3 px-md-0 search-results" *ngIf="pictures.length">
 
-  <app-picture-preview
-    *ngFor="let picture of result!.items"
-    [picture]="picture">
-  </app-picture-preview>
+    <app-picture-preview *ngFor="let picture of pictures" [picture]="picture">
+    </app-picture-preview>
+
+  <app-picture-skeleton></app-picture-skeleton>
 
 </div>
-
-<nav class="paginator w-100 shadow border" [ngClass]="result.page ? '' : 'd-none'">
-    <app-global-paginator #customPaginator
-      [totalItems]="result.totalItems"
-      [pageSize]="10" (onPaginate)="paginate($event)">
-    </app-global-paginator>
-</nav>

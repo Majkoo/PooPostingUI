@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CommentModel} from "../../../../../Models/ApiModels/CommentModel";
+import {CommentModel} from "../../../../../Models/ApiModels/Get/CommentModel";
 
 @Component({
   selector: 'app-comment-table',

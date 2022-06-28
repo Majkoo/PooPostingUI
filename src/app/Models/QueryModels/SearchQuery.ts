@@ -1,4 +1,4 @@
-﻿import { SortSearchBy } from "../Enums/SortSearchBy";
+﻿import { SortSearchBy } from "../../Enums/SortSearchBy";
 
 export interface SearchQuery {
   searchPhrase: string,

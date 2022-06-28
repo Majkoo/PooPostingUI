@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { PictureModel } from 'src/app/Models/ApiModels/PictureModel';
+import { PictureModel } from 'src/app/Models/ApiModels/Get/PictureModel';
 import { ConfigServiceService } from 'src/app/Services/data/config-service.service';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
@@ -28,7 +28,6 @@ export class PicturePreviewComponent implements OnInit {
     if(!this.picture.url.startsWith("http")){
       this.picture.url = this.configService.picturesApiUrl + "/" + this.picture.url;
     }
-    this.updatePicture();
   }
 
   like(){
@@ -39,18 +38,10 @@ export class PicturePreviewComponent implements OnInit {
     this.httpService.patchPictureDislikeRequest(this.picture.id)
       .subscribe(this.likeObserver)
   }
-  updatePicture() {
-    this.picture = this.userDataService.updatePictureLikes(this.picture);
-  }
 
   likeObserver = {
-    next: () => {
-      this.httpService.getPictureRequest(this.picture.id).subscribe({
-        next: (value:PictureModel) => {
-          this.picture.likes = value.likes;
-          this.updatePicture();
-        }
-      })
+    next: (v: PictureModel) => {
+      this.picture = v;
     },
   }
 

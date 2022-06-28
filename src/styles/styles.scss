@@ -52,6 +52,9 @@ h6 {
 h1,h2,h3,h4,h5,h6 {
   font-weight: bold;
 }
+.container {
+  max-width: 960px;
+}
 
 .nav-top {
   position: sticky;

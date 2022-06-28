@@ -15,9 +15,10 @@ export interface PictureModel {
   likes: LikeModel[];
   comments: CommentModel[];
 
-  likeCount?: number;
-  dislikeCount?: number;
-  isLiked?: boolean;
-  isDisliked?: boolean;
-  isModifiable?: boolean;
+  likeCount: number;
+  dislikeCount: number;
+
+  likeState: number;
+  isModifiable: boolean;
+  isAdminModifiable: boolean;
 }

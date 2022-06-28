@@ -34,7 +34,6 @@ const SharedComponents = [
   AccountAdminSettingsComponent,
   PictureSkeletonComponent,
   DateAgoPipe,
-
 ]
 
 @NgModule({

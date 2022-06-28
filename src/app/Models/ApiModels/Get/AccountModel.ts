@@ -7,7 +7,7 @@ export interface AccountModel {
   email: string;
   pictures: PictureModel[];
   accountCreated: string;
-  isModifiable?: boolean;
-  likeCount?: number;
-  commentCount?: number;
+
+  isModifiable: boolean;
+  isAdminModifiable: boolean;
 }

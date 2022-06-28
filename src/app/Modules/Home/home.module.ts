@@ -23,7 +23,7 @@ import {PictureModule} from "../Picture/picture.module";
     SharedModule,
     PrimeNgModule,
     ReactiveFormsModule,
-    PictureModule
+    PictureModule,
   ]
 })
 export class HomeModule { }

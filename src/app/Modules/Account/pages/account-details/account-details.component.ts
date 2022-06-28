@@ -3,10 +3,9 @@ import {map, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
-import {AccountModel} from "../../../../Models/ApiModels/AccountModel";
-import {PictureModel} from "../../../../Models/ApiModels/PictureModel";
+import {AccountModel} from "../../../../Models/ApiModels/Get/AccountModel";
+import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
-import {AllowModifyServiceService} from "../../../../Services/helpers/allow-modify-service.service";
 import {MessageService} from "primeng/api";
 import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {Title} from "@angular/platform-browser";
@@ -32,7 +31,6 @@ export class AccountDetailsComponent {
     private httpService: HttpServiceService,
     private configService: ConfigServiceService,
     private locationService: LocationServiceService,
-    private allowModifyService: AllowModifyServiceService,
     private userDataService: UserDataServiceService,
     private title: Title
   ) {
@@ -96,7 +94,6 @@ export class AccountDetailsComponent {
       this.fixPicUrls(this.account);
       this.sortByDate(this.account.pictures);
       this.isVisitorAccOwner = this.isVisitorAccOwnerCheck();
-      this.allowModifyService.allowModifyAccount(acc);
       this.title.setTitle(`PicturesUI - Użytkownik ${acc.nickname}`);
     },
     error: () => {

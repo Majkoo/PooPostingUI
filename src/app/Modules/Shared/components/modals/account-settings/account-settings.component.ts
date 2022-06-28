@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AccountModel} from "../../../../../Models/ApiModels/AccountModel";
-import {SelectOption} from "../../../../../Models/SelectOption";
+import {AccountModel} from "../../../../../Models/ApiModels/Get/AccountModel";
+import {SelectOption} from "../../../../../Models/QueryModels/SelectOption";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomValidators} from "../../../../../../CustomValidators";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";

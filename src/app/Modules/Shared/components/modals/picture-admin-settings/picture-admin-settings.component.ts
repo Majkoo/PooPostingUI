@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PictureModel} from "../../../../../Models/ApiModels/PictureModel";
+import {PictureModel} from "../../../../../Models/ApiModels/Get/PictureModel";
 
 @Component({
   selector: 'app-picture-admin-settings',

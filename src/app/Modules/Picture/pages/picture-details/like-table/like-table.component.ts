@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {LikeModel} from "../../../../../Models/ApiModels/LikeModel";
+import {LikeModel} from "../../../../../Models/ApiModels/Get/LikeModel";
 
 @Component({
   selector: 'app-like-table',

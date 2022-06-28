@@ -16,6 +16,7 @@ import {SharedModule} from "./Modules/Shared/shared.module";
 import {HomeModule} from "./Modules/Home/home.module";
 import { DateAgoPipe } from './Pipes/date-ago.pipe';
 import {ReportModule} from "./Modules/Report/report.module";
+import {BrowserModule} from "@angular/platform-browser";
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {
@@ -30,6 +31,7 @@ export function initializerFn(configService: ConfigServiceService){
   imports: [
     AppRoutingModule,
     HttpClientModule,
+    BrowserModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     PrimeNgModule,
