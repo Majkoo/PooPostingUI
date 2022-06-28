@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PopularModel} from "../../../../Models/ApiModels/Get/PopularModel";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
-import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
 import {SelectOption} from "../../../../Models/QueryModels/SelectOption";
-import {AccountModel} from "../../../../Models/ApiModels/Get/AccountModel";
-import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {Title} from "@angular/platform-browser";
 
 @Component({
@@ -37,9 +34,7 @@ export class PopularComponent implements OnInit {
   ];
 
   constructor(
-    private userDataService: UserDataServiceService,
     private httpService: HttpServiceService,
-    private configService: ConfigServiceService,
     private title: Title
   ) {
     this.title.setTitle('PicturesUI - Popularne');

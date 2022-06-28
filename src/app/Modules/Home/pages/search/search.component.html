@@ -8,7 +8,7 @@
   <div>
     <app-picture-preview
       *ngFor="let picture of picturesResult!.items"
-      [picture]="picture">
+      [picture]="picture" [isLoggedOn]="isLoggedOn">
     </app-picture-preview>
     <app-account-preview
       *ngFor="let account of accountsResult!.items"

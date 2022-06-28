@@ -4,18 +4,14 @@
       <app-navbar [appTitle]="appTitle"></app-navbar>
     </div>
 
-    <main class="container">
+    <main class="container" *ngIf="isLoaded">
       <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-8 order-2 order-md-1 mt-4 p-0">
-          <div class="sr-only">
-            <h1>PicturesUI</h1>
-            <p>PicturesUI to portal społecznościowy. Załóż konto i przeglądaj, dodawaj, komentuj, oraz oceniaj obrazki innych użytkowników!</p>
-          </div>
           <router-outlet *ngIf="isLoaded"></router-outlet>
         </div>
-        <app-sidebar class="col-12 col-md-4 col-lg-3 order-1 px-3 pt-2
-        p-md-0 pl-md-4 order-md-2 mt-4 d-none d-md-block "
-                     *ngIf="canShowSidebar()">
+        <app-sidebar
+          class="col-12 col-md-4 col-lg-3 order-1 px-3 pt-2 p-md-0 pl-md-4 order-md-2 mt-4 d-none d-md-block"
+          *ngIf="canShowSidebar()">
         </app-sidebar>
 
       </div>
@@ -23,7 +19,7 @@
 
   </div>
 
-  <app-footer [appTitle]="appTitle"></app-footer>
+  <app-footer [appTitle]="appTitle" *ngIf="canShowFooter()"></app-footer>
 
 </div>
 

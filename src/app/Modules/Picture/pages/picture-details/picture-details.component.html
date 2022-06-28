@@ -1,8 +1,11 @@
 <div class="px-3 px-md-0" *ngIf="picture">
   <div class="mb-3 d-flex align-items-center justify-content-between">
     <button pButton pRipple label="Powrót" icon="bi bi-arrow-return-left" class="px-3" (click)="return()"></button>
+
     <button pButton pRipple label="Ustawienia" icon="bi bi-gear-fill" class="px-3"
-            (click)="showSettings()" *ngIf="picture.isModifiable"></button>
+            (click)="showAdminSettingsFlag = true" *ngIf="picture.isAdminModifiable"></button>
+    <button pButton pRipple label="Ustawienia" icon="bi bi-gear-fill" class="px-3"
+            (click)="showSettingsFlag = true" *ngIf="picture.isModifiable && !picture.isAdminModifiable"></button>
   </div>
 
   <p-card class="text-center">

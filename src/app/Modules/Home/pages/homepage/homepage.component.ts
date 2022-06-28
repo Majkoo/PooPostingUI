@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
-import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
 import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {Title} from "@angular/platform-browser";
 import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
+import {CacheServiceService} from "../../../../Services/data/cache-service.service";
 
 @Component({
   selector: 'app-body',
@@ -15,29 +13,35 @@ import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
 
 export class HomepageComponent implements OnInit {
   pictures: PictureModel[] = [];
+  isLoggedOn: boolean = false;
 
   constructor(
     private httpService: HttpServiceService,
-    private userDataService: UserDataServiceService,
-    private paramsService: HttpParamsServiceService,
+    private cacheService: CacheServiceService,
     private scrollService: ScrollServiceService,
-    private route: ActivatedRoute,
-    private router: Router,
     private title: Title
   ) {
     this.title.setTitle('PicturesUI - Strona główna');
   }
 
   ngOnInit() {
-    this.fetchPictures();
+    this.isLoggedOn = this.cacheService.getUserLoggedOnState();
+    if (this.cacheService.arePicturesCached()) {
+      this.pictures = this.cacheService.getCachedPictures();
+      this.cacheService.purgeCachePictures();
+      this.fetchPictures();
+    } else {
+      this.fetchPictures();
+    }
+
     this.scrollService.bottomSubject
       .subscribe({
-        next: (v) => {
+        next: (v: boolean) => {
           if (v) {
             this.fetchPictures();
           }
         }
-      })
+      });
   }
 
   fetchPictures(): void {

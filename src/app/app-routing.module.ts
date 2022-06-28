@@ -10,11 +10,10 @@ import {SearchComponent} from "./Modules/Home/pages/search/search.component";
 
 
 const routes: Routes = [
-  {path: '', redirectTo: "/home/1", pathMatch: 'full'},
+  {path: '', redirectTo: "/home", pathMatch: 'full'},
 
-  {path: 'home', redirectTo: "/home/1", pathMatch: 'full'},
-  {path: "home/:pageNumber", component: HomepageComponent},
-  {path: "search/:pageNumber", component: SearchComponent},
+  {path: "home", component: HomepageComponent},
+  {path: "search", component: SearchComponent},
   {path: "report", component: LogsComponent},
 
   {path: "popular", component: PopularComponent},

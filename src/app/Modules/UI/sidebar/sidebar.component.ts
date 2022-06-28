@@ -3,9 +3,7 @@ import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import {Router} from "@angular/router";
 import {MenusServiceService} from "../../../Services/data/menus-service.service";
 import {MenuExpandableItem} from "../../../Models/MenuModels/MenuExpandableItem";
-import {SessionStorageServiceService} from "../../../Services/data/session-storage-service.service";
-import {LocalStorageServiceService} from "../../../Services/data/local-storage-service.service";
-import {UserDataServiceService} from "../../../Services/data/user-data-service.service";
+import {CacheServiceService} from "../../../Services/data/cache-service.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -13,32 +11,31 @@ import {UserDataServiceService} from "../../../Services/data/user-data-service.s
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  userInfo!: UserInfoModel | null;
+  userInfo: UserInfoModel | undefined;
   menuExpandableItems: MenuExpandableItem[];
   loggedIn!: boolean;
 
   constructor(
-    private userDataService: UserDataServiceService,
-    private localStorageService: LocalStorageServiceService,
+    private cacheService: CacheServiceService,
     private menuService: MenusServiceService,
     private router: Router,
   ) {
     this.menuExpandableItems = menuService.getExpandableMenuItems();
-    this.loggedIn = this.userDataService.isUserLoggedOn();
+    this.loggedIn = this.cacheService.getUserLoggedOnState();
   }
 
   ngOnInit(): void {
-    this.userInfo = this.userDataService.getUserInfo();
-    this.userDataService.userSubject.subscribe({
-      next: (val) => {
+    this.userInfo = this.cacheService.getUserInfo();
+    this.cacheService.loggedOnSubject.subscribe({
+      next: (val: boolean) => {
         this.loggedIn = val;
-        this.userInfo = this.userDataService.getUserInfo();
+        this.userInfo = this.cacheService.getUserInfo();
       }
     })
   }
 
   logout() {
-    this.localStorageService.logout();
+    this.cacheService.logout();
   }
 
 

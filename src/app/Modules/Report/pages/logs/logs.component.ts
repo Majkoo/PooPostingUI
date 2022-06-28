@@ -6,8 +6,8 @@ import {Clipboard} from "@angular/cdk/clipboard";
 import {MessageService} from "primeng/api";
 import {EmailBuilderServiceService} from "../../../../Services/helpers/email-builder-service.service";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
-import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {Title} from "@angular/platform-browser";
+import {CacheServiceService} from "../../../../Services/data/cache-service.service";
 
 @Component({
   selector: 'app-logs',
@@ -26,7 +26,7 @@ export class LogsComponent implements OnInit {
     private clipboard: Clipboard,
     private messageService: MessageService,
     private sessionStorageService: SessionStorageServiceService,
-    private userDataService: UserDataServiceService,
+    private cacheService: CacheServiceService,
     private emailBuilderService: EmailBuilderServiceService,
     private httpService: HttpServiceService,
     private title: Title
@@ -36,7 +36,7 @@ export class LogsComponent implements OnInit {
 
   ngOnInit(): void {
     this.logs = this.sessionStorageService.getLogs();
-    this.isLoggedOn = this.userDataService.isUserLoggedOn();
+    this.isLoggedOn = this.cacheService.getUserLoggedOnState();
     if(this.logs) {
       this.logs.errors.forEach((err) => {
         this.displayLogs.push(JSON.stringify(err, null, '\t'));

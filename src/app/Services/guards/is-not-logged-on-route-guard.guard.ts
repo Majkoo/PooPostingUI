@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
-import {SessionStorageServiceService} from "../data/session-storage-service.service";
 import {MessageService} from "primeng/api";
-import {UserDataServiceService} from "../data/user-data-service.service";
+import {CacheServiceService} from "../data/cache-service.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class IsNotLoggedOnRouteGuardGuard implements CanActivate {
   constructor(
-    private userDataService: UserDataServiceService,
+    private cacheService: CacheServiceService,
     private messageService: MessageService,
     private router: Router
   ) { }
 
   canActivate(): boolean {
-    if (this.userDataService.isUserLoggedOn()) {
+    if (this.cacheService.getUserLoggedOnState()) {
       return true;
     } else {
-      this.router.navigate(['/home/1']);
+      this.router.navigate(['/home']);
       return false;
     }
   }

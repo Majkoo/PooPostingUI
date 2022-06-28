@@ -23,12 +23,8 @@ export class LocationServiceService {
     }
   }
 
-  goHomepageAndReset(): void {
-    this.router.navigate(['/home/1'])
-  }
-
   goHomepage(): void {
-    this.router.navigate([`/home/${this.paramsService.GetPQuery.pageNumber}`]);
+    this.router.navigate([`/home`]);
   }
 
   goError404(): void {

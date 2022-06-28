@@ -2,7 +2,7 @@
   <header class="container">
     <div class="d-flex justify-content-between align-items-center h-75">
 
-      <a class="logo-link d-flex justify-content-center align-items-center" routerLink="home/1" (click)="showSidebar = false;">
+      <a class="logo-link d-flex justify-content-center align-items-center" routerLink="home" (click)="showSidebar = false;">
         <img alt="PicturesUI" src="./assets/images/title-img.webp" aria-label="Do strony głównej" class="mr-2 logo-img">
         <div class="logo-text">{{appTitle}}</div>
       </a>
@@ -15,7 +15,7 @@
               <span class="right"> {{item.label}}</span>
             </span>
           </a>
-          <a *ngIf="item.url === 'home'" class="menu-link" routerLink="{{item.url}}/{{currentHomePage}}" routerLinkActive="link-active" attr.aria-label="{{item.label}}">
+          <a *ngIf="item.url === 'home'" class="menu-link" routerLink="{{item.url}}" routerLinkActive="link-active" attr.aria-label="{{item.label}}">
             <span class="left {{item.class}}">
               <span class="right"> {{item.label}}</span>
             </span>

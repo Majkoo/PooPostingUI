@@ -4,8 +4,11 @@
     <button pButton pRipple label="Powrót" icon="bi bi-arrow-return-left" class="px-3" (click)="return()"
             attr.aria-label="Powrót do poprzedniej strony"></button>
     <button pButton pRipple label="Ustawienia" icon="bi bi-gear-fill" class="px-3"
+            attr.aria-label="Ustawienia administratorskie konta {{account.nickname}}"
+            (click)="showAdminAccountSettingsFlag = true" *ngIf="account.isAdminModifiable"></button>
+    <button pButton pRipple label="Ustawienia" icon="bi bi-gear-fill" class="px-3"
             attr.aria-label="Ustawienia konta {{account.nickname}}"
-            (click)="showAccountSettings()" *ngIf="account.isModifiable"></button>
+            (click)="showAccountSettingsFlag = true" *ngIf="account.isModifiable && !account.isAdminModifiable"></button>
   </div>
 
   <div class="text-center mb-3">
@@ -14,12 +17,12 @@
       <span class="d-flex justify-content-center align-items-center mb-4 mb-lg-3">
         <span class="bi bi-person-fill"></span>
         <span>{{account.nickname}}</span>
-        <span *ngIf="isVisitorAccOwner">&nbsp;(ty)</span>
+        <span *ngIf="account.isModifiable">&nbsp;(ty)</span>
       </span>
     </h4>
   </div>
   <ul class="d-flex flex-column flex-md-row justify-content-around align-items-center">
-    <li *ngIf="isVisitorAccOwner">
+    <li *ngIf="account.isModifiable">
         <span class="li-item mt-2 mt-lg-0 w-100">
           <span class="bi bi-envelope mr-1"></span>
           <b>Adres e-mail:</b>
@@ -63,7 +66,7 @@
       <ng-template let-picture pTemplate="listItem" class="border">
         <app-picture-table
           [picture]="picture"
-          [isVisitorOwner]="isVisitorAccOwner">
+          [isVisitorOwner]="account.isModifiable">
         </app-picture-table>
       </ng-template>
 

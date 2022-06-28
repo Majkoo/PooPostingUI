@@ -4,9 +4,9 @@ import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
 import {MessageService} from "primeng/api";
 import {AccountPagedResult} from "../../../../Models/ApiModels/Get/AccountPagedResult";
-import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {ScrollServiceService} from "../../../../Services/helpers/scroll-service.service";
 import {Title} from "@angular/platform-browser";
+import {CacheServiceService} from "../../../../Services/data/cache-service.service";
 
 @Component({
   selector: 'app-search',
@@ -16,6 +16,7 @@ import {Title} from "@angular/platform-browser";
 export class SearchComponent implements OnInit {
   @ViewChild('picPaginator') picPaginator: any;
   @ViewChild('accPaginator') accPaginator: any;
+  isLoggedOn: boolean = false;
   picPage: number = 1;
   accPage: number = 1;
 
@@ -36,8 +37,8 @@ export class SearchComponent implements OnInit {
     private httpService: HttpServiceService,
     private paramsService: HttpParamsServiceService,
     private messageService: MessageService,
-    private userDataService: UserDataServiceService,
     private scrollService: ScrollServiceService,
+    private cacheService: CacheServiceService,
     private title: Title
   ) {
     this.title.setTitle('PicturesUI - Panel wyszukiwania');
@@ -46,6 +47,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.scrollService.loadScrollState();
     this.paramsService.setSearchPageNumber(1);
+    this.isLoggedOn = this.cacheService.getUserLoggedOnState();
   }
 
   searchPictures() {

@@ -3,10 +3,9 @@ import {MessageService, PrimeNGConfig} from "primeng/api";
 import {Router} from "@angular/router";
 import {UserInfoModel} from "./Models/UserInfoModel";
 import {HttpServiceService} from "./Services/http/http-service.service";
-import {LocalStorageServiceService} from "./Services/data/local-storage-service.service";
-import {UserDataServiceService} from "./Services/data/user-data-service.service";
 import {LsJwtDetails} from "./Models/ApiModels/Post/LsJwtDetails";
 import {ScrollServiceService} from "./Services/helpers/scroll-service.service";
+import {CacheServiceService} from "./Services/data/cache-service.service";
 
 @Component({
   selector: 'app-root',
@@ -18,8 +17,7 @@ export class AppComponent implements OnInit{
   isLoaded: boolean = false;
 
   constructor(
-    private userDataService: UserDataServiceService,
-    private localStorageService: LocalStorageServiceService,
+    private cacheService: CacheServiceService,
     private httpService: HttpServiceService,
     private primeNgConfig: PrimeNGConfig,
     private messageService: MessageService,
@@ -30,11 +28,12 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
     let jwtDetails: LsJwtDetails = {
-      jwtToken: `${this.localStorageService.getJwtToken()}`,
-      uid: `${this.localStorageService.getJwtUid()}`
+      jwtToken: this.cacheService.getLsJwtToken()!,
+      uid: this.cacheService.getLsJwtUid()!,
     };
-    if (this.localStorageService.isUserDataSaved()) {
+    if (jwtDetails.jwtToken != null && jwtDetails.uid != null) {
       this.httpService.postLsLoginRequest(jwtDetails)
         .subscribe(this.initialLoginObserver);
     }
@@ -42,7 +41,7 @@ export class AppComponent implements OnInit{
       this.isLoaded = true;
     }
     setTimeout(() => {
-      if (!this.localStorageService.isCookiesAlertAccepted()) {
+      if (!this.cacheService.isCookiesAlertAccepted()) {
         this.messageService.add({
           key: "cookiesAlert",
           sticky: true,
@@ -58,7 +57,7 @@ export class AppComponent implements OnInit{
       let body = document.querySelector('body')!;
       let scrollBottom = (body.scrollHeight - (body.scrollTop + body.offsetHeight));
       let bodyHeight = (body.scrollHeight - body.offsetHeight);
-      if ((scrollBottom > 5000 ? scrollBottom/bodyHeight < 0.25 : true) && scrollBottom < 1100) {
+      if ((scrollBottom > 5000 ? scrollBottom/bodyHeight < 0.25 : true) && scrollBottom < 950) {
         if (!this.scrollService.bottomSubject.value) {
           this.scrollService.bottomSubject.next(true);
         }
@@ -75,22 +74,28 @@ export class AppComponent implements OnInit{
             !this.router.url.startsWith('/auth');
   }
 
+  canShowFooter() {
+    return !this.router.url.startsWith('/home');
+  }
+
   onCookieAlertAccept() {
-    this.localStorageService.cookiesAlertAccepted();
+    this.cacheService.cookiesAlertAccepted();
     this.messageService.clear("cookiesAlert");
   }
 
   private initialLoginObserver = {
     next: (val: UserInfoModel) => {
       if (val) {
-        this.userDataService.setUserInfo(val);
-        this.isLoaded = true;
+        this.cacheService.cacheUserInfo(val);
+        this.cacheService.updateUserAccount().then(() => {
+          this.isLoaded = true;
+        });
       }
     },
     error: () => {
       localStorage.clear();
       sessionStorage.clear();
-      this.userDataService.userSubject.next(false);
+      this.cacheService.loggedOnSubject.next(false);
       this.isLoaded = true;
     }
   }

@@ -5,13 +5,12 @@ import {map, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
 import {SelectOption} from "../../../../Models/QueryModels/SelectOption";
-import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
 import {CommentModel} from "../../../../Models/ApiModels/Get/CommentModel";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
-import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {ItemName} from "../../../../Regexes/ItemName";
 import {Title} from "@angular/platform-browser";
+import {CacheServiceService} from "../../../../Services/data/cache-service.service";
 
 @Component({
   selector: 'app-picture-details',
@@ -51,16 +50,15 @@ export class PictureDetailsComponent {
   isValidComment: RegExp = ItemName;
 
   constructor(
-    private userDataService: UserDataServiceService,
+    private cacheService: CacheServiceService,
     private locationService: LocationServiceService,
-    private configService: ConfigServiceService,
     private httpService: HttpServiceService,
     private messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router,
     private title: Title
   ) {
-    this.isLoggedOn = userDataService.isUserLoggedOn();
+    this.isLoggedOn = cacheService.getUserLoggedOnState();
     this.id = route.params.pipe(map(p => p['id']));
     this.initialSubscribe();
   }
@@ -123,13 +121,6 @@ export class PictureDetailsComponent {
     this.showAdminSettingsFlag = false;
   }
 
-  showSettings() {
-    if(this.picture.accountId === this.userDataService.getUserInfo()?.accountDto.id) {
-      this.showSettingsFlag = true;
-    } else {
-      this.showAdminSettingsFlag = true;
-    }
-  }
   showShare() {
     this.showShareFlag = true;
   }
@@ -144,10 +135,8 @@ export class PictureDetailsComponent {
           next: (pic: PictureModel) => {
             this.picture = pic;
             this.updatePicture();
-            if(!this.picture.url.startsWith("http")){
-              this.picture.url = this.configService.picturesApiUrl + "/" + this.picture.url;
-            }
             this.title.setTitle(`PicturesUI - Obrazek ${pic.name}`);
+            this.cacheService.cachePictures([this.picture]);
           },
           error: () => {
             this.router.navigate(['/error404']);
@@ -156,11 +145,12 @@ export class PictureDetailsComponent {
       }
     })
   }
+
   likeObserver = {
     next: () => {
       this.httpService.getPictureRequest(this.picture.id).subscribe({
         next: (value: PictureModel) => {
-          this.picture.likes = value.likes;
+          this.picture = value;
           this.updatePicture();
         }
       })

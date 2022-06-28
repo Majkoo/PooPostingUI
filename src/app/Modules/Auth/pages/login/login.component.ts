@@ -4,10 +4,9 @@ import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {MessageService} from "primeng/api";
 import {UserInfoModel} from "../../../../Models/UserInfoModel";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
-import {LocalStorageServiceService} from "../../../../Services/data/local-storage-service.service";
 import {SessionStorageServiceService} from "../../../../Services/data/session-storage-service.service";
-import {UserDataServiceService} from "../../../../Services/data/user-data-service.service";
 import {Title} from "@angular/platform-browser";
+import {CacheServiceService} from "../../../../Services/data/cache-service.service";
 
 @Component({
   selector: 'app-login',
@@ -20,11 +19,10 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private sessionStorageService: SessionStorageServiceService,
-    private localStorageService: LocalStorageServiceService,
+    private cacheService: CacheServiceService,
     private locationService: LocationServiceService,
     private httpService: HttpServiceService,
     private messageService: MessageService,
-    private userDataService: UserDataServiceService,
     private title: Title
   ) {
     this.title.setTitle(`PicturesUI - Logowanie`);
@@ -45,13 +43,10 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (v: UserInfoModel) => {
           if (v) {
-            this.userDataService.userSubject.next(true);
-            this.userDataService.setUserInfo(v);
-
-            this.localStorageService.saveJwtToken(v.authToken);
-            this.localStorageService.saveJwtUid(v.uid);
-
+            this.cacheService.cacheUserInfo(v);
             this.messageService.add({severity:'success', summary: 'Sukces', detail: 'Zalogowano pomyślnie.'});
+            this.cacheService.loggedOnSubject.next(true);
+            this.cacheService.updateUserAccount();
             this.locationService.goBack();
           }
         },

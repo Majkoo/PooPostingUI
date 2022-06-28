@@ -1,6 +1,6 @@
 <div class="px-3 px-md-0 search-results" *ngIf="pictures.length">
 
-    <app-picture-preview *ngFor="let picture of pictures" [picture]="picture">
+    <app-picture-preview *ngFor="let picture of pictures" [picture]="picture" [isLoggedOn]="isLoggedOn">
     </app-picture-preview>
 
   <app-picture-skeleton></app-picture-skeleton>
