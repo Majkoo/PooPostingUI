@@ -24,13 +24,13 @@ export class SearchComponent implements OnInit {
     items:[],
     page:0,
     pageSize: 0,
-    totalItems:0
+    totalPages:0
   }
   accountsResult: AccountPagedResult = {
     items:[],
     page:0,
     pageSize: 0,
-    totalItems:0
+    totalPages:0
   }
 
   constructor(
@@ -54,15 +54,16 @@ export class SearchComponent implements OnInit {
     this.clearSearch();
     this.httpService.searchPicturesRequest().subscribe({
       next: (val: PicturePagedResult) => {
+        console.log(val);
         this.picturesResult = val;
         this.messageService.add({
           severity:'success',
           summary: 'Sukces',
-          detail: `Znaleziono ${val.totalItems} wyników dla "${this.paramsService.SearchQuery.searchPhrase}"`
+          detail: `Wyświelanie wyników dla "${this.paramsService.SearchQuery.searchPhrase}"`
         });
         this.clearAccountsResult();
         this.picPaginator.updateCurrentPage(val.page);
-        this.picPaginator.updatePages(val.totalItems);
+        this.picPaginator.updatePages(val.totalPages);
         this.scrollService.loadScrollState();
       },
       error: () => {
@@ -81,11 +82,11 @@ export class SearchComponent implements OnInit {
         this.messageService.add({
           severity:'success',
           summary: 'Sukces',
-          detail: `Znaleziono ${val.totalItems} wyników dla "${this.paramsService.SearchQuery.searchPhrase}"`
+          detail: `Wyświelanie wyników dla "${this.paramsService.SearchQuery.searchPhrase}"`
         });
         this.clearPictureResult();
         this.accPaginator.updateCurrentPage(val.page);
-        this.accPaginator.updatePages(val.totalItems);
+        this.accPaginator.updatePages(val.totalPages);
         this.scrollService.loadScrollState();
       },
       error: () => {
@@ -123,7 +124,7 @@ export class SearchComponent implements OnInit {
       items:[],
       page:0,
       pageSize: 0,
-      totalItems:0
+      totalPages:0
     }
   }
   private clearAccountsResult() {
@@ -131,7 +132,7 @@ export class SearchComponent implements OnInit {
       items:[],
       page:0,
       pageSize: 0,
-      totalItems:0
+      totalPages:0
     }
   }
 
@@ -141,7 +142,7 @@ export class SearchComponent implements OnInit {
         this.picturesResult = val;
         document.body.scrollTop = 0;
         this.picPaginator.updateCurrentPage(val.page);
-        this.picPaginator.updatePages(val.totalItems);
+        this.picPaginator.updatePages(val.totalPages);
       }
     });
   }
@@ -151,7 +152,7 @@ export class SearchComponent implements OnInit {
         this.accountsResult = val;
         document.body.scrollTop = 0;
         this.accPaginator.updateCurrentPage(val.page);
-        this.accPaginator.updatePages(val.totalItems);
+        this.accPaginator.updatePages(val.totalPages);
       }
     });
   }

@@ -21,4 +21,6 @@ export interface PictureModel {
   likeState: number;
   isModifiable: boolean;
   isAdminModifiable: boolean;
+
+  isAdv?: boolean;
 }

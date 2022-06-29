@@ -6,7 +6,6 @@ import {BehaviorSubject} from "rxjs";
 })
 export class ScrollServiceService {
   bottomSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
   scrollTopState: number = 0;
 
   loadScrollState() {

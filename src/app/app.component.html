@@ -1,16 +1,19 @@
 <div class="d-flex flex-column justify-content-between" style="height: 100vh">
   <div>
+
     <div class="nav-top">
       <app-navbar [appTitle]="appTitle"></app-navbar>
     </div>
 
     <main class="container" *ngIf="isLoaded">
       <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-8 order-2 order-md-1 mt-4 p-0">
+
+        <div class="col-12 col-md-7 col-lg-7 order-2 order-md-1 mt-4 p-0">
           <router-outlet *ngIf="isLoaded"></router-outlet>
         </div>
+
         <app-sidebar
-          class="col-12 col-md-4 col-lg-3 order-1 px-3 pt-2 p-md-0 pl-md-4 order-md-2 mt-4 d-none d-md-block"
+          class="col-12 col-md-4 col-lg-4 order-1 px-3 pt-2 p-md-0 pl-md-4 order-md-2 mt-4 d-none d-md-block"
           *ngIf="canShowSidebar()">
         </app-sidebar>
 

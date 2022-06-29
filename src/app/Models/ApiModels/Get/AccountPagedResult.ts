@@ -2,7 +2,7 @@
 
 export interface AccountPagedResult {
   items: AccountModel[];
-  totalItems: number;
+  totalPages: number;
   pageSize: number;
   page: number;
 }

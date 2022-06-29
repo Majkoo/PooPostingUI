@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {HttpParamsServiceService} from "./http-params-service.service";
 import { PictureModel } from 'src/app/Models/ApiModels/Get/PictureModel';
@@ -19,8 +19,6 @@ import {LsJwtDetails} from "../../Models/ApiModels/Post/LsJwtDetails";
 import {PutAccountModel} from "../../Models/ApiModels/Post/PutAccountModel";
 import {PostSendLogsModel} from "../../Models/ApiModels/Post/PostSendLogsModel";
 import {PictureClassifiedModel} from "../../Models/ApiModels/Post/PictureClassifiedModel";
-import {LikeState} from "../../Enums/LikeState";
-import {LikeResult} from "../../Models/ApiModels/Patch/LikeResult";
 
 @Injectable({
   providedIn: 'root'
@@ -32,18 +30,18 @@ export class HttpServiceService {
     private params: HttpParamsServiceService
   ) {}
 
-  getPicturesRequest(): Observable<PicturePagedResult>{
+  getPicturesRequest(params: HttpParams): Observable<PicturePagedResult>{
     return this.http
       .get<PicturePagedResult>(
       `${this.config.picturesApiUrl}/api/picture`,
-      {params: this.params.getGetPicParams()}
+      {params: params}
     );
   }
   getPersonalizedPicturesRequest(): Observable<PictureModel[]>{
     return this.http
       .get<PictureModel[]>(
         `${this.config.picturesApiUrl}/api/picture/personalized`,
-        {params: this.params.getGetPicParams()}
+        {params: this.params.getGetPersonalizedPicParams()}
       );
   }
   searchPicturesRequest(): Observable<PicturePagedResult>{

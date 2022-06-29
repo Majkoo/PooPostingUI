@@ -75,7 +75,7 @@ export class PostFormComponent {
           if (!uniqueTagsTrimmed.includes(c)) {
             uniqueTagsTrimmed.push(c);
           }
-          if (uniqueTagsTrimmed.length > 6){
+          if (uniqueTagsTrimmed.length > 4){
             uniqueTagsTrimmed.pop();
           }
         });

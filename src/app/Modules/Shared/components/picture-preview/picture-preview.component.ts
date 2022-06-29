@@ -1,8 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { PictureModel } from 'src/app/Models/ApiModels/Get/PictureModel';
 import { ConfigServiceService } from 'src/app/Services/data/config-service.service';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
-import {CacheServiceService} from "../../../../Services/data/cache-service.service";
 
 @Component({
   selector: 'app-picture-preview',
@@ -16,7 +15,6 @@ export class PicturePreviewComponent {
   constructor(
     private configService: ConfigServiceService,
     private httpService: HttpServiceService,
-    private cacheService: CacheServiceService,
   ) { }
 
   like(){

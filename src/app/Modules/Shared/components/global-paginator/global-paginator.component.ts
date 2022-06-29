@@ -6,12 +6,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./global-paginator.component.scss']
 })
 export class GlobalPaginatorComponent implements OnInit {
-  @Input() totalItems!: number;
   @Input() currentPage!: number;
   @Input() pageSize!: number;
   @Output() onPaginate: EventEmitter<number> = new EventEmitter<number>();
 
-  totalPages!: number;
+  @Input() totalPages!: number;
   pagesToShow: number[] = [];
 
   constructor() {}
@@ -23,12 +22,11 @@ export class GlobalPaginatorComponent implements OnInit {
     if(!this.pageSize) {
       this.pageSize = 10;
     }
-    this.totalPages = Math.floor(this.totalItems / this.pageSize);
     this.calcPagesToShow();
   }
 
-  updatePages(totalItems: number) {
-    this.totalPages = this.totalPages = Math.ceil( totalItems / this.pageSize) - 1;
+  updatePages(totalPages: number) {
+    this.totalPages = totalPages-2;
     this.calcPagesToShow();
   }
   updateCurrentPage(currentPage: number) {

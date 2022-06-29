@@ -23,7 +23,7 @@ import {PrimeNgModule} from "../Prime-ng/prime-ng.module";
   exports: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
   ]
 })
 export class UIModule { }

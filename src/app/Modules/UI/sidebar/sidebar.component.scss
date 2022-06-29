@@ -17,3 +17,15 @@ span {
 .min-w-75 {
   min-width: 75%;
 }
+.opaque {
+  opacity: 0.4;
+}
+.nav-link {
+  color: #919191;
+  padding: 0 !important;
+  margin: 0 !important;
+  transition: 0.2s ease-in-out;
+  &:hover {
+    color: #5b5b5b;
+  }
+}

@@ -18,6 +18,11 @@ export class CacheServiceService {
     this.loggedOnSubject.next(false);
   }
 
+  mostPopularSite: number = 1;
+  mostLikedSite: number = 1;
+  newestSite: number = 1;
+  randomSite: number = 1;
+
   loggedOnSubject: Subject<boolean> = new Subject<boolean>();
   cachedPictures: PictureModel[] = [];
   cachedUserAccount?: AccountModel;

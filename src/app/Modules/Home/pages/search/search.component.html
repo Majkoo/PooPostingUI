@@ -18,14 +18,14 @@
 
   <nav class="paginator w-100 shadow border" [ngClass]="picturesResult.items.length ? '' : 'd-none'">
     <app-global-paginator #picPaginator
-                 [totalItems]="picturesResult.totalItems"
+                 [totalPages]="picturesResult.totalPages-2"
                  [pageSize]="10" (onPaginate)="paginate($event)">
     </app-global-paginator>
   </nav>
 
   <nav class="paginator w-100 shadow border" [ngClass]="accountsResult.items.length ? '' : 'd-none'">
     <app-global-paginator #accPaginator
-                          [totalItems]="accountsResult.totalItems"
+                          [totalPages]="accountsResult.totalPages-2"
                           [pageSize]="5" (onPaginate)="paginateAccs($event)">
     </app-global-paginator>
   </nav>

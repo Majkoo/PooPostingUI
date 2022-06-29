@@ -9,11 +9,6 @@ import {BehaviorSubject, Observable, Subject} from "rxjs";
   providedIn: 'root'
 })
 export class HttpParamsServiceService {
-  currentPaginatorState: number | null = null;
-
-  searchPicPageSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
-  searchAccPageSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
-
   constructor() {}
 
   GetPQuery: GetPQuery = {
@@ -40,9 +35,15 @@ export class HttpParamsServiceService {
     this.SearchQuery.pageNumber = pageNumber;
   }
 
-  getGetPicParams(): HttpParams {
+  getGetPicParams(pageNumber: number): HttpParams {
     return new HttpParams()
-      .set('pageSize', this.GetPQuery.pageSize)
+      .set('pageSize', 3)
+      .set('pageNumber', pageNumber)
+  }
+
+  getGetPersonalizedPicParams(): HttpParams {
+    return new HttpParams()
+      .set('pageSize', 2)
   }
 
   getSearchPicParams(): HttpParams {
@@ -52,7 +53,6 @@ export class HttpParamsServiceService {
       .set('pageSize', this.SearchQuery.pageSize)
       .set('searchBy', this.SearchQuery.sortBy!.toString());
   }
-
   getSearchAccParams(): HttpParams {
     return new HttpParams()
       .set('searchPhrase', this.SearchQuery.searchPhrase)
