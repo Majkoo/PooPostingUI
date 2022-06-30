@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { CustomValidators } from 'src/CustomValidators';
 import {MessageService} from "primeng/api";
@@ -16,7 +16,7 @@ import {Location} from "@angular/common";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   blockSpace: RegExp = BlockSpace;
   isName: RegExp = ItemName;
   formDisabled: boolean = false;
@@ -45,23 +45,23 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.appUrl = this.configService.appWebUrl;
     this.isNickNameTaken = false;
-    this.form = new FormGroup({
-      nickname: new FormControl(null, [
+    this.form = new UntypedFormGroup({
+      nickname: new UntypedFormControl(null, [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(16),
       ]),
-      email: new FormControl(null, [
+      email: new UntypedFormControl(null, [
         Validators.required,
         Validators.minLength(10),
         Validators.email
       ]),
-      password: new FormControl(null, [
+      password: new UntypedFormControl(null, [
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(64),
       ]),
-      confirmPassword: new FormControl(null, [
+      confirmPassword: new UntypedFormControl(null, [
         Validators.required
       ])},
       //@ts-ignore

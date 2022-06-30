@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AccountModel} from "../../../../../Models/ApiModels/Get/AccountModel";
 import {SelectOption} from "../../../../../Models/QueryModels/SelectOption";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {CustomValidators} from "../../../../../../CustomValidators";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {MessageService} from "primeng/api";
@@ -19,8 +19,8 @@ export class AccountSettingsComponent {
 
   blockSpace: RegExp = /[^\s]/;
 
-  changePass!: FormGroup;
-  changeEmail!: FormGroup;
+  changePass!: UntypedFormGroup;
+  changeEmail!: UntypedFormGroup;
 
   awaitSubmit: boolean = false;
 
@@ -75,21 +75,21 @@ export class AccountSettingsComponent {
   }
 
   resetForms() {
-    this.changePass = new FormGroup({
-        password: new FormControl("", [
+    this.changePass = new UntypedFormGroup({
+        password: new UntypedFormControl("", [
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(128)
         ]),
-        confirmPassword: new FormControl("", [
+        confirmPassword: new UntypedFormControl("", [
           Validators.required,
         ]),
       },
       //@ts-ignore
       CustomValidators.mustMatch('password', 'confirmPassword')
     );
-    this.changeEmail = new FormGroup({
-      email: new FormControl("", [
+    this.changeEmail = new UntypedFormGroup({
+      email: new UntypedFormControl("", [
         Validators.required,
         Validators.email,
       ])

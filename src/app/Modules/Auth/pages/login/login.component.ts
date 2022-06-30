@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {MessageService} from "primeng/api";
 import {UserInfoModel} from "../../../../Models/UserInfoModel";
@@ -14,7 +14,7 @@ import {CacheServiceService} from "../../../../Services/data/cache-service.servi
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   formDisabled: boolean = false;
 
   constructor(
@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      nickname: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required),
+    this.form = new UntypedFormGroup({
+      nickname: new UntypedFormControl(null, Validators.required),
+      password: new UntypedFormControl(null, Validators.required),
     });
   }
 

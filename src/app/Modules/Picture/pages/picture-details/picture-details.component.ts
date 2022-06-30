@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {map, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -22,8 +22,8 @@ export class PictureDetailsComponent {
   id: Observable<string>;
   isLoggedOn: boolean = false;
 
-  commentForm: FormGroup = new FormGroup({
-    text: new FormControl("", [
+  commentForm: UntypedFormGroup = new UntypedFormGroup({
+    text: new UntypedFormControl("", [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(250)

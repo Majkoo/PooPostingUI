@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {ItemName} from "../../../../../Regexes/ItemName";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {MessageService} from "primeng/api";
@@ -15,7 +15,7 @@ import {PostPictureServiceService} from "../../../../../Services/data/post-pictu
 export class PostFormComponent {
   @Output() onBack: EventEmitter<null> = new EventEmitter<null>();
 
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   tags: string[] = [];
   isName: RegExp = ItemName;
   isImgReady: boolean = false;
@@ -36,7 +36,7 @@ export class PostFormComponent {
 
   constructor(
     private ppService: PostPictureServiceService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private httpService: HttpServiceService,
     private message: MessageService,
     private router: Router,
@@ -46,15 +46,15 @@ export class PostFormComponent {
     this.siteKey = "6Lfdv78eAAAAAJZcBW3ymM-3yaKieXyTTXFPNHcm";
 
     this.form  = this.formBuilder.group({
-      name: new FormControl("", [
+      name: new UntypedFormControl("", [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(40)
       ]),
-      description: new FormControl("", [
+      description: new UntypedFormControl("", [
         Validators.maxLength(500)
       ]),
-      tags: new FormControl(this.tags, [
+      tags: new UntypedFormControl(this.tags, [
         Validators.maxLength(500)
       ]),
     });

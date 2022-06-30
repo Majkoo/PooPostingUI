@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import { HttpParamsServiceService } from 'src/app/Services/http/http-params-service.service';
 import {SortSearch} from "../../../../Enums/SortSearch";
@@ -12,7 +12,7 @@ import {SortSearch} from "../../../../Enums/SortSearch";
 })
 export class SearchPanelComponent {
   @ViewChild('paginatorTop') paginator: any;
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   @Output() searchAccEvent = new EventEmitter;
   @Output() searchPicEvent = new EventEmitter;
   @Output() resetSearchEvent = new EventEmitter;
@@ -21,16 +21,16 @@ export class SearchPanelComponent {
     private httpService: HttpServiceService,
     private params: HttpParamsServiceService,
   ) {
-    this.form = new FormGroup({
-      lookFor: new FormControl({
+    this.form = new UntypedFormGroup({
+      lookFor: new UntypedFormControl({
         value: 0,
         disabled: false
       }),
-      sortBy: new FormControl({
+      sortBy: new UntypedFormControl({
         value: 0,
         disabled: false
       }),
-      searchPhrase: new FormControl("", Validators.required),
+      searchPhrase: new UntypedFormControl("", Validators.required),
     })
   }
 

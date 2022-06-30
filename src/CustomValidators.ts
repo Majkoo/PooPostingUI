@@ -1,5 +1,5 @@
 ﻿import {
-  FormGroup
+  UntypedFormGroup
 } from '@angular/forms';
 import {ItemName} from "./app/Regexes/ItemName";
 
@@ -7,7 +7,7 @@ export class CustomValidators {
   constructor() {}
 
   static mustMatch(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
+    return (formGroup: UntypedFormGroup) => {
       const control = formGroup.controls[controlName];
       const matchingControl = formGroup.controls[matchingControlName];
 

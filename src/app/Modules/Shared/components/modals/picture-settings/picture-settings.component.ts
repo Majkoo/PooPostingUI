@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PictureModel} from "../../../../../Models/ApiModels/Get/PictureModel";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {PutPictureModel} from "../../../../../Models/ApiModels/Post/PutPictureModel";
 import {MessageService} from "primeng/api";
@@ -18,9 +18,9 @@ export class PictureSettingsComponent implements OnInit {
   deletePhrase: string = "";
   isName: RegExp = ItemName;
 
-  changeTags!: FormGroup;
-  changeName!: FormGroup;
-  changeDesc!: FormGroup;
+  changeTags!: UntypedFormGroup;
+  changeName!: UntypedFormGroup;
+  changeDesc!: UntypedFormGroup;
 
   awaitSubmit: boolean = false;
   tags: string[] = [];
@@ -47,20 +47,20 @@ export class PictureSettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.changeTags = new FormGroup({
-      tags: new FormControl("", [
+    this.changeTags = new UntypedFormGroup({
+      tags: new UntypedFormControl("", [
         Validators.required
       ])
     });
-    this.changeName = new FormGroup({
-      name: new FormControl("", [
+    this.changeName = new UntypedFormGroup({
+      name: new UntypedFormControl("", [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(40)
       ])
     });
-    this.changeDesc = new FormGroup({
-      desc: new FormControl("", [
+    this.changeDesc = new UntypedFormGroup({
+      desc: new UntypedFormControl("", [
         Validators.required,
         Validators.maxLength(500)
       ])

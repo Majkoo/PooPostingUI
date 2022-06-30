@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {PictureClassifiedModel} from "../../../../../Models/ApiModels/Post/PictureClassifiedModel";
 import {PostPictureServiceService} from "../../../../../Services/data/post-picture-service.service";
@@ -13,12 +13,12 @@ export class NsfwjsCheckComponent implements OnInit {
   @Output() onSubmit: EventEmitter<null> = new EventEmitter<null>();
 
   filePath: string = "";
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   isNsfw: boolean | undefined;
 
   constructor(
     private ppService: PostPictureServiceService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private httpService: HttpServiceService
   ) {
     this.myForm = this.formBuilder.group({
