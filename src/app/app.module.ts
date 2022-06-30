@@ -10,13 +10,13 @@ import { TokenInterceptorService } from './Services/interceptors/token-intercept
 import { HttpErrorInterceptorService } from './Services/interceptors/http-error-interceptor.service';
 import { MessageService} from "primeng/api";
 import {PrimeNgModule} from "./Modules/Prime-ng/prime-ng.module";
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {SharedModule} from "./Modules/Shared/shared.module";
 import {HomeModule} from "./Modules/Home/home.module";
 import { DateAgoPipe } from './Pipes/date-ago.pipe';
 import {ReportModule} from "./Modules/Report/report.module";
 import {BrowserModule} from "@angular/platform-browser";
+import {ServiceWorkerModule} from "@angular/service-worker";
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {
