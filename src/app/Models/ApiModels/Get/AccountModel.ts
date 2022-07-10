@@ -1,11 +1,11 @@
-﻿import {PictureModel} from "./PictureModel";
+﻿import {PicturePreviewModel} from "./PicturePreviewModel";
 
 export interface AccountModel {
   id: string;
   roleId: string;
   nickname: string;
   email: string;
-  pictures: PictureModel[];
+  picturePreviews: PicturePreviewModel[];
   accountCreated: string;
 
   isModifiable: boolean;

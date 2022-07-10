@@ -1,8 +1,8 @@
-﻿export interface LikeModel {
-  id: number;
-  accountNickname: string;
+﻿import {AccountPreviewModel} from "./AccountPreviewModel";
 
-  accountId: string;
+export interface LikeModel {
+  id: number;
   pictureId: string;
   isLike: boolean;
+  accountPreview: AccountPreviewModel
 }

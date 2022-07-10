@@ -1,24 +1,27 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import {MessageService} from "primeng/api";
 import {Router} from "@angular/router";
-import {ConfigServiceService} from "../../../../../Services/data/config-service.service";
+import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 
 @Component({
   selector: 'app-picture-share',
   templateUrl: './picture-share.component.html',
   styleUrls: ['./picture-share.component.scss']
 })
-export class PictureShareComponent {
+export class PictureShareComponent implements OnInit {
   @Output() onCopy: EventEmitter<any> = new EventEmitter<any>();
-  url: string;
+  @Input() pictureId!: string;
+  url: string = "";
+
   constructor(
     private configService: ConfigServiceService,
     private messageService: MessageService,
     private clipboard: Clipboard,
-    private router: Router
-  ) {
-    this.url = this.configService.appWebUrl + this.router.url;
+  ) { }
+
+  ngOnInit() {
+    this.url = `${this.configService.getConfig().appWebUrl}/picture/${this.pictureId}`;
   }
 
   copyUrl(textToCopy: string) {

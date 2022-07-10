@@ -21,7 +21,7 @@ export class EmailBuilderServiceService {
       firstName: this.cacheService.getCachedUserAccount().nickname,
       emailAddress: this.cacheService.getCachedUserAccount().email,
       text: userMsg,
-      sendingApp: this.configService.appWebUrl,
+      sendingApp: this.configService.getConfig().appWebUrl,
       jsonLogsAttachment: errorLogs.errors.length ? JSON.stringify(errorLogs, null, '\t') : ""
     };
     return logs;

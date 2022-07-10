@@ -1,23 +1,22 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {map, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
-import {SelectOption} from "../../../../Models/QueryModels/SelectOption";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
-import {CommentModel} from "../../../../Models/ApiModels/Get/CommentModel";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
-import {ItemName} from "../../../../Regexes/ItemName";
 import {Title} from "@angular/platform-browser";
 import {CacheServiceService} from "../../../../Services/data/cache-service.service";
+import {TitleCasePipe} from "@angular/common";
+import {PictureDetailsServiceService} from "../../../../Services/data/picture-details-service.service";
 
 @Component({
   selector: 'app-picture-details',
   templateUrl: './picture-details.component.html',
   styleUrls: ['./picture-details.component.scss']
 })
-export class PictureDetailsComponent {
+export class PictureDetailsComponent implements OnInit {
   picture!: PictureModel;
   id: Observable<string>;
   isLoggedOn: boolean = false;
@@ -31,29 +30,17 @@ export class PictureDetailsComponent {
   })
   awaitSubmit: boolean = false;
 
-  cols: any[] = [
-    { field: 'index', header: 'Numer'},
-    { field: 'account', header: 'Użytkownik' },
-    { field: 'like', header: 'Polubienie' },
-  ];
-  selectOptions: SelectOption[] = [
-    { name: "Polubienia", class: "bi bi-hand-thumbs-up"},
-    { name: "Komentarze", class: "bi bi-chat-right-text"},
-  ];
-  selectValue: SelectOption = {
-    name: "Komentarze", class: "bi bi-chat-right-text"
-  };
-
   showSettingsFlag: boolean = false;
   showAdminSettingsFlag: boolean = false;
   showShareFlag: boolean = false;
-  isValidComment: RegExp = ItemName;
 
   constructor(
     private cacheService: CacheServiceService,
     private locationService: LocationServiceService,
+    private pictureDetailsService: PictureDetailsServiceService,
     private httpService: HttpServiceService,
     private messageService: MessageService,
+    private titleCasePipe: TitleCasePipe,
     private route: ActivatedRoute,
     private router: Router,
     private title: Title
@@ -61,6 +48,24 @@ export class PictureDetailsComponent {
     this.isLoggedOn = cacheService.getUserLoggedOnState();
     this.id = route.params.pipe(map(p => p['id']));
     this.initialSubscribe();
+  }
+
+  ngOnInit() {
+    this.pictureDetailsService.pictureDeletedSubject.subscribe({
+      next: (val: string) => {
+        if (val === this.picture.id) {
+          this.cacheService.cachedPictures = this.cacheService.getCachedPictures().filter(p => p.id !== this.picture.id);
+          this.locationService.goBack();
+        }
+      }
+    })
+    this.pictureDetailsService.pictureChangedSubject.subscribe({
+      next: (val: PictureModel) => {
+        if (val.id === this.picture.id) {
+          this.picture = val;
+        }
+      }
+    });
   }
 
   like() {
@@ -71,58 +76,12 @@ export class PictureDetailsComponent {
     this.httpService.patchPictureDislikeRequest(this.picture.id)
       .subscribe(this.likeObserver)
   }
-  comment() {
-    this.awaitSubmit = true;
-    this.httpService.postCommentRequest(this.picture.id, this.commentForm.getRawValue())
-      .subscribe(this.commentObserver);
-  }
-  updatePicture() {
-    this.picture.likes.sort(l => l.isLike ? -1 : 0);
-  }
-
-  deleteComment($event: CommentModel) {
-    this.httpService.deleteCommentRequest(this.picture.id, $event.id)
-      .subscribe({
-        next: () => {
-          this.picture.comments = this.picture.comments.filter(c => c.id !== $event.id);
-          this.messageService.add({
-            severity:'warn',
-            summary:'Sukces',
-            detail:'Pomyślnie usunięto komentarz!',
-          });
-        },
-        error: () => {
-          this.messageService.add({
-            severity:'error',
-            summary: 'Niepowodzenie',
-            detail: `Nie udało się usunąć komentarza.`
-          });
-        }
-      })
-  }
-  deletePicture() {
-    this.httpService.deletePictureRequest(this.picture.id).subscribe({
-      next: () => {
-        this.messageService.add({
-          severity:'warn',
-          summary: 'Sukces',
-          detail: `Obrazek "${this.picture.name}" został usunięty. Zobaczysz efekty po przeładowaniu wyników.`
-        });
-      },
-      error: () => {
-        this.messageService.add({
-          severity:'error',
-          summary: 'Niepowodzenie',
-          detail: `Nie udało się usunąć obrazka "${this.picture.name}".`
-        });
-      }
-    })
-    this.showSettingsFlag = false;
-    this.showAdminSettingsFlag = false;
-  }
 
   showShare() {
     this.showShareFlag = true;
+  }
+  showDetails() {
+    this.pictureDetailsService.modalTriggerSubject.next(this.picture.id);
   }
   return() {
     this.locationService.goBack();
@@ -134,8 +93,7 @@ export class PictureDetailsComponent {
         this.httpService.getPictureRequest(val).subscribe({
           next: (pic: PictureModel) => {
             this.picture = pic;
-            this.updatePicture();
-            this.title.setTitle(`PicturesUI - Obrazek ${pic.name}`);
+            this.title.setTitle(`PicturesUI - Obrazek "${this.titleCasePipe.transform(pic.name)}"`);
             this.cacheService.cachePictures([this.picture]);
           },
           error: () => {
@@ -151,7 +109,6 @@ export class PictureDetailsComponent {
       this.httpService.getPictureRequest(this.picture.id).subscribe({
         next: (value: PictureModel) => {
           this.picture = value;
-          this.updatePicture();
         }
       })
     },
@@ -161,19 +118,6 @@ export class PictureDetailsComponent {
         summary: 'Niepowodzenie',
         detail: `Coś poszło nie tak.`
       });
-    }
-  }
-  commentObserver = {
-    next: (val: CommentModel) => {
-      this.picture.comments.unshift(val);
-      this.commentForm.reset();
-      this.awaitSubmit = false;
-      this.messageService.add({
-        severity:'success',
-        summary:'Sukces',
-        detail:'Pomyślnie skomentowano!'
-      });
-      this.commentForm.reset();
     }
   }
 }

@@ -1,10 +1,10 @@
 ﻿import {LikeModel} from "./LikeModel";
 import {CommentModel} from "./CommentModel";
+import {AccountPreviewModel} from "./AccountPreviewModel";
 
 export interface PictureModel {
   id: string;
-  accountId: string;
-  accountNickname: string;
+  accountPreview: AccountPreviewModel,
 
   name: string;
   description: string;

@@ -1,17 +1,12 @@
-<div class="px-3 px-md-0" *ngIf="picture">
+<div class="px-3 px-md-0 mb-5" *ngIf="picture">
   <div class="mb-3 d-flex align-items-center justify-content-between">
-    <button pButton pRipple label="Powrót" icon="bi bi-arrow-return-left" class="px-3" (click)="return()"></button>
-
-    <button pButton pRipple label="Ustawienia" icon="bi bi-gear-fill" class="px-3"
-            (click)="showAdminSettingsFlag = true" *ngIf="picture.isAdminModifiable"></button>
-    <button pButton pRipple label="Ustawienia" icon="bi bi-gear-fill" class="px-3"
-            (click)="showSettingsFlag = true" *ngIf="picture.isModifiable && !picture.isAdminModifiable"></button>
+    <button pButton label="Powrót" icon="bi bi-arrow-return-left" class="px-3" (click)="return()"></button>
   </div>
 
   <p-card class="text-center">
 
     <img src="{{picture.url}}" class="img-fluid border-bottom border-top w-100"
-         alt="{{picture.name}}, dodano przez: {{picture.accountNickname}}">
+         alt="{{picture.name}}, dodano przez: {{picture.accountPreview.nickname}}">
 
     <ng-template pTemplate="header">
       <h2 class="text-center py-2"><b>{{picture.name | titlecase}}</b></h2>
@@ -19,19 +14,18 @@
 
     <ng-template pTemplate="body">
       <div class="text-break px-3 py-2">
-        <p class="text-center text-break d-flex justify-content-center align-items-center">
-          <a routerLink="/account/{{picture.accountId}}" class="d-inline-flex" attr.aria-label="Konto {{picture.accountNickname}}">
-            <span class="bi bi-person-fill"></span>{{picture.accountNickname}}
+        <p class="text-center text-break d-flex justify-content-center align-items-center mb-1">
+          <a routerLink="/account/{{picture.accountPreview.id}}" class="d-inline-flex" attr.aria-label="Konto {{picture.accountPreview.nickname}}">
+            <span class="bi bi-person-fill"></span>{{picture.accountPreview.nickname}}
           </a>, {{picture.pictureAdded | date:'dd.MM.YYYY'}}
         </p>
-        <div class="d-flex justify-content-center align-items-center mt-1 text-muted text-break">
+        <div class="d-flex justify-content-center align-items-center mb-1 text-muted text-break">
           <p class="px-2 px-md-4 px-lg-5 d-flex justify-content-center align-items-center">
             <span class="bi bi-card-text mr-1" *ngIf="!picture.description"></span>
             {{picture.description ? picture.description : "Brak opisu"}}
           </p>
         </div>
-
-        <div class="d-flex flex-wrap justify-content-center mt-2 mb-1 gap" *ngIf="picture.tags.length">
+        <div class="d-flex flex-wrap justify-content-center mb-1 gap" *ngIf="picture.tags.length">
           <p-tag *ngFor="let tag of picture.tags">
             <span class="bi bi-tag-fill"></span>{{tag}}
           </p-tag>
@@ -41,91 +35,36 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-      <div class="d-flex align-items-center justify-content-center py-3 px-2 border-top">
-        <div>
-          <button class="mx-1 py-2" pButton pRipple (click)="like()" [disabled]="!isLoggedOn">
-            <strong class="pr-2">{{picture.likeCount}}</strong>
-            <span class="bi" [ngClass]="picture.likeState === 1 ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'" aria-label="like"></span>
-          </button>
-          <button class="mx-1 py-2" pButton pRipple (click)="dislike()" [disabled]="!isLoggedOn">
-            <strong class="pr-2">{{picture.dislikeCount}}</strong>
-            <span class="bi" [ngClass]="picture.likeState === 2 ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" aria-label="like"></span>
+      <div class="d-flex justify-content-between py-3">
+
+        <div class="d-flex ml-3">
+          <button class="mx-1 px-2 p-button-sm py-2 p-button-icon-only" pButton (click)="showShare()" aria-label="share">
+            <span class="bi bi-share"></span>
           </button>
         </div>
-        <button class="justify-self-start mx-1" pButton pRipple icon="bi bi-share-fill" (click)="showShare()"></button>
+
+        <div class="d-flex mr-3">
+          <button class="mx-1 p-button-sm py-2" pButton (click)="like()" [disabled]="!isLoggedOn" aria-label="like">
+            <strong class="pr-2">{{picture.likeCount}}</strong>
+            <span class="bi" [ngClass]="picture.likeState === 1 ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'" ></span>
+          </button>
+          <button class="mx-1 p-button-sm py-2" pButton (click)="dislike()" [disabled]="!isLoggedOn" aria-label="dislike">
+            <strong class="pr-2">{{picture.dislikeCount}}</strong>
+            <span class="bi" [ngClass]="picture.likeState === 2 ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" ></span>
+          </button>
+          <button class="mx-1 px-2 p-button-sm py-2 p-button-icon-only" pButton (click)="showDetails()" aria-label="details">
+            <span class="bi bi-chat-text"></span>
+          </button>
+        </div>
+
       </div>
     </ng-template>
 
   </p-card>
 
-
-  <div class="mt-3 mb-5">
-
-    <div class="d-flex justify-content-center mt-4 mb-3">
-      <p-selectButton [options]="selectOptions" [(ngModel)]="selectValue" optionLabel="name">
-        <ng-template let-item>
-          <p class="select-item {{item.class}}"><span class="ml-1">{{item.name}}</span></p>
-        </ng-template>
-      </p-selectButton>
-    </div>
-
-    <div class="tables-container">
-      <app-like-table [likes]="picture.likes"
-                      *ngIf="selectValue.name === 'Polubienia'">
-      </app-like-table>
-
-      <div class="d-flex flex-column justify-content-between" *ngIf="selectValue.name === 'Komentarze'">
-        <app-comment-table [comments]="picture.comments"
-                           (onDelete)="deleteComment($event)">
-        </app-comment-table>
-
-        <div class="text-center mt-3">
-          <form (ngSubmit)="comment()" [formGroup]="commentForm">
-            <div class="d-flex flex-column">
-              <textarea id="comment-input" class="w-100" formControlName="text" rows="3" cols="30"
-                        placeholder="Napisz komentarz!" pInputTextarea [pKeyFilter]="isValidComment" [pValidateOnly]="true"></textarea>
-              <small class="m-0 text-muted" *ngIf="!isLoggedOn">
-                <small>Aby dodać komentarz, konieczne jest zalogowanie się.</small>
-              </small>
-              <span *ngIf="commentForm.invalid">
-                <small *ngIf="commentForm.get('text')!.errors!['minlength']" class="p-error d-block">
-                  Komentarz musi zawierać co najmniej 4 znaki
-                </small>
-                <small *ngIf="commentForm.get('text')!.errors!['maxlength']" class="p-error d-block">
-                  Maksymalna długość komentarza to 250 znaków
-                </small>
-                <small class="p-error d-block"
-                       *ngIf="!commentForm.get('text')!.errors!['minlength'] &&
-                        !commentForm.get('text')!.errors!['maxlength'] &&
-                        !commentForm.get('text')!.errors!['required']">
-                Komentarz nie może zaczynać i kończyć się spacją, oraz nie może posiadać wielu spacji obok siebie
-              </small>
-              </span>
-
-            </div>
-            <button pButton pRipple label="Zatwierdź" class="px-5 mt-3" type="submit"
-                    [disabled]="commentForm.invalid || awaitSubmit || !isLoggedOn"></button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-
-  <p-dialog [(visible)]="showSettingsFlag" header="Ustawienia obrazka"
-            [modal]="true" [dismissableMask]="true" [draggable]="false">
-    <app-picture-settings [picture]="picture" (onDelete)="deletePicture()">
-    </app-picture-settings>
-  </p-dialog>
-  <p-dialog [(visible)]="showAdminSettingsFlag" header="Ustawienia administratorskie obrazka"
-            [modal]="true" [dismissableMask]="true" [draggable]="false">
-    <app-picture-admin-settings [picture]="picture" (onDelete)="deletePicture()">
-    </app-picture-admin-settings>
-  </p-dialog>
   <p-dialog [(visible)]="showShareFlag" header="Udostępnij"
             [modal]="true" [dismissableMask]="true" [draggable]="false">
-    <app-picture-share (onCopy)="showShareFlag = false"></app-picture-share>
+    <app-picture-share (onCopy)="showShareFlag = false" [pictureId]="picture.id"></app-picture-share>
   </p-dialog>
 
 </div>

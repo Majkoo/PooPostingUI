@@ -1,11 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from "../../../Models/MenuModels/MenuItem";
 import {MenusServiceService} from "../../../Services/data/menus-service.service";
-import {MenuExpandableItem} from "../../../Models/MenuModels/MenuExpandableItem";
 import {Router} from "@angular/router";
 import {LocationServiceService} from "../../../Services/helpers/location-service.service";
 import {HttpParamsServiceService} from "../../../Services/http/http-params-service.service";
 import {CacheServiceService} from "../../../Services/data/cache-service.service";
+import {SidebarItem} from "../../../Models/MenuModels/SidebarItem";
+
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +17,7 @@ export class NavbarComponent implements OnInit{
   @Input() appTitle!: string;
   currentHomePage!: number;
   menuItems: MenuItem[];
-  menuExpandableItems: MenuExpandableItem[];
+  menuExpandableItems: SidebarItem[];
   showSidebar: boolean = false;
   loggedIn: boolean;
 
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit{
     private paramsService: HttpParamsServiceService,
   ) {
     this.menuItems = menuService.getMenuItems();
-    this.menuExpandableItems = menuService.getExpandableMenuItems();
+    this.menuExpandableItems = menuService.getSidebarItems();
     this.loggedIn = this.cacheService.getUserLoggedOnState();
   }
 

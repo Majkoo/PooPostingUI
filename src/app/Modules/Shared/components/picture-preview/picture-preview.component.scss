@@ -14,3 +14,11 @@ img{
     margin: auto;
   }
 }
+.account-link {
+  color: #757575;
+  transition: 0.05s ease-in-out;
+  &:hover {
+    text-decoration: underline !important;
+    color: #424242;
+  }
+}

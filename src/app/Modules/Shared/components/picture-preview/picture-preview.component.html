@@ -1,4 +1,4 @@
-<div *ngIf="picture != undefined" [id]="picture.id" class="pb-1 picture">
+<div *ngIf="picture != undefined && !isDeleted" [id]="picture.id" class="pb-1 picture">
 
   <p-card styleClass="p-card-shadow card text-center pt-1 mb-4">
 
@@ -7,40 +7,38 @@
       <div class="p-card-subtitle d-flex flex-row justify-content-center align-items-center gap-1 flex-wrap">
         Dodano przez:
         <span>
-          <span class="account-link" [routerLink]="'/account/'+picture.accountId"
-                attr.aria-label="Konto {{picture.accountNickname}}">{{picture.accountNickname}}</span>,
+          <a class="account-link" [routerLink]="'/account/' + picture.accountPreview.id"
+                attr.aria-label="Konto {{picture.accountPreview.nickname}}">{{picture.accountPreview.nickname}}</a>,
         </span>
         {{picture.pictureAdded | dateAgo}}
       </div>
     </ng-template>
 
     <div class="img-wrapper" attr.aria-label="Obrazek {{picture.name}}">
-      <img src='{{this.picture.url}}' class="img-fluid w-100" alt="{{picture.name}} by {{picture.accountNickname}}"
-           attr.aria-label='"{{picture.name}}" dodany przez {{picture.accountNickname}}'>
+      <img src='{{this.picture.url}}' class="img-fluid w-100" alt="{{picture.name}} by {{picture.accountPreview.nickname}}"
+           attr.aria-label='"{{picture.name}}" dodany przez {{picture.accountPreview.nickname}}'>
     </div>
 
     <ng-template pTemplate="footer">
       <div class="d-flex justify-content-between py-3">
 
         <div class="d-flex ml-3">
-          <div class="d-none d-sm-block">
-            <button pButton pRipple [routerLink]="'/picture/'+picture.id" icon="bi bi-info-circle" class="px-3"
-                    label="Szczegóły" name="Szczegóły" attr.aria-label='Szczegóły obrazka "{{picture.name}}"'></button>
-          </div>
-          <div class="d-block d-sm-none">
-            <button pButton pRipple [routerLink]="'/picture/'+picture.id" icon="bi bi-info-circle"
-                    name="Szczegóły" attr.aria-label='Szczegóły obrazka "{{picture.name}}"'></button>
-          </div>
+          <button class="mx-1 px-2 p-button-sm py-2 p-button-icon-only" pButton (click)="showShare = true" aria-label="share">
+            <span class="bi bi-share"></span>
+          </button>
         </div>
 
         <div class="d-flex mr-3">
-          <button class="mx-1 p-button-sm py-1" pButton pRipple (click)="like()" [disabled]="!isLoggedOn" aria-label="like">
+          <button class="mx-1 p-button-sm py-2" pButton (click)="like()" [disabled]="!isLoggedOn" aria-label="like">
             <strong class="pr-2">{{picture.likeCount}}</strong>
             <span class="bi" [ngClass]="picture.likeState === 1 ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'" ></span>
           </button>
-          <button class="mx-1 p-button-sm py-1" pButton pRipple (click)="dislike()" [disabled]="!isLoggedOn" aria-label="dislike">
+          <button class="mx-1 p-button-sm py-2" pButton (click)="dislike()" [disabled]="!isLoggedOn" aria-label="dislike">
             <strong class="pr-2">{{picture.dislikeCount}}</strong>
             <span class="bi" [ngClass]="picture.likeState === 2 ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" ></span>
+          </button>
+          <button class="mx-1 px-2 p-button-sm py-2 p-button-icon-only" pButton (click)="showDetails()" aria-label="details">
+            <span class="bi bi-chat-text"></span>
           </button>
         </div>
 
@@ -48,5 +46,9 @@
     </ng-template>
   </p-card>
 
-</div>
+  <p-dialog [(visible)]="showShare" header="Udostępnij"
+            [modal]="true" [dismissableMask]="true" [draggable]="false">
+    <app-picture-share (onCopy)="showShare = false" [pictureId]="picture.id"></app-picture-share>
+  </p-dialog>
 
+</div>

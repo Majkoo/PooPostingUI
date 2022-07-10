@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
 import {MenuItem} from "../../Models/MenuModels/MenuItem";
-import {MenuExpandableItem} from "../../Models/MenuModels/MenuExpandableItem";
+import {SidebarItem} from "../../Models/MenuModels/SidebarItem";
+import {SidebarLink} from "../../Models/MenuModels/SidebarLink";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenusServiceService {
-  menuExpandableItems!: MenuExpandableItem[];
+  sidebarItems!: SidebarItem[];
   menuItems!: MenuItem[];
+  sidebarLinks!: SidebarLink[];
 
   constructor(
   ) {
     this.refreshItems();
   }
 
-  getMenuItems() {
+  getMenuItems(): MenuItem[] {
     return this.menuItems;
   }
-  getExpandableMenuItems() {
-    return this.menuExpandableItems;
+  getSidebarItems(): SidebarItem[] {
+    return this.sidebarItems;
+  }
+  getSidebarLinks(): SidebarLink[] {
+    return this.sidebarLinks;
   }
 
   refreshItems() {
@@ -39,7 +44,7 @@ export class MenusServiceService {
         url: "search"
       },
     ];
-    this.menuExpandableItems = [
+    this.sidebarItems = [
       {
         label: "Zaloguj się lub zarejestruj!",
         class: "bi bi-balloon-heart",
@@ -90,5 +95,23 @@ export class MenusServiceService {
         ]
       },
     ];
+    this.sidebarLinks = [
+      {
+        label: "Polityka prywatności",
+        url: "https://migra.ml/polityka-prywatnosci"
+      },
+      {
+        label: "Regulamin witryny",
+        url: "https://pictures.migra.ml/tos/rulebook"
+      },
+      {
+        label: "Zgłoś błąd",
+        url: "https://pictures.migra.ml/report"
+      },
+      {
+        label: "O Twórcy",
+        url: "https://migra.ml"
+      }
+    ]
   }
 }

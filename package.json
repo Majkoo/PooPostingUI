@@ -6,15 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "postbuild": "react-snap"
-  },
-  "reactSnap": {
-    "source": "dist/pictures-ui",
-    "minifyHtml": {
-      "collapseWhitespace": false,
-      "removeComments": false
-    }
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -24,8 +16,6 @@
     "@angular/compiler": "^14.0.4",
     "@angular/core": "^14.0.4",
     "@angular/forms": "^14.0.4",
-    "@angular/localize": "^14.0.4",
-    "@angular/material": "^14.0.4",
     "@angular/platform-browser": "^14.0.4",
     "@angular/platform-browser-dynamic": "^14.0.4",
     "@angular/pwa": "^13.3.0",

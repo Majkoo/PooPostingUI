@@ -4,8 +4,6 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UIModule} from "./Modules/UI/ui.module";
-import { AppConfiguration } from './Models/JsonModels/AppConfiguration';
-import { ConfigServiceService } from './Services/data/config-service.service';
 import { TokenInterceptorService } from './Services/interceptors/token-interceptor.service';
 import { HttpErrorInterceptorService } from './Services/interceptors/http-error-interceptor.service';
 import { MessageService} from "primeng/api";
@@ -17,6 +15,8 @@ import { DateAgoPipe } from './Pipes/date-ago.pipe';
 import {ReportModule} from "./Modules/Report/report.module";
 import {BrowserModule} from "@angular/platform-browser";
 import {ServiceWorkerModule} from "@angular/service-worker";
+import {ConfigServiceService} from "./Services/data/config-service.service";
+import {TitleCasePipe} from "@angular/common";
 
 export function initializerFn(configService: ConfigServiceService){
   return () => {
@@ -41,12 +41,8 @@ export function initializerFn(configService: ConfigServiceService){
     UIModule,
   ],
   providers: [
+    TitleCasePipe,
     MessageService,
-    {
-      provide: AppConfiguration,
-      deps: [HttpClient],
-      useExisting: ConfigServiceService
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

@@ -8,7 +8,6 @@ import {BlockSpace} from "../../../../Regexes/BlockSpace";
 import {ItemName} from "../../../../Regexes/ItemName";
 import {Title} from "@angular/platform-browser";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
-import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-register',
@@ -38,12 +37,12 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private title: Title,
   ) {
-    this.siteKey = this.configService.captchaKey;
+    this.siteKey = this.configService.getConfig().captchaKey;
     this.title.setTitle(`PicturesUI - Rejestracja`);
   }
 
   ngOnInit(): void {
-    this.appUrl = this.configService.appWebUrl;
+    this.appUrl = this.configService.getConfig().appWebUrl;
     this.isNickNameTaken = false;
     this.form = new UntypedFormGroup({
       nickname: new UntypedFormControl(null, [

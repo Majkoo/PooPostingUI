@@ -6,6 +6,8 @@ import {HttpServiceService} from "./Services/http/http-service.service";
 import {LsJwtDetails} from "./Models/ApiModels/Post/LsJwtDetails";
 import {ScrollServiceService} from "./Services/helpers/scroll-service.service";
 import {CacheServiceService} from "./Services/data/cache-service.service";
+import {PictureModel} from "./Models/ApiModels/Get/PictureModel";
+import {PictureDetailsServiceService} from "./Services/data/picture-details-service.service";
 
 @Component({
   selector: 'app-root',
@@ -15,16 +17,17 @@ import {CacheServiceService} from "./Services/data/cache-service.service";
 export class AppComponent implements OnInit{
   appTitle: string = "PicturesUI";
   isLoaded: boolean = false;
+  showPictureDetailsModal: boolean = false;
+  currentPictureDetailsModal: PictureModel | null = null;
 
   constructor(
     private cacheService: CacheServiceService,
     private httpService: HttpServiceService,
-    private primeNgConfig: PrimeNGConfig,
     private messageService: MessageService,
     private scrollService: ScrollServiceService,
+    private pictureDetailsService: PictureDetailsServiceService,
     private router: Router,
   ) {
-    this.primeNgConfig.ripple = true;
   }
 
   ngOnInit(): void {
@@ -67,6 +70,13 @@ export class AppComponent implements OnInit{
         }
       }
     })
+
+    this.pictureDetailsService.showModalSubject.subscribe({
+      next: (val) => {
+        this.showPictureDetailsModal = (val !== null);
+        this.currentPictureDetailsModal = val;
+      }
+    })
   }
 
   canShowSidebar() {
@@ -98,6 +108,12 @@ export class AppComponent implements OnInit{
       this.cacheService.loggedOnSubject.next(false);
       this.isLoaded = true;
     }
+  }
+
+  // picture details global modal
+
+  pictureChanged(picture: any) {
+    this.pictureDetailsService.pictureChangedSubject.next(picture);
   }
 
 }

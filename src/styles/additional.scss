@@ -5,12 +5,12 @@ html{
 
   font-size: clamp(12.5px, 1.5vw, 16px);
 }
-h1,h2,h3,h4,h5,h6,p,b,small,strong{
+h1,h2,h3,h4,h5,h6,p,b,small,strong,pre{
   margin: 0 !important;
   padding: 0 !important;
   font-family: Roboto, "Helvetica Neue", sans-serif !important;
 }
-.disable-selection, img, .link, .account-link {
+.disable-selection, img, .link {
   -webkit-touch-callout: none; /* iOS Safari                         */
   -webkit-user-select: none; /* Safari                             */
   -khtml-user-select: none; /* Konqueror HTML                     */

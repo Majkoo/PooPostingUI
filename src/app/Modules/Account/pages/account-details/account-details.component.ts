@@ -32,15 +32,6 @@ export class AccountDetailsComponent {
     this.id = route.params.pipe(map(p => p['id']));
     this.id.subscribe({
       next: (val) => {
-        if (val === "00000000-0000-0000-0000-000000000000") {
-          this.locationService.goBack();
-          this.messageService.add({
-            severity: "warn",
-            summary: "Przekiewowano cię z powrotem",
-            detail: "Ten użytkownik jest zbanowany. Nie można przeglądać jego profilu."
-          })
-          return;
-        }
         this.httpService.getAccountRequest(val)
           .subscribe(this.initialObserver);
       }
@@ -79,7 +70,6 @@ export class AccountDetailsComponent {
   private initialObserver = {
     next: (acc: AccountModel) => {
       this.account = acc;
-      this.sortByDate(this.account.pictures);
       this.title.setTitle(`PicturesUI - Użytkownik ${acc.nickname}`);
     },
     error: () => {
@@ -87,9 +77,4 @@ export class AccountDetailsComponent {
     }
   }
 
-  private sortByDate(val: PictureModel[]): PictureModel[] {
-    return val.sort((a, b) =>
-      new Date(b.pictureAdded).getTime() - new Date(a.pictureAdded).getTime()
-    );
-  }
 }

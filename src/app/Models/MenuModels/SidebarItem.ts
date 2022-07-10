@@ -1,6 +1,6 @@
 import {MenuItem} from "./MenuItem";
 
-export interface MenuExpandableItem {
+export interface SidebarItem {
   label: string;
   class: string;
   showWhileLoggedIn: boolean;

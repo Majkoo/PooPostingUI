@@ -35,6 +35,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isLoggedOn = this.cacheService.getUserLoggedOnState();
     this.pictureFetchingOption = this.isLoggedOn ? HomePageOption.PERSONALIZED : HomePageOption.MOST_POPULAR;
+
     this.scrollSubscription = this.scrollService.bottomSubject
       .subscribe({
         next: (v: boolean) => {
@@ -47,6 +48,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.cacheService.purgeCachePictures();
     this.fetchPictures();
   }
+
   ngOnDestroy(): void {
     this.scrollSubscription.unsubscribe();
   }
@@ -65,12 +67,12 @@ export class HomepageComponent implements OnInit, OnDestroy {
                 loadedItems.push(pic);
               });
               this.items = loadedItems;
+              this.scrollService.bottomSubject.next(false);
               return;
             } else {
               this.pictureFetchingOption = HomePageOption.MOST_POPULAR;
               this.fetchPictures();
             }
-            this.scrollService.bottomSubject.next(false);
           }
         });
         break;
@@ -88,11 +90,11 @@ export class HomepageComponent implements OnInit, OnDestroy {
               });
               this.items = loadedItems;
               this.cacheService.mostPopularSite = value.page+1;
+              this.scrollService.bottomSubject.next(false);
             } else {
               this.cacheService.mostPopularSite = 1;
               this.fetchPictures();
             }
-            this.scrollService.bottomSubject.next(false);
           }
         });
         break;

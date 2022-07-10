@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserInfoModel } from 'src/app/Models/UserInfoModel';
 import {Router} from "@angular/router";
 import {MenusServiceService} from "../../../Services/data/menus-service.service";
-import {MenuExpandableItem} from "../../../Models/MenuModels/MenuExpandableItem";
+import {SidebarItem} from "../../../Models/MenuModels/SidebarItem";
 import {CacheServiceService} from "../../../Services/data/cache-service.service";
+import {SidebarLink} from "../../../Models/MenuModels/SidebarLink";
 
 @Component({
   selector: 'app-sidebar',
@@ -12,7 +13,8 @@ import {CacheServiceService} from "../../../Services/data/cache-service.service"
 })
 export class SidebarComponent implements OnInit {
   userInfo: UserInfoModel | undefined;
-  menuExpandableItems: MenuExpandableItem[];
+  sidebarItems: SidebarItem[];
+  sidebarLinks: SidebarLink[];
   loggedIn!: boolean;
 
   constructor(
@@ -20,7 +22,8 @@ export class SidebarComponent implements OnInit {
     private menuService: MenusServiceService,
     private router: Router,
   ) {
-    this.menuExpandableItems = menuService.getExpandableMenuItems();
+    this.sidebarItems = menuService.getSidebarItems();
+    this.sidebarLinks = this.menuService.getSidebarLinks();
     this.loggedIn = this.cacheService.getUserLoggedOnState();
   }
 

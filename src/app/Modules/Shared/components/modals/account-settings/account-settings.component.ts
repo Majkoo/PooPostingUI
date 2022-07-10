@@ -39,12 +39,12 @@ export class AccountSettingsComponent {
 
   submitChangePass() {
     this.awaitSubmit = true;
-    this.httpService.putAccountRequest(this.changePass.getRawValue())
+    this.httpService.updateAccountRequest(this.changePass.getRawValue())
       .subscribe(this.putAccountObserver);
   }
   submitChangeEmail() {
     this.awaitSubmit = true;
-    this.httpService.putAccountRequest(this.changeEmail.getRawValue())
+    this.httpService.updateAccountRequest(this.changeEmail.getRawValue())
       .subscribe(this.putAccountObserver);
   }
 
