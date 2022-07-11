@@ -7,12 +7,15 @@ import {AccountModel} from "../../../../../Models/ApiModels/Get/AccountModel";
   styleUrls: ['./account-admin-settings.component.scss']
 })
 export class AccountAdminSettingsComponent {
+
   @Input() account!: AccountModel
   @Output() onBan: EventEmitter<void> = new EventEmitter<void>();
+
   banPhrase: string = "";
 
   banAccount() {
     this.banPhrase = "";
     this.onBan.emit();
   }
+
 }

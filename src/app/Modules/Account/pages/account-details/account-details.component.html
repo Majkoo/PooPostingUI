@@ -1,8 +1,53 @@
-<div *ngIf="account" class="px-3 px-md-0">
+<div *ngIf="account" class="px-3 px-lg-0">
 
-  <div class="mb-3 d-flex align-items-center justify-content-between">
-    <button pButton pRipple label="Powrót" icon="bi bi-arrow-return-left" class="px-3" (click)="return()"
+  <div class="pb-3 d-flex align-items-center justify-content-between">
+    <button pButton pRipple label="Powrót" icon="bi bi-arrow-return-left" class="px-3"
+            (click)="showInfo ? showInfo = !showInfo : return()"
             attr.aria-label="Powrót do poprzedniej strony"></button>
+
+    <button pButton pRipple class="px-3" (click)="showInfo = !showInfo"
+            label="{{showInfo ? 'Profil' : ((account.isModifiable || account.isAdminModifiable) ? 'Ustawienia' : 'Informacje')}}"
+            icon="bi {{showInfo ? 'bi-person' : ((account.isModifiable || account.isAdminModifiable)  ? 'bi-gear' : 'bi-info-circle')}}"
+            attr.aria-label="Informacje o koncie"></button>
+  </div>
+
+  <div *ngIf="!showInfo">
+    <app-account-banner [account]="account"></app-account-banner>
+    <div class="mt-5" *ngIf="account.picturePreviews">
+      <div class="row row-cols-1 row-cols-sm-2 mb-3 align-items-center">
+        <app-account-picture-preview *ngFor="let picPreview of account.picturePreviews"
+                                     [picturePreview]="picPreview">
+        </app-account-picture-preview>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showInfo" class="mb-5">
+    <app-account-info [account]="account"></app-account-info>
+
+    <div *ngIf="account.isAdminModifiable && !account.isModifiable">
+      <app-account-admin-settings [account]="account" (onBan)="banAccount()"></app-account-admin-settings>
+    </div>
+    <div *ngIf="account.isModifiable">
+      <app-account-settings [account]="account" (onChange)="account = $event"></app-account-settings>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!--  <p-dialog [(visible)]="showAccountSettingsFlag" header="Ustawienia konta"-->
+<!--            [modal]="true" [dismissableMask]="true" [draggable]="false">-->
+<!--    <app-account-settings [account]="account" (onSubmit)="closeModals()"></app-account-settings>-->
+<!--  </p-dialog>-->
+<!--  <p-dialog [(visible)]="showAdminAccountSettingsFlag" header="Ustawienia administratorskie konta"-->
+<!--            [modal]="true" [dismissableMask]="true" [draggable]="false">-->
+<!--    <app-account-admin-settings [account]="account" (onBan)="banAccount()"></app-account-admin-settings>-->
+<!--  </p-dialog>-->
+
+
+
 
 <!--    <button pButton pRipple label="Ustawienia" icon="bi bi-gear-fill" class="px-3"-->
 <!--            attr.aria-label="Ustawienia administratorskie konta {{account.nickname}}"-->
@@ -15,48 +60,6 @@
 <!--            (click)="showAccountSettingsFlag = true"-->
 <!--            *ngIf="account.isModifiable">-->
 <!--    </button>-->
-
-  </div>
-
-  <div class="text-center mb-3">
-    <h2 class="font-weight-bold mb-2">Szczegóły konta</h2>
-    <h4>
-      <span class="d-flex justify-content-center align-items-center mb-4 mb-lg-3">
-        <span class="bi bi-person-fill"></span>
-        <span>{{account.nickname}}</span>
-        <span *ngIf="account.isModifiable">&nbsp;(ty)</span>
-      </span>
-    </h4>
-  </div>
-  <ul class="d-flex flex-column flex-md-row justify-content-around align-items-center">
-    <li *ngIf="account.isModifiable">
-        <span class="li-item mt-2 mt-lg-0 w-100">
-          <span class="bi bi-envelope mr-1"></span>
-          <b>Adres e-mail:</b>
-        </span>
-        <span class="text-center w-100">
-          {{account.email}}
-        </span>
-    </li>
-    <li>
-        <span class="li-item mt-2 mt-lg-0 w-100">
-          <span class="bi bi-calendar mr-1"></span>
-          <b>Konto utworzone:</b>
-        </span>
-        <span class="text-center w-100">
-          {{account.accountCreated | date:"hh:mm, dd/MM/yyyy"}}
-        </span>
-    </li>
-    <li>
-        <span class="li-item mt-2 mt-lg-0 w-100">
-          <span class="bi bi-images mr-1"></span>
-          <b>Ilość obrazków:</b>
-        </span>
-        <span class="text-center w-100">
-          {{account.picturePreviews.length}}
-        </span>
-    </li>
-  </ul>
 
 <!--  <div class="my-4 mb-md-5 px-2" *ngIf="account.pictures.length">-->
 <!--    <p-dataView #dv [value]="account.pictures" [paginator]="true" [rows]="10" filterBy="name">-->
@@ -88,15 +91,3 @@
 <!--  <div class="my-4 px-2" *ngIf="!account.pictures.length">-->
 <!--    <p class="text-muted text-center">Ten użytkownik nie zapostował jeszcze żadnego obrazka.</p>-->
 <!--  </div>-->
-
-
-  <p-dialog [(visible)]="showAccountSettingsFlag" header="Ustawienia konta"
-            [modal]="true" [dismissableMask]="true" [draggable]="false">
-    <app-account-settings [account]="account" (onSubmit)="closeModals()"></app-account-settings>
-  </p-dialog>
-  <p-dialog [(visible)]="showAdminAccountSettingsFlag" header="Ustawienia administratorskie konta"
-            [modal]="true" [dismissableMask]="true" [draggable]="false">
-    <app-account-admin-settings [account]="account" (onBan)="banAccount()"></app-account-admin-settings>
-  </p-dialog>
-
-</div>

@@ -1,25 +1,30 @@
-import {Component, ViewChild} from '@angular/core';
-import {map, Observable} from "rxjs";
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {map, Observable, Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
 import {AccountModel} from "../../../../Models/ApiModels/Get/AccountModel";
-import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
 import {LocationServiceService} from "../../../../Services/helpers/location-service.service";
 import {MessageService} from "primeng/api";
 import {Title} from "@angular/platform-browser";
+import {PictureDetailsServiceService} from "../../../../Services/data/picture-details-service.service";
+import {CacheServiceService} from "../../../../Services/data/cache-service.service";
 
 @Component({
   selector: 'app-account-details',
   templateUrl: './account-details.component.html',
   styleUrls: ['./account-details.component.scss']
 })
-export class AccountDetailsComponent {
+export class AccountDetailsComponent implements OnInit, OnDestroy {
   id: Observable<string>;
   account!: AccountModel;
+  showInfo: boolean = false;
+
 
   @ViewChild('dv') dataView: any;
   showAccountSettingsFlag: boolean = false;
   showAdminAccountSettingsFlag: boolean = false;
+
+  picDeletedSubscription: Subscription = new Subscription();
 
   constructor(
     private router: Router,
@@ -27,6 +32,7 @@ export class AccountDetailsComponent {
     private messageService: MessageService,
     private httpService: HttpServiceService,
     private locationService: LocationServiceService,
+    private pictureDetailsService: PictureDetailsServiceService,
     private title: Title
   ) {
     this.id = route.params.pipe(map(p => p['id']));
@@ -35,7 +41,18 @@ export class AccountDetailsComponent {
         this.httpService.getAccountRequest(val)
           .subscribe(this.initialObserver);
       }
-    })
+    });
+  }
+
+  ngOnInit() {
+    this.picDeletedSubscription = this.pictureDetailsService.pictureDeletedSubject.subscribe({
+      next: (val) => {
+        this.account.picturePreviews = this.account.picturePreviews.filter(p => p.id !== val);
+      }
+    });
+  }
+  ngOnDestroy() {
+    this.picDeletedSubscription.unsubscribe();
   }
 
   filter($event: any) {
@@ -70,7 +87,7 @@ export class AccountDetailsComponent {
   private initialObserver = {
     next: (acc: AccountModel) => {
       this.account = acc;
-      this.title.setTitle(`PicturesUI - Użytkownik ${acc.nickname}`);
+      this.title.setTitle(`PicturesUI - ${acc.nickname}`);
     },
     error: () => {
       this.router.navigate(['/error404']);

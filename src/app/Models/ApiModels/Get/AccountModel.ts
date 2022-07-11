@@ -5,6 +5,9 @@ export interface AccountModel {
   roleId: string;
   nickname: string;
   email: string;
+  profilePicUrl: string;
+  backgroundPicUrl: string;
+  accountDescription: string;
   picturePreviews: PicturePreviewModel[];
   accountCreated: string;
 

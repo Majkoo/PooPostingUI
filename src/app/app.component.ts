@@ -80,7 +80,8 @@ export class AppComponent implements OnInit{
   }
 
   canShowSidebar() {
-    return  !this.router.url.startsWith('/error') &&
+    return  !this.router.url.startsWith('/account') &&
+            !this.router.url.startsWith('/error') &&
             !this.router.url.startsWith('/auth');
   }
 

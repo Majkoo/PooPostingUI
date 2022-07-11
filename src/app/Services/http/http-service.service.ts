@@ -190,9 +190,9 @@ export class HttpServiceService {
         data
       );
   }
-  updateAccountRequest(data: PutAccountModel) {
+  updateAccountRequest(data: FormData) {
     return this.http
-      .post<boolean>(
+      .post<AccountModel>(
         `${this.config.getConfig().picturesApiUrl}/api/account/update`,
         data
       );

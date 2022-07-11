@@ -5,7 +5,7 @@
       {{comment.accountPreview.nickname}}
     </b><b>:</b>
   </div>
-  <button pButton pRipple type="button" *ngIf="comment.isModifiable"
+  <button pButton pRipple type="button" *ngIf="comment.isModifiable || comment.isAdminModifiable"
           icon="bi bi-x" class="p-button p-0 p-button-danger" (click)="onCommentDelete()">
   </button>
 </div>

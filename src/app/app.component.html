@@ -8,7 +8,7 @@
     <main class="container" *ngIf="isLoaded">
       <div class="row justify-content-center">
 
-        <div class="col-12 col-md-7 col-lg-7 order-2 order-md-1 mt-4 p-0">
+        <div class="col-12 order-2 order-md-1 mt-4 p-0" [ngClass]="canShowSidebar() ? 'col-md-7 col-lg-7' : ''">
           <router-outlet *ngIf="isLoaded"></router-outlet>
         </div>
 

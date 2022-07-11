@@ -1,16 +1,16 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {PictureModel} from "../../../../../Models/ApiModels/Get/PictureModel";
-import {HttpServiceService} from "../../../../../Services/http/http-service.service";
-import {CommentModel} from "../../../../../Models/ApiModels/Get/CommentModel";
+import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
+import {HttpServiceService} from "../../../../Services/http/http-service.service";
+import {CommentModel} from "../../../../Models/ApiModels/Get/CommentModel";
 import {MessageService} from "primeng/api";
-import {ItemName} from "../../../../../Regexes/ItemName";
+import {ItemName} from "../../../../Regexes/ItemName";
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {ConfigServiceService} from "../../../../../Services/data/config-service.service";
+import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {Clipboard} from "@angular/cdk/clipboard";
-import {SelectOption} from "../../../../../Models/QueryModels/SelectOption";
-import {PutPictureModel} from "../../../../../Models/ApiModels/Post/PutPictureModel";
-import {PictureDetailsServiceService} from "../../../../../Services/data/picture-details-service.service";
-import {CacheServiceService} from "../../../../../Services/data/cache-service.service";
+import {SelectOption} from "../../../../Models/QueryModels/SelectOption";
+import {PutPictureModel} from "../../../../Models/ApiModels/Post/PutPictureModel";
+import {PictureDetailsServiceService} from "../../../../Services/data/picture-details-service.service";
+import {CacheServiceService} from "../../../../Services/data/cache-service.service";
 
 @Component({
   selector: 'app-picture-details-modal',
@@ -186,7 +186,7 @@ export class PictureDetailsModalComponent implements OnInit {
   submitDesc(){
     this.awaitSubmit = true;
     let formData = new FormData();
-    formData.append("description", this.changeDesc.get('desc')?.value)
+    formData.append("description", this.changeDesc.get('desc')?.value);
     this.messageService.clear();
     this.postChanges(formData);
   }

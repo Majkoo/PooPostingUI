@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {MessageService} from "primeng/api";
-import {map, Observable} from "rxjs";
+import {map, Observable, Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PictureModel} from "../../../../Models/ApiModels/Get/PictureModel";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
@@ -34,6 +34,9 @@ export class PictureDetailsComponent implements OnInit {
   showAdminSettingsFlag: boolean = false;
   showShareFlag: boolean = false;
 
+  picDeletedSubscription: Subscription = new Subscription();
+  picChangedSubscription: Subscription = new Subscription();
+
   constructor(
     private cacheService: CacheServiceService,
     private locationService: LocationServiceService,
@@ -51,7 +54,7 @@ export class PictureDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pictureDetailsService.pictureDeletedSubject.subscribe({
+    this.picDeletedSubscription = this.pictureDetailsService.pictureDeletedSubject.subscribe({
       next: (val: string) => {
         if (val === this.picture.id) {
           this.cacheService.cachedPictures = this.cacheService.getCachedPictures().filter(p => p.id !== this.picture.id);
@@ -59,13 +62,17 @@ export class PictureDetailsComponent implements OnInit {
         }
       }
     })
-    this.pictureDetailsService.pictureChangedSubject.subscribe({
+    this.picChangedSubscription = this.pictureDetailsService.pictureChangedSubject.subscribe({
       next: (val: PictureModel) => {
         if (val.id === this.picture.id) {
           this.picture = val;
         }
       }
     });
+  }
+  ngOnDestroy() {
+    this.picDeletedSubscription.unsubscribe();
+    this.picChangedSubscription.unsubscribe();
   }
 
   like() {
