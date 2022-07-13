@@ -64,7 +64,7 @@
 
   <p-dialog [(visible)]="showShareFlag" header="Udostępnij"
             [modal]="true" [dismissableMask]="true" [draggable]="false">
-    <app-picture-share (onCopy)="showShareFlag = false" [pictureId]="picture.id"></app-picture-share>
+    <app-share-modal (onCopy)="showShareFlag = false" [id]="picture.id" itemType="picture"></app-share-modal>
   </p-dialog>
 
 </div>
