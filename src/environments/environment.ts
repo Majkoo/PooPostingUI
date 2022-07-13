@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  appWebUrl: "http://localhost:4200",
+  picturesApiUrl: "https://dev-pictures-api.migra.ml",
+  emailApiUrl: "https://email-api.migra.ml",
+  captchaKey: "6Lfdv78eAAAAAJZcBW3ymM-3yaKieXyTTXFPNHcm"
 };
 
 /*

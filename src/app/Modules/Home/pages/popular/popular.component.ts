@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PopularModel} from "../../../../Models/ApiModels/Get/PopularModel";
 import {HttpServiceService} from "../../../../Services/http/http-service.service";
-import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {SelectOption} from "../../../../Models/QueryModels/SelectOption";
 import {Title} from "@angular/platform-browser";
 

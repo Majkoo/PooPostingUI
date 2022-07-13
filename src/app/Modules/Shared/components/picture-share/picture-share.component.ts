@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import {MessageService} from "primeng/api";
-import {Router} from "@angular/router";
-import {ConfigServiceService} from "../../../../Services/data/config-service.service";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-picture-share',
@@ -15,13 +14,12 @@ export class PictureShareComponent implements OnInit {
   url: string = "";
 
   constructor(
-    private configService: ConfigServiceService,
     private messageService: MessageService,
     private clipboard: Clipboard,
   ) { }
 
   ngOnInit() {
-    this.url = `${this.configService.getConfig().appWebUrl}/picture/${this.pictureId}`;
+    this.url = `${environment.appWebUrl}/picture/${this.pictureId}`;
   }
 
   copyUrl(textToCopy: string) {

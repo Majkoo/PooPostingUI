@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 import {BlockSpace} from "../../../../Regexes/BlockSpace";
 import {ItemName} from "../../../../Regexes/ItemName";
 import {Title} from "@angular/platform-browser";
-import {ConfigServiceService} from "../../../../Services/data/config-service.service";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-register',
@@ -31,18 +31,17 @@ export class RegisterComponent implements OnInit {
   }
 
   constructor(
-    private configService: ConfigServiceService,
     private httpService: HttpServiceService,
     private message: MessageService,
     private router: Router,
     private title: Title,
   ) {
-    this.siteKey = this.configService.getConfig().captchaKey;
+    this.siteKey = environment.captchaKey;
     this.title.setTitle(`PicturesUI - Rejestracja`);
   }
 
   ngOnInit(): void {
-    this.appUrl = this.configService.getConfig().appWebUrl;
+    this.appUrl = environment.appWebUrl;
     this.isNickNameTaken = false;
     this.form = new UntypedFormGroup({
       nickname: new UntypedFormControl(null, [

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ErrorLogModel} from "../../Models/JsonModels/ErrorLogModel";
 import {PostSendLogsModel} from "../../Models/ApiModels/Post/PostSendLogsModel";
-import {ConfigServiceService} from "../data/config-service.service";
 import {CacheServiceService} from "../data/cache-service.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,6 @@ export class EmailBuilderServiceService {
 
   constructor(
     private cacheService: CacheServiceService,
-    private configService: ConfigServiceService,
   ) {
 
   }
@@ -21,7 +20,7 @@ export class EmailBuilderServiceService {
       firstName: this.cacheService.getCachedUserAccount().nickname,
       emailAddress: this.cacheService.getCachedUserAccount().email,
       text: userMsg,
-      sendingApp: this.configService.getConfig().appWebUrl,
+      sendingApp: environment.appWebUrl,
       jsonLogsAttachment: errorLogs.errors.length ? JSON.stringify(errorLogs, null, '\t') : ""
     };
     return logs;

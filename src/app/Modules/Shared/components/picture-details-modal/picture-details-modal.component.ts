@@ -5,12 +5,11 @@ import {CommentModel} from "../../../../Models/ApiModels/Get/CommentModel";
 import {MessageService} from "primeng/api";
 import {ItemName} from "../../../../Regexes/ItemName";
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {ConfigServiceService} from "../../../../Services/data/config-service.service";
 import {Clipboard} from "@angular/cdk/clipboard";
 import {SelectOption} from "../../../../Models/QueryModels/SelectOption";
-import {PutPictureModel} from "../../../../Models/ApiModels/Post/PutPictureModel";
 import {PictureDetailsServiceService} from "../../../../Services/data/picture-details-service.service";
 import {CacheServiceService} from "../../../../Services/data/cache-service.service";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-picture-details-modal',
@@ -74,7 +73,6 @@ export class PictureDetailsModalComponent implements OnInit {
   constructor(
     private httpService: HttpServiceService,
     private messageService: MessageService,
-    private configService: ConfigServiceService,
     private pictureDetailsService: PictureDetailsServiceService,
     private clipboard: Clipboard,
     private cacheService: CacheServiceService,
@@ -93,7 +91,7 @@ export class PictureDetailsModalComponent implements OnInit {
     });
     this.pictureDetailsService.showModalSubject.subscribe({
       next: (val) => {
-        this.shareUrl = `${this.configService.getConfig().appWebUrl}/picture/${val!.id}`;
+        this.shareUrl = `${environment.appWebUrl}/picture/${val!.id}`;
         this.isLoggedOn = this.cacheService.getUserLoggedOnState();
         this.picture = val;
       }
