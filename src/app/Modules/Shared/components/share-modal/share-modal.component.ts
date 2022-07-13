@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ConfigServiceService} from "../../../../Services/data/config-service.service";
+import { Clipboard } from '@angular/cdk/clipboard';
 import {MessageService} from "primeng/api";
-import {Clipboard} from "@angular/cdk/clipboard";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-share-modal',
@@ -15,13 +15,12 @@ export class ShareModalComponent implements OnInit {
   url: string = "";
 
   constructor(
-    private configService: ConfigServiceService,
     private messageService: MessageService,
     private clipboard: Clipboard,
   ) { }
 
   ngOnInit() {
-    this.url = `${this.configService.getConfig().appWebUrl}/${this.itemType}/${this.id}`;
+    this.url = `${environment.appWebUrl}/${this.itemType}/${this.id}`;
   }
 
   copyUrl(textToCopy: string) {

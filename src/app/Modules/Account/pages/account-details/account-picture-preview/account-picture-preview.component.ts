@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {PicturePreviewModel} from "../../../../../Models/ApiModels/Get/PicturePreviewModel";
 import {PictureDetailsServiceService} from "../../../../../Services/data/picture-details-service.service";
 

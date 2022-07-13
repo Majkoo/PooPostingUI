@@ -15,14 +15,7 @@ import { DateAgoPipe } from './Pipes/date-ago.pipe';
 import {ReportModule} from "./Modules/Report/report.module";
 import {BrowserModule} from "@angular/platform-browser";
 import {ServiceWorkerModule} from "@angular/service-worker";
-import {ConfigServiceService} from "./Services/data/config-service.service";
 import {TitleCasePipe} from "@angular/common";
-
-export function initializerFn(configService: ConfigServiceService){
-  return () => {
-    return configService.load();
-  };
-}
 
 @NgModule({
   declarations: [
@@ -53,12 +46,6 @@ export function initializerFn(configService: ConfigServiceService){
       useClass: HttpErrorInterceptorService,
       multi: true,
     },
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      deps: [ConfigServiceService],
-      useFactory: initializerFn
-    }
   ],
   exports: [
     DateAgoPipe

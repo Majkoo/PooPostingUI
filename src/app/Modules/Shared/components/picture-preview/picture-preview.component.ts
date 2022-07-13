@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { PictureModel } from 'src/app/Models/ApiModels/Get/PictureModel';
-import { ConfigServiceService } from 'src/app/Services/data/config-service.service';
 import { HttpServiceService } from 'src/app/Services/http/http-service.service';
 import {PictureDetailsServiceService} from "../../../../Services/data/picture-details-service.service";
 
@@ -17,7 +16,6 @@ export class PicturePreviewComponent implements OnInit {
   showShare: boolean = false;
 
   constructor(
-    private configService: ConfigServiceService,
     private httpService: HttpServiceService,
     private pictureDetailsService: PictureDetailsServiceService,
   ) { }
