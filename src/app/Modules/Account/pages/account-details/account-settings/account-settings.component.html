@@ -24,6 +24,7 @@
   </div>
 
   <div class="setting mb-5">
+
     <div *ngIf="selectValue === selectOptions[0]" class="mt-2">
 
       <h3 class="mb-4 h2 font-weight-bold">Zmiana hasła</h3>
@@ -82,6 +83,7 @@
       </form>
 
     </div>
+
     <div *ngIf="selectValue === selectOptions[1]" class="mt-2">
 
       <h3 class="mb-4 h2 font-weight-bold">Zmiana adresu e-mail</h3>
@@ -118,6 +120,7 @@
       </form>
 
     </div>
+
     <div *ngIf="selectValue === selectOptions[2]" class="mt-2">
 
       <h3 class="mb-4 h2 font-weight-bold">Zmiana opisu powitalnego</h3>
@@ -155,11 +158,24 @@
       </form>
 
     </div>
+
     <div *ngIf="selectValue === selectOptions[3]" class="mt-2">
-      Ta funkcjonalność ({{selectOptions[3].name}}) wkrótce będzie dostępna!
+
+      <h3 class="mb-4 h2 font-weight-bold">Zmiana obrazka profilowego</h3>
+
+      <app-picture-cropper [config]="{ aspectRatio: 1 }" (onCroppedFileSubmit)="submitChangeProfPic($event)">
+      </app-picture-cropper>
+
     </div>
+
     <div *ngIf="selectValue === selectOptions[4]" class="mt-2">
-      Ta funkcjonalność ({{selectOptions[4].name}}) wkrótce będzie dostępna!
+
+      <h3 class="mb-4 h2 font-weight-bold">Zmiana obrazka w tle</h3>
+
+      <app-picture-cropper [config]="{ aspectRatio: 1336/776 }" (onCroppedFileSubmit)="submitChangeBgPic($event)">
+      </app-picture-cropper>
+
     </div>
+
   </div>
 </div>

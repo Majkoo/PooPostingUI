@@ -7,7 +7,6 @@ import {LocationServiceService} from "../../../../Services/helpers/location-serv
 import {MessageService} from "primeng/api";
 import {Title} from "@angular/platform-browser";
 import {PictureDetailsServiceService} from "../../../../Services/data/picture-details-service.service";
-import {CacheServiceService} from "../../../../Services/data/cache-service.service";
 
 @Component({
   selector: 'app-account-details',
@@ -18,11 +17,7 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   id: Observable<string>;
   account!: AccountModel;
   showInfo: boolean = false;
-
-
-  @ViewChild('dv') dataView: any;
-  showAccountSettingsFlag: boolean = false;
-  showAdminAccountSettingsFlag: boolean = false;
+  showShare: boolean = false;
 
   picDeletedSubscription: Subscription = new Subscription();
 
@@ -36,15 +31,16 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     private title: Title
   ) {
     this.id = route.params.pipe(map(p => p['id']));
+
+  }
+
+  ngOnInit() {
     this.id.subscribe({
       next: (val) => {
         this.httpService.getAccountRequest(val)
           .subscribe(this.initialObserver);
       }
     });
-  }
-
-  ngOnInit() {
     this.picDeletedSubscription = this.pictureDetailsService.pictureDeletedSubject.subscribe({
       next: (val) => {
         this.account.picturePreviews = this.account.picturePreviews.filter(p => p.id !== val);
@@ -55,12 +51,15 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     this.picDeletedSubscription.unsubscribe();
   }
 
-  filter($event: any) {
-    //@ts-ignore
-    this.dataView.filter($event.target.value!, 'contains')
-  }
   return(): void {
     this.locationService.goBack();
+  }
+
+  updateAccount(account: AccountModel) {
+    this.account.accountDescription = account.accountDescription;
+    this.account.profilePicUrl = account.profilePicUrl;
+    this.account.backgroundPicUrl = account.backgroundPicUrl;
+    this.account.email = account.email;
   }
 
   banAccount() {
@@ -77,11 +76,6 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
           }
         },
       })
-  }
-
-  closeModals() {
-    this.showAdminAccountSettingsFlag = false;
-    this.showAccountSettingsFlag = false;
   }
 
   private initialObserver = {

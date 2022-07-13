@@ -1,17 +1,17 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { Clipboard } from '@angular/cdk/clipboard';
-import {MessageService} from "primeng/api";
-import {Router} from "@angular/router";
 import {ConfigServiceService} from "../../../../Services/data/config-service.service";
+import {MessageService} from "primeng/api";
+import {Clipboard} from "@angular/cdk/clipboard";
 
 @Component({
-  selector: 'app-picture-share',
-  templateUrl: './picture-share.component.html',
-  styleUrls: ['./picture-share.component.scss']
+  selector: 'app-share-modal',
+  templateUrl: './share-modal.component.html',
+  styleUrls: ['./share-modal.component.scss']
 })
-export class PictureShareComponent implements OnInit {
+export class ShareModalComponent implements OnInit {
   @Output() onCopy: EventEmitter<any> = new EventEmitter<any>();
-  @Input() pictureId!: string;
+  @Input() id!: string;
+  @Input() itemType!: string;
   url: string = "";
 
   constructor(
@@ -21,7 +21,7 @@ export class PictureShareComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.url = `${this.configService.getConfig().appWebUrl}/picture/${this.pictureId}`;
+    this.url = `${this.configService.getConfig().appWebUrl}/${this.itemType}/${this.id}`;
   }
 
   copyUrl(textToCopy: string) {
@@ -34,4 +34,5 @@ export class PictureShareComponent implements OnInit {
       detail: 'Pomyślnie skopiowano adres obrazka!',
     })
   }
+
 }

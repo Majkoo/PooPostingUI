@@ -1,15 +1,15 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {AccountModel} from "../../../../../Models/ApiModels/Get/AccountModel";
 import {SelectOption} from "../../../../../Models/QueryModels/SelectOption";
-import {FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpServiceService} from "../../../../../Services/http/http-service.service";
 import {MessageService} from "primeng/api";
 import {CustomValidators} from "../../../../../../CustomValidators";
 import {ChangePasswordFormModel} from "../../../../../Models/FormModels/ChangePasswordFormModel";
 import {ChangeAccountDescModel} from "../../../../../Models/FormModels/ChangeAccountDescModel";
-
-class ChangeEmailModel {
-}
+import {ChangeEmailModel} from "../../../../../Models/FormModels/ChangeEmailModel";
+import {concatWith} from "rxjs";
+import {CropperComponent} from "angular-cropperjs";
 
 @Component({
   selector: 'app-account-settings',
@@ -91,10 +91,28 @@ export class AccountSettingsComponent {
     this.httpService.updateAccountRequest(formData)
       .subscribe(this.updateAccountObserver);
   }
+  submitChangeProfPic(dataUrl: Blob) {
+    this.awaitSubmit = true;
+    let formData = new FormData();
+    formData.append('profilePic', dataUrl)
+    this.httpService.updateAccountRequest(formData)
+      .subscribe(this.updateAccountObserver);
+  }
+  submitChangeBgPic(dataUrl: Blob) {
+    this.awaitSubmit = true;
+    let formData = new FormData();
+    formData.append('backgroundPic', dataUrl)
+    this.httpService.updateAccountRequest(formData)
+      .subscribe(this.updateAccountObserver);
+  }
 
   updateAccountObserver = {
     next: (val: AccountModel) => {
-      this.account = val;
+      this.account.accountDescription = val.accountDescription;
+      this.account.profilePicUrl = val.profilePicUrl;
+      this.account.backgroundPicUrl = val.backgroundPicUrl;
+      this.account.email = val.email;
+
       this.onChange.emit(val);
       this.messageService.add({
         severity: "success",

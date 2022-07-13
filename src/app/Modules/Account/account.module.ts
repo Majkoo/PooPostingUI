@@ -12,6 +12,7 @@ import { AccountSettingsComponent } from './pages/account-details/account-settin
 import { AccountAdminSettingsComponent } from './pages/account-details/account-admin-settings/account-admin-settings.component';
 import { AccountInfoComponent } from './pages/account-details/account-info/account-info.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {AngularCropperjsModule} from "angular-cropperjs";
 
 @NgModule({
   declarations: [
@@ -23,12 +24,13 @@ import {ReactiveFormsModule} from "@angular/forms";
     AccountAdminSettingsComponent,
     AccountInfoComponent,
   ],
-  imports: [
-    CommonModule,
-    PrimeNgModule,
-    SharedModule,
-    ReactiveFormsModule,
-    AccountRoutingModule,
-  ]
+    imports: [
+        CommonModule,
+        PrimeNgModule,
+        SharedModule,
+        ReactiveFormsModule,
+        AccountRoutingModule,
+        AngularCropperjsModule,
+    ]
 })
 export class AccountModule { }

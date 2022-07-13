@@ -29,6 +29,7 @@ import {ImageCropperModule} from "ngx-image-cropper";
     exports: [
         PostFormComponent,
         NsfwjsCheckComponent,
+        PictureDetailsComponent,
     ]
 })
 export class PictureModule { }

@@ -12,8 +12,10 @@ import {Error500Component} from "./pages/error500/error500.component";
 import {Error0Component} from "./pages/error0/error0.component";
 import {DateAgoPipe} from "../../Pipes/date-ago.pipe";
 import { PictureDetailsModalComponent } from './components/picture-details-modal/picture-details-modal.component';
-import {PictureShareComponent} from "./components/picture-share/picture-share.component";
 import { CommentComponent } from './components/picture-details-modal/comment/comment.component';
+import { PictureCropperComponent } from './components/picture-cropper/picture-cropper.component';
+import {AngularCropperjsModule} from "angular-cropperjs";
+import { ShareModalComponent } from './components/share-modal/share-modal.component';
 
 const SharedComponents = [
   Error404Component,
@@ -25,23 +27,25 @@ const SharedComponents = [
   AccountPreviewComponent,
   PictureSkeletonComponent,
   DateAgoPipe,
-  PictureShareComponent,
+  PictureDetailsModalComponent,
+  PictureCropperComponent,
+  CommentComponent,
+  ShareModalComponent,
+
 ]
 
 @NgModule({
   declarations: [
     SharedComponents,
-    PictureDetailsModalComponent,
-    CommentComponent,
   ],
   imports: [
     CommonModule,
     PrimeNgModule,
     ReactiveFormsModule,
+    AngularCropperjsModule,
   ],
-    exports: [
-        SharedComponents,
-        PictureDetailsModalComponent
-    ]
+  exports: [
+    SharedComponents,
+  ]
 })
 export class SharedModule { }
