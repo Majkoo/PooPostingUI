@@ -12,13 +12,13 @@
           <p-tag *ngIf="!picture.tags.length">brak_tagów_:(</p-tag>
         </div>
         <div class="ml-auto">
-          <button class="mr-1 p-button-sm py-2" pButton (click)="like()" [disabled]="!isLoggedOn" aria-label="like">
-            <strong class="pr-2">{{picture.likeCount}}</strong>
-            <span class="bi" [ngClass]="picture.likeState === 1 ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'" ></span>
+          <button class="mx-1 py-2 button-strong" pButton (click)="like()" [disabled]="!isLoggedOn" aria-label="like"
+                  icon="bi {{picture.likeState === 1 ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'}}"
+                  label="{{picture.likeCount}}">
           </button>
-          <button class="ml-1 p-button-sm py-2" pButton (click)="dislike()" [disabled]="!isLoggedOn" aria-label="dislike">
-            <strong class="pr-2">{{picture.dislikeCount}}</strong>
-            <span class="bi" [ngClass]="picture.likeState === 2 ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'" ></span>
+          <button class="mx-1 py-2 button-strong" pButton (click)="dislike()" [disabled]="!isLoggedOn" aria-label="dislike"
+                  icon="bi {{picture.likeState === 2 ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'}}"
+                  label="{{picture.dislikeCount}}">
           </button>
         </div>
       </div>

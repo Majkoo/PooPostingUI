@@ -14,7 +14,9 @@
     border-top: none !important;
   }
 }
-
+.button-strong {
+  font-weight: 500 !important;
+}
 .info-box {
   @media screen and (min-width: 768px) {
     width: 35%;

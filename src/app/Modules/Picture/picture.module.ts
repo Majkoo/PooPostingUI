@@ -5,17 +5,18 @@ import {SharedModule} from "../Shared/shared.module";
 import {PrimeNgModule} from "../Prime-ng/prime-ng.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PictureRoutingModule} from "./picture-routing.module";
-import { NsfwjsCheckComponent } from './pages/post-picture/nsfwjs-check/nsfwjs-check.component';
-import { PostFormComponent } from './pages/post-picture/post-form/post-form.component';
-import { CropperComponent } from './pages/post-picture/post-form/cropper/cropper.component';
-import {ImageCropperModule} from "ngx-image-cropper";
+import {PostPictureComponent} from "./pages/post-picture/post-picture.component";
+import { PostCropComponent } from './pages/post-picture/post-crop/post-crop.component';
+import { PostDetailsComponent } from './pages/post-picture/post-details/post-details.component';
+import { PostOverviewComponent } from './pages/post-picture/post-overview/post-overview.component';
 
 @NgModule({
     declarations: [
       PictureDetailsComponent,
-      NsfwjsCheckComponent,
-      PostFormComponent,
-      CropperComponent,
+      PostPictureComponent,
+      PostCropComponent,
+      PostDetailsComponent,
+      PostOverviewComponent,
     ],
     imports: [
       FormsModule,
@@ -24,12 +25,10 @@ import {ImageCropperModule} from "ngx-image-cropper";
       PrimeNgModule,
       ReactiveFormsModule,
       PictureRoutingModule,
-      ImageCropperModule,
     ],
     exports: [
-        PostFormComponent,
-        NsfwjsCheckComponent,
-        PictureDetailsComponent,
+      PictureDetailsComponent,
+      PostPictureComponent,
     ]
 })
 export class PictureModule { }

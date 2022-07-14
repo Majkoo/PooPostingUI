@@ -72,7 +72,7 @@ export class MenusServiceService {
           {
             label: "Wstaw obrazek",
             class: "bi bi-cloud-upload",
-            url: "picture/post"
+            url: "picture/post/crop"
           }
         ]
       },

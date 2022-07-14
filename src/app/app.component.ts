@@ -82,11 +82,8 @@ export class AppComponent implements OnInit{
   canShowSidebar() {
     return  !this.router.url.startsWith('/account') &&
             !this.router.url.startsWith('/error') &&
-            !this.router.url.startsWith('/auth');
-  }
-
-  canShowFooter() {
-    return !this.router.url.startsWith('/home');
+            !this.router.url.startsWith('/auth') &&
+            !this.router.url.startsWith('/picture/post');
   }
 
   onCookieAlertAccept() {

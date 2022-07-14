@@ -28,6 +28,7 @@ import {TableModule} from "primeng/table";
 import {SkeletonModule} from "primeng/skeleton";
 import {ListboxModule} from "primeng/listbox";
 import {OverlayPanelModule} from "primeng/overlaypanel";
+import {StepsModule} from "primeng/steps";
 
 const PrimeNgComponents = [
   ChipsModule,
@@ -59,6 +60,7 @@ const PrimeNgComponents = [
   SkeletonModule,
   ListboxModule,
   OverlayPanelModule,
+  StepsModule,
 
 ]
 

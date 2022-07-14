@@ -87,6 +87,13 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
         })
       }
       default: {
+        if (req.url.endsWith('/picture/create')) {
+          this.message.add({
+            severity:'error',
+            summary: 'Niepowodzenie',
+            detail: 'Nie udało się zapostować obrazka. Przepraszamy za utrudnienia.'
+          });
+        }
         if (status.toString().startsWith("5")) {
           return throwError(() => {
             this.router.navigate(['/error500']);

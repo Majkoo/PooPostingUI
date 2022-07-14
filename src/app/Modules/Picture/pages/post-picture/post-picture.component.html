@@ -1,2 +1,13 @@
-<app-nsfwjs-check *ngIf="currentStep === 1" (onSubmit)="goto(2)"></app-nsfwjs-check>
-<app-post-form *ngIf="currentStep === 2" (onBack)="goto(1)"></app-post-form>
+<div>
+  <h1 class="h1 font-weight-bold text-left mb-4">
+    Wstaw zawartość na stronę
+  </h1>
+  <div class="border p-3 rounded mb-3">
+    <p-steps [model]="items" [readonly]="true"></p-steps>
+  </div>
+  <div class="w-100">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+

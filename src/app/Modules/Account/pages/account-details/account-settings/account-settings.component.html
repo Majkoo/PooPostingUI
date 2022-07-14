@@ -163,7 +163,7 @@
 
       <h3 class="mb-4 h2 font-weight-bold">Zmiana obrazka profilowego</h3>
 
-      <app-picture-cropper [config]="{ aspectRatio: 1 }" (onCroppedFileSubmit)="submitChangeProfPic($event)">
+      <app-picture-cropper [config]="{ aspectRatio: 1, resizeToWidth: 256 }" (onCroppedFileSubmit)="submitChangeProfPic($event)">
       </app-picture-cropper>
 
     </div>
@@ -172,7 +172,7 @@
 
       <h3 class="mb-4 h2 font-weight-bold">Zmiana obrazka w tle</h3>
 
-      <app-picture-cropper [config]="{ aspectRatio: 1336/776 }" (onCroppedFileSubmit)="submitChangeBgPic($event)">
+      <app-picture-cropper [config]="{ aspectRatio: 1336/776, resizeToWidth: 1336 }" (onCroppedFileSubmit)="submitChangeBgPic($event)">
       </app-picture-cropper>
 
     </div>
