@@ -21,20 +21,21 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
     private sessionStorageService: SessionStorageServiceService,
     ) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req)
-      .pipe(
-        retryWhen((error) => {
-          return error.pipe(
-            mergeMap((error, index) => {
-              if ((index < retryCount) && !((req.method === "GET") && (error.status === 404))) return of(error).pipe(delay(delayMs));
-              throw error;
-            })
-          );
-        }),
-        catchError((error: HttpErrorResponse) => {
-          return this.handleError(error.status, req, error);
-        })
-      );
+    return next.handle(req);
+    // return next.handle(req)
+    //   .pipe(
+    //     retryWhen((error) => {
+    //       return error.pipe(
+    //         mergeMap((error, index) => {
+    //           if ((index < retryCount) && !((req.method === "GET") && (error.status === 404))) return of(error).pipe(delay(delayMs));
+    //           throw error;
+    //         })
+    //       );
+    //     }),
+    //     catchError((error: HttpErrorResponse) => {
+    //       return this.handleError(error.status, req, error);
+    //     })
+    //   );
   }
 
   private handleError(status: number, req: HttpRequest<any>, error: HttpErrorResponse) {

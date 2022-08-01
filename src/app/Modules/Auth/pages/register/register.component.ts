@@ -8,6 +8,7 @@ import {BlockSpace} from "../../../../Regexes/BlockSpace";
 import {ItemName} from "../../../../Regexes/ItemName";
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../../../environments/environment";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-register',
@@ -77,8 +78,13 @@ export class RegisterComponent implements OnInit {
         this.message.add({severity:'success', summary: 'Sukces', detail: 'Zarejestrowano pomyślnie. Przeniesiono cię na stronę logowania.'});
       },
       error: (err) => {
+        if (err.status === 200) {
+          this.router.navigate(["/auth/login"]);
+          this.message.add({severity:'success', summary: 'Sukces', detail: 'Zarejestrowano pomyślnie. Przeniesiono cię na stronę logowania.'});
+          return
+        }
         this.message.add({severity:'error', summary: 'Sukces', detail: 'Nie udało się zarejestrować. Sprawdź błędy.'});
-        if (err.error.errors || err.error.errors.Nickname === "That nickname is taken") {
+        if (err.error.errors && err.error.errors.Nickname === "That nickname is taken") {
           this.isNickNameTaken = true;
         }
         this.enableForm();
