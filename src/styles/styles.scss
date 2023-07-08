@@ -1,7 +1,7 @@
 @import "themes/_variables";
-@import "~bootstrap/scss/bootstrap";
-@import "~bootstrap-icons";
-@import "~primeicons/primeicons.css";
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons";
+@import "primeicons/primeicons.css";
 @import "additional";
 
 @media screen and (min-width: 1200px){
@@ -22,6 +22,14 @@
 }
 
 $navbar-height: 75px;
+
+.popup {
+  background-color: white;
+  @media screen and (max-width: 767px) {
+    width: 100vw;
+    height: 100vh;
+  }
+}
 
 body {
   overflow-y: scroll !important;
@@ -111,6 +119,9 @@ a:hover {
 .gap-2 {
   gap: 0.5rem;
 }
+.gap-3 {
+  gap: 1rem;
+}
 
 .account-link {
   overflow-wrap: break-word;
@@ -139,7 +150,7 @@ a:hover {
   right: 0.75em;
   font-size: 0.875rem;
   padding: 0.2rem 0.5rem;
-  @media only screen and(max-width: 766px) {
+  @media only screen and (max-width: 766px) {
     transform: translateX(-50%);
     bottom: 11rem;
     left: 50%;
@@ -194,12 +205,64 @@ a:hover {
   bottom: 0.25rem !important;
 }
 .big-modal {
-  max-height: 90vh !important;
-  height: max-content !important;
-  width: 100%;
+  height: 100vh !important;
+  width: 100vw;
   max-width: 1400px;
   position: absolute;
 }
 .p-overlaypanel-content {
   padding: 0 !important;
+}
+.prof-link {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  .prof-pic {
+    width: 1.5rem;
+    height: 1.5rem;
+    aspect-ratio: 1;
+    border-radius: 40%;
+    object-fit: cover;
+    font-size: 6px;
+  }
+  .prof-name {
+    color: #424242;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  transition: 0.1s ease-in-out;
+  &:hover {
+    opacity: 0.85;
+    .prof-name {
+      color: $primary-active-color;
+    }
+  }
+}
+
+.prof-link-lg {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  .prof-pic {
+    width: 2.5rem;
+    height: 2.5rem;
+    aspect-ratio: 1;
+    border-radius: 40%;
+    object-fit: cover;
+    font-size: .25rem;
+  }
+  .prof-name {
+    color: #424242;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  transition: 0.1s ease-in-out;
+  &:hover {
+    opacity: 0.85;
+    .prof-name {
+      color: $primary-active-color;
+    }
+  }
 }

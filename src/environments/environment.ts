@@ -5,9 +5,8 @@
 export const environment = {
   production: false,
   appWebUrl: "http://localhost:4200",
-  picturesApiUrl: "https://dev-pictures-api.migra.ml",
+  picturesApiUrl: "https://localhost:5001",
   emailApiUrl: "https://email-api.migra.ml",
-  captchaKey: "6Lfdv78eAAAAAJZcBW3ymM-3yaKieXyTTXFPNHcm"
 };
 
 /*
