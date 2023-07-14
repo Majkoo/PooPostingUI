@@ -1,6 +1,6 @@
 {
-  "name": "pooposting-view",
-  "version": "b3.2.0",
+  "name": "pooposting-ui",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --hmr",
