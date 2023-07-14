@@ -38,8 +38,7 @@
               "src/styles/themes/theme-default.scss",
               "node_modules/primeng/resources/primeng.min.css"
             ],
-            "scripts": [
-            ],
+            "scripts": [],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },
@@ -112,11 +111,23 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "caa407bc-2fe1-4b27-9220-937718c4eacb"
+    "analytics": "caa407bc-2fe1-4b27-9220-937718c4eacb",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
