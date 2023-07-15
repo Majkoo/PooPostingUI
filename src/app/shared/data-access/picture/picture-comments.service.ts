@@ -18,7 +18,7 @@ export class PictureCommentsService {
   getPictureComments(picId: string, pageSize: number, pageNumber: number): Observable<CommentDtoPaged> {
     return this.httpClient
       .get<CommentDtoPaged>(
-        `${environment.picturesApiUrl}/api/picture/${picId}/comment`,
+        `${environment.picturesApiUrl}/picture/${picId}/comment`,
         {
           params: new HttpParams()
             .set("PageSize", pageSize)
@@ -30,7 +30,7 @@ export class PictureCommentsService {
   postComment(picId: string, data: PutPostCommentDto): Observable<CommentDto> {
     return this.httpClient
       .post<CommentDto>(
-        `${environment.picturesApiUrl}/api/picture/${picId}/comment`,
+        `${environment.picturesApiUrl}/picture/${picId}/comment`,
         data,
         { responseType: "json" },
       );

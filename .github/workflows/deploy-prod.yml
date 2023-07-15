@@ -50,4 +50,4 @@ jobs:
 
         - name: Deploy to Production
           run: |
-            ssh -o StrictHostKeyChecking=no -p ${{ secrets.PRODUCTION_SSH_PORT }} ${{ secrets.PRODUCTION_SSH_USERNAME }}@${{ secrets.PRODUCTION_SSH_HOST }} 'cd ${{ vars.REPO_PATH }} && sudo git checkout main && sudo git pull && sudo ng build && sudo ng build && sudo cp dist/* -t ${{ vars.OUTPUT_DIR_PROD }} -r && sudo rm -rf dist/'
+            ssh -o StrictHostKeyChecking=no -p ${{ secrets.PRODUCTION_SSH_PORT }} ${{ secrets.PRODUCTION_SSH_USERNAME }}@${{ secrets.PRODUCTION_SSH_HOST }} 'cd ${{ vars.REPO_PATH }} && sudo git checkout main && sudo git pull && sudo ng build && sudo ng build --configuration=prod-server && sudo cp dist/* -t ${{ vars.OUTPUT_DIR_PROD }} -r && sudo rm -rf dist/'

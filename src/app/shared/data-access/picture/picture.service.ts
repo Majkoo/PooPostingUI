@@ -17,14 +17,14 @@ export class PictureService {
   getPictureById(id: string): Observable<PictureDto>{
     return this.httpClient
       .get<PictureDto>(
-        `${environment.picturesApiUrl}/api/picture/${id}`,
+        `${environment.picturesApiUrl}/picture/${id}`,
         { responseType: "json" }
       );
   }
   getPictures(pageSize: number, pageNumber: number): Observable<PictureDtoPaged>{
     return this.httpClient
       .get<PictureDtoPaged>(
-        `${environment.picturesApiUrl}/api/picture`,
+        `${environment.picturesApiUrl}/picture`,
         {
           responseType: "json",
           params: new HttpParams()
@@ -36,7 +36,7 @@ export class PictureService {
   getPersonalizedPictures(pageSize: number): Observable<PictureDtoPaged>{
     return this.httpClient
       .get<PictureDtoPaged>(
-        `${environment.picturesApiUrl}/api/picture/personalized`,
+        `${environment.picturesApiUrl}/picture/personalized`,
         {
           responseType: "json",
           params: new HttpParams()
@@ -47,7 +47,7 @@ export class PictureService {
   searchPictures(pageSize: number, pageNumber: number, searchPhrase: string): Observable<PictureDtoPaged>{
     return this.httpClient
       .get<PictureDtoPaged>(
-        `${environment.picturesApiUrl}/api/picture/search`,
+        `${environment.picturesApiUrl}/picture/search`,
         {
           responseType: "json",
           params: new HttpParams()
@@ -61,7 +61,7 @@ export class PictureService {
   postPicture(dto: FormData): Observable<any> {
     return this.httpClient
       .post(
-        `${environment.picturesApiUrl}/api/picture/post`,
+        `${environment.picturesApiUrl}/picture/post`,
         dto,
     { responseType: "json" }
       );
@@ -70,7 +70,7 @@ export class PictureService {
   deletePicture(id: string): Observable<null>{
     return this.httpClient
       .delete<null>(
-        `${environment.picturesApiUrl}/api/picture/${id}`,
+        `${environment.picturesApiUrl}/picture/${id}`,
         { responseType: "json" }
       );
   }

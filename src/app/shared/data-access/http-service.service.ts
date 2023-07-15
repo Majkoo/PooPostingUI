@@ -34,21 +34,21 @@ export class HttpServiceService {
   getPicturesRequest(params: HttpParams): Observable<PictureDtoPaged>{
     return this.http
       .get<PictureDtoPaged>(
-      `${environment.picturesApiUrl}/api/picture`,
+      `${environment.picturesApiUrl}/picture`,
       {params: params}
     );
   }
   getPersonalizedPicturesRequest(): Observable<PictureDto[]>{
     return this.http
       .get<PictureDto[]>(
-        `${environment.picturesApiUrl}/api/picture/personalized`,
+        `${environment.picturesApiUrl}/picture/personalized`,
         {params: this.params.getGetPersonalizedPicParams()}
       );
   }
   searchPicturesRequest(): Observable<PictureDtoPaged>{
     return this.http
       .get<PictureDtoPaged>(
-        `${environment.picturesApiUrl}/api/picture/search`,
+        `${environment.picturesApiUrl}/picture/search`,
         {params: this.params.getSearchPicParams()}
       );
   }
@@ -56,65 +56,65 @@ export class HttpServiceService {
   getPictureRequest(id?: string): Observable<PictureDto>{
     return this.http
       .get<PictureDto>(
-      `${environment.picturesApiUrl}/api/picture/${id}`
+      `${environment.picturesApiUrl}/picture/${id}`
     );
   }
   getPictureLikesRequest(id?: string): Observable<LikeDto[]>{
     return this.http
       .get<LikeDto[]>(
-        `${environment.picturesApiUrl}/api/picture/${id}/like`
+        `${environment.picturesApiUrl}/picture/${id}/like`
       );
   }
   searchAccountsRequest(): Observable<AccountDtoPaged>{
     return this.http
       .get<AccountDtoPaged>(
-        `${environment.picturesApiUrl}/api/account`,
+        `${environment.picturesApiUrl}/account`,
         {params: this.params.getSearchAccParams()}
       );
   }
   getAccountRequest(id: string): Observable<AccountDto>{
     return this.http
       .get<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/${id}`
+        `${environment.picturesApiUrl}/account/${id}`
       );
   }
   getAccountLikesRequest(id?: string): Observable<LikeDto[]>{
     return this.http
       .get<LikeDto[]>(
-        `${environment.picturesApiUrl}/api/account/${id}/likes`
+        `${environment.picturesApiUrl}/account/${id}/likes`
       );
   }
   getPopularRequest(): Observable<PopularDto> {
     return this.http
       .get<PopularDto>(
-        `${environment.picturesApiUrl}/api/popular`
+        `${environment.picturesApiUrl}/popular`
       );
   }
   postLsLoginRequest(data: VerifyJwtDto): Observable<UserState> {
     return this.http
       .post<UserState>(
-        `${environment.picturesApiUrl}/api/account/auth/verifyJwt`,
+        `${environment.picturesApiUrl}/account/auth/verifyJwt`,
         data,
         {responseType: "json",});
   }
   postPictureRequest(data: FormData): Observable<any> {
     return this.http
       .post(
-        `${environment.picturesApiUrl}/api/picture/post`,
+        `${environment.picturesApiUrl}/picture/post`,
         data
       );
   }
   postClassifyPictureRequest(data: FormData): Observable<PictureClassificationDto> {
     return this.http
       .post<PictureClassificationDto>(
-        `${environment.picturesApiUrl}/api/picture/classify`,
+        `${environment.picturesApiUrl}/picture/classify`,
         data
       );
   }
   postCommentRequest(picId: string, data: PutPostCommentDto): Observable<CommentDto> {
     return this.http
       .post<CommentDto>(
-        `${environment.picturesApiUrl}/api/picture/${picId}/comment`,
+        `${environment.picturesApiUrl}/picture/${picId}/comment`,
         data
       );
   }
@@ -122,7 +122,7 @@ export class HttpServiceService {
   deleteCommentRequest(picId: string, commId: string): Observable<CommentDto> {
     return this.http
       .delete<CommentDto>(
-        `${environment.picturesApiUrl}/api/picture/${picId}/comment/${commId}`,
+        `${environment.picturesApiUrl}/picture/${picId}/comment/${commId}`,
         {}
       );
   }
@@ -130,14 +130,14 @@ export class HttpServiceService {
   postSendLogsRequest(data: PostLogsDto) {
     return this.http
       .post<boolean>(
-        `${environment.emailApiUrl}/api/contact/sendErrorEmail`,
+        `${environment.emailApiUrl}/contact/sendErrorEmail`,
         data
       )
   }
   postCheckEmailSendingAvailability() {
     return this.http
       .post<boolean>(
-        `${environment.emailApiUrl}/api/contact/check`,
+        `${environment.emailApiUrl}/contact/check`,
         {}
       )
   }
@@ -145,27 +145,27 @@ export class HttpServiceService {
   deletePictureRequest(id: string): Observable<any> {
     return this.http
       .delete(
-        `${environment.picturesApiUrl}/api/picture/${id}`
+        `${environment.picturesApiUrl}/picture/${id}`
       );
   }
   deleteAccountRequest(id: string): Observable<any> {
     return this.http
       .delete(
-        `${environment.picturesApiUrl}/api/account/${id}`
+        `${environment.picturesApiUrl}/account/${id}`
       );
   }
 
   patchPictureLikeRequest(id: string): Observable<PictureDto> {
     return this.http
       .patch<PictureDto>(
-        `${environment.picturesApiUrl}/api/picture/${id}/vote-up`,
+        `${environment.picturesApiUrl}/picture/${id}/vote-up`,
         {}
       );
   }
   patchPictureDislikeRequest(id: string): Observable<PictureDto> {
     return this.http
       .patch<PictureDto>(
-        `${environment.picturesApiUrl}/api/picture/${id}/vote-down`,
+        `${environment.picturesApiUrl}/picture/${id}/vote-down`,
         {}
       );
   }
@@ -173,7 +173,7 @@ export class HttpServiceService {
   updatePictureRequest(data: FormData, id: string) {
     return this.http
       .post<PictureDto>(
-        `${environment.picturesApiUrl}/api/picture/${id}`,
+        `${environment.picturesApiUrl}/picture/${id}`,
         data
       );
   }
@@ -181,7 +181,7 @@ export class HttpServiceService {
   updatePictureNameRequest(data: UpdatePictureNameDto, id: string) {
     return this.http
       .post<PictureDto>(
-        `${environment.picturesApiUrl}/api/picture/${id}/update/name`,
+        `${environment.picturesApiUrl}/picture/${id}/update/name`,
         data
       );
   }
@@ -189,7 +189,7 @@ export class HttpServiceService {
   updatePictureDescriptionRequest(data: UpdatePictureDescriptionDto, id: string) {
     return this.http
       .post<PictureDto>(
-        `${environment.picturesApiUrl}/api/picture/${id}/update/description`,
+        `${environment.picturesApiUrl}/picture/${id}/update/description`,
         data
       );
   }
@@ -197,7 +197,7 @@ export class HttpServiceService {
   updatePictureTagsRequest(data: UpdatePictureTagsDto, id: string) {
     return this.http
       .post<PictureDto>(
-        `${environment.picturesApiUrl}/api/picture/${id}/update/tags`,
+        `${environment.picturesApiUrl}/picture/${id}/update/tags`,
         data
       );
   }
@@ -205,7 +205,7 @@ export class HttpServiceService {
   updateAccountRequest(data: FormData) {
     return this.http
       .post<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/update`,
+        `${environment.picturesApiUrl}/account/update`,
         data
       );
   }
@@ -213,7 +213,7 @@ export class HttpServiceService {
   updateAccountEmailRequest(data: UpdateAccountEmailDto) {
     return this.http
       .post<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/update/email`,
+        `${environment.picturesApiUrl}/account/update/email`,
         data
       );
   }
@@ -221,7 +221,7 @@ export class HttpServiceService {
   updateAccountPasswordRequest(data: UpdateAccountPasswordDto) {
     return this.http
       .post<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/update/password`,
+        `${environment.picturesApiUrl}/account/update/password`,
         data
       );
   }
@@ -229,7 +229,7 @@ export class HttpServiceService {
   updateAccountDescriptionRequest(data: UpdateAccountDescriptionDto) {
     return this.http
       .patch<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/update/description`,
+        `${environment.picturesApiUrl}/account/update/description`,
         data
       );
   }
@@ -237,7 +237,7 @@ export class HttpServiceService {
   updateAccountProfilePictureRequest(file: string) {
     return this.http
       .patch<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/update/profile-picture`,
+        `${environment.picturesApiUrl}/account/update/profile-picture`,
         file
       );
   }
@@ -245,7 +245,7 @@ export class HttpServiceService {
   updateAccountBackgroundPictureRequest(file: string) {
     return this.http
       .patch<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/update/background-picture`,
+        `${environment.picturesApiUrl}/account/update/background-picture`,
         file
       );
   }
