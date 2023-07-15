@@ -1,9 +1,9 @@
-name: Deploy Production
+name: Deploy Development
 
 on:
   push:
     branches:
-      - main
+      - development
 
 jobs:
   build:
@@ -41,13 +41,13 @@ jobs:
         - name: Setup SSH
           uses: webfactory/ssh-agent@v0.8.0
           with:
-            ssh-private-key: ${{ secrets.PRODUCTION_SSH_PRIVATE_KEY }}
+            ssh-private-key: ${{ secrets.DEVELOPMENT_SSH_PRIVATE_KEY }}
 
         - name: Install SSH client
           run: |
               sudo apt-get update
               sudo apt-get install -y openssh-client
 
-        - name: Deploy to Production
+        - name: Deploy to Development
           run: |
-            ssh -o StrictHostKeyChecking=no -p ${{ secrets.PRODUCTION_SSH_PORT }} ${{ secrets.PRODUCTION_SSH_USERNAME }}@${{ secrets.PRODUCTION_SSH_HOST }} 'cd ${{ vars.REPO_PATH }} && sudo git checkout main && sudo git pull && sudo ng build && sudo mv dist/* ${{ vars.OUTPUT_DIR_PROD }}'
+            ssh -o StrictHostKeyChecking=no -p ${{ secrets.DEVELOPMENT_SSH_PORT }} ${{ secrets.DEVELOPMENT_SSH_USERNAME }}@${{ secrets.DEVELOPMENT_SSH_HOST }} 'cd ${{ vars.REPO_PATH }} && sudo git checkout main && sudo git pull && sudo ng build && sudo mv dist/* ${{ vars.OUTPUT_DIR_DEV }}'
