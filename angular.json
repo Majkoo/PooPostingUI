@@ -43,7 +43,8 @@
             "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
-            "production": {
+
+            "prod-server": {
               "budgets": [
                 {
                   "type": "initial",
@@ -64,6 +65,29 @@
               ],
               "outputHashing": "all"
             },
+
+            "dev-server": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "4mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -73,7 +97,7 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "prod-server"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
