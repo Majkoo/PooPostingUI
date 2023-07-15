@@ -18,7 +18,7 @@ export class AccountUpdateService {
   updateAccountEmail(data: UpdateAccountEmailDto) {
     return this.httpClient
       .post<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/update/email`,
+        `${environment.picturesApiUrl}/account/update/email`,
         data,
         { responseType: "json" }
       );
@@ -27,7 +27,7 @@ export class AccountUpdateService {
   updateAccountPassword(data: UpdateAccountPasswordDto) {
     return this.httpClient
       .post<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/update/password`,
+        `${environment.picturesApiUrl}/account/update/password`,
         data,
         { responseType: "json" }
       );
@@ -36,7 +36,7 @@ export class AccountUpdateService {
   updateAccountDescription(data: UpdateAccountDescriptionDto) {
     return this.httpClient
       .patch<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/update/description`,
+        `${environment.picturesApiUrl}/account/update/description`,
         data,
         { responseType: "json" }
       );
@@ -45,7 +45,7 @@ export class AccountUpdateService {
   updateAccountProfilePicture(file: string) {
     return this.httpClient
       .patch<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/update/profile-picture`,
+        `${environment.picturesApiUrl}/account/update/profile-picture`,
         file,
         { responseType: "json" }
       );
@@ -54,7 +54,7 @@ export class AccountUpdateService {
   updateAccountBackgroundPicture(file: string) {
     return this.httpClient
       .patch<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/update/background-picture`,
+        `${environment.picturesApiUrl}/account/update/background-picture`,
         file,
         { responseType: "json" }
       );

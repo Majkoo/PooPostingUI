@@ -17,7 +17,7 @@ export class CommentService {
   patchComment(picId: string, data: PutPostCommentDto): Observable<CommentDto> {
     return this.httpClient
       .patch<CommentDto>(
-        `${environment.picturesApiUrl}/api/comment/${picId}`,
+        `${environment.picturesApiUrl}/comment/${picId}`,
         data,
         { responseType: "json"}
       );
@@ -25,7 +25,7 @@ export class CommentService {
   deleteComment(commId: string): Observable<null> {
     return this.httpClient
       .delete<null>(
-        `${environment.picturesApiUrl}/api/comment/${commId}`,
+        `${environment.picturesApiUrl}/comment/${commId}`,
         { responseType: "json"}
       );
   }

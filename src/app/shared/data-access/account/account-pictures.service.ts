@@ -17,7 +17,7 @@ export class AccountPicturesService {
   getPostedPictures(accId: string, pageSize: number, pageNumber: number): Observable<PictureDtoPaged> {
     return this.httpClient
       .get<PictureDtoPaged>(
-        `${environment.picturesApiUrl}/api/account/${accId}/picture/posted`,
+        `${environment.picturesApiUrl}/account/${accId}/picture/posted`,
         {
           responseType: "json",
           params: new HttpParams()
@@ -30,7 +30,7 @@ export class AccountPicturesService {
   getLikedPictures(accId: string, pageSize: number, pageNumber: number): Observable<PictureDtoPaged> {
     return this.httpClient
       .get<PictureDtoPaged>(
-        `${environment.picturesApiUrl}/api/account/${accId}/picture/liked`,
+        `${environment.picturesApiUrl}/account/${accId}/picture/liked`,
         {
           responseType: "json",
           params: new HttpParams()

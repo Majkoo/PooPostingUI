@@ -16,7 +16,7 @@ export class PopularService {
   getPopularPictures(): Observable<PopularDto> {
     return this.httpClient
       .get<PopularDto>(
-        `${environment.picturesApiUrl}/api/popular`,
+        `${environment.picturesApiUrl}/popular`,
         { responseType: "json" }
       );
   }

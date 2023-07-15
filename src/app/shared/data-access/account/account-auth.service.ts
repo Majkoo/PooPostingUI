@@ -19,7 +19,7 @@ export class AccountAuthService {
   login(dto: LoginDto): Observable<UserState> {
     return this.httpClient
       .post<UserState>(
-        `${environment.picturesApiUrl}/api/account/auth/login`,
+        `${environment.picturesApiUrl}/account/auth/login`,
         dto,
         {responseType: "json",});
   }
@@ -27,7 +27,7 @@ export class AccountAuthService {
   register(data: RegisterDto): Observable<any> {
     return this.httpClient
       .post(
-        `${environment.picturesApiUrl}/api/account/auth/register`,
+        `${environment.picturesApiUrl}/account/auth/register`,
         data,
         {responseType: "json",});
   }
@@ -35,7 +35,7 @@ export class AccountAuthService {
   verifyJwt(data: VerifyJwtDto): Observable<UserState> {
     return this.httpClient
       .post<UserState>(
-        `${environment.picturesApiUrl}/api/account/auth/verifyJwt`,
+        `${environment.picturesApiUrl}/account/auth/verifyJwt`,
         data,
         {responseType: "json",});
   }

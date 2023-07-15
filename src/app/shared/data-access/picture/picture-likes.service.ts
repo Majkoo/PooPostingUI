@@ -17,7 +17,7 @@ export class PictureLikesService {
   getPictureLikes(id: string, pageSize: number, pageNumber: number): Observable<LikeDtoPaged> {
     return this.httpClient
       .get<LikeDtoPaged>(
-        `${environment.picturesApiUrl}/api/picture/${id}/like`,
+        `${environment.picturesApiUrl}/picture/${id}/like`,
         {
           params: new HttpParams()
             .set("PageSize", pageSize)
@@ -30,7 +30,7 @@ export class PictureLikesService {
   likePicture(id: string): Observable<PictureDto> {
     return this.httpClient
       .patch<PictureDto>(
-        `${environment.picturesApiUrl}/api/picture/${id}/like/vote-up`,
+        `${environment.picturesApiUrl}/picture/${id}/like/vote-up`,
         {},
         { responseType: "json" }
       );
@@ -38,7 +38,7 @@ export class PictureLikesService {
   dislikePicture(id: string): Observable<PictureDto> {
     return this.httpClient
       .patch<PictureDto>(
-        `${environment.picturesApiUrl}/api/picture/${id}/like/vote-down`,
+        `${environment.picturesApiUrl}/picture/${id}/like/vote-down`,
         {},
         { responseType: "json" }
       );

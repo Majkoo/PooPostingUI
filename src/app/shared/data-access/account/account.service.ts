@@ -19,7 +19,7 @@ export class AccountService {
   getAccountById(id: string): Observable<AccountDto>{
     return this.httpClient
       .get<AccountDto>(
-        `${environment.picturesApiUrl}/api/account/${id}`,
+        `${environment.picturesApiUrl}/account/${id}`,
         {responseType: "json",}
       );
   }
@@ -27,7 +27,7 @@ export class AccountService {
   searchAccounts(params: HttpParams): Observable<AccountDtoPaged>{
     return this.httpClient
       .get<AccountDtoPaged>(
-        `${environment.picturesApiUrl}/api/account`,
+        `${environment.picturesApiUrl}/account`,
         {
           params: params,
           responseType: "json"
@@ -38,7 +38,7 @@ export class AccountService {
   deleteAccount(id: string): Observable<null> {
     return this.httpClient
       .delete<null>(
-        `${environment.picturesApiUrl}/api/account/${id}`,
+        `${environment.picturesApiUrl}/account/${id}`,
         {responseType: "json",}
       );
   }
