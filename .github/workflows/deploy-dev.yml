@@ -30,7 +30,7 @@ jobs:
 #      - name: Run lint
 #        run: npm run lint
 
-  deploy-prod:
+  deploy-dev:
     needs: build
     runs-on: ubuntu-latest
 
