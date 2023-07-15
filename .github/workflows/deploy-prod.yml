@@ -29,7 +29,7 @@ jobs:
 
 #      - name: Run lint
 #        run: npm run lint
-  
+
   deploy-prod:
     needs: build
     runs-on: ubuntu-latest
@@ -37,7 +37,7 @@ jobs:
     steps:
         - name: Checkout code
           uses: actions/checkout@v3.5.3
-        
+
         - name: Setup SSH
           uses: webfactory/ssh-agent@v0.8.0
           with:
@@ -50,4 +50,4 @@ jobs:
 
         - name: Deploy to Production
           run: |
-            ssh -o StrictHostKeyChecking=no -p ${{ secrets.PRODUCTION_SSH_PORT }} ${{ secrets.PRODUCTION_SSH_USERNAME }}@${{ secrets.PRODUCTION_SSH_HOST }} 'cd ${{ vars.REPO_PATH }} && sudo git checkout main && sudo git pull && sudo ng build && sudo mv dist/* ${{ vars.OUTPUT_DIR_PROD }}'
+            ssh -o StrictHostKeyChecking=no -p ${{ secrets.PRODUCTION_SSH_PORT }} ${{ secrets.PRODUCTION_SSH_USERNAME }}@${{ secrets.PRODUCTION_SSH_HOST }} 'cd ${{ vars.REPO_PATH }} && sudo git checkout main && sudo git pull && sudo ng build && sudo ng build && sudo cp dist/* -t ${{ vars.OUTPUT_DIR_PROD }} -r && sudo rm -rf dist/'
