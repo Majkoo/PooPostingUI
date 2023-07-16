@@ -52,11 +52,11 @@ jobs:
           run: |
             ssh -o StrictHostKeyChecking=no -p ${{ secrets.PRODUCTION_SSH_PORT }} ${{ secrets.PRODUCTION_SSH_USERNAME }}@${{ secrets.PRODUCTION_SSH_HOST }}
             '
-            sudo cd ${{ vars.REPO_PATH }}
-            sudo git checkout main
-            sudo git pull
-            sudo ng build --configuration=prod-server
-            sudo rm -rf ${{ vars.OUTPUT_DIR_PROD }}*.css ${{ vars.OUTPUT_DIR_PROD }}*.js
-            sudo cp dist/* -t ${{ vars.OUTPUT_DIR_PROD }} -r
+            sudo cd ${{ vars.REPO_PATH }} &&
+            sudo git checkout main &&
+            sudo git pull &&
+            sudo ng build --configuration=prod-server &&
+            sudo rm -rf ${{ vars.OUTPUT_DIR_PROD }}*.css ${{ vars.OUTPUT_DIR_PROD }}*.js &&
+            sudo cp dist/* -t ${{ vars.OUTPUT_DIR_PROD }} -r &&
             sudo rm -rf dist/
             '
