@@ -50,13 +50,4 @@ jobs:
 
         - name: Deploy to Development
           run: |
-            ssh -o StrictHostKeyChecking=no -p ${{ secrets.DEVELOPMENT_SSH_PORT }} ${{ secrets.DEVELOPMENT_SSH_USERNAME }}@${{ secrets.DEVELOPMENT_SSH_HOST }}
-            '
-            cd ${{ vars.REPO_PATH }} &&
-            sudo git checkout development &&
-            sudo git pull &&
-            sudo ng build --configuration=dev-server &&
-            sudo rm -rf ${{ vars.OUTPUT_DIR_DEV }} *.css *.js &&
-            sudo cp dist/* -t ${{ vars.OUTPUT_DIR_DEV }} -r &&
-            sudo rm -rf dist/
-            '
+            ssh -o StrictHostKeyChecking=no -p ${{ secrets.DEVELOPMENT_SSH_PORT }} ${{ secrets.DEVELOPMENT_SSH_USERNAME }}@${{ secrets.DEVELOPMENT_SSH_HOST }} 'cd ${{ vars.REPO_PATH }} && sudo git checkout development && sudo git pull && sudo ng build --configuration=dev-server && sudo rm -rf ${{ vars.OUTPUT_DIR_DEV }} *.css *.js && sudo cp dist/* -t ${{ vars.OUTPUT_DIR_DEV }} -r && sudo rm -rf dist/'
