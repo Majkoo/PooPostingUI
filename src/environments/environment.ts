@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   appWebUrl: "http://localhost:4200",
-  picturesApiUrl: "https://localhost:5001",
+  picturesApiUrl: "https://localhost:5001/api",
   emailApiUrl: "https://email-api.migra.ml",
 };
 

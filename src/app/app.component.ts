@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {MessageService, PrimeNGConfig} from "primeng/api";
+import {MessageService} from "primeng/api";
 import {Router} from "@angular/router";
-import {UserState} from "./shared/utils/models/userState";
-import {HttpServiceService} from "./shared/data-access/http-service.service";
-import {VerifyJwtDto} from "./shared/utils/dtos/VerifyJwtDto";
+import {HttpServiceService} from "./data-access/http-service.service";
 import {ScrollServiceService} from "./shared/helpers/scroll-service.service";
 import {AppCacheService} from "./shared/state/app-cache.service";
 import {PictureDetailsServiceService} from "./shared/state/picture-details-service.service";
-import {PictureDto} from "./shared/utils/dtos/PictureDto";
+import {PictureDto} from "./shared/utility/dtos/PictureDto";
+import {VerifyJwtDto} from "./shared/utility/dtos/VerifyJwtDto";
+import {UserState} from "./shared/utility/models/userState";
 
 @Component({
   selector: 'app-root',
@@ -15,9 +15,8 @@ import {PictureDto} from "./shared/utils/dtos/PictureDto";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  appTitle: string = "PicturesUI";
-  isLoaded: boolean = false;
-  showPictureDetailsModal: boolean = false;
+  isLoaded = false;
+  showPictureDetailsModal = false;
   currentPictureDetailsModal: PictureDto | null = null;
 
   constructor(
@@ -32,7 +31,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
 
-    let jwtDetails: VerifyJwtDto = {
+    const jwtDetails: VerifyJwtDto = {
       jwtToken: this.cacheService.getLsJwtToken()!,
       uid: this.cacheService.getLsJwtUid()!,
     };
@@ -57,9 +56,9 @@ export class AppComponent implements OnInit{
     }, 5000);
 
     document.body.addEventListener('scroll', () => {
-      let body = document.querySelector('body')!;
-      let scrollBottom = (body.scrollHeight - (body.scrollTop + body.offsetHeight));
-      let bodyHeight = (body.scrollHeight - body.offsetHeight);
+      const body = document.querySelector('body')!;
+      const scrollBottom = (body.scrollHeight - (body.scrollTop + body.offsetHeight));
+      const bodyHeight = (body.scrollHeight - body.offsetHeight);
       if ((scrollBottom > 5000 ? scrollBottom/bodyHeight < 0.25 : true) && scrollBottom < 950) {
         if (!this.scrollService.bottomSubject.value) {
           this.scrollService.bottomSubject.next(true);

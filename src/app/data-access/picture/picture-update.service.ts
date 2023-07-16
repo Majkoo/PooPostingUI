@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {UpdatePictureNameDto} from "../../utils/dtos/UpdatePictureNameDto";
-import {PictureDto} from "../../utils/dtos/PictureDto";
-import {environment} from "../../../../environments/environment";
-import {UpdatePictureDescriptionDto} from "../../utils/dtos/UpdatePictureDescriptionDto";
-import {UpdatePictureTagsDto} from "../../utils/dtos/UpdatePictureTagsDto";
+import {environment} from "../../../environments/environment";
+import {UpdatePictureNameDto} from "../../shared/utility/dtos/UpdatePictureNameDto";
+import {PictureDto} from "../../shared/utility/dtos/PictureDto";
+import {UpdatePictureDescriptionDto} from "../../shared/utility/dtos/UpdatePictureDescriptionDto";
+import {UpdatePictureTagsDto} from "../../shared/utility/dtos/UpdatePictureTagsDto";
 
 @Injectable({
   providedIn: 'root'

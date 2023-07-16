@@ -1,13 +1,12 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {Component, inject, OnDestroy} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MessageService} from "primeng/api";
-import {UserState} from "../../../../shared/utils/models/userState";
 import {LocationServiceService} from "../../../../shared/helpers/location-service.service";
-import {Title} from "@angular/platform-browser";
 import {AppCacheService} from "../../../../shared/state/app-cache.service";
 import {AccountAuthService} from "../../../../data-access/account/account-auth.service";
 import {Subscription} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
+import {UserState} from "../../../../shared/utility/models/userState";
 
 @Component({
   selector: 'app-login',
@@ -20,19 +19,15 @@ export class LoginComponent implements OnDestroy {
   authService: AccountAuthService = inject(AccountAuthService);
   messageService: MessageService = inject(MessageService);
   cacheService: AppCacheService = inject(AppCacheService);
-  title: Title = inject(Title);
 
   form: FormGroup = new FormGroup({
     nickname: new FormControl<string>("", Validators.required),
     password: new FormControl<string>("", Validators.required),
   });
-  formDisabled: boolean = false;
+  formDisabled = false;
 
   private readonly subs: Subscription = new Subscription();
 
-  constructor() {
-    this.title.setTitle(`PooPosting - Logowanie`);
-  }
   onSubmit(): void {
     this.messageService.clear();
     this.disableForm();

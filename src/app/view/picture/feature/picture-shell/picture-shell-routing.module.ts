@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {IsNotLoggedOnRouteGuardGuard} from "../../../../shared/utils/guards/is-not-logged-on-route-guard.guard";
+import {IsNotLoggedOnRouteGuardGuard} from "../../../../shared/utility/guards/is-not-logged-on-route-guard.guard";
 
 const routes: Routes = [
   {

@@ -1,2 +1,2 @@
-export const BlockSpaceOnStartEnd: RegExp = /^[^\s]+(\s{1}[^\s]+)*$/;
+export const BlockSpaceOnStartEnd = /^[^\s]+(\s{1}[^\s]+)*$/;
 

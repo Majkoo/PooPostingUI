@@ -30,10 +30,10 @@
     <app-account-info [account]="account"></app-account-info>
 
     <div *ngIf="account.isAdminModifiable && !account.isModifiable">
-      <app-account-admin-settings [account]="account" (onBan)="banAccount()"></app-account-admin-settings>
+      <app-account-admin-settings [account]="account" (ban)="banAccount()"></app-account-admin-settings>
     </div>
     <div *ngIf="account.isModifiable">
-      <app-account-settings [account]="account" (onChange)="updateAccount($event)"></app-account-settings>
+      <app-account-settings [account]="account" (accountUpdate)="updateAccount($event)"></app-account-settings>
     </div>
   </div>
 

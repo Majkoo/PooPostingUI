@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {LocationServiceService} from "../../../../../shared/helpers/location-service.service";
 import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {BlockSpaceOnStartEnd} from "../../../../../shared/utils/regexes/blockSpaceOnStartEnd";
+import {BlockSpaceOnStartEnd} from "../../../../../shared/utility/regexes/blockSpaceOnStartEnd";
 import {PostPictureServiceService} from "../../../../../shared/helpers/post-picture-service.service";
 import {Router} from "@angular/router";
 
@@ -39,10 +39,10 @@ export class PostDetailsComponent {
 
   // p-chips custom logic
   trimChips() {
-    let tags: string[] = this.form.get('tags')?.value;
+    const tags: string[] = this.form.get('tags')?.value;
     let tagsToTrim: string[] = [];
-    let tagsTrimmed: string[] = [];
-    let uniqueTagsTrimmed: string[] = [];
+    const tagsTrimmed: string[] = [];
+    const uniqueTagsTrimmed: string[] = [];
     tags.forEach(val => {
       tagsToTrim = val.split(" ")
       tagsToTrim.forEach(tag => {

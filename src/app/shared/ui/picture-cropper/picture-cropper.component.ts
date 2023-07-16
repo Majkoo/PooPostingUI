@@ -20,8 +20,8 @@ export class PictureCropperComponent {
     alignImage: "center",
     resizeToWidth: 256
   }
-  @Input() showDefaultSubmitButton: boolean = true;
-  @Input() buttonLabel: string = "Zatwierdź";
+  @Input() showDefaultSubmitButton = true;
+  @Input() buttonLabel = "Zatwierdź";
   @Input() cropperDataUrl?: string | null;
 
   imageFile?: File;

@@ -1,5 +1,5 @@
 import {Component,Input} from '@angular/core';
-import {AccountDto} from "../../../../shared/utils/dtos/AccountDto";
+import {AccountDto} from "../../../../shared/utility/dtos/AccountDto";
 
 @Component({
   selector: 'app-account-banner',
@@ -9,7 +9,5 @@ import {AccountDto} from "../../../../shared/utils/dtos/AccountDto";
 export class AccountBannerComponent {
 
   @Input() account!: AccountDto;
-
-  constructor() {}
 
 }

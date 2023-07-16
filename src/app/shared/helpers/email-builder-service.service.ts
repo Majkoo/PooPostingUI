@@ -16,7 +16,7 @@ export class EmailBuilderServiceService {
   }
 
   buildEmail(errorLogs: ErrorLogModel, userMsg: string): PostLogsDto {
-    let logs: PostLogsDto = {
+    const logs: PostLogsDto = {
       firstName: this.cacheService.getCachedUserAccount().nickname,
       emailAddress: this.cacheService.getCachedUserAccount().email,
       text: userMsg,

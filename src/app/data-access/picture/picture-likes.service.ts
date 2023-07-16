@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {PictureDto} from "../../utils/dtos/PictureDto";
-import {environment} from "../../../../environments/environment";
+import {environment} from "../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {LikeDtoPaged} from "../../utils/dtos/LikeDtoPaged";
+import {LikeDtoPaged} from "../../shared/utility/dtos/LikeDtoPaged";
+import {PictureDto} from "../../shared/utility/dtos/PictureDto";
 
 @Injectable({
   providedIn: 'root'

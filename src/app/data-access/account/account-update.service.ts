@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {UpdateAccountPasswordDto} from "../../utils/dtos/UpdateAccountPasswordDto";
-import {AccountDto} from "../../utils/dtos/AccountDto";
-import {environment} from "../../../../environments/environment";
-import {UpdateAccountDescriptionDto} from "../../utils/dtos/UpdateAccountDescriptionDto";
+import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {UpdateAccountEmailDto} from "../../utils/dtos/UpdateAccountEmailDto";
+import {AccountDto} from "../../shared/utility/dtos/AccountDto";
+import {UpdateAccountEmailDto} from "../../shared/utility/dtos/UpdateAccountEmailDto";
+import {UpdateAccountPasswordDto} from "../../shared/utility/dtos/UpdateAccountPasswordDto";
+import {UpdateAccountDescriptionDto} from "../../shared/utility/dtos/UpdateAccountDescriptionDto";
 
 @Injectable({
   providedIn: 'root'

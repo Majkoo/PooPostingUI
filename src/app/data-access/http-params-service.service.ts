@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import {HttpParams} from "@angular/common/http";
-import { GetPictureQuery } from 'src/app/shared/utils/models/getPictureQuery';
-import { SearchQuery } from 'src/app/shared/utils/models/searchQuery';
-import { SortSearchBy } from 'src/app/shared/utils/enums/sortSearchBy';
-import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {GetPictureQuery} from "../shared/utility/models/getPictureQuery";
+import {SortSearchBy} from "../shared/utility/enums/sortSearchBy";
+import { SearchQuery } from '../shared/utility/models/searchQuery';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpParamsServiceService {
-  constructor() {}
-
   GetPQuery: GetPictureQuery = {
     searchPhrase: "",
-    pageNumber: 1,
+    pageNumber: 2,
     pageSize: 2,
     likedTags: ""
   };
@@ -25,7 +22,7 @@ export class HttpParamsServiceService {
     sortBy: SortSearchBy.MOST_POPULAR,
   }
 
-  setPageNumber(pageNumber: number): void{
+  setPageNumber(pageNumber: 2 | 3 | 5 | 10): void{
     this.GetPQuery.pageNumber = pageNumber;
   }
   getPageNumber(): number {

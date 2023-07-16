@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {PopularDto} from "../../utils/dtos/PopularDto";
-import {environment} from "../../../../environments/environment";
+import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
+import {PopularDto} from "../../shared/utility/dtos/PopularDto";
 
 @Injectable({
   providedIn: 'root'

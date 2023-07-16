@@ -1,13 +1,13 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {CommentDto} from "../../utils/dtos/CommentDto";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {BlockSpaceOnStartEnd} from "../../utils/regexes/blockSpaceOnStartEnd";
-import {CommentService} from "../../data-access/comment/comment.service";
+import {BlockSpaceOnStartEnd} from "../../utility/regexes/blockSpaceOnStartEnd";
+import {CommentService} from "../../../data-access/comment/comment.service";
 import {Subscription} from "rxjs";
-import {PictureCommentsService} from "../../data-access/picture/picture-comments.service";
-import {CommentDtoPaged} from "../../utils/dtos/CommentDtoPaged";
-import {PutPostCommentDto} from "../../utils/dtos/PutPostCommentDto";
+import {PictureCommentsService} from "../../../data-access/picture/picture-comments.service";
 import {MessageService} from "primeng/api";
+import {CommentDto} from "../../utility/dtos/CommentDto";
+import {PutPostCommentDto} from "../../utility/dtos/PutPostCommentDto";
+import {CommentDtoPaged} from "../../utility/dtos/CommentDtoPaged";
 
 @Component({
   selector: 'app-comment-section',
@@ -23,11 +23,11 @@ export class CommentSectionComponent implements OnInit, OnDestroy {
   ) { }
 
   @Input() picId!: string;
-  @Input() isLoggedOn: boolean = false;
-  @Output() commentDeleted: EventEmitter<null> = new EventEmitter<null>();
-  @Output() commentAdded: EventEmitter<null> = new EventEmitter<null>();
-  awaitSubmit: boolean = false;
-  fetchingComments: boolean = true;
+  @Input() isLoggedOn = false;
+  @Output() commentDeleted = new EventEmitter<null>();
+  @Output() commentAdded = new EventEmitter<null>();
+  awaitSubmit = false;
+  fetchingComments = true;
 
   private readonly subs = new Subscription();
 
@@ -43,9 +43,9 @@ export class CommentSectionComponent implements OnInit, OnDestroy {
   })
 
   comments: CommentDto[] = [];
-  pageSize: number = 5;
-  pageNumber: number = 1;
-  moreCommentsAvailable: boolean = false;
+  pageSize = 5;
+  pageNumber = 1;
+  moreCommentsAvailable = false;
 
   ngOnInit(): void {
     this.fetchComments();
@@ -69,7 +69,7 @@ export class CommentSectionComponent implements OnInit, OnDestroy {
   }
 
   comment() {
-    let postCommDto: PutPostCommentDto = {
+    const postCommDto: PutPostCommentDto = {
       text: this.commentForm.getRawValue().text!
     }
     this.subs.add(

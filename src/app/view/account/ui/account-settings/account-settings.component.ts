@@ -1,5 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {SelectOption} from "../../../../shared/utils/models/selectOption";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpServiceService} from "../../../../data-access/http-service.service";
 import {MessageService} from "primeng/api";
@@ -7,7 +6,8 @@ import {CustomValidators} from "../../../../../CustomValidators";
 import {ChangePasswordModel} from "../../utils/models/changePasswordModel";
 import {ChangeAccountDescModel} from "../../utils/models/changeAccountDescModel";
 import {ChangeEmailModel} from "../../utils/models/changeEmailModel";
-import {AccountDto} from "../../../../shared/utils/dtos/AccountDto";
+import {AccountDto} from "../../../../shared/utility/dtos/AccountDto";
+import {SelectOption} from "../../../../shared/utility/models/selectOption";
 
 @Component({
   selector: 'app-account-settings',
@@ -20,9 +20,9 @@ export class AccountSettingsComponent {
   selectOptions: SelectOption[];
   selectValue: SelectOption;
 
-  blockSpace: RegExp = /[^\s]/;
+  blockSpace = /[^\s]/;
 
-  @Output() onChange: EventEmitter<AccountDto> = new EventEmitter<AccountDto>();
+  @Output() accountUpdate: EventEmitter<AccountDto> = new EventEmitter<AccountDto>();
 
   changePass: FormGroup<ChangePasswordModel> = new FormGroup<ChangePasswordModel>({
     password: new FormControl("", [
@@ -33,6 +33,7 @@ export class AccountSettingsComponent {
     confirmPassword: new FormControl("", [
         Validators.required,
       ]),},
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     CustomValidators.mustMatch('password', 'confirmPassword'),
   );
@@ -50,7 +51,7 @@ export class AccountSettingsComponent {
     ])
   })
 
-  awaitSubmit: boolean = false;
+  awaitSubmit = false;
 
   constructor(
     private httpService: HttpServiceService,
@@ -69,7 +70,7 @@ export class AccountSettingsComponent {
 
   submitChangePass() {
     this.awaitSubmit = true;
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('password', this.changePass.get('password')?.value)
     formData.append('confPassword', this.changePass.get('confirmPassword')?.value)
     this.httpService.updateAccountRequest(formData)
@@ -77,28 +78,28 @@ export class AccountSettingsComponent {
   }
   submitChangeEmail() {
     this.awaitSubmit = true;
-    let formData = new FormData();
-    formData.append('email', this.changeEmail.get('email')?.value!)
+    const formData = new FormData();
+    formData.append('email', this.changeEmail.get('email')?.value)
     this.httpService.updateAccountRequest(formData)
       .subscribe(this.updateAccountObserver);
   }
   submitChangeDesc() {
     this.awaitSubmit = true;
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('description', this.changeDesc.get('description')?.value!.replace(/[\n\r]/g, ''))
     this.httpService.updateAccountRequest(formData)
       .subscribe(this.updateAccountObserver);
   }
   submitChangeProfPic(dataUrl: Blob) {
     this.awaitSubmit = true;
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('profilePic', dataUrl)
     this.httpService.updateAccountRequest(formData)
       .subscribe(this.updateAccountObserver);
   }
   submitChangeBgPic(dataUrl: Blob) {
     this.awaitSubmit = true;
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('backgroundPic', dataUrl)
     this.httpService.updateAccountRequest(formData)
       .subscribe(this.updateAccountObserver);
@@ -111,7 +112,7 @@ export class AccountSettingsComponent {
       this.account.backgroundPicUrl = val.backgroundPicUrl;
       this.account.email = val.email;
 
-      this.onChange.emit(val);
+      this.accountUpdate.emit(val);
       this.messageService.add({
         severity: "success",
         summary: "Sukces",

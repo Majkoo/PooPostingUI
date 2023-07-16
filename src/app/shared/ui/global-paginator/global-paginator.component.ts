@@ -61,7 +61,7 @@ export class GlobalPaginatorComponent implements OnInit {
   }
 
   private calcPagesToShow() {
-    let current = this.currentPage;
+    const current = this.currentPage;
     this.pagesToShow = [];
     if (this.totalPages < 5) {
       for (let i = 0; i <= this.totalPages; i++) {

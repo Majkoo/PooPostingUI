@@ -5,8 +5,8 @@ import {throwError} from "rxjs";
 import {Router} from "@angular/router";
 import {MessageService} from "primeng/api";
 
-export const retryCount: number = 2;
-export const delayMs: number = 2000;
+export const retryCount = 2;
+export const delayMs = 2000;
 
 @Injectable({
   providedIn: 'root'

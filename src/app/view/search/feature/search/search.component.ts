@@ -2,11 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { HttpServiceService } from 'src/app/data-access/http-service.service';
 import { HttpParamsServiceService } from 'src/app/data-access/http-params-service.service';
 import {MessageService} from "primeng/api";
-import {AccountDtoPaged} from "../../../../shared/utils/dtos/AccountDtoPaged";
 import {ScrollServiceService} from "../../../../shared/helpers/scroll-service.service";
-import {Title} from "@angular/platform-browser";
 import {AppCacheService} from "../../../../shared/state/app-cache.service";
-import {PictureDtoPaged} from "../../../../shared/utils/dtos/PictureDtoPaged";
+import {PictureDtoPaged} from "../../../../shared/utility/dtos/PictureDtoPaged";
+import {AccountDtoPaged} from "../../../../shared/utility/dtos/AccountDtoPaged";
 
 @Component({
   selector: 'app-search',
@@ -16,9 +15,9 @@ import {PictureDtoPaged} from "../../../../shared/utils/dtos/PictureDtoPaged";
 export class SearchComponent implements OnInit {
   @ViewChild('picPaginator') picPaginator: any;
   @ViewChild('accPaginator') accPaginator: any;
-  isLoggedOn: boolean = false;
-  picPage: number = 1;
-  accPage: number = 1;
+  isLoggedOn = false;
+  picPage = 1;
+  accPage = 1;
 
   picturesResult: PictureDtoPaged = {
     items:[],
@@ -39,9 +38,7 @@ export class SearchComponent implements OnInit {
     private messageService: MessageService,
     private scrollService: ScrollServiceService,
     private cacheService: AppCacheService,
-    private title: Title
   ) {
-    this.title.setTitle('PicturesUI - Panel wyszukiwania');
   }
 
   ngOnInit(): void {

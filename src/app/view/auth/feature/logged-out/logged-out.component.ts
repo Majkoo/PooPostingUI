@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {LocationServiceService} from "../../../../shared/helpers/location-service.service";
-import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-logged-out',
@@ -11,9 +10,7 @@ export class LoggedOutComponent {
 
   constructor(
     private locationService: LocationServiceService,
-    private title: Title
   ) {
-    this.title.setTitle(`PicturesUI - Wylogowano cię`);
   }
 
   back(): void {

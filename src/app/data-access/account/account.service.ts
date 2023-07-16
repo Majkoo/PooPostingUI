@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {AccountDto} from "../../utils/dtos/AccountDto";
-import {environment} from "../../../../environments/environment";
-import {AccountDtoPaged} from "../../utils/dtos/AccountDtoPaged";
+import {environment} from "../../../environments/environment";
 import {HttpParamsServiceService} from "../http-params-service.service";
+import {AccountDto} from "../../shared/utility/dtos/AccountDto";
+import {AccountDtoPaged} from "../../shared/utility/dtos/AccountDtoPaged";
 
 @Injectable({
   providedIn: 'root'

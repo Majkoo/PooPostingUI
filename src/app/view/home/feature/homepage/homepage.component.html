@@ -1,6 +1,4 @@
-<div class="px-3 px-md-0 search-results" *ngIf="items.length">
-
-  <router-outlet></router-outlet>
+<div *ngIf="items.length">
 
   <div *ngFor="let item of items">
       <app-picture-preview [picture]="item" [isLoggedOn]="isLoggedOn">
@@ -17,3 +15,4 @@
   <app-picture-skeleton></app-picture-skeleton>
 </div>
 
+<router-outlet></router-outlet>

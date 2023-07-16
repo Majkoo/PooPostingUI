@@ -12,7 +12,7 @@ export class ShareModalComponent implements OnInit {
   @Output() onCopy: EventEmitter<any> = new EventEmitter<any>();
   @Input() id!: string;
   @Input() itemType!: string;
-  url: string = "";
+  url = "";
 
   constructor(
     private messageService: MessageService,

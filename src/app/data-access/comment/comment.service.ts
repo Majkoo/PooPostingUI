@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {PutPostCommentDto} from "../../utils/dtos/PutPostCommentDto";
 import {Observable} from "rxjs";
-import {CommentDto} from "../../utils/dtos/CommentDto";
-import {environment} from "../../../../environments/environment";
+import {environment} from "../../../environments/environment";
+import {PutPostCommentDto} from "../../shared/utility/dtos/PutPostCommentDto";
+import {CommentDto} from "../../shared/utility/dtos/CommentDto";
 
 @Injectable({
   providedIn: 'root'

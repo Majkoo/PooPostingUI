@@ -1,13 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Title} from "@angular/platform-browser";
 import {Subscription} from "rxjs";
 import {ScrollServiceService} from "../../../../shared/helpers/scroll-service.service";
-import {HttpParamsServiceService} from "../../../../data-access/http-params-service.service";
-import {PictureDto} from "../../../../shared/utils/dtos/PictureDto";
 import {AppCacheService} from "../../../../shared/state/app-cache.service";
-import {PictureDtoPaged} from "../../../../shared/utils/dtos/PictureDtoPaged";
-import {HomePageOption} from "../../../../shared/utils/enums/homePageOption";
 import {PictureService} from "../../../../data-access/picture/picture.service";
+import {PictureDto} from "../../../../shared/utility/dtos/PictureDto";
+import {HomePageOption} from "../../../../shared/utility/enums/homePageOption";
+import {PictureDtoPaged} from "../../../../shared/utility/dtos/PictureDtoPaged";
 
 @Component({
   selector: 'app-body',
@@ -17,7 +15,7 @@ import {PictureService} from "../../../../data-access/picture/picture.service";
 
 export class HomepageComponent implements OnInit, OnDestroy {
   items: (PictureDto)[] = [];
-  isLoggedOn: boolean = false;
+  isLoggedOn = false;
   pictureFetchingOption?: HomePageOption;
 
   private readonly subs = new Subscription();

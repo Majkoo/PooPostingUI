@@ -1,12 +1,10 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {Component, inject, OnDestroy} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { CustomValidators } from 'src/CustomValidators';
 import {MessageService} from "primeng/api";
 import {Router} from "@angular/router";
-import {BlockSpace} from "../../../../shared/utils/regexes/blockSpace";
-import {BlockSpaceOnStartEnd} from "../../../../shared/utils/regexes/blockSpaceOnStartEnd";
-import {Title} from "@angular/platform-browser";
-import {environment} from "../../../../../environments/environment";
+import {BlockSpace} from "../../../../shared/utility/regexes/blockSpace";
+import {BlockSpaceOnStartEnd} from "../../../../shared/utility/regexes/blockSpaceOnStartEnd";
 import {AccountAuthService} from "../../../../data-access/account/account-auth.service";
 import {Subscription} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -21,7 +19,6 @@ export class RegisterComponent implements OnDestroy {
   authService: AccountAuthService = inject(AccountAuthService);
   message: MessageService = inject(MessageService);
   router: Router = inject(Router);
-  title: Title = inject(Title);
 
   form: FormGroup = new FormGroup({
       nickname: new FormControl<string>("", [
@@ -42,21 +39,18 @@ export class RegisterComponent implements OnDestroy {
       confirmPassword: new FormControl<string>("", [
         Validators.required
       ])},
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     CustomValidators.mustMatch('password', 'confirmPassword'),
   );
 
   blockSpace: RegExp = BlockSpace;
   isName: RegExp = BlockSpaceOnStartEnd;
-  formDisabled: boolean = false;
+  formDisabled = false;
 
-  isNickNameTaken: boolean = false;
+  isNickNameTaken = false;
 
   private readonly subs: Subscription = new Subscription();
-
-  constructor() {
-    this.title.setTitle(`PicturesUI - Rejestracja`);
-  }
 
   onSubmit(): void {
     this.disableForm();

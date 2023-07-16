@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AccountDto} from "../../../../shared/utils/dtos/AccountDto";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {AccountDto} from "../../../../shared/utility/dtos/AccountDto";
 
 @Component({
   selector: 'app-account-admin-settings',
@@ -9,13 +9,13 @@ import {AccountDto} from "../../../../shared/utils/dtos/AccountDto";
 export class AccountAdminSettingsComponent {
 
   @Input() account!: AccountDto
-  @Output() onBan: EventEmitter<void> = new EventEmitter<void>();
+  @Output() ban = new EventEmitter<void>();
 
-  banPhrase: string = "";
+  banPhrase = "";
 
   banAccount() {
     this.banPhrase = "";
-    this.onBan.emit();
+    this.ban.emit();
   }
 
 }

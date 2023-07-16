@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {IsNotLoggedOnRouteGuardGuard} from "../../../../shared/utils/guards/is-not-logged-on-route-guard.guard";
+import {IsNotLoggedOnRouteGuardGuard} from "../../../../shared/utility/guards/is-not-logged-on-route-guard.guard";
 
 const routes: Routes = [
   {
-    path: "",
+    path: "my-account",
     canActivate: [IsNotLoggedOnRouteGuardGuard],
     loadChildren: () =>
       import("../my-account/my-account.module")

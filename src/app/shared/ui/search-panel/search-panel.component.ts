@@ -1,8 +1,8 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import { HttpServiceService } from 'src/app/shared/data-access/http-service.service';
-import { HttpParamsServiceService } from 'src/app/shared/data-access/http-params-service.service';
-import {SortSearch} from "../../utils/enums/sortSearch";
+import { HttpServiceService } from 'src/app/data-access/http-service.service';
+import { HttpParamsServiceService } from 'src/app/data-access/http-params-service.service';
+import {SortSearch} from "../../utility/enums/sortSearch";
 
 @Component({
   selector: 'app-search-panel',

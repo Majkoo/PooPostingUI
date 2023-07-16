@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Subject} from "rxjs";
 import {Router} from "@angular/router";
-import {HttpServiceService} from "../data-access/http-service.service";
-import {AccountDto} from "../utils/dtos/AccountDto";
-import {PictureDto} from "../utils/dtos/PictureDto";
-import {UserState} from "../utils/models/userState";
+import {HttpServiceService} from "../../data-access/http-service.service";
+import {PictureDto} from "../utility/dtos/PictureDto";
+import {AccountDto} from "../utility/dtos/AccountDto";
+import {UserState} from "../utility/models/userState";
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +18,10 @@ export class AppCacheService {
     this.loggedOnSubject.next(false);
   }
 
-  mostPopularSite: number = 1;
-  mostLikedSite: number = 1;
-  newestSite: number = 1;
-  randomSite: number = 1;
+  mostPopularSite = 1;
+  mostLikedSite = 1;
+  newestSite = 1;
+  randomSite = 1;
 
   loggedOnSubject: Subject<boolean> = new Subject<boolean>();
   cachedPictures: PictureDto[] = [];

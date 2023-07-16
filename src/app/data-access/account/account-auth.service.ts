@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {LoginDto} from "../../utils/dtos/LoginDto";
 import {Observable} from "rxjs";
-import {UserState} from "../../utils/models/userState";
-import {environment} from "../../../../environments/environment";
-import {RegisterDto} from "../../utils/dtos/RegisterDto";
-import {VerifyJwtDto} from "../../utils/dtos/VerifyJwtDto";
+import {environment} from "../../../environments/environment";
+import {UserState} from "../../shared/utility/models/userState";
+import {LoginDto} from "../../shared/utility/dtos/LoginDto";
+import {RegisterDto} from "../../shared/utility/dtos/RegisterDto";
+import {VerifyJwtDto} from "../../shared/utility/dtos/VerifyJwtDto";
 
 @Injectable({
   providedIn: 'root'

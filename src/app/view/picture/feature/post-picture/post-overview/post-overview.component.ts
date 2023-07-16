@@ -3,8 +3,8 @@ import {PostPictureServiceService} from "../../../../../shared/helpers/post-pict
 import {LocationServiceService} from "../../../../../shared/helpers/location-service.service";
 import {AppCacheService} from "../../../../../shared/state/app-cache.service";
 import {MessageService} from "primeng/api";
-import {PictureDto} from "../../../../../shared/utils/dtos/PictureDto";
 import {PictureService} from "../../../../../data-access/picture/picture.service";
+import {PictureDto} from "../../../../../shared/utility/dtos/PictureDto";
 
 @Component({
   selector: 'app-post-overview',
@@ -13,7 +13,7 @@ import {PictureService} from "../../../../../data-access/picture/picture.service
 })
 export class PostOverviewComponent implements OnInit {
 
-  imgDataUrl: string = "";
+  imgDataUrl = "";
   awaitSubmit = false;
   picturePreview?: PictureDto;
 

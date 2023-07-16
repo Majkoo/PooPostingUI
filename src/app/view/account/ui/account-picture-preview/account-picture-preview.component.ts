@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {PicturePreviewDto} from "../../../../shared/utils/dtos/PicturePreviewDto";
+import {Component, inject, Input} from '@angular/core';
 import {PictureDetailsServiceService} from "../../../../shared/state/picture-details-service.service";
+import {PicturePreviewDto} from "../../../../shared/utility/dtos/PicturePreviewDto";
 
 @Component({
   selector: 'app-account-picture-preview',
@@ -12,10 +12,7 @@ export class AccountPicturePreviewComponent {
   @Input() picturePreview!: PicturePreviewDto;
   @Input() name!: string;
 
-  constructor(
-    private pictureDetailsService: PictureDetailsServiceService
-  ) {
-  }
+  private pictureDetailsService = inject(PictureDetailsServiceService);
 
   showPictureModal() {
     this.pictureDetailsService.modalTriggerSubject.next(this.picturePreview.id);

@@ -10,7 +10,7 @@ import {PictureCropperComponent} from "../../../../../shared/ui/picture-cropper/
 })
 export class PostCropComponent {
 
-  next: boolean = false;
+  next = false;
 
   @ViewChild("pictureCropperComponent") cropperComponent!: PictureCropperComponent;
 

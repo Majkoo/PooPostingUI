@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {VoteType} from "../../utils/enums/voteType";
-import {LikeState} from "../../utils/enums/likeState";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {VoteType} from "../../utility/enums/voteType";
+import {LikeState} from "../../utility/enums/likeState";
 
 @Component({
   selector: 'app-vote-button',
@@ -9,12 +9,12 @@ import {LikeState} from "../../utils/enums/likeState";
 })
 export class VoteButtonComponent  {
 
-  @Output() voted: EventEmitter<VoteType> = new EventEmitter<VoteType>();
-  @Input() voteType: VoteType = VoteType.LIKE;
-  @Input() likeState: LikeState = LikeState.LIKED;
-  @Input() isLoggedOn: boolean = false;
-  @Input() likeCount: number = 0;
-  @Input() dislikeCount: number = 0;
+  @Output() voted = new EventEmitter<VoteType>();
+  @Input() voteType = VoteType.LIKE;
+  @Input() likeState = LikeState.LIKED;
+  @Input() isLoggedOn = false;
+  @Input() likeCount = 0;
+  @Input() dislikeCount = 0;
 
   vote() {
     this.voted.emit(this.voteType);

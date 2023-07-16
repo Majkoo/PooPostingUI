@@ -1,14 +1,13 @@
 import {ActivatedRoute, Router} from "@angular/router";
-import {Title} from "@angular/platform-browser";
 import {map, Observable, Subscription} from "rxjs";
 import {MessageService} from "primeng/api";
 import {Component, inject, OnDestroy, OnInit} from "@angular/core";
 import {PictureDetailsServiceService} from "../../../../shared/state/picture-details-service.service";
 import {LocationServiceService} from "../../../../shared/helpers/location-service.service";
-import {AccountDto} from "../../../../shared/utils/dtos/AccountDto";
 import {AccountService} from "../../../../data-access/account/account.service";
-import {PicturePreviewDto} from "../../../../shared/utils/dtos/PicturePreviewDto";
-import {DtoPaged} from "../../../../shared/utils/dtos/DtoPaged";
+import {AccountDto} from "../../../../shared/utility/dtos/AccountDto";
+import {DtoPaged} from "../../../../shared/utility/dtos/DtoPaged";
+import {PicturePreviewDto} from "../../../../shared/utility/dtos/PicturePreviewDto";
 
 @Component({
   selector: 'app-account-details',
@@ -23,18 +22,17 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   messageService: MessageService = inject(MessageService);
   route: ActivatedRoute = inject(ActivatedRoute);
   router: Router = inject(Router);
-  title: Title = inject(Title);
 
   account?: AccountDto;
-  showInfo: boolean = false;
-  showShare: boolean = false;
+  showInfo = false;
+  showShare = false;
   picturePreviews?: DtoPaged<PicturePreviewDto>;
 
   private readonly subs: Subscription = new Subscription();
 
   ngOnInit(): void {
 
-    let id: Observable<string> = this.route.params.pipe(map(p => p['id']));
+    const id: Observable<string> = this.route.params.pipe(map(p => p['id']));
     this.subs.add(
       id.subscribe(this.idObserver)
     );
@@ -76,7 +74,6 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   private fetchAccountObserver = {
     next: (acc: AccountDto) => {
       this.account = acc;
-      this.title.setTitle(`PicturesUI - ${acc.nickname}`);
     },
     error: () => {
       this.locationService.goBack();

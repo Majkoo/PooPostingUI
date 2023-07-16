@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Subject} from "rxjs";
-import {HttpServiceService} from "../data-access/http-service.service";
-import {PictureDto} from "../utils/dtos/PictureDto";
+import {HttpServiceService} from "../../data-access/http-service.service";
+import {PictureDto} from "../utility/dtos/PictureDto";
 
 @Injectable({
   providedIn: 'root'

@@ -1,25 +1,22 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HttpServiceService} from "../../../../data-access/http-service.service";
-import {LikeResult} from "../../../../shared/utils/dtos/LikeResult";
-import {PictureDto} from "../../../../shared/utils/dtos/PictureDto";
+import {PictureDto} from "../../../../shared/utility/dtos/PictureDto";
+import {LikeResult} from "../../../../shared/utility/dtos/LikeResult";
 
 @Component({
   selector: 'app-picture-slider-card',
   templateUrl: './picture-slider-card.component.html',
   styleUrls: ['./picture-slider-card.component.scss']
 })
-export class PictureSliderCardComponent implements OnInit {
+export class PictureSliderCardComponent {
   @Input() picture!: PictureDto;
   @Input() index!: number;
-  @Input() showCommentCount: boolean = false;
-  @Input() showLikeCount: boolean = false;
+  @Input() showCommentCount = false;
+  @Input() showLikeCount = false;
 
   constructor(
     private httpService: HttpServiceService,
   ) { }
-
-  ngOnInit(): void {
-  }
 
   like(){
     // this.httpService.patchPictureLikeRequest(this.picture.id)

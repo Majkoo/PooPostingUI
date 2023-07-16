@@ -4,12 +4,11 @@ import {map, Observable, Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpServiceService} from "../../../../data-access/http-service.service";
 import {LocationServiceService} from "../../../../shared/helpers/location-service.service";
-import {Title} from "@angular/platform-browser";
 import {AppCacheService} from "../../../../shared/state/app-cache.service";
 import {TitleCasePipe} from "@angular/common";
 import {PictureDetailsServiceService} from "../../../../shared/state/picture-details-service.service";
-import {PictureDto} from "../../../../shared/utils/dtos/PictureDto";
 import {PictureLikesService} from "../../../../data-access/picture/picture-likes.service";
+import {PictureDto} from "../../../../shared/utility/dtos/PictureDto";
 
 @Component({
   selector: 'app-picture-details',
@@ -19,9 +18,9 @@ import {PictureLikesService} from "../../../../data-access/picture/picture-likes
 export class PictureDetailsComponent implements OnInit, OnDestroy {
   picture!: PictureDto;
   id: Observable<string>;
-  isLoggedOn: boolean = false;
+  isLoggedOn = false;
 
-  showSettingsFlag: boolean = false;
+  showSettingsFlag = false;
 
   private readonly subs = new Subscription();
 
@@ -35,7 +34,6 @@ export class PictureDetailsComponent implements OnInit, OnDestroy {
     private titleCasePipe: TitleCasePipe,
     private route: ActivatedRoute,
     private router: Router,
-    private title: Title
   ) {
     this.isLoggedOn = cacheService.getUserLoggedOnState();
     this.id = route.params.pipe(map(p => p['id']));
@@ -91,7 +89,6 @@ export class PictureDetailsComponent implements OnInit, OnDestroy {
           this.httpService.getPictureRequest(val).subscribe({
             next: (pic: PictureDto) => {
               this.picture = pic;
-              this.title.setTitle(`PooPosting - ${this.titleCasePipe.transform(pic.name)}`);
             },
             error: () => {
               this.router.navigate(['/error404']);

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {PutPostCommentDto} from "../../utils/dtos/PutPostCommentDto";
 import {Observable} from "rxjs";
-import {CommentDto} from "../../utils/dtos/CommentDto";
-import {environment} from "../../../../environments/environment";
-import {CommentDtoPaged} from "../../utils/dtos/CommentDtoPaged";
+import {environment} from "../../../environments/environment";
+import {CommentDtoPaged} from "../../shared/utility/dtos/CommentDtoPaged";
+import {PutPostCommentDto} from "../../shared/utility/dtos/PutPostCommentDto";
+import {CommentDto} from "../../shared/utility/dtos/CommentDto";
 
 @Injectable({
   providedIn: 'root'

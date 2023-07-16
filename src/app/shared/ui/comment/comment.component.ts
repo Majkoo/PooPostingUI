@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CommentDto} from "../../utils/dtos/CommentDto";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {CommentDto} from "../../utility/dtos/CommentDto";
 
 @Component({
   selector: 'app-comment',

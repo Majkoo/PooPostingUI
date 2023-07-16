@@ -14,7 +14,7 @@ export class TokenInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (this.cacheService.getUserLoggedOnState()) {
-      let tokenizedReq = req.clone({
+      const tokenizedReq = req.clone({
         setHeaders: {
           Authorization: `Bearer ${this.cacheService.getUserInfo()!.authToken}`
         }

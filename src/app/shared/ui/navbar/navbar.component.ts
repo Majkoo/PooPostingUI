@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MenuItem} from "../../utils/models/menuItem";
 import {MenuLinksService} from "../../state/menu-links.service";
 import {Router} from "@angular/router";
 import {LocationServiceService} from "../../helpers/location-service.service";
-import {HttpParamsServiceService} from "../../data-access/http-params-service.service";
+import {HttpParamsServiceService} from "../../../data-access/http-params-service.service";
 import {AppCacheService} from "../../state/app-cache.service";
-import {SidebarItem} from "../../utils/models/sidebarItem";
+import {MenuItem} from "../../utility/models/menuItem";
+import {SidebarItem} from "../../utility/models/sidebarItem";
 
 
 @Component({
@@ -14,12 +14,12 @@ import {SidebarItem} from "../../utils/models/sidebarItem";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit{
-  @Input() appTitle!: string;
   currentHomePage!: number;
   menuItems: MenuItem[];
   menuExpandableItems: SidebarItem[];
-  showSidebar: boolean = false;
   loggedIn: boolean;
+  showSidebar = false;
+  appTitle = "PooPosting";
 
   constructor(
     private cacheService: AppCacheService,

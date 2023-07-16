@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {PopularDto} from "../../../../shared/utils/dtos/PopularDto";
-import {SelectOption} from "../../../../shared/utils/models/selectOption";
-import {Title} from "@angular/platform-browser";
 import {Subscription} from "rxjs";
 import {PopularService} from "../../../../data-access/popular/popular.service";
+import {PopularDto} from "../../../../shared/utility/dtos/PopularDto";
+import {SelectOption} from "../../../../shared/utility/models/selectOption";
 
 @Component({
   selector: 'app-popular',
@@ -35,9 +34,7 @@ export class PopularComponent implements OnInit {
 
   constructor(
     private popularService: PopularService,
-    private title: Title
   ) {
-    this.title.setTitle('PicturesUI - Popularne');
     this.selectOptions = [
       { name: "Obrazki", class: "bi bi-image-fill"},
       { name: "Konta", class: "bi bi-person-fill"},
@@ -57,7 +54,7 @@ export class PopularComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let sub: Subscription = this.popularService.getPopularPictures().subscribe({
+    const sub: Subscription = this.popularService.getPopularPictures().subscribe({
       next: (val: PopularDto) => {
         this.popular = val;
       },
