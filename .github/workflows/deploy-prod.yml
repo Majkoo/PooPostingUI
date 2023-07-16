@@ -52,7 +52,6 @@ jobs:
           run: |
             ssh -o StrictHostKeyChecking=no -p ${{ secrets.PRODUCTION_SSH_PORT }} ${{ secrets.PRODUCTION_SSH_USERNAME }}@${{ secrets.PRODUCTION_SSH_HOST }}
             '
-            #!/bin/bash
             sudo cd ${{ vars.REPO_PATH }}
             sudo git checkout main
             sudo git pull
