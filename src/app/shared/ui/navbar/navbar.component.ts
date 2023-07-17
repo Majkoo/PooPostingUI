@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MenuLinksService} from "../../state/menu-links.service";
 import {Router} from "@angular/router";
 import {LocationServiceService} from "../../helpers/location-service.service";

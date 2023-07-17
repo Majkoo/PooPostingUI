@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {AccountDto} from "../../utility/dtos/AccountDto";
 import {PicturePreviewDto} from "../../utility/dtos/PicturePreviewDto";
 

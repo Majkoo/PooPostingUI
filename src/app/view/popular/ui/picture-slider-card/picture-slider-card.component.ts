@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {HttpServiceService} from "../../../../data-access/http-service.service";
+import {Component, Input} from '@angular/core';
 import {PictureDto} from "../../../../shared/utility/dtos/PictureDto";
 import {LikeResult} from "../../../../shared/utility/dtos/LikeResult";
 
@@ -15,7 +14,7 @@ export class PictureSliderCardComponent {
   @Input() showLikeCount = false;
 
   constructor(
-    private httpService: HttpServiceService,
+    // private httpService: HttpServiceService,
   ) { }
 
   like(){

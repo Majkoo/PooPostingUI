@@ -1,6 +1,4 @@
-﻿import {LikeDto} from "./LikeDto";
-import {CommentDto} from "./CommentDto";
-import {AccountPreviewDto} from "./AccountPreviewDto";
+﻿import {AccountPreviewDto} from "./AccountPreviewDto";
 
 export interface PictureDto {
   id: string;
