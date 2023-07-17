@@ -1,14 +1,14 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SelectOption} from "../../utils/models/selectOption";
-import {PictureDto} from "../../utils/dtos/PictureDto";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {BlockSpaceOnStartEnd} from "../../utils/regexes/blockSpaceOnStartEnd";
+import {BlockSpaceOnStartEnd} from "../../utility/regexes/blockSpaceOnStartEnd";
 import {MessageService} from "primeng/api";
-import {PictureUpdateService} from "../../data-access/picture/picture-update.service";
-import {PictureService} from "../../data-access/picture/picture.service";
-import {UpdatePictureTagsDto} from "../../utils/dtos/UpdatePictureTagsDto";
-import {UpdatePictureNameDto} from "../../utils/dtos/UpdatePictureNameDto";
-import {UpdatePictureDescriptionDto} from "../../utils/dtos/UpdatePictureDescriptionDto";
+import {PictureUpdateService} from "../../../data-access/picture/picture-update.service";
+import {PictureService} from "../../../data-access/picture/picture.service";
+import {PictureDto} from "../../utility/dtos/PictureDto";
+import {SelectOption} from "../../utility/models/selectOption";
+import {UpdatePictureTagsDto} from "../../utility/dtos/UpdatePictureTagsDto";
+import {UpdatePictureNameDto} from "../../utility/dtos/UpdatePictureNameDto";
+import {UpdatePictureDescriptionDto} from "../../utility/dtos/UpdatePictureDescriptionDto";
 
 @Component({
   selector: 'app-edit-picture',
@@ -17,16 +17,16 @@ import {UpdatePictureDescriptionDto} from "../../utils/dtos/UpdatePictureDescrip
 })
 export class EditPictureComponent {
 
-  @Input() pictureId: string = "";
-  @Input() pictureName: string = "";
-  @Input() isAdminModifiable: boolean = false;
-  @Input() isModifiable: boolean = false;
+  @Input() pictureId = "";
+  @Input() pictureName = "";
+  @Input() isAdminModifiable = false;
+  @Input() isModifiable = false;
 
   @Output() pictureChangedEvent: EventEmitter<PictureDto> = new EventEmitter<PictureDto>();
   @Output() pictureDeletedEvent: EventEmitter<null> = new EventEmitter<null>();
 
-  deletePhrase: string = "";
-  awaitSubmit: boolean = false;
+  deletePhrase = "";
+  awaitSubmit = false;
 
   selectValue: SelectOption = {name: "none", class: "none"};
   editValue: SelectOption = {name: "none", class: "none"};
@@ -88,7 +88,7 @@ export class EditPictureComponent {
   }
   submitTags() {
     this.awaitSubmit = true;
-    let data: UpdatePictureTagsDto = { tags: this.tags }
+    const data: UpdatePictureTagsDto = { tags: this.tags }
     this.pictureUpdateService
       .updatePictureTags(data, this.pictureId)
       .subscribe({
@@ -109,7 +109,7 @@ export class EditPictureComponent {
   }
   submitName(){
     this.awaitSubmit = true;
-    let data: UpdatePictureNameDto = { name: this.changeName.get('name')?.value }
+    const data: UpdatePictureNameDto = { name: this.changeName.get('name')?.value }
     this.pictureUpdateService
       .updatePictureName(data, this.pictureId)
       .subscribe({
@@ -130,7 +130,7 @@ export class EditPictureComponent {
   }
   submitDesc(){
     this.awaitSubmit = true;
-    let data: UpdatePictureDescriptionDto = { description: this.changeDesc.get('desc')?.value }
+    const data: UpdatePictureDescriptionDto = { description: this.changeDesc.get('desc')?.value }
     this.pictureUpdateService
       .updatePictureDescription(data, this.pictureId)
       .subscribe({
@@ -152,10 +152,10 @@ export class EditPictureComponent {
 
   // tags input utility fns
   trimChips() {
-    let tags: string[] = this.changeTags.get('tags')?.value;
+    const tags: string[] = this.changeTags.get('tags')?.value;
     let tagsToTrim: string[] = [];
-    let tagsTrimmed: string[] = [];
-    let uniqueTagsTrimmed: string[] = [];
+    const tagsTrimmed: string[] = [];
+    const uniqueTagsTrimmed: string[] = [];
     tags.forEach(val => {
       tagsToTrim = val.split(" ")
       tagsToTrim.forEach(tag => {

@@ -4,13 +4,13 @@ import {Clipboard} from "@angular/cdk/clipboard";
 import {PictureDetailsServiceService} from "../../../shared/state/picture-details-service.service";
 import {AppCacheService} from "../../../shared/state/app-cache.service";
 import {environment} from "../../../../environments/environment";
-import {PictureDto} from "../../../shared/utils/dtos/PictureDto";
-import {CommentDto} from "../../../shared/utils/dtos/CommentDto";
 import {map, Observable, Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LocationServiceService} from "../../../shared/helpers/location-service.service";
-import {PictureLikesService} from "../../../shared/data-access/picture/picture-likes.service";
-import {PictureService} from "../../../shared/data-access/picture/picture.service";
+import {PictureLikesService} from "../../../data-access/picture/picture-likes.service";
+import {PictureService} from "../../../data-access/picture/picture.service";
+import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
+import {CommentDto} from "../../../shared/utility/dtos/CommentDto";
 
 @Component({
   selector: 'app-picture-details-modal',
@@ -22,12 +22,12 @@ export class PictureDetailsModalComponent implements OnInit, OnDestroy {
   id: Observable<string>;
   picture: PictureDto | null = null;
   comments: CommentDto[] = [];
-  visible: boolean = true;
-  isLoggedOn: boolean = false;
-  recentlyRefreshed: boolean = false;
+  visible = true;
+  isLoggedOn = false;
+  recentlyRefreshed = false;
 
-  shareUrl: string = `${environment.appWebUrl}/picture/`;
-  showSettings: boolean = false;
+  shareUrl = `${environment.appWebUrl}/picture/`;
+  showSettings = false;
 
   private readonly subs = new Subscription();
 

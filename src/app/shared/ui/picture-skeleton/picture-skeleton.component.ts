@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-picture-skeleton',
   templateUrl: './picture-skeleton.component.html',
   styleUrls: ['./picture-skeleton.component.scss']
 })
-export class PictureSkeletonComponent implements OnInit {
+export class PictureSkeletonComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

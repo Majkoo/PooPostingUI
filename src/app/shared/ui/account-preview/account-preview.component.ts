@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AccountDto} from "../../utils/dtos/AccountDto";
-import {PicturePreviewDto} from "../../utils/dtos/PicturePreviewDto";
+import {AccountDto} from "../../utility/dtos/AccountDto";
+import {PicturePreviewDto} from "../../utility/dtos/PicturePreviewDto";
 
 @Component({
   selector: 'app-account-preview',

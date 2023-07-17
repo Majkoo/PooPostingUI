@@ -9,7 +9,7 @@ export class PostPictureServiceService {
   ) {
   }
 
-  cropperDataUrl: string = "";
+  cropperDataUrl = "";
   file?: Blob;
   name?: string;
   description?: string;

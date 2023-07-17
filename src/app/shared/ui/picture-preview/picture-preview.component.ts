@@ -1,9 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { HttpServiceService } from 'src/app/shared/data-access/http-service.service';
 import {PictureDetailsServiceService} from "../../state/picture-details-service.service";
-import {PictureDto} from "../../utils/dtos/PictureDto";
-import {PictureService} from "../../data-access/picture/picture.service";
-import {PictureLikesService} from "../../data-access/picture/picture-likes.service";
+import {PictureLikesService} from "../../../data-access/picture/picture-likes.service";
+import {PictureDto} from "../../utility/dtos/PictureDto";
 
 @Component({
   selector: 'app-picture-preview',
@@ -13,9 +11,9 @@ import {PictureLikesService} from "../../data-access/picture/picture-likes.servi
 export class PicturePreviewComponent implements OnInit {
   @Input() picture!: PictureDto;
   @Input() isLoggedOn!: boolean;
-  isDeleted: boolean = false;
+  isDeleted = false;
 
-  showShare: boolean = false;
+  showShare = false;
 
   constructor(
     private pictureDetailsService: PictureDetailsServiceService,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Location} from "@angular/common";
 import {Router} from "@angular/router";
-import {HttpParamsServiceService} from "../data-access/http-params-service.service";
+import {HttpParamsServiceService} from "../../data-access/http-params-service.service";
 
 @Injectable({
   providedIn: 'root'

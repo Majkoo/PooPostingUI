@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {MenuItem} from "../utils/models/menuItem";
-import {SidebarItem} from "../utils/models/sidebarItem";
-import {SidebarLink} from "../utils/models/sidebarLink";
+import {SidebarItem} from "../utility/models/sidebarItem";
+import {SidebarLink} from "../utility/models/sidebarLink";
+import {MenuItem} from "../utility/models/menuItem";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -98,15 +99,15 @@ export class MenuLinksService {
     this.sidebarLinks = [
       {
         label: "Polityka prywatności",
-        url: "https://migra.ml/polityka-prywatnosci"
+        url: `https://migra.ml/polityka-prywatnosci`
       },
       {
         label: "Regulamin witryny",
-        url: "https://pictures.migra.ml/tos/rulebook"
+        url: `${environment.appWebUrl}/tos/rulebook`
       },
       {
         label: "O Twórcy",
-        url: "https://migra.ml"
+        url: `https://migra.ml`
       }
     ]
   }

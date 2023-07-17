@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserState } from 'src/app/shared/utils/models/userState';
 import {Router} from "@angular/router";
 import {MenuLinksService} from "../../state/menu-links.service";
-import {SidebarItem} from "../../utils/models/sidebarItem";
 import {AppCacheService} from "../../state/app-cache.service";
-import {SidebarLink} from "../../utils/models/sidebarLink";
+import {UserState} from "../../utility/models/userState";
+import {SidebarItem} from "../../utility/models/sidebarItem";
+import {SidebarLink} from "../../utility/models/sidebarLink";
 
 @Component({
   selector: 'app-sidebar',
