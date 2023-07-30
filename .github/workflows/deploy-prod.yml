@@ -49,6 +49,7 @@ jobs:
             cd ${{ secrets.REPO_PATH }}
             sudo git checkout main
             sudo git pull
+            sudo npm install
             sudo ng build --configuration=prod-server
             sudo rm -rf ${{ secrets.OUTPUT_DIR_PROD }}*.css ${{ secrets.OUTPUT_DIR_PROD }}*.js
             sudo cp dist/* -t ${{ secrets.OUTPUT_DIR_PROD }} -r
