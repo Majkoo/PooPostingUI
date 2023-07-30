@@ -46,11 +46,11 @@ jobs:
       - name: Deploy to Development
         run: |
           ssh -o StrictHostKeyChecking=no -p ${{ secrets.DEVELOPMENT_SSH_PORT }} ${{ secrets.DEVELOPMENT_SSH_USERNAME }}@${{ secrets.DEVELOPMENT_SSH_HOST }} <<- 'EOF'
-            cd ${{ vars.REPO_PATH }}
+            cd ${{ secrets.REPO_PATH }}
             sudo git checkout development
             sudo git pull
             sudo ng build --configuration=dev-server
-            sudo rm -rf ${{ vars.OUTPUT_DIR_DEV }}*.css ${{ vars.OUTPUT_DIR_DEV }}*.js
-            sudo cp dist/* -t ${{ vars.OUTPUT_DIR_DEV }} -r
+            sudo rm -rf ${{ secrets.OUTPUT_DIR_DEV }}*.css ${{ secrets.OUTPUT_DIR_DEV }}*.js
+            sudo cp dist/* -t ${{ secrets.OUTPUT_DIR_DEV }} -r
             sudo rm -rf dist/
           EOF
