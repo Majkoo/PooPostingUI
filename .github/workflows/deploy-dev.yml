@@ -27,27 +27,30 @@ jobs:
       - name: Run tests
         run: npm run test:prod
 
-#      - name: Run lint
-#        run: npm run lint
-
   deploy-development:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-        - name: Checkout code
-          uses: actions/checkout@v3.5.3
+      - name: Checkout code
+        uses: actions/checkout@v3.5.3
 
-        - name: Setup SSH
-          uses: webfactory/ssh-agent@v0.8.0
-          with:
-            ssh-private-key: ${{ secrets.DEVELOPMENT_SSH_PRIVATE_KEY }}
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.DEVELOPMENT_SSH_PRIVATE_KEY }}
 
-        - name: Install SSH client
-          run: |
-              sudo apt-get update
-              sudo apt-get install -y openssh-client
+      - name: Install SSH client
+        run: sudo apt-get update && sudo apt-get install -y openssh-client
 
-        - name: Deploy to Development
-          run: |
-            ssh -o StrictHostKeyChecking=no -p ${{ secrets.DEVELOPMENT_SSH_PORT }} ${{ secrets.DEVELOPMENT_SSH_USERNAME }}@${{ secrets.DEVELOPMENT_SSH_HOST }} 'cd ${{ vars.REPO_PATH }} && sudo git checkout development && sudo git pull && sudo ng build --configuration=dev-server && sudo rm -rf ${{ vars.OUTPUT_DIR_DEV }}*.css ${{ vars.OUTPUT_DIR_DEV }}*.js && sudo cp dist/* -t ${{ vars.OUTPUT_DIR_DEV }} -r && sudo rm -rf dist/'
+      - name: Deploy to Development
+        run: |
+          ssh -o StrictHostKeyChecking=no -p ${{ secrets.DEVELOPMENT_SSH_PORT }} ${{ secrets.DEVELOPMENT_SSH_USERNAME }}@${{ secrets.DEVELOPMENT_SSH_HOST }} <<- 'EOF'
+            cd ${{ vars.REPO_PATH }}
+            sudo git checkout development
+            sudo git pull
+            sudo ng build --configuration=dev-server
+            sudo rm -rf ${{ vars.OUTPUT_DIR_DEV }}*.css ${{ vars.OUTPUT_DIR_DEV }}*.js
+            sudo cp dist/* -t ${{ vars.OUTPUT_DIR_DEV }} -r
+            sudo rm -rf dist/
+          EOF
