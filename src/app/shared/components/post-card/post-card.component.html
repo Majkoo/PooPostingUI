@@ -1,0 +1,54 @@
+<div class="w-full bg-surface rounded-lg border-1 border-prime shadow shadow-prime p-2 flex flex-col gap-2" *ngIf="pic">
+
+  <div class="flex justify-between items-center px-1">
+
+    <a class="flex gap-2 justify-between items-center" routerLink="/account/{{pic.account.id}}">
+      <img class="w-9 h-9 rounded-3xl" src="{{pic.account.profilePicUrl}}" alt="{{pic.account.nickname}}">
+      <p class="font-bold text-base">{{pic.account.nickname}}</p>
+    </a>
+
+    <span class="icon-dark icon-setting"></span>
+
+  </div>
+
+  <div class="flex rounded-lg">
+    <img class="rounded-xl" src="{{pic.url}}" alt="{{pic.name}}">
+  </div>
+
+  <div class="flex items-start gap-2 px-0.5 pt-1">
+    <span class="icon-dark m-0 icon-heart--empty"></span>
+    <span class="icon-dark m-0 icon-share"></span>
+  </div>
+
+  <div class="flex flex-col gap-2 px-2">
+
+    <div class="flex flex-col items-between justify-center gap-2">
+      <p class="text-sm">{{pic.description}}</p>
+      <p class="flex gap-1" *ngIf="pic.tags?.length">
+        <span
+          *ngFor="let tag of pic.tags"
+          class="text-xs font-light bg-accent text-white flex-wrap rounded-lg px-2 py-0.5"
+        >
+          #{{tag}}
+        </span>
+      </p>
+    </div>
+
+    <div class="flex flex-col items-between justify-center gap-1 my-1">
+      <div class="bg-white border-1 rounded-lg text-xs text-gray-400 px-2 py-0.25 border-gray-200 flex items-center justify-between">
+        <p>Write a comment...</p>
+        <span class="icon-vector text text-lg"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="px-3 flex flex-col gap-2 mb-2" *ngIf="pic.comment">
+    <div class="flex flex-col items-between justify-center gap-1 text-xs ">
+      <p>
+        <b>{{pic.comment.account.nickname}}</b>: {{pic.comment.text}}
+      </p>
+    </div>
+  </div>
+
+</div>

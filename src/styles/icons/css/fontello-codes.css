@@ -1,5 +1,6 @@
 
 .icon-user:before { content: '\e800'; } /* '' */
+.icon-vector-1:before { content: '\e801'; } /* '' */
 .icon-heart--empty:before { content: '\e802'; } /* '' */
 .icon-heart--filled:before { content: '\e803'; } /* '' */
 .icon-search:before { content: '\e804'; } /* '' */
@@ -8,3 +9,4 @@
 .icon-trending:before { content: '\e807'; } /* '' */
 .icon-user--circle:before { content: '\e808'; } /* '' */
 .icon-add-post:before { content: '\e809'; } /* '' */
+.icon-vector:before { content: '\e80a'; } /* '' */

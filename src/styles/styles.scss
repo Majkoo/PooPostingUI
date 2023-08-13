@@ -2,10 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .icon-fz {
   font-size: 24px;
 }
 .icon {
-  @apply text-white icon-fz
+  @apply icon-fz text-white flex justify-center items-center h-auto
+}
+.icon-dark {
+  @apply icon-fz text-black flex justify-center items-center h-auto
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+body {
+  @apply top-0 absolute w-full
+}
+
+* {
+  font-family: "poppins", sans-serif;
+}
+
+.btn-accent {
+  @apply bg-accent rounded-lg text-white
+}
+
+
+header, footer {
+  @apply z-50
 }

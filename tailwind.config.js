@@ -41,7 +41,11 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: theme,
+      shadowColor: theme,
       borderColor: theme,
+      borderWidth: {
+        "1": "1px"
+      },
     }
   },
   plugins: [],
