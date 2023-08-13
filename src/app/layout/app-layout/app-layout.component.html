@@ -1,15 +1,7 @@
-<header class="bg-dark app-header">
-  <app-navbar/>
-</header>
+<pp-header />
 
-<div class="app-container mt-4 row">
+<main class="mt-14 mb-14 p-3">
+  <router-outlet/>
+</main>
 
-  <main class="col-12 col-md-8">
-    <router-outlet/>
-  </main>
-
-  <aside class="d-none d-md-block col-4 app-side">
-    <app-sidebar/>
-  </aside>
-
-</div>
+<pp-footer />

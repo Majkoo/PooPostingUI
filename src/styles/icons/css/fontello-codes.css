@@ -1,0 +1,10 @@
+
+.icon-user:before { content: '\e800'; } /* '' */
+.icon-heart--empty:before { content: '\e802'; } /* '' */
+.icon-heart--filled:before { content: '\e803'; } /* '' */
+.icon-search:before { content: '\e804'; } /* '' */
+.icon-setting:before { content: '\e805'; } /* '' */
+.icon-share:before { content: '\e806'; } /* '' */
+.icon-trending:before { content: '\e807'; } /* '' */
+.icon-user--circle:before { content: '\e808'; } /* '' */
+.icon-add-post:before { content: '\e809'; } /* '' */

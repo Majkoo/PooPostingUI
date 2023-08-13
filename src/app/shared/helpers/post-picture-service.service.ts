@@ -4,11 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PostPictureServiceService {
-
-  constructor(
-  ) {
-  }
-
   cropperDataUrl = "";
   file?: Blob;
   name?: string;

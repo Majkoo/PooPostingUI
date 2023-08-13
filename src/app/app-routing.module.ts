@@ -11,11 +11,6 @@ import {ERROR_LAYOUT_ROUTES} from "./routes/error-layout.routes";
 const routes: Routes = [
   {
     path: '',
-    redirectTo: "/home",
-    pathMatch: 'full'
-  },
-  {
-    path: '',
     component: AppLayoutComponent,
     children: APP_LAYOUT_ROUTES
   },
