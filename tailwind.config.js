@@ -39,8 +39,19 @@ module.exports = {
     "./src/**/*.{html,ts}", // add this line
   ],
   theme: {
+    screens: {
+      '3xs': '384px',
+      '2xs': '448px',
+      'xs': '512px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       backgroundColor: theme,
+      textColor: theme,
       shadowColor: theme,
       borderColor: theme,
       borderWidth: {

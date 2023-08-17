@@ -5,8 +5,9 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { ErrorLayoutComponent } from './error-layout/error-layout.component';
 import { RouterModule } from "@angular/router";
 import { HeaderComponent } from './app-layout/header/header.component';
-import { FooterComponent } from './app-layout/footer/footer.component';
+import { NavComponent } from './app-layout/nav/nav.component';
 import {CreateAccountBannerComponent} from "../shared/components/create-account-banner/create-account-banner.component";
+import {QueryModalComponent} from "../shared/components/query-modal/query-modal.component";
 
 @NgModule({
   declarations: [
@@ -14,14 +15,15 @@ import {CreateAccountBannerComponent} from "../shared/components/create-account-
     AuthLayoutComponent,
     ErrorLayoutComponent,
     HeaderComponent,
-    FooterComponent
+    NavComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        NgOptimizedImage,
-        CreateAccountBannerComponent,
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgOptimizedImage,
+    CreateAccountBannerComponent,
+    QueryModalComponent,
+  ],
   exports: [
     AppLayoutComponent,
     AuthLayoutComponent,

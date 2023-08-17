@@ -6,9 +6,11 @@
   font-size: 24px;
 }
 .icon {
+  margin: 0 !important;
   @apply icon-fz text-white flex justify-center items-center h-auto
 }
 .icon-dark {
+  margin: 0 !important;
   @apply icon-fz text-black flex justify-center items-center h-auto
 }
 
@@ -17,7 +19,7 @@
 }
 
 body {
-  @apply top-0 absolute w-full
+  @apply top-0 w-full
 }
 
 * {
@@ -28,7 +30,23 @@ body {
   @apply bg-accent rounded-lg text-white
 }
 
+header, footer, nav {
+  @apply z-30
+}
 
-header, footer {
-  @apply z-50
+.cont {
+  @apply max-w-2xl mx-auto
+}
+.cont-inner {
+  @apply max-w-xl mx-auto
+}
+
+.nav-link {
+  @apply flex justify-center items-center gap-0.5 select-none hover:backdrop-brightness-90 transition ease-in-out cursor-pointer h-full px-2
+}
+
+.nav-link {
+  span {
+    @apply text-lg hidden sm:block
+  }
 }
