@@ -1,54 +1,32 @@
-<div class="w-full bg-surface rounded-lg border-1 border-prime shadow shadow-prime p-2 flex flex-col gap-2" *ngIf="pic">
+<ng-container *ngIf="pic">
 
-  <div class="flex justify-between items-center px-1">
+  <div class="flex flex-col">
 
-    <a class="flex gap-2 justify-between items-center" routerLink="/account/{{pic.account.id}}">
-      <img class="w-9 h-9 rounded-3xl" src="{{pic.account.profilePicUrl}}" alt="{{pic.account.nickname}}">
-      <p class="font-bold text-base">{{pic.account.nickname}}</p>
-    </a>
+    <div class="flex bg-prime h-14 justify-between items-center text-white pp-shadow rounded-b-2xl">
+      <div class="cont px-4 w-full sm:px-0 h-14 flex items-center justify-between">
 
-    <span class="icon-dark icon-setting"></span>
+        <a class="nav-link" (click)="close()">
+          <img ngSrc="assets/logo/logo-row.png" class="invert" alt="PooPosting" height="32" width="147"/>
+        </a>
 
-  </div>
+        <a class="icon icon-user nav-link text-dark">
+        </a>
 
-  <div class="flex rounded-lg justify-center items-center">
-    <img class="w-full rounded-xl" src="{{pic.url}}" alt="{{pic.name}}">
-  </div>
-
-  <div class="flex items-start gap-2 px-0.5 pt-1">
-    <span class="icon-dark m-0 icon-heart--empty"></span>
-    <span class="icon-dark m-0 icon-share"></span>
-  </div>
-
-  <div class="flex flex-col gap-2 px-2">
-
-    <div class="flex flex-col items-between justify-center gap-2">
-      <p class="text-sm">{{pic.description}}</p>
-      <p class="flex gap-1" *ngIf="pic.tags?.length">
-        <span
-          *ngFor="let tag of pic.tags"
-          class="text-xs font-light bg-accent text-white flex-wrap rounded-lg px-2 py-0.5"
-        >
-          #{{tag}}
-        </span>
-      </p>
-    </div>
-
-    <div class="flex flex-col items-between justify-center gap-1 my-1">
-      <div class="bg-white border-1 rounded-lg text-xs text-gray-400 px-2 py-0.25 border-gray-200 flex items-center justify-between">
-        <p>Write a comment...</p>
-        <span class="icon-vector text text-lg"></span>
       </div>
     </div>
 
-  </div>
+    <div class="w-full h-[calc(100vh-56px)] flex flex-col md:flex-row gap-4">
 
-  <div class="px-3 flex flex-col gap-2 mb-2" *ngIf="pic.comment">
-    <div class="flex flex-col items-between justify-center gap-1 text-xs ">
-      <p>
-        <b>{{pic.comment.account.nickname}}</b>: {{pic.comment.text}}
-      </p>
+      <div class="w-full md:w-3/5 lg:w-3/4 lg:h-[calc(100vh-56px)]">
+        <img class="m-auto w-full lg:w-auto h-full object-contain" src="{{pic.url}}" alt="{{pic.name}}">
+      </div>
+
+      <div>
+        comments
+      </div>
+
     </div>
+
   </div>
 
-</div>
+</ng-container>

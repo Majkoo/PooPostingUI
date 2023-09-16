@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'pp-nav',
   template: `
-    <nav>
+    <nav class="pp-shadow">
 
       <div class="nav cont">
         <a class="icon icon-trending nav-link">
@@ -32,10 +32,9 @@ import { Component } from '@angular/core';
   styles: [`
     nav {
       @apply
-      bottom-0 fixed w-full z-30 bg-prime px-4
-      sm:px-0
-      sm:bg-surface sm:border-1 sm:border-prime
-      sm:sticky sm:bottom-auto sm:top-14
+      bottom-0 fixed w-full z-30 bg-surface-100 px-4
+      rounded-t-xl
+      sm:hidden
     }
     .nav {
       @apply
@@ -46,7 +45,7 @@ import { Component } from '@angular/core';
     .nav-link {
       @apply
       sm:w-full sm:flex sm:w-max sm:h-full
-      sm:text-prime sm:font-bold
+      sm:text-dark sm:font-bold
       sm:px-2 sm:py-2
     }
   `]

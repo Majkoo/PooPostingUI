@@ -8,6 +8,7 @@ import { HeaderComponent } from './app-layout/header/header.component';
 import { NavComponent } from './app-layout/nav/nav.component';
 import {CreateAccountBannerComponent} from "../shared/components/create-account-banner/create-account-banner.component";
 import {QueryModalComponent} from "../shared/components/query-modal/query-modal";
+import {DialogService} from "primeng/dynamicdialog";
 
 @NgModule({
   declarations: [
@@ -27,8 +28,11 @@ import {QueryModalComponent} from "../shared/components/query-modal/query-modal"
   exports: [
     AppLayoutComponent,
     AuthLayoutComponent,
-    ErrorLayoutComponent
+    ErrorLayoutComponent,
+    HeaderComponent
   ],
-  providers: []
+  providers: [
+    DialogService
+  ]
 })
 export class LayoutModule { }

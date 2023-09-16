@@ -6,6 +6,12 @@ import {PictureDto} from "../../utility/dtos/PictureDto";
 @Component({
   selector: 'pp-post-card',
   templateUrl: './post-card.component.html',
+  styles: [`
+  .lh {
+    line-height: 100% !important;
+  }
+  `
+  ],
   imports: [
     NgIf,
     NgOptimizedImage,

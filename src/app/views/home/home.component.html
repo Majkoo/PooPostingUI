@@ -1,3 +1,4 @@
 <div class="flex flex-col gap-6">
+  <pp-create-account-banner />
   <pp-post-card *ngFor="let picture of (pictures$ | async)" [pic]="picture" />
 </div>

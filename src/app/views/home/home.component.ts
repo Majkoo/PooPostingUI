@@ -5,6 +5,9 @@ import { PictureService } from '../../services/data-access/picture/picture.servi
 import { PictureDto } from '../../shared/utility/dtos/PictureDto';
 import {PostCardComponent} from "../../shared/components/post-card/post-card.component";
 import {AsyncPipe, NgForOf} from "@angular/common";
+import {
+  CreateAccountBannerComponent
+} from "../../shared/components/create-account-banner/create-account-banner.component";
 
 @Component({
   selector: 'pp-home',
@@ -13,7 +16,8 @@ import {AsyncPipe, NgForOf} from "@angular/common";
   imports: [
     PostCardComponent,
     AsyncPipe,
-    NgForOf
+    NgForOf,
+    CreateAccountBannerComponent
   ]
 })
 export class HomeComponent implements OnInit {

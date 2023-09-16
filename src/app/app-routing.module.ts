@@ -33,7 +33,7 @@ const routes: Routes = [
       {
         preloadingStrategy: PreloadAllModules,
         anchorScrolling: 'enabled',
-        scrollPositionRestoration: 'enabled',
+        scrollPositionRestoration: 'disabled',
         initialNavigation: 'enabledNonBlocking'
       }
     )],

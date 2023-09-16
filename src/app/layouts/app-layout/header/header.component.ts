@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  scrollTop() {
+    document.documentElement.scrollTop = 0;
+  }
 }
