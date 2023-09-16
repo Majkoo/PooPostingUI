@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {Component, inject, Input} from '@angular/core';
+import {Location, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {PictureDto} from "../../utility/dtos/PictureDto";
 
@@ -16,4 +16,11 @@ import {PictureDto} from "../../utility/dtos/PictureDto";
 })
 export class PostCardComponent {
   @Input() pic?: PictureDto;
+
+  private location = inject(Location);
+
+  openModal(pic: PictureDto) {
+    this.location.go(`?viewPicture=${pic.id}`);
+  }
+
 }

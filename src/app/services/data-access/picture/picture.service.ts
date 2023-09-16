@@ -18,4 +18,8 @@ export class PictureService {
       `${this.getPicturesUrl}?pageSize=${pageSize}&pageNumber=${pageNumber}`
     );
   }
+
+  getById(id: string): Observable<PictureDto> {
+    return this.httpClient.get<PictureDto>(`${this.getPicturesUrl}/${id}`);
+  }
 }

@@ -7,7 +7,7 @@ import { RouterModule } from "@angular/router";
 import { HeaderComponent } from './app-layout/header/header.component';
 import { NavComponent } from './app-layout/nav/nav.component';
 import {CreateAccountBannerComponent} from "../shared/components/create-account-banner/create-account-banner.component";
-import {QueryModalComponent} from "../shared/components/query-modal/query-modal.component";
+import {QueryModalComponent} from "../shared/components/query-modal/query-modal";
 
 @NgModule({
   declarations: [

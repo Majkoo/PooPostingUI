@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.pictures$ = this.scrollSubject.pipe(
       switchMap(() => this.pictureService.get(this.pageSize, this.pageNumber)
         .pipe(
@@ -55,5 +56,6 @@ export class HomeComponent implements OnInit {
       scan((acc: PictureDto[], curr: PictureDto[]) => [...acc, ...curr], [])
     );
   }
+
 }
 

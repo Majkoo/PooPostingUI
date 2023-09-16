@@ -8,10 +8,12 @@ import { BrowserModule } from "@angular/platform-browser";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import {RouterModule} from "@angular/router";
 import {LayoutModule} from "./layouts/layout.module";
+import { ViewPictureModalComponent } from './shared/components/view-picture-modal/view-picture-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ViewPictureModalComponent,
   ],
   imports: [
     RouterModule,
