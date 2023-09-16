@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule, Location} from '@angular/common';
-import {ActivatedRoute, Router, RouterModule} from "@angular/router";
-import {Subscription} from "rxjs";
+import {ActivatedRoute, Params, Router, RouterModule} from "@angular/router";
+import {firstValueFrom, Subscription} from "rxjs";
 import {DialogModule} from "primeng/dialog";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {CreateAccountBannerComponent} from "../create-account-banner/create-account-banner.component";
@@ -32,7 +32,11 @@ export class QueryModalComponent implements OnInit, OnDestroy {
     private dialogService: DialogService
   ){}
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    const initParams: Params = await firstValueFrom(this.route.queryParams);
+    const viewPictureParam = initParams['viewPicture'];
+    if (viewPictureParam) this.openViewPictureModal(viewPictureParam);
+
     this.location.onUrlChange(url => {
       const viewPictureParam = this.extractParams(url, 'viewPicture');
       if (viewPictureParam) this.openViewPictureModal(viewPictureParam);
