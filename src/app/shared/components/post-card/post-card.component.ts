@@ -2,6 +2,7 @@ import {Component, inject, Input} from '@angular/core';
 import {Location, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {PictureDto} from "../../utility/dtos/PictureDto";
+import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transform.module";
 
 @Component({
   selector: 'pp-post-card',
@@ -16,7 +17,8 @@ import {PictureDto} from "../../utility/dtos/PictureDto";
     NgIf,
     NgOptimizedImage,
     RouterLink,
-    NgForOf
+    NgForOf,
+    UrlTransformModule
   ],
   standalone: true
 })

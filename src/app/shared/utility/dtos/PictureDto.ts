@@ -12,7 +12,7 @@ export interface PictureDto {
   url: string;
   pictureAdded: string;
 
-  comment: CommentDto;
+  comments: CommentDto[];
   commentCount: number;
   likeCount: number;
   dislikeCount: number;

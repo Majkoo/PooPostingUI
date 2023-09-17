@@ -1,7 +1,7 @@
 <ng-container *ngIf="pic">
 
-  <div class="flex flex-col">
-
+  <div class="flex flex-col gap-4 h-100vh mb-[3.5rem]">
+    <!--  Header  -->
     <div class="flex bg-prime h-14 justify-between items-center text-white pp-shadow rounded-b-2xl">
       <div class="cont px-4 w-full sm:px-0 h-14 flex items-center justify-between">
 
@@ -15,14 +15,71 @@
       </div>
     </div>
 
-    <div class="w-full h-[calc(100vh-56px)] flex flex-col md:flex-row gap-4">
+    <!--  Account  -->
+    <div class="flex mx-3 rounded-xl px-4 py-3 bg-surface-300 text-dark">
 
-      <div class="w-full md:w-3/5 lg:w-3/4 lg:h-[calc(100vh-56px)]">
-        <img class="m-auto w-full lg:w-auto h-full object-contain" src="{{pic.url}}" alt="{{pic.name}}">
+      <a class="gap-2 justify-center items-center w-max flex flex-row" routerLink="/account/{{pic.account.id}}">
+        <img class="w-8 max-h-8 object-fill rounded-3xl" src="{{pic.account.profilePicUrl | urlTransform}}" alt="{{pic.account.nickname}}">
+        <div class="text-lg font-bolder">{{pic.account.nickname}}</div>
+      </a>
+
+      <div class="flex grow justify-end items-center">
+        <span class="icon-vector-1"></span>
       </div>
 
-      <div>
-        comments
+    </div>
+
+    <!--  Content  -->
+    <div class="w-full h-full flex flex-col gap-2.5 pb-3 text-dark">
+
+      <!--  Image  -->
+      <div class="w-full md:w-3/5 lg:w-3/4 px-3">
+        <img class="m-auto w-full lg:w-auto h-full object-contain rounded-lg" src="{{pic.url | urlTransform}}" alt="{{pic.name}}">
+      </div>
+
+      <!--  Controls  -->
+      <div class="flex flex-col px-6">
+        <div class="flex gap-3 text-2xl">
+          <span class="icon-heart--empty"></span>
+          <span class="icon-share"></span>
+          <div class="grow flex justify-end">
+            <span class="icon-setting"></span>
+          </div>
+        </div>
+      </div>
+
+      <!--  Description  -->
+      <div class="flex flex-col px-7" *ngIf="pic.description">
+        {{pic.description}}
+      </div>
+
+      <!--  Tags  -->
+      <div class="flex flex-row gap-2.5 px-7" *ngIf="pic.tags.length">
+        <span
+          *ngFor="let tag of pic.tags"
+          class="text-md font-dark font-light bg-primary-900 text-white flex-wrap rounded-lg px-2.5 py-1"
+        >
+          #{{tag}}
+        </span>
+      </div>
+
+      <!--  Comments  -->
+      <div class="px-3" *ngIf="pic.comments.length">
+        <div class="flex flex-col gap-2.5 bg-surface-300 py-3 px-4 rounded-lg">
+          <p class="text-dark font-bold">Comments</p>
+          <div class="flex gap-1.5" *ngFor="let comm of pic.comments">
+            <a routerLink="/account/{{pic.account.id}}">
+              <img class="w-6 max-h-6 object-fill rounded-3xl"
+                   src="{{comm.account.profilePicUrl | urlTransform}}"
+                   alt="{{comm.account.nickname}}"
+              >
+            </a>
+            <div class="flex flex-wrap">
+              <p class="font-bold">{{comm.account.nickname}}</p>:&nbsp;<p>{{comm.text}}</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>

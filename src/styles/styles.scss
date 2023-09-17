@@ -32,14 +32,18 @@ html {
   font-family: "poppins", sans-serif;
 }
 
+nav {
+  z-index: 1102 !important;
+}
+
 header, footer, nav {
   @apply z-30
 }
 .pp-shadow {
-  @apply shadow-[0_0_20px_0_rgba(160,160,160,0.25)]
+  @apply shadow-[0_0_20px_0_rgba(160,160,160,0.75)]
 }
 .font-bolder {
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .cont {

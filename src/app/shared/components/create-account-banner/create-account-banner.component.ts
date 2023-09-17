@@ -7,7 +7,7 @@ import {RouterLink} from "@angular/router";
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './create-account-banner.component.html',
-  styleUrls: ['./create-account-banner.component.scss']
+  styleUrls: ['./create-account-banner.component.scss'],
 })
 export class CreateAccountBannerComponent {
 

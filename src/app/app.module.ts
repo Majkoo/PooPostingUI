@@ -10,6 +10,7 @@ import {RouterModule} from "@angular/router";
 import {LayoutModule} from "./layouts/layout.module";
 import { ViewPictureModalComponent } from './shared/components/view-picture-modal/view-picture-modal.component';
 import {NgOptimizedImage} from "@angular/common";
+import {UrlTransformModule} from "./shared/utility/pipes/url-transform/url-transform.module";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {NgOptimizedImage} from "@angular/common";
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     LayoutModule,
     NgOptimizedImage,
+    UrlTransformModule,
   ],
   providers: [
     // {
