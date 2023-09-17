@@ -17,7 +17,6 @@ export class ViewPictureModalComponent implements OnInit {
   constructor(
     private picService: PictureService,
     private location: Location,
-    private queryModalService: QueryModalService
   ) {
   }
 
@@ -27,10 +26,6 @@ export class ViewPictureModalComponent implements OnInit {
     if (picId) {
       this.pic = await firstValueFrom(this.picService.getById(picId));
     }
-  }
-
-  close() {
-    this.queryModalService.close();
   }
 
 }

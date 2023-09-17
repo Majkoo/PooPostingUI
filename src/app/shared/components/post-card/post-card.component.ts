@@ -1,6 +1,6 @@
 import {Component, inject, Input} from '@angular/core';
-import {Location, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {Router, RouterLink} from "@angular/router";
 import {PictureDto} from "../../utility/dtos/PictureDto";
 import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transform.module";
 
@@ -25,10 +25,10 @@ import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transfor
 export class PostCardComponent {
   @Input() pic?: PictureDto;
 
-  private location = inject(Location);
+  private router = inject(Router);
 
-  openModal(pic: PictureDto) {
-    this.location.go(`?viewPicture=${pic.id}`);
+  async openModal(pic: PictureDto) {
+    await this.router.navigate([], { queryParams: {viewPicture: pic.id}});
   }
 
 }
