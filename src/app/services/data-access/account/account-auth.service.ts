@@ -36,7 +36,8 @@ export class AccountAuthService {
   }
 
   getJwtData(): JwtUserData {
-    return JSON.parse(localStorage.getItem("jwtUserData") ?? "") ?? null;
+    const dataString: string | null = localStorage.getItem("jwtUserData")
+    return dataString ? JSON.parse(dataString) : null;
   }
 
 
