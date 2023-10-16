@@ -12,8 +12,17 @@
       </a>
 
       <div class="flex items-start gap-2 px-0.5 pt-1">
-        <span class="icon-dark m-0 icon-heart--empty"></span>
-        <span class="icon-dark m-0 icon-share"></span>
+        <button
+          class="icon-dark m-0"
+          [ngClass]="pic.isLiked ? 'icon-heart--filled' : 'icon-heart--empty'"
+          (click)="like(pic.id)"
+        >
+        </button>
+        <button
+          class="icon-dark m-0 icon-share"
+        >
+
+        </button>
       </div>
 
     </div>

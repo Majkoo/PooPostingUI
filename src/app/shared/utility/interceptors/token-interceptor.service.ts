@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import { Observable } from 'rxjs';
-import {AppCacheService} from "../../../services/state/app-cache.service";
+import {AccountAuthService} from "../../../services/data-access/account/account-auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenInterceptorService implements HttpInterceptor {
-  constructor(
-    private cacheService: AppCacheService
-  ) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  private authService = inject(AccountAuthService);
 
-    if (this.cacheService.getUserLoggedOnState()) {
+  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+
+    const userData = this.authService.getJwtData();
+    if (userData && userData.authToken) {
       const tokenizedReq = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.cacheService.getUserInfo()!.authToken}`
+          Authorization: `Bearer ${userData.authToken}`
         }
       });
       return next.handle(tokenizedReq);

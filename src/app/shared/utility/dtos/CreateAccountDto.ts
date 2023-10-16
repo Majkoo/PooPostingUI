@@ -1,4 +1,4 @@
-﻿export interface RegisterDto {
+﻿export interface CreateAccountDto {
   nickname: string;
   email: string;
   password: string;

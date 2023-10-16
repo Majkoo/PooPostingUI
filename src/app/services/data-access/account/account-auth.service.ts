@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {environment} from "../../../environments/environment";
-import {UserState} from "../../shared/utility/models/userState";
-import {LoginDto} from "../../shared/utility/dtos/LoginDto";
-import {RegisterDto} from "../../shared/utility/dtos/RegisterDto";
-import {VerifyJwtDto} from "../../shared/utility/dtos/VerifyJwtDto";
+import {LoginDto} from "../../../shared/utility/dtos/LoginDto";
+import {JwtUserData} from "../../../shared/utility/models/jwtUserData";
+import {environment} from "../../../../environments/environment";
+import {CreateAccountDto} from "../../../shared/utility/dtos/CreateAccountDto";
 
 @Injectable({
   providedIn: 'root'
@@ -13,31 +12,41 @@ import {VerifyJwtDto} from "../../shared/utility/dtos/VerifyJwtDto";
 export class AccountAuthService {
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
   ) { }
 
-  login(dto: LoginDto): Observable<UserState> {
+  login(dto: LoginDto): Observable<JwtUserData> {
     return this.httpClient
-      .post<UserState>(
-        `${environment.picturesApiUrl}/account/auth/login`,
+      .post<JwtUserData>(
+        `${environment.apiUrl}/auth/login`,
         dto,
         {responseType: "json",});
   }
 
-  register(data: RegisterDto): Observable<any> {
+  register(dto: CreateAccountDto): Observable<void> {
     return this.httpClient
-      .post(
-        `${environment.picturesApiUrl}/account/auth/register`,
-        data,
+      .post<void>(
+        `${environment.apiUrl}/auth/register`,
+        dto,
         {responseType: "json",});
   }
 
-  verifyJwt(data: VerifyJwtDto): Observable<UserState> {
-    return this.httpClient
-      .post<UserState>(
-        `${environment.picturesApiUrl}/account/auth/verifyJwt`,
-        data,
-        {responseType: "json",});
+  saveJwtData(jwtData: JwtUserData) {
+    localStorage.setItem("jwtUserData", JSON.stringify(jwtData));
   }
+
+  getJwtData(): JwtUserData {
+    return JSON.parse(localStorage.getItem("jwtUserData") ?? "") ?? null;
+  }
+
+
+
+  // verifyJwt(data: VerifyJwtDto): Observable<JwtUserData> {
+  //   return this.httpClient
+  //     .post<JwtUserData>(
+  //       `${environment.picturesApiUrl}/account/auth/verifyJwt`,
+  //       data,
+  //       {responseType: "json",});
+  // }
 
 }

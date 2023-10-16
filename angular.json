@@ -35,7 +35,8 @@
             ],
             "styles": [
               "src/styles/styles.scss",
-              "src/styles/icons/css/fontello.css"
+              "src/styles/icons/css/fontello.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [],
             "serviceWorker": true,

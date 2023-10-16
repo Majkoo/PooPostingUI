@@ -1,7 +1,7 @@
 import { NgModule} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { BrowserModule } from "@angular/platform-browser";
@@ -11,6 +11,8 @@ import {LayoutModule} from "./layouts/layout.module";
 import { ViewPictureModalComponent } from './shared/components/view-picture-modal/view-picture-modal.component';
 import {NgOptimizedImage} from "@angular/common";
 import {UrlTransformModule} from "./shared/utility/pipes/url-transform/url-transform.module";
+import {MessageService} from "primeng/api";
+import {TokenInterceptorService} from "./shared/utility/interceptors/token-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -29,16 +31,20 @@ import {UrlTransformModule} from "./shared/utility/pipes/url-transform/url-trans
     UrlTransformModule,
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: TokenInterceptorService,
-    //   multi: true,
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: HttpErrorInterceptorService,
     //   multi: true,
     // },
+    {
+      provide: MessageService,
+      useClass: MessageService
+    }
   ],
   exports: [],
   bootstrap: [AppComponent]

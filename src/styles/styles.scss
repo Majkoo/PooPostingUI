@@ -32,7 +32,7 @@ html {
   font-family: "poppins", sans-serif;
 }
 
-nav {
+nav, header {
   z-index: 1102 !important;
 }
 
@@ -40,7 +40,7 @@ header, footer, nav {
   @apply z-30
 }
 .pp-shadow {
-  @apply shadow-[0_0_20px_0_rgba(160,160,160,0.75)]
+  @apply shadow-[0_0_15px_0_rgba(160,160,160,0.5)]
 }
 .font-bolder {
   font-weight: 900;

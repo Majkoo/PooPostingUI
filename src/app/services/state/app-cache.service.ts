@@ -3,7 +3,7 @@ import {Subject} from "rxjs";
 import {Router} from "@angular/router";
 import {AccountDto} from "../../shared/utility/dtos/AccountDto";
 import {PictureDto} from "../../shared/utility/dtos/PictureDto";
-import {UserState} from "../../shared/utility/models/userState";
+import {JwtUserData} from "../../shared/utility/models/jwtUserData";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class AppCacheService {
   loggedOnSubject: Subject<boolean> = new Subject<boolean>();
   cachedPictures: PictureDto[] = [];
   cachedUserAccount?: AccountDto;
-  cachedUserInfo?: UserState;
+  cachedUserInfo?: JwtUserData;
 
   public cachePictures(pictures: PictureDto[]): void {
     pictures.forEach((p: PictureDto) => {
@@ -42,7 +42,7 @@ export class AppCacheService {
   public cacheUserAccount(account: AccountDto): void {
     this.cachedUserAccount = account;
   }
-  public cacheUserInfo(userInfo: UserState): void {
+  public cacheUserInfo(userInfo: JwtUserData): void {
     this.cachedUserInfo = userInfo;
     AppCacheService.saveLsJwtToken(userInfo.authToken);
     AppCacheService.saveLsJwtUid(userInfo.uid);
@@ -80,7 +80,7 @@ export class AppCacheService {
       });
   }
 
-  getUserInfo(): UserState | undefined {
+  getUserInfo(): JwtUserData | undefined {
     return this.cachedUserInfo;
   }
   getUserLoggedOnState(): boolean {

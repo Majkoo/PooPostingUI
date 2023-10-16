@@ -1,5 +1,4 @@
-﻿import {AccountPreviewDto} from "./AccountPreviewDto";
-import {AccountDto} from "./AccountDto";
+﻿import {AccountDto} from "./AccountDto";
 import {CommentDto} from "./CommentDto";
 
 export interface PictureDto {
@@ -17,7 +16,7 @@ export interface PictureDto {
   likeCount: number;
   dislikeCount: number;
 
-  likeState: number;
+  isLiked: boolean;
   isModifiable: boolean;
   isAdminModifiable: boolean;
 }

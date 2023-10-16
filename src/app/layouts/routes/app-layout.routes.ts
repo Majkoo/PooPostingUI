@@ -6,6 +6,11 @@ export const APP_LAYOUT_ROUTES: Routes = [
     loadComponent: () => import('../../views/home/home.component')
       .then(m => m.HomeComponent)
   },
+  {
+    path: 'account',
+    loadComponent: () => import('../../views/account/account.component')
+      .then(m => m.AccountComponent)
+  },
   // {
   //   path: "search",
   //   loadChildren: () => import('../view/search/feature/search-shell/search-shell.module')
