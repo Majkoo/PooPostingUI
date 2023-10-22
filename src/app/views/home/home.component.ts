@@ -8,6 +8,7 @@ import {AsyncPipe, NgForOf} from "@angular/common";
 import {
   CreateAccountBannerComponent
 } from "../../shared/components/create-account-banner/create-account-banner.component";
+import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
 
 @Component({
   selector: 'pp-home',
@@ -18,6 +19,9 @@ import {
     AsyncPipe,
     NgForOf,
     CreateAccountBannerComponent
+  ],
+  animations: [
+    fadeInAnimation
   ]
 })
 export class HomeComponent implements OnInit {

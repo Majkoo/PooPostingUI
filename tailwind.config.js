@@ -40,6 +40,9 @@ module.exports = {
       borderWidth: {
         "1": "1px"
       },
+      height: {
+        'picture-modal-content-width': 'calc(100vh - 4.5rem)',
+      },
     }
   },
   plugins: [],

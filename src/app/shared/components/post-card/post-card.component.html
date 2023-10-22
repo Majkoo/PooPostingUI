@@ -1,13 +1,13 @@
 <div class="pp-shadow w-full bg-surface-100 rounded-xl flex flex-col gap-2 pb-3" *ngIf="pic">
 
   <div class="flex rounded-t-xl justify-center items-center cursor-pointer" (click)="openModal(pic)">
-    <img class="w-full rounded-t-xl" src="{{pic.url | urlTransform}}" alt="{{pic.name}}">
+    <img class="w-full rounded-t-xl" src="{{pic.url | urlTransform}}" alt="{{pic.name}}" @fadeIn>
   </div>
 
     <div class="flex justify-between items-center px-4">
 
       <a class="gap-2 flex flex-row justify-between items-center" routerLink="/account/{{pic.account.id}}">
-        <img class="w-8 h-8 rounded-3xl" src="{{pic.account.profilePicUrl | urlTransform}}" alt="{{pic.account.nickname}}">
+        <img class="w-8 h-8 rounded-3xl" @fadeIn src="{{pic.account.profilePicUrl | urlTransform}}" alt="{{pic.account.nickname}}">
         <p class="font-bold text-xl h-min lh flex justify-center items-center">{{pic.account.nickname}}</p>
       </a>
 
@@ -15,6 +15,7 @@
         <button
           class="icon-dark m-0"
           [ngClass]="pic.isLiked ? 'icon-heart--filled' : 'icon-heart--empty'"
+          [@likedState]="pic.isLiked"
           (click)="like(pic.id)"
         >
         </button>

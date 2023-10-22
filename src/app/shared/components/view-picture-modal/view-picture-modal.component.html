@@ -1,34 +1,43 @@
 <ng-container *ngIf="pic">
 
-  <div class="flex flex-col gap-4 h-100vh  pt-4 my-[3.5rem]">
-    <!--  Account  -->
-    <div class="flex mx-3 rounded-xl px-4 py-3 bg-surface-300 text-dark">
+  <div class="
+    flex flex-col gap-4 pt-4 my-[3.5rem]
+    md:flex-row-reverse md:gap-2 md:h-picture-modal-content-width md:mt-[3.5rem] md:mb-[1rem]
+  ">
 
-      <a class="gap-2 justify-center items-center w-max flex flex-row" routerLink="/account/{{pic.account.id}}">
+    <!--  Account  -->
+    <a
+      class="flex mx-3 rounded-xl px-4 py-3 bg-surface-300 text-dark md:h-16 md:w-2/5"
+      routerLink="/account/{{pic.account.id}}"
+    >
+
+      <div class="gap-2 justify-center items-center w-max flex flex-row" >
         <img class="w-8 max-h-8 object-fill rounded-3xl" src="{{pic.account.profilePicUrl | urlTransform}}" alt="{{pic.account.nickname}}">
         <div class="text-lg font-bolder">{{pic.account.nickname}}</div>
-      </a>
+      </div>
 
       <div class="flex grow justify-end items-center">
         <span class="icon-vector-1"></span>
       </div>
 
-    </div>
+    </a>
 
     <!--  Content  -->
-    <div class="w-full h-full flex flex-col gap-2.5 pb-3 text-dark">
+    <div class="w-full flex flex-col gap-2.5 pb-3 text-dark">
 
       <!--  Image  -->
-      <div class="w-full md:w-3/5 lg:w-3/4 px-3">
-        <img class="m-auto w-full lg:w-auto h-full object-contain rounded-lg" src="{{pic.url | urlTransform}}" alt="{{pic.name}}">
+      <div class="w-full md:flex-grow px-3">
+        <img alt="{{pic.name}}"
+             class="m-auto w-full lg:w-auto h-full object-contain rounded-lg"
+             src="{{pic.url | urlTransform}}">
       </div>
 
       <!--  Controls  -->
       <div class="flex flex-col px-6">
-        <div class="flex gap-3 text-2xl">
+        <div class="flex gap-3 text-2xl md:flex-row-reverse">
           <span class="icon-heart--empty"></span>
           <span class="icon-share"></span>
-          <div class="grow flex justify-end">
+          <div class="grow flex justify-end md:justify-start">
             <span class="icon-setting"></span>
           </div>
         </div>

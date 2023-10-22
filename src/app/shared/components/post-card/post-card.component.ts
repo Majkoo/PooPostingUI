@@ -5,6 +5,8 @@ import {PictureDto} from "../../utility/dtos/PictureDto";
 import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transform.module";
 import {PictureLikesService} from "../../../services/data-access/picture/picture-likes.service";
 import {Subscription} from "rxjs";
+import {fadeInAnimation} from "../../utility/animations/fadeInAnimation";
+import {likeStateAnimation} from "../../utility/animations/likeStateAnimation";
 
 @Component({
   selector: 'pp-post-card',
@@ -24,10 +26,15 @@ import {Subscription} from "rxjs";
     NgClass,
     DatePipe
   ],
+  animations: [
+    fadeInAnimation,
+    likeStateAnimation
+  ],
   standalone: true
 })
 export class PostCardComponent implements OnDestroy {
   @Input() pic?: PictureDto;
+  @Input() isGray: boolean = false;
 
   private router = inject(Router);
   private likeService = inject(PictureLikesService);
