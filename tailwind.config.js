@@ -41,7 +41,7 @@ module.exports = {
         "1": "1px"
       },
       height: {
-        'picture-modal-content-width': 'calc(100vh - 4.5rem)',
+        'picture-modal-content-width': 'calc(100vh - 3.5rem)',
       },
     }
   },

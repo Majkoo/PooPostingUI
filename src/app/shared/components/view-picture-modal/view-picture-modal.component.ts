@@ -1,18 +1,36 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {PictureDto} from "../../utility/dtos/PictureDto";
 import {firstValueFrom} from "rxjs";
 import {PictureService} from "../../../services/data-access/picture/picture.service";
-import {Location} from "@angular/common";
+import {Location, NgClass, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {extractQueryParams} from "../../utility/extractQueryParams";
-import {QueryModalService} from "../../../services/helpers/query-modal.service";
+import {AccountInlineLinkComponent} from "../account-inline-link/account-inline-link.component";
+import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transform.module";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'pp-view-picture-modal',
   templateUrl: './view-picture-modal.component.html',
   styleUrls: ['./view-picture-modal.component.scss'],
+  standalone: true,
+  imports: [
+    AccountInlineLinkComponent,
+    UrlTransformModule,
+    NgTemplateOutlet,
+    NgIf,
+    RouterLink,
+    NgForOf,
+    NgClass
+  ]
 })
 export class ViewPictureModalComponent implements OnInit {
   pic: PictureDto | undefined;
+  isMobile = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    this.updateTemplateDisplay();
+  }
 
   constructor(
     private picService: PictureService,
@@ -21,11 +39,17 @@ export class ViewPictureModalComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.updateTemplateDisplay();
     const queryParams = extractQueryParams(this.location.path());
     const picId = queryParams['viewPicture'];
     if (picId) {
       this.pic = await firstValueFrom(this.picService.getById(picId));
     }
+
+  }
+
+  private updateTemplateDisplay(): void {
+    this.isMobile  = window.innerWidth < 768;
   }
 
 }
