@@ -7,6 +7,7 @@ import {PictureLikesService} from "../../../services/data-access/picture/picture
 import {Subscription} from "rxjs";
 import {fadeInAnimation} from "../../utility/animations/fadeInAnimation";
 import {likeStateAnimation} from "../../utility/animations/likeStateAnimation";
+import {LikeBtnComponent} from "../like-btn/like-btn.component";
 
 @Component({
   selector: 'pp-post-card',
@@ -24,38 +25,18 @@ import {likeStateAnimation} from "../../utility/animations/likeStateAnimation";
     NgForOf,
     UrlTransformModule,
     NgClass,
-    DatePipe
+    DatePipe,
+    LikeBtnComponent
   ],
   animations: [
     fadeInAnimation,
-    likeStateAnimation
   ],
   standalone: true
 })
-export class PostCardComponent implements OnDestroy {
+export class PostCardComponent {
   @Input() pic?: PictureDto;
-  @Input() isGray: boolean = false;
-
   private router = inject(Router);
-  private likeService = inject(PictureLikesService);
-  private sub = new Subscription();
-
   async openModal(pic: PictureDto) {
     await this.router.navigate([], { queryParams: {viewPicture: pic.id}});
   }
-
-  like(id: string) {
-    this.sub.add(
-      this.likeService.likePicture(id).subscribe({
-        next: (result: PictureDto) => {
-          this.pic = result;
-        }
-      })
-    );
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
-
 }

@@ -12,17 +12,8 @@
       </a>
 
       <div class="flex items-start gap-2 px-0.5 pt-1">
-        <button
-          class="icon-dark m-0"
-          [ngClass]="pic.isLiked ? 'icon-heart--filled' : 'icon-heart--empty'"
-          [@likedState]="pic.isLiked"
-          (click)="like(pic.id)"
-        >
-        </button>
-        <button
-          class="icon-dark m-0 icon-share"
-        >
-
+        <pp-like-btn [(pic)]="pic" cssClass="icon-dark"/>
+        <button class="icon-dark m-0 icon-share">
         </button>
       </div>
 

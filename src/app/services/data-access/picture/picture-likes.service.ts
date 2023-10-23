@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {PagedResult} from "../../../shared/utility/dtos/PagedResult";
 import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
@@ -13,6 +13,7 @@ export class PictureLikesService {
   constructor(
     private httpClient: HttpClient
   ) { }
+  private likedPictureSubject = new Subject<PictureDto>();
 
   // getPictureLikes(id: string, pageSize: number, pageNumber: number): Observable<PagedResult<Like>> {
   //   return this.httpClient
@@ -35,12 +36,12 @@ export class PictureLikesService {
         { responseType: "json" }
       );
   }
-  dislikePicture(id: string): Observable<PictureDto> {
-    return this.httpClient
-      .patch<PictureDto>(
-        `${environment.apiUrl}/picture/${id}/like/vote-down`,
-        {},
-        { responseType: "json" }
-      );
+
+  getLikedPictureObservable(): Observable<PictureDto> {
+    return this.likedPictureSubject.asObservable();
+  }
+
+  emitLikedPicture(picture: PictureDto) {
+    this.likedPictureSubject.next(picture);
   }
 }

@@ -7,6 +7,8 @@ import {extractQueryParams} from "../../utility/extractQueryParams";
 import {AccountInlineLinkComponent} from "../account-inline-link/account-inline-link.component";
 import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transform.module";
 import {RouterLink} from "@angular/router";
+import {TagComponent} from "../tag/tag.component";
+import {LikeBtnComponent} from "../like-btn/like-btn.component";
 
 @Component({
   selector: 'pp-view-picture-modal',
@@ -20,7 +22,9 @@ import {RouterLink} from "@angular/router";
     NgIf,
     RouterLink,
     NgForOf,
-    NgClass
+    NgClass,
+    TagComponent,
+    LikeBtnComponent
   ]
 })
 export class ViewPictureModalComponent implements OnInit {

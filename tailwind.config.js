@@ -41,7 +41,12 @@ module.exports = {
         "1": "1px"
       },
       height: {
-        'picture-modal-content-width': 'calc(100vh - 3.5rem)',
+        'picture-modal-content-height': 'calc(100vh)',
+        'picture-modal-picture-height': 'calc(100vh - 2rem)',
+      },
+      boxShadow: {
+        'top': '0px -2px 4px rgba(0, 0, 0, 0.075)',
+        'center': '0px 0px 15px rgba(0, 0, 0, 0.125)',
       },
     }
   },

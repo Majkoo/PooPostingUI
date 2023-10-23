@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {BehaviorSubject, Observable, scan, switchMap} from 'rxjs';
+import {BehaviorSubject, merge, mergeMap, Observable, OperatorFunction, scan, switchMap, tap} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PictureService } from '../../services/data-access/picture/picture.service';
 import { PictureDto } from '../../shared/utility/dtos/PictureDto';
@@ -9,6 +9,7 @@ import {
   CreateAccountBannerComponent
 } from "../../shared/components/create-account-banner/create-account-banner.component";
 import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
+import {PictureLikesService} from "../../services/data-access/picture/picture-likes.service";
 
 @Component({
   selector: 'pp-home',
@@ -34,7 +35,18 @@ export class HomeComponent implements OnInit {
 
   private scrollSubject = new BehaviorSubject<void>(undefined);
 
-  constructor(private pictureService: PictureService) {}
+  constructor(
+    private pictureService: PictureService,
+    private pictureLikesService: PictureLikesService
+  ) {
+
+    // this.pictureLikesService.getLikedPictureObservable().subscribe((likedPicture) => {
+    //   this.items = this.items.map((picture) =>
+    //     picture.id === likedPicture.id ? likedPicture : picture
+    //   );
+    // });
+
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -50,19 +62,26 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.pictures$ = this.scrollSubject.pipe(
-      switchMap(() => this.pictureService.get(this.pageSize, this.pageNumber)
-        .pipe(
-          map((res) => {
-            this.pageNumber = (res.page === res.totalPages) ? 1 : res.page + 1;
-            this.items = [...this.items, ...res.items];
-            this.bottomDetectEnabled = true;
-            return res.items;
-          })
-      )),
-      scan((acc: PictureDto[], curr: PictureDto[]) => [...acc, ...curr], [])
+      mergeMap(() =>
+        this.pictureService
+          .get(this.pageSize, this.pageNumber)
+          .pipe(
+            map((res) => {
+              this.pageNumber = res.page === res.totalPages ? 1 : res.page + 1;
+              this.items = [...this.items, ...res.items];
+              this.bottomDetectEnabled = true;
+              return res.items;
+            })
+          )
+      ),
     );
+
+    // this.pictureLikesService.getLikedPictureObservable().subscribe((likedPicture) => {
+    //   this.items = this.items.map((picture) =>
+    //     picture.id === likedPicture.id ? likedPicture : picture
+    //   );
+    // });
   }
 
 }
