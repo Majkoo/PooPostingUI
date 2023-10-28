@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import {PaginatorModule} from "primeng/paginator";
 import {Subscription} from "rxjs";
-import {AccountAuthService} from "../../services/data-access/account/account-auth.service";
+import {AuthService} from "../../services/data-access/account/auth.service";
 import {ToastrService} from "ngx-toastr";
 import {Router, RouterLink} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -32,7 +32,7 @@ export class LoginComponent implements OnDestroy {
     password: ""
   };
 
-  private authService = inject(AccountAuthService);
+  private authService = inject(AuthService);
   private msgService = inject(ToastrService);
   private router = inject(Router);
 

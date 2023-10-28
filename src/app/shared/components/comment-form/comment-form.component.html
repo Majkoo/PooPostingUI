@@ -1,0 +1,21 @@
+<div class="flex flex-col">
+  <textarea
+    [(ngModel)]="commentText"
+    [placeholder]="isLoggedOn ? 'Write a comment...' : 'Log in to write a comment...'"
+    class="p-2 border-2 border-b-0 rounded-t-lg resize-none focus:outline-0"
+    [textContent]="null"
+    rows="3">
+  </textarea>
+
+  <div class="w-full text-end border-2 border-t-0 rounded-b-lg p-2 pt-0">
+    <button
+      class="bg-cta text-white text-sm py-1 px-3 btn"
+      [ngClass]="{'opacity-60': !isLoggedOn || !commentText}"
+      [disabled]="!isLoggedOn || !commentText"
+      (click)="comment()"
+    >
+      Comment
+    </button>
+  </div>
+
+</div>

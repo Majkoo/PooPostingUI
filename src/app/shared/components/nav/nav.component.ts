@@ -34,7 +34,6 @@ import { Component } from '@angular/core';
       @apply
       bottom-0 fixed w-full z-30 bg-surface-100 px-4
       rounded-t-xl
-      sm:hidden
     }
     .nav {
       @apply

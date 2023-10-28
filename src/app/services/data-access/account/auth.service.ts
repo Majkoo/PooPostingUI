@@ -9,7 +9,7 @@ import {CreateAccountDto} from "../../../shared/utility/dtos/CreateAccountDto";
 @Injectable({
   providedIn: 'root'
 })
-export class AccountAuthService {
+export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
@@ -40,7 +40,9 @@ export class AccountAuthService {
     return dataString ? JSON.parse(dataString) : null;
   }
 
-
+  get isLoggedOn(): boolean {
+    return this.getJwtData() != null;
+  }
 
   // verifyJwt(data: VerifyJwtDto): Observable<JwtUserData> {
   //   return this.httpClient

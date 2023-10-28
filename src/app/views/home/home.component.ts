@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, inject, OnInit} from '@angular/core';
 import {BehaviorSubject, combineLatest, Observable, startWith, switchMap} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PictureService } from '../../services/data-access/picture/picture.service';
@@ -10,6 +10,7 @@ import {
 } from "../../shared/components/create-account-banner/create-account-banner.component";
 import {PictureLikesService} from "../../services/data-access/picture/picture-likes.service";
 import {PagedResult} from "../../shared/utility/dtos/PagedResult";
+import {CommentService} from "../../services/data-access/comment/comment.service";
 
 @Component({
   selector: 'pp-home',
@@ -32,10 +33,9 @@ export class HomeComponent implements OnInit {
   private bottomDetectEnabled = true;
   private scrollSubject = new BehaviorSubject<null>(null);
 
-  constructor(
-    private pictureService: PictureService,
-    private pictureLikesService: PictureLikesService,
-  ) {}
+  private pictureService = inject(PictureService);
+  private pictureLikesService = inject(PictureLikesService);
+  private commentService = inject(CommentService)
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -63,15 +63,31 @@ export class HomeComponent implements OnInit {
     const updatedPicture$ = this.pictureService.updatedPicture$.pipe(
       startWith(null)
     );
+    const commentAdded$ = this.commentService.addedComment$.pipe(
+      startWith(null)
+    );
 
-    this.pictures$ = combineLatest([scrollWithPictures$, likedPicture$, updatedPicture$]).pipe(
-      map(([pictures, likedPicture, updatedPicture]) => {
+    this.pictures$ = combineLatest([
+      scrollWithPictures$,
+      likedPicture$,
+      updatedPicture$,
+      commentAdded$
+    ]).pipe(
+      map(([
+        pictures,
+        likedPicture,
+        updatedPicture,
+        commentAdded
+        ]) => {
         return pictures.map((picture) => {
           if (likedPicture && picture.id === likedPicture.id) {
             return { ...picture, isLiked: likedPicture.isLiked };
           }
           if (updatedPicture && picture.id === updatedPicture.id) {
             return { ...updatedPicture };
+          }
+          if (commentAdded && picture.id === commentAdded.pictureId) {
+            return { ...picture, comments: [commentAdded, ...picture.comments] };
           }
           return picture;
         });

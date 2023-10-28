@@ -1,6 +1,13 @@
 <button
-  class="m-0 cursor-pointer {{cssClass ? cssClass : ''}}"
-  [ngClass]="pic.isLiked ? 'icon-heart--filled' : 'icon-heart--empty'"
+  [disabled]="!isLoggedOn"
+  [ngClass]="{
+    cssClass: true,
+    'm-0 icon-dark': true,
+    'cursor-pointer': isLoggedOn,
+    'opacity-60': !isLoggedOn,
+    'icon-heart--filled': pic.isLiked,
+    'icon-heart--empty': !pic.isLiked
+  }"
   [@likedState]="pic.isLiked"
   (click)="like(pic.id)"
 >

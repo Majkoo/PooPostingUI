@@ -4,6 +4,7 @@ import {PictureDto} from "../../utility/dtos/PictureDto";
 import {Subscription} from "rxjs";
 import {PictureLikesService} from "../../../services/data-access/picture/picture-likes.service";
 import {likeStateAnimation} from "../../utility/animations/likeStateAnimation";
+import {AuthService} from "../../../services/data-access/account/auth.service";
 
 @Component({
   selector: 'pp-like-btn',
@@ -21,6 +22,7 @@ export class LikeBtnComponent implements OnDestroy {
 
   private sub = new Subscription();
   private likeService = inject(PictureLikesService);
+  private authService = inject(AuthService);
 
   like(id: string) {
     this.sub.add(
@@ -34,5 +36,9 @@ export class LikeBtnComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  get isLoggedOn() {
+    return this.authService.isLoggedOn;
   }
 }

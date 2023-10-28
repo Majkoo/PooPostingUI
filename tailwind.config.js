@@ -43,6 +43,7 @@ module.exports = {
       height: {
         'picture-modal-content-height': 'calc(100vh)',
         'picture-modal-picture-height': 'calc(100vh - 2rem)',
+        'picture-modal-comment-section-height': 'calc(100vh - 18.75rem)',
       },
       boxShadow: {
         'top': '0px -2px 4px rgba(0, 0, 0, 0.075)',

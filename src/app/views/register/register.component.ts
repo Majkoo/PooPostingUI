@@ -4,7 +4,7 @@ import {Router, RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {CreateAccountDto} from "../../shared/utility/dtos/CreateAccountDto";
 import {validationErrorAnimation} from "../../shared/utility/animations/validationErrorAnimation";
-import {AccountAuthService} from "../../services/data-access/account/account-auth.service";
+import {AuthService} from "../../services/data-access/account/auth.service";
 import {Subscription} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnDestroy {
     password: ""
   };
 
-  private authService = inject(AccountAuthService);
+  private authService = inject(AuthService);
   private msgService = inject(ToastrService);
   private router = inject(Router);
 

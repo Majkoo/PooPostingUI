@@ -18,7 +18,7 @@ export class QueryModalService {
   ) {}
 
   init() {
-    this.router.events.subscribe((e) => {
+    this.router.events.subscribe(() => {
       const viewPictureParam = this.route.snapshot.queryParamMap.get('viewPicture');
       if (viewPictureParam) {
         this.open(ViewPictureModalComponent);

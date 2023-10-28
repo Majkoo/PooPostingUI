@@ -1,9 +1,9 @@
 <a
   class="flex gap-1 justify-start items-center font-bold text-black"
-  routerLink="/account/{{pic.account.id}}">
+  routerLink="/account/{{acc.id}}">
   <img class="w-6 max-h-6 object-fill rounded-3xl"
-       src="{{pic.account.profilePicUrl | urlTransform}}"
-       alt="{{pic.account.nickname}}"
+       src="{{acc.profilePicUrl | urlTransform}}"
+       alt="{{acc.nickname}}"
   >
-  {{pic.account.nickname}}:
+  {{acc.nickname}}:
 </a>

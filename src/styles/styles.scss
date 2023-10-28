@@ -72,3 +72,8 @@ header, footer, nav {
     padding: 0 !important;
   }
 }
+
+.btn {
+  @apply rounded-lg transition-all ease-in-out duration-100
+  active:opacity-75
+}

@@ -9,6 +9,10 @@ import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transfor
 import {RouterLink} from "@angular/router";
 import {TagComponent} from "../tag/tag.component";
 import {LikeBtnComponent} from "../like-btn/like-btn.component";
+import {CommentFormComponent} from "../comment-form/comment-form.component";
+import {CommentDto} from "../../utility/dtos/CommentDto";
+import {fadeInAnimation} from "../../utility/animations/fadeInAnimation";
+import {CommentService} from "../../../services/data-access/comment/comment.service";
 
 @Component({
   selector: 'pp-view-picture-modal',
@@ -24,7 +28,12 @@ import {LikeBtnComponent} from "../like-btn/like-btn.component";
     NgForOf,
     NgClass,
     TagComponent,
-    LikeBtnComponent
+    LikeBtnComponent,
+    CommentFormComponent,
+    CommentFormComponent
+  ],
+  animations: [
+    fadeInAnimation
   ]
 })
 export class ViewPictureModalComponent implements OnInit {
@@ -38,6 +47,7 @@ export class ViewPictureModalComponent implements OnInit {
 
   constructor(
     private picService: PictureService,
+    private commService: CommentService,
     private location: Location,
   ) {
   }
@@ -48,12 +58,20 @@ export class ViewPictureModalComponent implements OnInit {
     const picId = queryParams['viewPicture'];
     if (picId) {
       this.pic = await firstValueFrom(this.picService.getById(picId));
+      const newCommentsResult = await firstValueFrom(
+        this.commService.getCommentsForPicture(picId, 10, 1)
+      );
+      this.pic.comments = newCommentsResult.items;
     }
 
   }
 
   private updateTemplateDisplay(): void {
     this.isMobile  = window.innerWidth < 768;
+  }
+
+  onCommentAdd(comment: CommentDto) {
+    this.pic?.comments.push(comment);
   }
 
 }
