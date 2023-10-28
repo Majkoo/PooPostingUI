@@ -1,12 +1,9 @@
-import {Component, inject, Input, OnDestroy} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import {DatePipe, NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {PictureDto} from "../../utility/dtos/PictureDto";
 import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transform.module";
-import {PictureLikesService} from "../../../services/data-access/picture/picture-likes.service";
-import {Subscription} from "rxjs";
 import {fadeInAnimation} from "../../utility/animations/fadeInAnimation";
-import {likeStateAnimation} from "../../utility/animations/likeStateAnimation";
 import {LikeBtnComponent} from "../like-btn/like-btn.component";
 
 @Component({
@@ -29,7 +26,7 @@ import {LikeBtnComponent} from "../like-btn/like-btn.component";
     LikeBtnComponent
   ],
   animations: [
-    fadeInAnimation,
+    fadeInAnimation
   ],
   standalone: true
 })

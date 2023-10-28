@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
-import { Observable } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { PictureDto } from '../../../shared/utility/dtos/PictureDto';
 import { PagedResult } from '../../../shared/utility/dtos/PagedResult';
 
@@ -10,7 +10,7 @@ import { PagedResult } from '../../../shared/utility/dtos/PagedResult';
 })
 export class PictureService {
   private getPicturesUrl = `${environment.apiUrl}/picture`;
-
+  private updatedPictureSubject = new Subject<PictureDto>();
   constructor(private httpClient: HttpClient) {}
 
   get(pageSize = 5, pageNumber = 1): Observable<PagedResult<PictureDto>> {
@@ -21,5 +21,9 @@ export class PictureService {
 
   getById(id: string): Observable<PictureDto> {
     return this.httpClient.get<PictureDto>(`${this.getPicturesUrl}/${id}`);
+  }
+
+  get updatedPicture$(): Observable<PictureDto> {
+    return this.updatedPictureSubject.asObservable();
   }
 }

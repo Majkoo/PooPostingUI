@@ -27,7 +27,6 @@ export class LikeBtnComponent implements OnDestroy {
       this.likeService.likePicture(id).subscribe({
         next: (result: PictureDto) => {
           this.pic = result;
-          this.likeService.emitLikedPicture(result);
         }
       })
     );
