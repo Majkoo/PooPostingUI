@@ -4,13 +4,14 @@ import { map } from 'rxjs/operators';
 import { PictureService } from '../../services/data-access/picture/picture.service';
 import { PictureDto } from '../../shared/utility/dtos/PictureDto';
 import {PostCardComponent} from "../../shared/components/post-card/post-card.component";
-import {AsyncPipe, NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {
   CreateAccountBannerComponent
 } from "../../shared/components/create-account-banner/create-account-banner.component";
 import {PictureLikesService} from "../../services/data-access/picture/picture-likes.service";
 import {PagedResult} from "../../shared/utility/dtos/PagedResult";
 import {CommentService} from "../../services/data-access/comment/comment.service";
+import {AuthService} from "../../services/data-access/account/auth.service";
 
 @Component({
   selector: 'pp-home',
@@ -20,7 +21,8 @@ import {CommentService} from "../../services/data-access/comment/comment.service
     PostCardComponent,
     AsyncPipe,
     NgForOf,
-    CreateAccountBannerComponent
+    CreateAccountBannerComponent,
+    NgIf
   ],
   animations: [
   ]
@@ -36,6 +38,7 @@ export class HomeComponent implements OnInit {
   private pictureService = inject(PictureService);
   private pictureLikesService = inject(PictureLikesService);
   private commentService = inject(CommentService)
+  private authService = inject(AuthService)
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -107,6 +110,10 @@ export class HomeComponent implements OnInit {
 
   trackByPictureId(index: number, picture: PictureDto): string {
     return picture.id;
+  }
+
+  get isLoggedIn() {
+    return this.authService.isLoggedIn;
   }
 
 }

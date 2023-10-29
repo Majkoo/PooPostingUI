@@ -19,7 +19,8 @@
       Comment
     </button>
     <div class="w-min" @fadeInOut *ngIf="(awaitSubmit | async)">
-      <span class="opacity-60">sending...</span>
+      <!--  todo: create a loading spinner or sth and use it  -->
+      <span class="opacity-60">submitting...</span>
     </div>
   </div>
 

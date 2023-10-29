@@ -5,6 +5,7 @@ import {PictureDto} from "../../utility/dtos/PictureDto";
 import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transform.module";
 import {fadeInAnimation} from "../../utility/animations/fadeInAnimation";
 import {LikeBtnComponent} from "../like-btn/like-btn.component";
+import {TagComponent} from "../tag/tag.component";
 
 @Component({
   selector: 'pp-post-card',
@@ -23,7 +24,8 @@ import {LikeBtnComponent} from "../like-btn/like-btn.component";
     UrlTransformModule,
     NgClass,
     DatePipe,
-    LikeBtnComponent
+    LikeBtnComponent,
+    TagComponent
   ],
   animations: [
     fadeInAnimation

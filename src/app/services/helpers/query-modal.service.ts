@@ -1,7 +1,7 @@
 import { Injectable, Type } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Location } from '@angular/common';
-import { ViewPictureModalComponent } from '../../shared/components/view-picture-modal/view-picture-modal.component';
+import { ViewPictureModalComponent } from '../../views/viewPicture/view-picture-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({

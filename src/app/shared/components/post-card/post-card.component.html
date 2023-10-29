@@ -1,10 +1,10 @@
-<div class="pp-shadow w-full bg-surface-100 rounded-xl flex flex-col gap-2 pb-3" *ngIf="pic">
+<div class="pp-shadow w-full bg-surface-100 rounded-xl flex flex-col pb-3" *ngIf="pic">
 
   <div class="flex rounded-t-xl justify-center items-center cursor-pointer" (click)="openModal(pic)">
     <img class="w-full rounded-t-xl" @fadeIn src="{{pic.url | urlTransform}}" alt="{{pic.name}}">
   </div>
 
-    <div class="flex justify-between items-center px-4">
+    <div class="flex justify-between items-center px-4 py-3">
 
       <a class="gap-2 flex flex-row justify-between items-center" routerLink="/account/{{pic.account.id}}">
         <img class="w-8 h-8 rounded-3xl" src="{{pic.account.profilePicUrl | urlTransform}}" alt="{{pic.account.nickname}}">
@@ -19,17 +19,12 @@
 
     </div>
 
-  <div class="flex flex-col gap-2 px-3">
+  <div class="flex flex-col px-3">
 
-    <div class="flex flex-col items-between justify-center gap-2" *ngIf="pic.description || pic.tags?.length">
-      <p class="text-md my-1.5">{{pic.description}}</p>
-      <p class="flex gap-2.5" *ngIf="pic.tags?.length">
-        <span
-          *ngFor="let tag of pic.tags"
-          class="text-sm font-dark bg-primary-900 text-white flex-wrap rounded-lg px-2.5 py-1"
-        >
-          #{{tag}}
-        </span>
+    <div class="flex flex-col items-between justify-center" *ngIf="pic.description || pic.tags?.length">
+      <p class="text-md" [ngClass]="{'pb-2' : pic.description && pic.tags?.length}">{{pic.description}}</p>
+      <p class="flex gap-2.5 py-2" *ngIf="pic.tags?.length">
+        <pp-tag *ngFor="let tag of pic.tags" [tag]="tag"/>
       </p>
     </div>
 
@@ -39,7 +34,8 @@
         <p class="font-semibold text-lg">Comments</p>
         <div class="flex flex-col items-between justify-center gap-1" *ngFor="let comment of pic.comments">
           <p class="text-[16px]">
-            <b>{{comment.account.nickname}}</b>: {{comment.text}}
+            <b>{{comment.account.nickname}}</b>:
+            <span class="text-sm text-gray-600">{{ comment.text.length > 125 ? comment.text.substring(0, 125) + '...' : comment.text }}</span>
           </p>
         </div>
       </div>

@@ -1,18 +1,18 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {PictureDto} from "../../utility/dtos/PictureDto";
+import {PictureDto} from "../../shared/utility/dtos/PictureDto";
 import {firstValueFrom} from "rxjs";
-import {PictureService} from "../../../services/data-access/picture/picture.service";
+import {PictureService} from "../../services/data-access/picture/picture.service";
 import {Location, NgClass, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
-import {extractQueryParams} from "../../utility/extractQueryParams";
-import {AccountInlineLinkComponent} from "../account-inline-link/account-inline-link.component";
-import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transform.module";
+import {extractQueryParams} from "../../shared/utility/extractQueryParams";
+import {AccountInlineLinkComponent} from "../../shared/components/account-inline-link/account-inline-link.component";
+import {UrlTransformModule} from "../../shared/utility/pipes/url-transform/url-transform.module";
 import {RouterLink} from "@angular/router";
-import {TagComponent} from "../tag/tag.component";
-import {LikeBtnComponent} from "../like-btn/like-btn.component";
-import {CommentFormComponent} from "../comment-form/comment-form.component";
-import {CommentDto} from "../../utility/dtos/CommentDto";
-import {fadeInAnimation} from "../../utility/animations/fadeInAnimation";
-import {CommentsDisplayComponent} from "../comments-display/comments-display.component";
+import {TagComponent} from "../../shared/components/tag/tag.component";
+import {LikeBtnComponent} from "../../shared/components/like-btn/like-btn.component";
+import {CommentFormComponent} from "./comment-form/comment-form.component";
+import {CommentDto} from "../../shared/utility/dtos/CommentDto";
+import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
+import {CommentsDisplayComponent} from "./comments-display/comments-display.component";
 
 @Component({
   selector: 'pp-view-picture-modal',

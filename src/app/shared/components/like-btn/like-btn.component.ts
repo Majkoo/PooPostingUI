@@ -39,6 +39,6 @@ export class LikeBtnComponent implements OnDestroy {
   }
 
   get isLoggedOn() {
-    return this.authService.isLoggedOn;
+    return this.authService.isLoggedIn;
   }
 }

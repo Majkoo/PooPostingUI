@@ -40,7 +40,7 @@ export class AuthService {
     return dataString ? JSON.parse(dataString) : null;
   }
 
-  get isLoggedOn(): boolean {
+  get isLoggedIn(): boolean {
     return this.getJwtData() != null;
   }
 

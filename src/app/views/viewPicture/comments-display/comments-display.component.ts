@@ -10,22 +10,19 @@ import {
   ViewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {AccountInlineLinkComponent} from "../account-inline-link/account-inline-link.component";
-import {PictureDto} from "../../utility/dtos/PictureDto";
-import {fadeInOutAnimation} from "../../utility/animations/fadeInOutAnimation";
+import {AccountInlineLinkComponent} from "../../../shared/components/account-inline-link/account-inline-link.component";
+import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
 import {BehaviorSubject, Subscription, switchMap} from "rxjs";
 import {CommentService} from "../../../services/data-access/comment/comment.service";
 import {map} from "rxjs/operators";
+import {CommentComponent} from "./comment/comment.component";
 
 @Component({
   selector: 'pp-comments-display',
   standalone: true,
-    imports: [CommonModule, AccountInlineLinkComponent],
+  imports: [CommonModule, AccountInlineLinkComponent, CommentComponent],
   templateUrl: './comments-display.component.html',
   styleUrls: ['./comments-display.component.scss'],
-  animations: [
-    fadeInOutAnimation
-  ]
 })
 export class CommentsDisplayComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input({required: true}) pic!: PictureDto;

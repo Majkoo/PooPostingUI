@@ -1,12 +1,12 @@
 import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {PictureDto} from "../../utility/dtos/PictureDto";
-import {CommentDto} from "../../utility/dtos/CommentDto";
+import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
+import {CommentDto} from "../../../shared/utility/dtos/CommentDto";
 import {AuthService} from "../../../services/data-access/account/auth.service";
 import {CommentService} from "../../../services/data-access/comment/comment.service";
 import {FormsModule} from "@angular/forms";
 import {BehaviorSubject, Subject, switchMap} from "rxjs";
-import {fadeInOutAnimation} from "../../utility/animations/fadeInOutAnimation";
+import {fadeInOutAnimation} from "../../../shared/utility/animations/fadeInOutAnimation";
 
 @Component({
   selector: 'pp-comment-form',
@@ -27,7 +27,7 @@ export class CommentFormComponent implements OnInit {
   private commentService = inject(CommentService);
 
   get isLoggedOn() {
-    return this.authService.isLoggedOn;
+    return this.authService.isLoggedIn;
   }
 
   ngOnInit() {
