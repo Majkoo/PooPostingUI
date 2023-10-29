@@ -45,8 +45,7 @@ export class HomeComponent implements OnInit {
     const threshold = 200;
 
     if (
-      documentHeight - scrollPosition - windowHeight < threshold &&
-      this.bottomDetectEnabled
+      documentHeight - scrollPosition - windowHeight < threshold && this.bottomDetectEnabled
     ) {
       this.bottomDetectEnabled = false;
       this.scrollSubject.next(null);

@@ -1,0 +1,12 @@
+.cont {
+  @apply w-full md:absolute md:top-0 md:bottom-0 md:left-0 flex flex-col;
+}
+
+.section {
+  @apply w-full flex-grow m-0 flex flex-col min-h-0;
+}
+
+.scrollable-content {
+  @apply max-h-80 overflow-auto
+    md:max-h-none md:flex-grow md:min-h-0;
+}
