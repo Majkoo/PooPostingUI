@@ -22,8 +22,17 @@
   <div class="flex flex-col px-3">
 
     <div class="flex flex-col items-between justify-center" *ngIf="pic.description || pic.tags?.length">
-      <p class="text-md" [ngClass]="{'pb-2' : pic.description && pic.tags?.length}">{{pic.description}}</p>
-      <p class="flex gap-2.5 py-2" *ngIf="pic.tags?.length">
+      <p
+        class="text-md"
+        [ngClass]="{'pb-2' : pic.description && pic.tags?.length}"
+      >
+        {{pic.description}}
+      </p>
+      <p
+        class="flex gap-2.5 py-2"
+        *ngIf="pic.tags?.length"
+        [ngClass]="{'pb-4' : !pic.comments?.length}"
+      >
         <pp-tag *ngFor="let tag of pic.tags" [tag]="tag"/>
       </p>
     </div>
