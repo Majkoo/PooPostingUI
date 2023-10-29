@@ -1,20 +1,40 @@
 <ng-container *ngIf="pic">
 
-  <div class="
-    flex flex-col my-[3.5rem]
-    md:flex-row-reverse md:h-picture-modal-content-height md:mt-0 md:mb-0 md:pt-0 md:gap-3
-    overflow-y-clip
-  ">
+  <div class="wrapper">
 
     <!--  Sidebar -->
     <div class="flex flex-col w-screen md:w-2/5 lg:w-3/8 xl:w-1/4 md:sticky md:top-0 md:p-3 md:rounded-lg md:shadow-xl md:bg-surface-100 md:h-screen">
 
-      <ng-container *ngIf="!isMobile" [ngTemplateOutlet]="pictureData" />
+      <div class="cont">
+        <div class="section">
+
+          <ng-container [ngTemplateOutlet]="isMobile ? description : accountSection"/>
+
+          <!--  Tags  -->
+          <div class="flex flex-row gap-2.5 pb-4 px-3 md:mx-3 md:mt-0 md:px-0 order-2" *ngIf="pic.tags.length">
+            <pp-tag *ngFor="let tag of pic.tags" [tag]="tag"/>
+          </div>
+
+          <!--  Controls  -->
+          <div class="flex flex-col px-4 md:px-3 py-2 pt-3 border-b-1 order-1 md:order-2 md:pt-0">
+            <div class="flex gap-3 text-2xl icon-dark">
+              <pp-like-btn [(pic)]="pic" />
+              <span class="icon-share"></span>
+              <div class="grow flex justify-end">
+                <span class="icon-setting"></span>
+              </div>
+            </div>
+          </div>
+
+          <ng-container [ngTemplateOutlet]="commentsOption" />
+
+        </div>
+      </div>
 
     </div>
 
     <!--  Content  -->
-    <div class="w-full flex flex-col py-3 md:pb-0 text-dark">
+    <div class="w-full flex flex-col pt-3 text-dark">
 
       <ng-container *ngIf="isMobile" [ngTemplateOutlet]="accountSection"></ng-container>
 
@@ -40,53 +60,11 @@
         Go back
       </a>
 
-      <ng-container *ngIf="isMobile" [ngTemplateOutlet]="pictureData" />
-
     </div>
 
   </div>
 
-  <ng-template #pictureData>
-
-    <div class="cont">
-      <div class="section">
-
-        <ng-container [ngTemplateOutlet]="isMobile ? description : accountSection"/>
-
-        <!--  Tags  -->
-        <div class="flex flex-row gap-2.5 mt-3 pb-4 px-3 border-b-1 md:mx-3 md:mt-0 md:px-0 order-2 md:border-b-0" *ngIf="pic.tags.length">
-          <pp-tag *ngFor="let tag of pic.tags" [tag]="tag"/>
-        </div>
-
-        <!--  Controls  -->
-        <div class="flex flex-col border-b-1 px-4 md:px-3 py-2 pt-3 order-1 md:order-2 md:pt-0">
-          <div class="flex gap-3 text-2xl icon-dark">
-            <pp-like-btn [(pic)]="pic" />
-            <span class="icon-share"></span>
-            <div class="grow flex justify-end">
-              <span class="icon-setting"></span>
-            </div>
-          </div>
-        </div>
-
-        <!--  Comments heading  -->
-        <h2 class="text-dark font-bold md:text-xl p-3 md:mt-0 md:border-t-0 order-3">
-          Comments:
-        </h2>
-
-        <!--  Comments display  -->
-        <pp-comments-display [pic]="pic" [ngClass]="'order-4'"/>
-
-        <!--  Comments form  -->
-        <div class="comments-form p-3 pb-0 md:py-3 order-5">
-          <pp-comment-form [pic]="pic" (commentAdded)="onCommentAdd($event)"/>
-        </div>
-
-      </div>
-    </div>
-
-  </ng-template>
-
+  <!--  Account Details  -->
   <ng-template #accountSection>
     <!--  Account  -->
     <div class="flex flex-col rounded-xl bg-surface-300 text-dark mx-3 mb-3 md:pb-0 md:m-3 md:order-2">
@@ -113,9 +91,29 @@
     </div>
   </ng-template>
 
+  <!--  Pic Description  -->
   <ng-template #description>
-    <div class="px-4 pt-3 text-opacity-60 order-2" *ngIf="pic.description">
+    <div class="px-4 py-3 text-opacity-60 order-2" *ngIf="pic.description">
       {{pic.description}}
+    </div>
+  </ng-template>
+
+  <!--  Comments option  -->
+  <ng-template #commentsOption>
+    <!--  Comments heading  -->
+    <h2
+      class="text-dark font-bold md:text-xl p-3 md:mt-0 order-3"
+      [ngClass]="{'border-t-1 md:border-t-0' : pic.description || pic.tags?.length}"
+    >
+      Comments:
+    </h2>
+
+    <!--  Comments display  -->
+    <pp-comments-display [pic]="pic" [ngClass]="'order-4'"/>
+
+    <!--  Comments form  -->
+    <div class="comments-form p-3 order-5">
+      <pp-comment-form [pic]="pic" (commentAdded)="onCommentAdd($event)"/>
     </div>
   </ng-template>
 

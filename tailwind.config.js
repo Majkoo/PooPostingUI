@@ -4,7 +4,8 @@ theme = {
   'surface': {
     '100': '#FFFFFF',
     '200': '#FBFBFB',
-    '300': '#EDEDED'
+    '300': '#f1f1f1',
+    '400': '#EDEDED'
   },
   'primary': {
     '800': '#5A3F29',

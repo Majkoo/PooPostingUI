@@ -10,7 +10,6 @@ import {
   ViewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {AccountInlineLinkComponent} from "../../../shared/components/account-inline-link/account-inline-link.component";
 import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
 import {BehaviorSubject, Subscription, switchMap} from "rxjs";
 import {CommentService} from "../../../services/data-access/comment/comment.service";
@@ -20,7 +19,7 @@ import {CommentComponent} from "./comment/comment.component";
 @Component({
   selector: 'pp-comments-display',
   standalone: true,
-  imports: [CommonModule, AccountInlineLinkComponent, CommentComponent],
+  imports: [CommonModule, CommentComponent],
   templateUrl: './comments-display.component.html',
   styleUrls: ['./comments-display.component.scss'],
 })

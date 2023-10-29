@@ -1,11 +1,12 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {DatePipe, NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import {Router, RouterLink} from "@angular/router";
+import {RouterLink} from "@angular/router";
 import {PictureDto} from "../../utility/dtos/PictureDto";
 import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transform.module";
 import {fadeInAnimation} from "../../utility/animations/fadeInAnimation";
 import {LikeBtnComponent} from "../like-btn/like-btn.component";
 import {TagComponent} from "../tag/tag.component";
+import {MiniCommentComponent} from "./mini-comment/mini-comment.component";
 
 @Component({
   selector: 'pp-post-card',
@@ -25,7 +26,8 @@ import {TagComponent} from "../tag/tag.component";
     NgClass,
     DatePipe,
     LikeBtnComponent,
-    TagComponent
+    TagComponent,
+    MiniCommentComponent
   ],
   animations: [
     fadeInAnimation
@@ -34,8 +36,4 @@ import {TagComponent} from "../tag/tag.component";
 })
 export class PostCardComponent {
   @Input() pic?: PictureDto;
-  private router = inject(Router);
-  async openModal(pic: PictureDto) {
-    await this.router.navigate([], { queryParams: {viewPicture: pic.id}});
-  }
 }

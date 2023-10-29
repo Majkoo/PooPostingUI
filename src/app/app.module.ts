@@ -12,7 +12,6 @@ import {NgOptimizedImage} from "@angular/common";
 import {UrlTransformModule} from "./shared/utility/pipes/url-transform/url-transform.module";
 import {MessageService} from "primeng/api";
 import {TokenInterceptorService} from "./shared/utility/interceptors/token-interceptor.service";
-import {AccountInlineLinkComponent} from "./shared/components/account-inline-link/account-inline-link.component";
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import {AccountInlineLinkComponent} from "./shared/components/account-inline-lin
         LayoutModule,
         NgOptimizedImage,
         UrlTransformModule,
-        AccountInlineLinkComponent,
     ],
   providers: [
     {

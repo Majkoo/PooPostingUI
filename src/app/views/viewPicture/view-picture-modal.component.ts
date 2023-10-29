@@ -4,7 +4,6 @@ import {firstValueFrom} from "rxjs";
 import {PictureService} from "../../services/data-access/picture/picture.service";
 import {Location, NgClass, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {extractQueryParams} from "../../shared/utility/extractQueryParams";
-import {AccountInlineLinkComponent} from "../../shared/components/account-inline-link/account-inline-link.component";
 import {UrlTransformModule} from "../../shared/utility/pipes/url-transform/url-transform.module";
 import {RouterLink} from "@angular/router";
 import {TagComponent} from "../../shared/components/tag/tag.component";
@@ -20,7 +19,6 @@ import {CommentsDisplayComponent} from "./comments-display/comments-display.comp
   styleUrls: ['./view-picture-modal.component.scss'],
   standalone: true,
   imports: [
-    AccountInlineLinkComponent,
     UrlTransformModule,
     NgTemplateOutlet,
     NgIf,

@@ -1,17 +1,19 @@
-<div class="pp-shadow w-full bg-surface-100 rounded-xl flex flex-col pb-3" *ngIf="pic">
+<div class="pp-shadow w-full bg-surface-100 rounded-xl flex flex-col gap-2" *ngIf="pic">
 
-  <div class="flex rounded-t-xl justify-center items-center cursor-pointer" (click)="openModal(pic)">
-    <img class="w-full rounded-t-xl" @fadeIn src="{{pic.url | urlTransform}}" alt="{{pic.name}}">
+  <!--  Image  -->
+  <div class="flex rounded-t-xl justify-center items-center cursor-pointer" routerLink="" [queryParams]="{viewPicture: pic.id}">
+    <img class="w-full rounded-t-xl select-none" @fadeIn src="{{pic.url | urlTransform}}" alt="{{pic.name}}">
   </div>
 
-    <div class="flex justify-between items-center px-4 py-3">
+  <!--  Controls  -->
+  <div class="flex justify-between items-center px-3">
 
-      <a class="gap-2 flex flex-row justify-between items-center" routerLink="/account/{{pic.account.id}}">
+      <a class="flex flex-row justify-between items-center gap-1" routerLink="/account/{{pic.account.id}}">
         <img class="w-8 h-8 rounded-3xl" src="{{pic.account.profilePicUrl | urlTransform}}" alt="{{pic.account.nickname}}">
         <p class="font-bold text-xl h-min lh flex justify-center items-center">{{pic.account.nickname}}</p>
       </a>
 
-      <div class="flex items-start gap-2 px-0.5 pt-1">
+      <div class="flex items-start gap-1">
         <pp-like-btn [(pic)]="pic"/>
         <button class="icon-dark m-0 icon-share">
         </button>
@@ -19,43 +21,30 @@
 
     </div>
 
-  <div class="flex flex-col px-3">
+  <!--  Description  -->
+  <p class="text-md px-3" *ngIf="pic.description">
+    {{pic.description}}
+  </p>
 
-    <div class="flex flex-col items-between justify-center" *ngIf="pic.description || pic.tags?.length">
-      <p
-        class="text-md"
-        [ngClass]="{'pb-2' : pic.description && pic.tags?.length}"
-      >
-        {{pic.description}}
-      </p>
-      <p
-        class="flex gap-2.5 py-2"
-        *ngIf="pic.tags?.length"
-        [ngClass]="{'pb-4' : !pic.comments?.length}"
-      >
-        <pp-tag *ngFor="let tag of pic.tags" [tag]="tag"/>
-      </p>
+  <!--  Tags  -->
+  <p class="flex gap-2 px-3" *ngIf="pic.tags?.length">
+    <pp-tag *ngFor="let tag of pic.tags" [tag]="tag"/>
+  </p>
+
+  <!--  Comments  -->
+  <ng-container  *ngIf="pic.commentCount && pic.comments?.length">
+    <p class="font-bold text-lg px-3">Comments</p>
+
+    <div class="flex flex-col gap-2 px-3">
+      <pp-mini-comment [comm]="pic.comments[0]" />
     </div>
+  </ng-container>
 
-    <div class="flex flex-col items-between justify-center gap-2" (click)="openModal(pic)">
-
-      <div class="flex flex-col gap-1 mt-1" *ngIf="pic.commentCount">
-        <p class="font-semibold text-lg">Comments</p>
-        <div class="flex flex-col items-between justify-center gap-1" *ngFor="let comment of pic.comments">
-          <p class="text-[16px]">
-            <b>{{comment.account.nickname}}</b>:
-            <span class="text-sm text-gray-600">{{ comment.text.length > 125 ? comment.text.substring(0, 125) + '...' : comment.text }}</span>
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="cursor-text bg-surface-100 border-1 rounded-md text-xs text-gray-400 px-2 py-0.5 pp-shadow border-grey flex items-center justify-between {{pic.commentCount ? 'mt-2' : ''}}">
-        <p>Write a comment...</p>
-        <span class="icon-vector text text-lg"></span>
-      </div>
-    </div>
-
+  <!--  Comment form  -->
+  <div routerLink="" [queryParams]="{viewPicture: pic.id}"
+    class="cursor-pointer bg-surface-100 border-1 rounded-md text-xs text-gray-400 pp-shadow border-grey flex items-center justify-between m-3 mt-1 px-3">
+    <p>Comment this...</p>
+    <span class="icon-vector text text-lg"></span>
   </div>
 
 </div>
