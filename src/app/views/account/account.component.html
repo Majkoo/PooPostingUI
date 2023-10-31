@@ -1,1 +1,32 @@
-<p>account works!</p>
+<div class="w-100 flex flex-col justify-center items-center my-3 gap-4" *ngIf="account$ | async as acc">
+
+  <div class="flex flex-col justify-center items-center gap-2">
+    <img class="shadow-lg rounded-full object-contain aspect-square w-40 md:w-60" src="{{acc.profilePicUrl | urlTransform}}" alt="{{acc.nickname}}">
+    <h2 class="text-2xl tracking-wide font-bold">{{acc.nickname}}</h2>
+  </div>
+
+  <div class="flex gap-4 sm:gap-6 md:gap-8 justify-center items-center flex-wrap">
+    <span class="tag">
+      Posts: {{ acc.pictureCount || 0 }}
+    </span>
+    <span class="tag">
+      Likes: {{ acc.likeCount || 0 }}
+    </span>
+    <span class="tag">
+      Comments: {{ acc.commentCount || 0 }}
+    </span>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <div *ngFor="let pic of acc.pictures">
+      <img
+        class="image-preview"
+        [src]="pic.url | urlTransform"
+        [alt]="pic.name"
+        routerLink="."
+        [queryParams]="{viewPicture: pic.id}"
+      />
+    </div>
+  </div>
+
+</div>

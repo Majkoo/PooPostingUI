@@ -1,11 +1,11 @@
 import {Component, Input} from '@angular/core';
 import {DatePipe, NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {RouterLink} from "@angular/router";
-import {PictureDto} from "../../utility/dtos/PictureDto";
-import {UrlTransformModule} from "../../utility/pipes/url-transform/url-transform.module";
-import {fadeInAnimation} from "../../utility/animations/fadeInAnimation";
-import {LikeBtnComponent} from "../like-btn/like-btn.component";
-import {TagComponent} from "../tag/tag.component";
+import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
+import {UrlTransformModule} from "../../../shared/utility/pipes/url-transform/url-transform.module";
+import {fadeInAnimation} from "../../../shared/utility/animations/fadeInAnimation";
+import {LikeBtnComponent} from "../../../shared/components/like-btn/like-btn.component";
+import {TagComponent} from "../../../shared/components/tag/tag.component";
 import {MiniCommentComponent} from "./mini-comment/mini-comment.component";
 
 @Component({

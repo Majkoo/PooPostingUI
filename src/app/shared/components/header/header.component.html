@@ -6,9 +6,14 @@
       <img class="invert" ngSrc="../../../../assets/logo/logo-row.png" alt="PooPosting" height="32" width="147"/>
     </a>
 
-    <a class="icon icon-user nav-link">
-    </a>
+    <ng-container *ngIf="(account$ | async) as acc else loginLink">
+      <a routerLink="/account/{{acc.id}}" class="icon icon-user nav-link"></a>
+    </ng-container>
 
   </div>
 
 </header>
+
+<ng-template #loginLink>
+  <a routerLink="/login" class="icon icon-user nav-link"></a>
+</ng-template>

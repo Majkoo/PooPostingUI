@@ -1,9 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {CommentDto} from "../../../utility/dtos/CommentDto";
+import {CommentDto} from "../../../../shared/utility/dtos/CommentDto";
 import {RouterLink} from "@angular/router";
-import {UrlTransformModule} from "../../../utility/pipes/url-transform/url-transform.module";
-import {shortDateFormat} from "../../../utility/constants";
+import {UrlTransformModule} from "../../../../shared/utility/pipes/url-transform/url-transform.module";
+import {shortDateFormat} from "../../../../shared/utility/constants";
 
 @Component({
   selector: 'pp-mini-comment',

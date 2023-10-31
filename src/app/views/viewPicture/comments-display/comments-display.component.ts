@@ -34,9 +34,9 @@ export class CommentsDisplayComponent implements OnInit, AfterViewInit, OnDestro
   private pageNumber = 2;
   private hostHeight = 0;
 
-  enableScrollListener = true;
-  scrollSubject: BehaviorSubject<null> = new BehaviorSubject<null>(null);
-  masterSub: Subscription = new Subscription();
+  private enableScrollListener = true;
+  private scrollSubject: BehaviorSubject<null> = new BehaviorSubject<null>(null);
+  private masterSub: Subscription = new Subscription();
 
   @HostListener('scroll', ['$event.target'])
   onScroll(target: HTMLElement): void {

@@ -8,6 +8,7 @@ import {AuthService} from "../../services/data-access/account/auth.service";
 import {Subscription} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
+import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
 
 @Component({
   selector: 'pp-register',
@@ -24,7 +25,7 @@ import {ToastrService} from "ngx-toastr";
     }
   `],
   animations: [
-    validationErrorAnimation
+    validationErrorAnimation,
   ]
 })
 export class RegisterComponent implements OnDestroy {

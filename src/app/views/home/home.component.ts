@@ -3,11 +3,11 @@ import {BehaviorSubject, combineLatest, Observable, startWith, switchMap} from '
 import { map } from 'rxjs/operators';
 import { PictureService } from '../../services/data-access/picture/picture.service';
 import { PictureDto } from '../../shared/utility/dtos/PictureDto';
-import {PostCardComponent} from "../../shared/components/post-card/post-card.component";
+import {PostCardComponent} from "./post-card/post-card.component";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {
   CreateAccountBannerComponent
-} from "../../shared/components/create-account-banner/create-account-banner.component";
+} from "./create-account-banner/create-account-banner.component";
 import {PictureLikesService} from "../../services/data-access/picture/picture-likes.service";
 import {PagedResult} from "../../shared/utility/dtos/PagedResult";
 import {CommentService} from "../../services/data-access/comment/comment.service";

@@ -5,7 +5,7 @@ import {PictureService} from "../../services/data-access/picture/picture.service
 import {Location, NgClass, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {extractQueryParams} from "../../shared/utility/extractQueryParams";
 import {UrlTransformModule} from "../../shared/utility/pipes/url-transform/url-transform.module";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {TagComponent} from "../../shared/components/tag/tag.component";
 import {LikeBtnComponent} from "../../shared/components/like-btn/like-btn.component";
 import {CommentFormComponent} from "./comment-form/comment-form.component";
@@ -47,6 +47,7 @@ export class ViewPictureModalComponent implements OnInit {
   constructor(
     private picService: PictureService,
     private location: Location,
+    private router: Router,
   ) {
   }
 
@@ -60,11 +61,15 @@ export class ViewPictureModalComponent implements OnInit {
   }
 
   private updateTemplateDisplay(): void {
-    this.isMobile  = window.innerWidth < 768;
+    this.isMobile = window.innerWidth < 768;
   }
 
   onCommentAdd(comment: CommentDto) {
     this.pic!.comments ? this.pic!.comments = [comment, ...this.pic!.comments] : this.pic!.comments = [comment];
+  }
+
+  closeModal() {
+    this.router.navigate([], {queryParams: {}})
   }
 
 }

@@ -55,7 +55,7 @@
           hover:py-4 hover:opacity-100
           active:py-3.5
         "
-        routerLink=".."
+        (click)="closeModal()"
       >
         Go back
       </a>
@@ -103,7 +103,7 @@
     <!--  Comments heading  -->
     <h2
       class="text-dark font-bold md:text-xl p-3 md:mt-0 order-3"
-      [ngClass]="{'border-t-1 md:border-t-0' : pic.description || pic.tags?.length}"
+      [ngClass]="{'border-t-1 md:border-t-0' : pic.description || pic.tags.length}"
     >
       Comments:
     </h2>

@@ -1,4 +1,6 @@
-﻿export interface AccountDto {
+﻿import {PictureDto} from "./PictureDto";
+
+export interface AccountDto {
   id: string;
   roleId: string;
   nickname: string;
@@ -7,6 +9,11 @@
   backgroundPicUrl: string;
   accountDescription: string;
   accountCreated: string;
+
+  pictures: PictureDto[];
+  pictureCount: number;
+  likeCount: number;
+  commentCount: number;
 
   isModifiable: boolean;
   isAdminModifiable: boolean;

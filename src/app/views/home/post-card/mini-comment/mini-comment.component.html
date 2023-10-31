@@ -2,9 +2,7 @@
   <div class="w-6 float-left">
     <a routerLink="/account/{{comm.account.id}}">
       <img class="w-6 max-h-6 h-6 object-fill rounded-3xl"
-           ngSrc="{{comm.account.profilePicUrl | urlTransform}}"
-           width="14"
-           height="14"
+           src="{{comm.account.profilePicUrl | urlTransform}}"
            alt="{{comm.account.nickname}}">
     </a>
   </div>

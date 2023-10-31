@@ -21,7 +21,7 @@ import {validationErrorAnimation} from "../../shared/utility/animations/validati
     }
   `],
   animations: [
-    validationErrorAnimation
+    validationErrorAnimation,
   ]
 })
 export class LoginComponent implements OnDestroy {

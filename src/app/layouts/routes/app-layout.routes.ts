@@ -7,7 +7,7 @@ export const APP_LAYOUT_ROUTES: Routes = [
       .then(m => m.HomeComponent)
   },
   {
-    path: 'account',
+    path: 'account/:id',
     loadComponent: () => import('../../views/account/account.component')
       .then(m => m.AccountComponent)
   },
@@ -31,9 +31,5 @@ export const APP_LAYOUT_ROUTES: Routes = [
   //   loadChildren: () => import('../view/picture/feature/picture-shell/picture-shell.module')
   //     .then(m => m.PictureShellModule)
   // },
-  // {
-  //   path: "account",
-  //   loadChildren: () => import('../view/account/feature/account-shell/account-shell.module')
-  //     .then(m => m.AccountShellModule)
-  // },
+
 ]
