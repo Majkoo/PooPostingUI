@@ -56,7 +56,11 @@ export class ViewPictureModalComponent implements OnInit {
     const queryParams = extractQueryParams(this.location.path());
     const picId = queryParams['viewPicture'];
     if (picId) {
-      this.pic = await firstValueFrom(this.picService.getById(picId));
+      try {
+        this.pic = await firstValueFrom(this.picService.getById(picId));
+      } catch (e) {
+        this.router.navigate([""], {queryParams: null})
+      }
     }
   }
 

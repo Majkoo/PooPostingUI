@@ -27,8 +27,7 @@ export class AccountService {
   getPicturesById(id: string, pageSize: number, pageNumber: number): Observable<PagedResult<PictureDto>>{
     return this.httpClient
       .get<PagedResult<PictureDto>>(
-        `https://localhost:5001/api/picture?pageSize=${pageSize}&pageNumber=${pageNumber}`,
-        // todo: replace with this: `${this.accountApiUrl}/${id}/pictures?pageSize=${pageSize}&pageNumber=${pageNumber}`,
+        `${this.accountApiUrl}/${id}/picture?pageSize=${pageSize}&pageNumber=${pageNumber}`,
         {responseType: "json",}
       );
   }
