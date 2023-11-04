@@ -12,20 +12,19 @@ import {
   startWith,
   Subscription,
   switchMap,
-  tap
 } from "rxjs";
 import {AccountDto} from "../../shared/utility/dtos/AccountDto";
 import {ToastrService} from "ngx-toastr";
-import {HttpErrorResponse} from "@angular/common/http";
 import {defaultErrorHeading} from "../../shared/utility/constants";
 import {UrlTransformModule} from "../../shared/utility/pipes/url-transform/url-transform.module";
 import {combineLatest} from "rxjs";
 import {map} from "rxjs/operators";
+import {PostPreviewComponent} from "./post-preview/post-preview.component";
 
 @Component({
   selector: 'pp-account',
   standalone: true,
-  imports: [CommonModule, UrlTransformModule, RouterLink],
+  imports: [CommonModule, UrlTransformModule, RouterLink, PostPreviewComponent],
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })

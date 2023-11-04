@@ -18,15 +18,7 @@
   </div>
 
   <div class="grid grid-cols-2 gap-4">
-    <div *ngFor="let pic of acc.pictures">
-      <img
-        class="image-preview"
-        [src]="pic.url | urlTransform"
-        [alt]="pic.name"
-        routerLink="."
-        [queryParams]="{viewPicture: pic.id}"
-      />
-    </div>
+    <pp-post-preview *ngFor="let pic of acc.pictures" [pic]="pic" />
   </div>
 
 </div>
