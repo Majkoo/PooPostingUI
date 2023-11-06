@@ -1,0 +1,88 @@
+<div
+  class="w-full flex border-4 rounded-2xl border-dashed border-cta bg-surface-400"
+  [ngClass]="{
+      'h-40': !post.file,
+      'h-max': post.file,
+      }"
+>
+  <!--  File Input  -->
+  <div class="flex w-full" *ngIf="!post.file">
+    <label
+      for="fileInput"
+      class="w-full flex justify-center items-center rounded-xl hover:blur-sm cursor-pointer transition duration-250 ease-in-out"
+    >
+      <p class="p-2 rounded-xl">Upload a file...</p>
+    </label>
+    <input
+      type="file"
+      id="fileInput"
+      class="hidden"
+      [accept]="['image/*', 'video/*']"
+      (change)="onFileChange($event)"
+    />
+  </div>
+
+  <!--  Cropper -->
+  <div *ngIf="post.file" class="rounded-xl relative flex flex-col">
+    <div class="p-2">
+      <angular-cropper
+        #cropperComponent
+        [imageUrl]="post.file"
+        [cropperOptions]="{ aspectRatio: 3/4, viewMode: 2, responsive: true }"
+      />
+    </div>
+    <div class="flex flex-col">
+      <div class="p-3 pb-0 border-t-4 border-dashed border-cta">
+        <p class="text-lg text-center">Choose aspect ratio</p>
+      </div>
+      <div class="flex gap-3 p-3 items-center justify-center flex-wrap">
+        <button
+          class="text-white px-4 py-2 rounded-lg whitespace-nowrap"
+          [ngClass]="aspectRatio == 2 / 4 ? 'bg-cta' : 'bg-primary-800'"
+          (click)="changeAspectRatio(2 / 4)"
+        >
+          2/4
+        </button>
+        <button
+          class="text-white px-4 py-2 rounded-lg whitespace-nowrap"
+          [ngClass]="aspectRatio == 3 / 4 ? 'bg-cta' : 'bg-primary-800'"
+          (click)="changeAspectRatio(3 / 4)"
+        >
+          3/4
+        </button>
+        <button
+          class="text-white px-4 py-2 rounded-lg whitespace-nowrap"
+          [ngClass]="aspectRatio == 4 / 4 ? 'bg-cta' : 'bg-primary-800'"
+          (click)="changeAspectRatio(4 / 4)"
+        >
+          4/4
+        </button>
+        <button
+          class="text-white px-4 py-2 rounded-lg"
+          [ngClass]="aspectRatio == 4/3 ? 'bg-cta' : 'bg-primary-800'"
+          (click)="changeAspectRatio(4 / 3)"
+        >
+          4/3
+        </button>
+        <button
+          class="text-white px-4 py-2 rounded-lg"
+          [ngClass]="aspectRatio == 4 / 2 ? 'bg-cta' : 'bg-primary-800'"
+          (click)="changeAspectRatio(4 / 2)"
+        >
+          4/2
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="mt-4 flex items-center justify-end">
+  <button
+    class="flex gap-1 text-white px-4 py-2 rounded-lg whitespace-nowrap bg-cta disabled:opacity-60"
+    [disabled]="!canProceed"
+    (click)="goNext()"
+  >
+    Next step
+  </button>
+</div>

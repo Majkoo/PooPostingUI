@@ -20,13 +20,15 @@ import {UrlTransformModule} from "../../shared/utility/pipes/url-transform/url-t
 import {combineLatest} from "rxjs";
 import {map} from "rxjs/operators";
 import {PostPreviewComponent} from "./post-preview/post-preview.component";
+import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
 
 @Component({
   selector: 'pp-account',
   standalone: true,
   imports: [CommonModule, UrlTransformModule, RouterLink, PostPreviewComponent],
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+  styleUrls: ['./account.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class AccountComponent implements OnInit, OnDestroy {
 

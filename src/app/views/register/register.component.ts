@@ -26,6 +26,7 @@ import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
   `],
   animations: [
     validationErrorAnimation,
+    fadeInAnimation
   ]
 })
 export class RegisterComponent implements OnDestroy {

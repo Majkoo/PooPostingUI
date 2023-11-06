@@ -7,7 +7,19 @@
     </a>
 
     <ng-container *ngIf="(account$ | async) as acc else loginLink">
-      <a routerLink="/account/{{acc.id}}" class="icon icon-user nav-link"></a>
+      <div
+        class="nav-link gap-1"
+        routerLink="/account/{{acc.id}}"
+        routerLinkActive="link-active"
+      >
+        <p class="p-2 pr-0 text-xs text-end hidden sm:block">
+          Welcome back, <br> <b>{{acc.nickname}}</b>
+        </p>
+        <img
+          class="rounded-full w-14 h-14 aspect-square p-2"
+          src="{{acc.profilePicUrl | urlTransform}}"
+          alt="{{acc.nickname}}"/>
+      </div>
     </ng-container>
 
   </div>

@@ -9,7 +9,7 @@
   <div class="flex justify-between items-center px-3">
 
       <a class="flex flex-row justify-between items-center gap-1" routerLink="/account/{{pic.account.id}}">
-        <img class="w-8 h-8 rounded-3xl" src="{{pic.account.profilePicUrl | urlTransform}}" alt="{{pic.account.nickname}}">
+        <img class="w-8 h-8 rounded-3xl object-center object-contain" src="{{pic.account.profilePicUrl | urlTransform}}" alt="{{pic.account.nickname}}">
         <p class="font-bold text-xl h-min lh flex justify-center items-center">{{pic.account.nickname}}</p>
       </a>
 

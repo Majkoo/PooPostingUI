@@ -1,4 +1,5 @@
 import {Routes} from "@angular/router";
+import {isLoggedInGuard} from "../../shared/utility/guards/is-logged-in.guard";
 
 export const APP_LAYOUT_ROUTES: Routes = [
   {
@@ -10,6 +11,12 @@ export const APP_LAYOUT_ROUTES: Routes = [
     path: 'account/:id',
     loadComponent: () => import('../../views/account/account.component')
       .then(m => m.AccountComponent)
+  },
+  {
+    path: 'add-post',
+    canActivate: [isLoggedInGuard],
+    loadChildren: () => import('../../views/add-post/add-post.module')
+      .then(m => m.AddPostModule)
   },
   // {
   //   path: "search",
@@ -23,7 +30,7 @@ export const APP_LAYOUT_ROUTES: Routes = [
   // },
   // {
   //   path: "tos",
-  //   loadChildren: () => import('../view/terms-of-service/feature/tos-shell/tos-shell.module')
+  //   loadChildren: () => import('../view/terms-of-services/feature/tos-shell/tos-shell.module')
   //     .then(m => m.TosShellModule)
   // },
   // {

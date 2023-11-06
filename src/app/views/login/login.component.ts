@@ -9,6 +9,7 @@ import {Router, RouterLink} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {LoginDto} from "../../shared/utility/dtos/LoginDto";
 import {validationErrorAnimation} from "../../shared/utility/animations/validationErrorAnimation";
+import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
 
 @Component({
   selector: 'pp-login',
@@ -22,6 +23,7 @@ import {validationErrorAnimation} from "../../shared/utility/animations/validati
   `],
   animations: [
     validationErrorAnimation,
+    fadeInAnimation
   ]
 })
 export class LoginComponent implements OnDestroy {

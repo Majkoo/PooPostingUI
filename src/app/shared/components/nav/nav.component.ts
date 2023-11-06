@@ -14,7 +14,11 @@ import { Component } from '@angular/core';
           <span>Liked</span>
         </a>
 
-        <a class="icon icon-add-post nav-link">
+        <a
+          class="icon icon-add-post nav-link"
+          routerLinkActive="link-active"
+          routerLink="/add-post"
+        >
           <span>Add post</span>
         </a>
 
@@ -44,7 +48,6 @@ import { Component } from '@angular/core';
     .nav-link {
       @apply
       sm:w-full sm:flex sm:w-max sm:h-full
-      sm:text-dark sm:font-bold
       sm:px-2 sm:py-2
     }
   `]

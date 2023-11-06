@@ -2,7 +2,7 @@ import {Component, inject, Input} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {UrlTransformModule} from "../../../shared/utility/pipes/url-transform/url-transform.module";
 import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
-import {NgClass, NgStyle} from "@angular/common";
+import {NgClass, NgOptimizedImage, NgStyle} from "@angular/common";
 import {AuthService} from "../../../services/data-access/account/auth.service";
 
 @Component({
@@ -12,14 +12,15 @@ import {AuthService} from "../../../services/data-access/account/auth.service";
     RouterLink,
     UrlTransformModule,
     NgStyle,
-    NgClass
+    NgClass,
+    NgOptimizedImage
   ],
   styles: [`
     .image-wrapper {
       @apply relative bg-contain overflow-hidden cursor-pointer drop-shadow-xl rounded-lg aspect-square;
 
       .image-preview {
-        @apply bg-cover bg-center transition duration-700 transform  h-64 w-64;
+        @apply object-cover transition duration-700 transform w-full aspect-square;
       }
 
       .data-block {
@@ -32,13 +33,14 @@ import {AuthService} from "../../../services/data-access/account/auth.service";
     }
   `],
   template: `
-      <div class="image-wrapper group" xmlns="http://www.w3.org/1999/html">
-      <div
+    <div class="image-wrapper group">
+      <img
         class="image-preview group-hover:scale-125"
-        [ngStyle]="{backgroundImage:'url(' + (pic.url | urlTransform) + ')'}"
+        src="{{pic.url | urlTransform}}"
         routerLink="."
         [queryParams]="{viewPicture: pic.id}"
-      ></div>
+        alt="{{pic.description}}"
+      />
 
       <div class="data-block opacity-0 group-hover:opacity-100">
 
@@ -46,21 +48,21 @@ import {AuthService} from "../../../services/data-access/account/auth.service";
           {{pic.commentCount}}
           <span
             [ngClass]=" {
-            'cursor-pointer': isLoggedOn,
-            'opacity-60': !isLoggedOn,
-            'icon-vector': true,
-          }"></span>
+              'cursor-pointer': isLoggedOn,
+              'opacity-60': !isLoggedOn,
+              'icon-vector': true,
+            }"></span>
         </div>
 
         <div class="data-piece rounded-tl-xl">
           {{pic.likeCount}}
           <span
             [ngClass]=" {
-            'cursor-pointer': isLoggedOn,
-            'opacity-60': !isLoggedOn,
-            'icon-heart--filled': pic.isLiked,
-            'icon-heart--empty': !pic.isLiked
-          }"></span>
+              'cursor-pointer': isLoggedOn,
+              'opacity-60': !isLoggedOn,
+              'icon-heart--filled': pic.isLiked,
+              'icon-heart--empty': !pic.isLiked
+            }"></span>
         </div>
 
       </div>

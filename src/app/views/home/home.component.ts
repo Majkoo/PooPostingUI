@@ -12,6 +12,7 @@ import {PictureLikesService} from "../../services/data-access/picture/picture-li
 import {PagedResult} from "../../shared/utility/dtos/PagedResult";
 import {CommentService} from "../../services/data-access/comment/comment.service";
 import {AuthService} from "../../services/data-access/account/auth.service";
+import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
 
 @Component({
   selector: 'pp-home',
@@ -24,8 +25,7 @@ import {AuthService} from "../../services/data-access/account/auth.service";
     CreateAccountBannerComponent,
     NgIf
   ],
-  animations: [
-  ]
+  animations: [fadeInAnimation]
 })
 export class HomeComponent implements OnInit {
   pictures$: Observable<PictureDto[]> = new Observable<PictureDto[]>();

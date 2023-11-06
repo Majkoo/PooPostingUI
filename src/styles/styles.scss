@@ -56,13 +56,20 @@ header, footer, nav {
 }
 
 .nav-link {
-  @apply flex justify-center items-center gap-0.5 select-none hover:backdrop-brightness-90 transition ease-in-out cursor-pointer h-full px-2
+  @apply flex justify-center items-center gap-0.5 select-none hover:text-cta hover:text-opacity-70 transition ease-in-out cursor-pointer h-full px-2;
+  &.link-active {
+    @apply text-cta hover:text-opacity-70;
+  }
 }
 
 .nav-link {
   span {
     @apply text-lg hidden sm:block
   }
+}
+
+.cropper-modal, .cropper-container, .cropper-container img {
+  @apply rounded-xl;
 }
 
 .p-dialog {
