@@ -1,12 +1,13 @@
 <div
   class="w-full flex border-4 rounded-2xl border-dashed border-cta bg-surface-400"
   [ngClass]="{
-      'h-40': !post.file,
-      'h-max': post.file,
+      'h-40': !fileUrl,
+      'h-max': fileUrl,
       }"
+  @fadeIn
 >
   <!--  File Input  -->
-  <div class="flex w-full" *ngIf="!post.file">
+  <div class="flex w-full" *ngIf="!fileUrl">
     <label
       for="fileInput"
       class="w-full flex justify-center items-center rounded-xl hover:blur-sm cursor-pointer transition duration-250 ease-in-out"
@@ -23,61 +24,88 @@
   </div>
 
   <!--  Cropper -->
-  <div *ngIf="post.file" class="rounded-xl relative flex flex-col">
-    <div class="p-2">
+  <div *ngIf="fileUrl" class="rounded-xl relative flex flex-col">
+    <div class="p-2" >
       <angular-cropper
         #cropperComponent
-        [imageUrl]="post.file"
+        [imageUrl]="fileUrl"
         [cropperOptions]="{ aspectRatio: 3/4, viewMode: 2, responsive: true }"
       />
     </div>
-    <div class="flex flex-col">
+    <!--    aspect ratio buttons  -->
+    <div class="flex flex-col mb-2">
       <div class="p-3 pb-0 border-t-4 border-dashed border-cta">
         <p class="text-lg text-center">Choose aspect ratio</p>
       </div>
       <div class="flex gap-3 p-3 items-center justify-center flex-wrap">
         <button
-          class="text-white px-4 py-2 rounded-lg whitespace-nowrap"
+          class="text-white px-2.5 py-1.5 rounded-lg text-sm md:px-4 md:py-2"
           [ngClass]="aspectRatio == 2 / 4 ? 'bg-cta' : 'bg-primary-800'"
           (click)="changeAspectRatio(2 / 4)"
+          [disabled]="lockedIn"
         >
           2/4
         </button>
         <button
-          class="text-white px-4 py-2 rounded-lg whitespace-nowrap"
+          class="text-white px-2.5 py-1.5 rounded-lg text-sm md:px-4 md:py-2"
           [ngClass]="aspectRatio == 3 / 4 ? 'bg-cta' : 'bg-primary-800'"
           (click)="changeAspectRatio(3 / 4)"
+          [disabled]="lockedIn"
         >
           3/4
         </button>
         <button
-          class="text-white px-4 py-2 rounded-lg whitespace-nowrap"
+          class="text-white px-2.5 py-1.5 rounded-lg text-sm md:px-4 md:py-2"
           [ngClass]="aspectRatio == 4 / 4 ? 'bg-cta' : 'bg-primary-800'"
           (click)="changeAspectRatio(4 / 4)"
+          [disabled]="lockedIn"
         >
           4/4
         </button>
         <button
-          class="text-white px-4 py-2 rounded-lg"
+          class="text-white px-2.5 py-1.5 rounded-lg text-sm md:px-4 md:py-2"
           [ngClass]="aspectRatio == 4/3 ? 'bg-cta' : 'bg-primary-800'"
           (click)="changeAspectRatio(4 / 3)"
+          [disabled]="lockedIn"
         >
           4/3
         </button>
         <button
-          class="text-white px-4 py-2 rounded-lg"
+          class="text-white px-2.5 py-1.5 rounded-lg text-sm md:px-4 md:py-2"
           [ngClass]="aspectRatio == 4 / 2 ? 'bg-cta' : 'bg-primary-800'"
           (click)="changeAspectRatio(4 / 2)"
+          [disabled]="lockedIn"
         >
           4/2
         </button>
       </div>
     </div>
+
+    <div class="flex flex-col text-center mb-4 w-full">
+      <div class="p-4 pb-0 border-t-4 border-dashed border-cta">
+        <button
+          class="text-white px-4 py-3 rounded-lg whitespace-nowrap"
+          [ngClass]="post.file ? 'bg-cta' : 'bg-primary-800'"
+          (click)="cropperCrop()"
+          [disabled]="lockedIn"
+        >
+          Crop Image
+        </button>
+      </div>
+    </div>
+
   </div>
 
 </div>
 
-<div class="mt-4 flex items-center justify-end">
+<div class="mt-4 flex items-center justify-between">
+  <button
+    class="flex gap-1 text-white px-4 py-2 rounded-lg whitespace-nowrap bg-primary-800 disabled:opacity-60"
+    [disabled]="!lockedIn"
+    (click)="reset()"
+  >
+    Reset
+  </button>
   <button
     class="flex gap-1 text-white px-4 py-2 rounded-lg whitespace-nowrap bg-cta disabled:opacity-60"
     [disabled]="!canProceed"

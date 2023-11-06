@@ -1,0 +1,63 @@
+<div @fadeIn class="mt-4 ">
+  <div class="bg-surface-200 p-3 rounded-xl shadow">
+    <h2 class="text-3xl font-bolder text-center">ADD POST</h2>
+
+    <div
+      class="my-6 h-10 flex justify-around stepper-header relative"
+    >
+
+      <button
+        class="step-heading"
+        routerLink="/add-post/upload"
+        routerLinkActive="active"
+        [disabled]="true"
+        [ngClass]="{
+       'bg-cta': currentRoute == 'upload' || currentRoute == 'details' || currentRoute == 'review',
+       'bg-primary-800': !(currentRoute == 'upload' || currentRoute == 'details' || currentRoute == 'review'),
+      }"
+      >
+        Upload
+      </button>
+      <button
+        class="step-heading"
+        routerLink="/add-post/details"
+        routerLinkActive="active"
+        [disabled]="true"
+        [ngClass]="{
+       'bg-cta': currentRoute == 'details' || currentRoute == 'review',
+       'bg-primary-800': !(currentRoute == 'details' || currentRoute == 'review'),
+      }"
+      >
+        Details
+      </button>
+      <button
+        class="step-heading"
+        routerLink="/add-post/review"
+        [disabled]="true"
+        [ngClass]="{
+       'bg-cta': currentRoute == 'review',
+       'bg-primary-800': currentRoute != 'review',
+      }"
+      >
+        Review
+      </button>
+
+      <div
+        class="step-line"
+        [ngClass]="{
+       'from-25% to-40%': currentRoute == 'upload',
+       'from-60% to-75%': currentRoute == 'details',
+       'from-90% to-100%': currentRoute == 'review',
+      }"
+      ></div>
+
+    </div>
+  </div>
+
+  <div class="bg-surface-200 p-3 rounded-xl shadow mt-4">
+    <router-outlet />
+  </div>
+</div>
+
+
+
