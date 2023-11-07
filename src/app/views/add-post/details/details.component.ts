@@ -6,26 +6,37 @@ import {fadeInAnimation} from "../../../shared/utility/animations/fadeInAnimatio
 @Component({
   selector: 'pp-details',
   template: `
-    <div
-      class="flex flex-col"
+    <form
+      class="flex flex-col gap-3"
       @fadeIn
     >
 
-      <div class="flex flex-col">
+      <div class="flex flex-col gap-1">
         Description:
-        <textarea></textarea>
+        <textarea class="border-2 p-2 rounded-lg" rows="3" placeholder="Post description..."></textarea>
       </div>
 
-      <div class="flex flex-col">
+      <div class="flex flex-col gap-1">
         Tags:
-        <input type="text">
+        <input type="text" class="border-2 px-2 py-1 rounded-lg" placeholder="Post tags...">
       </div>
 
-      <div class="flex flex-col">
-        visibility:
-        <input type="radio" value="test1">
-        <input type="radio" value="test2">
-        <input type="radio" value="test3">
+      <div class="flex flex-col gap-1">
+        Post Visibility:
+        <div class="ml-2">
+          <div class="flex flex-row gap-1">
+            <input type="radio" id="public" name="visibility" value="0">
+            <label for="public">Public</label>
+          </div>
+          <div class="flex flex-row gap-1">
+            <input type="radio" id="feed" name="visibility" value="1">
+            <label for="feed">Feed only</label>
+          </div>
+          <div class="flex flex-row gap-1">
+            <input type="radio" id="private" name="visibility" value="2">
+            <label for="private">Private</label>
+          </div>
+        </div>
       </div>
 
       <div class="mt-4 flex items-center justify-between">
@@ -43,7 +54,7 @@ import {fadeInAnimation} from "../../../shared/utility/animations/fadeInAnimatio
           Next step
         </button>
       </div>
-    </div>
+    </form>
   `,
   styles: [],
   animations: [fadeInAnimation]
@@ -52,8 +63,6 @@ export class DetailsComponent implements AfterContentInit {
 
   private addPostService = inject(AddPostService);
   private router = inject(Router);
-
-  post = this.addPostService.post;
 
   async ngAfterContentInit() {
     if (!this.addPostService.canGoToDetails) await this.router.navigate(['/add-post/upload']);
@@ -65,7 +74,6 @@ export class DetailsComponent implements AfterContentInit {
 
   async goNext() {
     if (this.canProceed) {
-      this.addPostService.updatePost(this.post);
       await this.router.navigate(['/add-post/details'])
     }
   }

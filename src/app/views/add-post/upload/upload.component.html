@@ -1,13 +1,13 @@
 <div
   class="w-full flex border-4 rounded-2xl border-dashed border-cta bg-surface-400"
   [ngClass]="{
-      'h-40': !fileUrl,
-      'h-max': fileUrl,
+      'h-40': !rawFileUrl,
+      'h-max': rawFileUrl,
       }"
   @fadeIn
 >
   <!--  File Input  -->
-  <div class="flex w-full" *ngIf="!fileUrl">
+  <div class="flex w-full" *ngIf="!rawFileUrl">
     <label
       for="fileInput"
       class="w-full flex justify-center items-center rounded-xl hover:blur-sm cursor-pointer transition duration-250 ease-in-out"
@@ -24,19 +24,20 @@
   </div>
 
   <!--  Cropper -->
-  <div *ngIf="fileUrl" class="rounded-xl relative flex flex-col">
+  <div *ngIf="rawFileUrl" class="rounded-xl relative flex flex-col">
     <div class="p-2" >
       <angular-cropper
         #cropperComponent
-        [imageUrl]="fileUrl"
+        [imageUrl]="rawFileUrl"
         [cropperOptions]="{ aspectRatio: 3/4, viewMode: 2, responsive: true }"
+        (ready)="onCropperReady()"
       />
     </div>
   </div>
 
 </div>
 
-<ng-container *ngIf="fileUrl">
+<ng-container *ngIf="rawFileUrl">
   <!--    aspect ratio buttons  -->
   <div class="flex flex-col mb-3">
     <div class="p-2 pb-0">
@@ -87,14 +88,13 @@
   </div>
 
   <div class="flex flex-col text-center w-full">
-    <div class="px-4 py-4 my-2 border-t-2 border-b-2">
+    <div class="px-4 py-4 my-2 border-t-2 border-b-2 flex justify-center items-center gap-4 flex-wrap">
       <button
         class="text-white px-4 py-3 rounded-lg whitespace-nowrap"
-        [ngClass]="post.file ? 'bg-cta' : 'bg-primary-800'"
-        (click)="cropperCrop()"
-        [disabled]="lockedIn"
+        [ngClass]="lockedIn ? 'bg-cta' : 'bg-primary-800'"
+        (click)="onCropBtnClick()"
       >
-        Crop Image
+        {{lockedIn ? "Edit Crop" : "Crop Image"}}
       </button>
     </div>
   </div>

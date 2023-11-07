@@ -23,14 +23,11 @@ export class UploadComponent {
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
 
-  post = this.addPostService.post;
-
   changeAspectRatio(val: number) {
     this.cropperComponent.cropper.setAspectRatio(val);
     this.cropperComponent.cropperOptions.aspectRatio = this.aspectRatio;
-    this.addPostService.updateFileAspectRatio(val);
+    this.addPostService.updatePictureUploadData({aspectRatio: val});
   }
-
   async onFileChange(event: Event) {
     if (!event) return;
     const target = event.target as HTMLInputElement;
@@ -38,54 +35,80 @@ export class UploadComponent {
     await this.fileToUrl(target.files[0]);
     this.cdr.markForCheck();
   }
-
   fileToUrl(file: File): Promise<void> {
     return new Promise((resolve) => {
       const reader = new FileReader();
-
       reader.onload = () => {
-        this.addPostService.updateFileUrl(reader.result as string);
+        this.addPostService.updatePictureUploadData({rawFileUrl: reader.result as string});
         this.cdr.markForCheck();
         resolve();
       };
-
       reader.readAsDataURL(file);
     });
   }
-
   reset() {
-    this.post.file = '';
+    this.addPostService.updatePictureUploadData({
+      rawFileUrl: '',
+      croppedFileUrl: '',
+    });
     this.cropperComponent.cropper.enable();
-    this.addPostService.updateFileUrl('');
+    this.addPostService.updatePictureUploadData({});
     this.cdr.markForCheck();
   }
 
-  cropperCrop() {
-    this.post.file = this.cropperComponent.cropper.crop().getCroppedCanvas().toDataURL();
-    this.cropperComponent.cropper.disable();
-    this.cdr.markForCheck();
+  onCropBtnClick() {
+    if (this.lockedIn) {
+      this.cropperUnlock();
+    } else {
+      this.cropperCrop();
+    }
   }
-
+  onCropperReady() {
+    this.cropperComponent.cropper.setAspectRatio(this.aspectRatio);
+    this.cropperComponent.cropper.setCropBoxData(this.addPostService.cropBoxData);
+    if (this.lockedIn) {
+      this.cropperComponent.cropper.disable();
+    }
+  }
   async goNext() {
     if (this.canProceed) {
-      this.addPostService.updatePost(this.post);
       await this.router.navigate(['/add-post/details'])
     }
   }
-
+  private cropperCrop() {
+    this.addPostService.updatePictureUploadData({
+      aspectRatio: this.aspectRatio,
+      cropBoxData: this.cropperComponent.cropper.getCropBoxData(),
+      croppedFileUrl: this.rawFileUrl,
+    })
+    this.cropperComponent.cropper.disable();
+    this.cdr.markForCheck();
+  }
+  private cropperUnlock() {
+    this.resetCroppedFileUrl();
+    this.cropperComponent.cropper.enable();
+    this.cropperComponent.cropper.setCropBoxData(this.addPostService.cropBoxData);
+    this.cdr.markForCheck();
+  }
+  private resetCroppedFileUrl() {
+    this.addPostService.updatePictureUploadData({croppedFileUrl: ''});
+  }
+  private resetRawFileUrl() {
+    this.addPostService.updatePictureUploadData({rawFileUrl: ''});
+  }
   get canProceed() {
     return this.lockedIn && this.addPostService.canGoToDetails;
   }
-
   get lockedIn() {
-    return this.post.file;
+    return this.croppedFileUrl != '';
   }
-
-  get fileUrl() {
-    return this.addPostService.fileUrl;
+  get rawFileUrl() {
+    return this.addPostService.pictureUploadData.rawFileUrl;
   }
-
+  get croppedFileUrl() {
+    return this.addPostService.pictureUploadData.croppedFileUrl;
+  }
   get aspectRatio() {
-    return this.addPostService.fileAspectRatio;
+    return this.addPostService.pictureUploadData.aspectRatio;
   }
 }

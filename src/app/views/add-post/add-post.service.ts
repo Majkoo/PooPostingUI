@@ -1,59 +1,71 @@
 import { Injectable } from '@angular/core';
 import {AddPostDto} from "../../shared/utility/dtos/AddPostDto";
 import {BehaviorSubject, Subject} from "rxjs";
+import {PictureUploadData} from "./models/pictureUploadData";
+import {PostDetailsData} from "./models/postDetailsData";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddPostService {
 
-  post$  = new BehaviorSubject<Partial<AddPostDto>>({});
   postSubmit$ = new Subject<AddPostDto>();
-  fileUrl$ = new BehaviorSubject<string>('');
-  fileAspectRatio$ = new BehaviorSubject<number>(3/4);
 
-  updatePost(dto: Partial<AddPostDto>) {
-    this.post$.next({
-        ...this.post$.value,
-        ...dto
-      });
-  }
+  pictureUploadData$ = new BehaviorSubject<Partial<PictureUploadData>>({
+    cropBoxData: {
+      left: null,
+      top: null,
+      width: null,
+    },
+    rawFileUrl: '',
+    croppedFileUrl: '',
+    aspectRatio: 3/4
+  });
+  pictureDetailsData$ = new BehaviorSubject<Partial<PostDetailsData>>({});
 
-  updateFileUrl(val: string) {
-    this.fileUrl$.next(val);
-  }
-
-  updateFileAspectRatio(val: number) {
-    this.fileAspectRatio$.next(val);
+  updatePictureUploadData(val: Partial<PictureUploadData>) {
+    this.pictureUploadData$.next({
+      ...this.pictureUploadData$.value,
+      ...val
+    });
   }
 
   finish() {
     if (this.canFinish) {
-      this.postSubmit$.next(this.post$.value as AddPostDto);
-      this.post$.next({});
+      this.postSubmit$.next({
+        file: this.pictureUploadData.croppedFileUrl,
+        description: this.pictureDetailsData.description,
+        tags: this.pictureDetailsData.tags ?? [],
+        visibilityOption: this.pictureDetailsData.visibilityOption
+      });
+
+      this.pictureUploadData$.next({});
+      this.pictureDetailsData$.next({});
     }
   }
 
-  get fileAspectRatio(): number {
-    return this.fileAspectRatio$.value;
+  get cropBoxData() {
+    const currentCropBoxData = this.pictureUploadData.cropBoxData;
+    let cropBoxData = {};
+    cropBoxData = {
+      width: currentCropBoxData?.width ?? currentCropBoxData.width,
+      top: currentCropBoxData?.top ?? currentCropBoxData.top,
+      left: currentCropBoxData?.left ?? currentCropBoxData.left
+    };
+    return cropBoxData;
   }
-
-  get fileUrl(): string {
-      return this.fileUrl$.value;
+  get pictureUploadData(): PictureUploadData {
+    return this.pictureUploadData$.value as PictureUploadData;
   }
-
-  get post(): Partial<AddPostDto> {
-    return this.post$.value;
+  get pictureDetailsData(): PostDetailsData {
+    return this.pictureDetailsData$.value as PostDetailsData;
   }
-
   get canGoToDetails() {
-    return this.post$ && this.post$.value.file;
+    return this.pictureUploadData$.value && this.pictureUploadData$.value.croppedFileUrl && this.pictureUploadData$.value.rawFileUrl;
   }
-
   get canGoToReview() {
-    return this.canGoToDetails && this.post$.value.visibilityOption;
+    return this.canGoToDetails && this.pictureDetailsData$.value.visibilityOption;
   }
-
   get canFinish() {
     return this.canGoToReview;
   }

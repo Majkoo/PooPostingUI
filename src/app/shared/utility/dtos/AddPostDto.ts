@@ -3,6 +3,6 @@
 export interface AddPostDto {
   file: string;
   description: string;
-  tags: string;
+  tags: string[];
   visibilityOption: PostVisibility;
 }
