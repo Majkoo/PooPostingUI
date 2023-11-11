@@ -21,7 +21,7 @@ export class AddPostService {
     croppedFileUrl: '',
     aspectRatio: 3/4
   });
-  pictureDetailsData$ = new BehaviorSubject<Partial<PostDetailsData>>({});
+  postDetailsData$ = new BehaviorSubject<Partial<PostDetailsData>>({});
 
   updatePictureUploadData(val: Partial<PictureUploadData>) {
     this.pictureUploadData$.next({
@@ -30,17 +30,26 @@ export class AddPostService {
     });
   }
 
+  updatePostDetailsData(val: Partial<PostDetailsData>) {
+    this.postDetailsData$.next({
+      ...this.postDetailsData$.value,
+      ...val
+    });
+  }
+
   finish() {
     if (this.canFinish) {
-      this.postSubmit$.next({
+      const post = {
         file: this.pictureUploadData.croppedFileUrl,
-        description: this.pictureDetailsData.description,
-        tags: this.pictureDetailsData.tags ?? [],
-        visibilityOption: this.pictureDetailsData.visibilityOption
-      });
+        description: this.postDetailsData.description,
+        tags: this.postDetailsData.tags ?? [],
+        visibilityOption: this.postDetailsData.visibilityOption
+      }
+      this.postSubmit$.next(post);
+      // todo: call backend with given form data
 
       this.pictureUploadData$.next({});
-      this.pictureDetailsData$.next({});
+      this.postDetailsData$.next({});
     }
   }
 
@@ -48,23 +57,25 @@ export class AddPostService {
     const currentCropBoxData = this.pictureUploadData.cropBoxData;
     let cropBoxData = {};
     cropBoxData = {
-      width: currentCropBoxData?.width ?? currentCropBoxData.width,
-      top: currentCropBoxData?.top ?? currentCropBoxData.top,
-      left: currentCropBoxData?.left ?? currentCropBoxData.left
+      width: currentCropBoxData?.width || null,
+      top: currentCropBoxData?.top || null,
+      left: currentCropBoxData?.left || null
     };
     return cropBoxData;
   }
   get pictureUploadData(): PictureUploadData {
     return this.pictureUploadData$.value as PictureUploadData;
   }
-  get pictureDetailsData(): PostDetailsData {
-    return this.pictureDetailsData$.value as PostDetailsData;
+  get postDetailsData(): PostDetailsData {
+    return this.postDetailsData$.value as PostDetailsData;
   }
   get canGoToDetails() {
     return this.pictureUploadData$.value && this.pictureUploadData$.value.croppedFileUrl && this.pictureUploadData$.value.rawFileUrl;
   }
   get canGoToReview() {
-    return this.canGoToDetails && this.pictureDetailsData$.value.visibilityOption;
+    return this.canGoToDetails &&
+      this.postDetailsData$.value.visibilityOption !== null &&
+      this.postDetailsData$.value.visibilityOption !== undefined;
   }
   get canFinish() {
     return this.canGoToReview;

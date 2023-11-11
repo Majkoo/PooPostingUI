@@ -1,4 +1,4 @@
-<ng-container *ngIf="pic" @fadeIn>
+<div *ngIf="pic" @fadeIn>
 
   <div class="wrapper">
 
@@ -39,11 +39,12 @@
       <ng-container *ngIf="isMobile" [ngTemplateOutlet]="accountSection"></ng-container>
 
       <!--  Image  -->
-      <div class="w-auto md:h-picture-modal-picture-height px-3 md:px-0 md:pl-3">
+      <div class="w-auto md:h-picture-modal-picture-height px-3 md:px-0 md:pl-3" @fadeIn>
         <img
           alt="{{pic.name}}"
           class="m-auto rounded-lg object-contain md:h-picture-modal-picture-height shadow-center"
-          src="{{pic.url | urlTransform}}">
+          src="{{pic.url | urlTransform}}"
+        >
       </div>
 
       <a
@@ -117,6 +118,6 @@
     </div>
   </ng-template>
 
-</ng-container>
+</div>
 
 

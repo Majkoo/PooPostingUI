@@ -79,8 +79,9 @@ export class UploadComponent {
     this.addPostService.updatePictureUploadData({
       aspectRatio: this.aspectRatio,
       cropBoxData: this.cropperComponent.cropper.getCropBoxData(),
-      croppedFileUrl: this.rawFileUrl,
+      croppedFileUrl: this.cropperComponent.cropper.getCroppedCanvas().toDataURL(),
     })
+    console.log(this.addPostService.pictureUploadData);
     this.cropperComponent.cropper.disable();
     this.cdr.markForCheck();
   }

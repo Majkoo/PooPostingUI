@@ -29,7 +29,7 @@ import {CommentsDisplayComponent} from "./comments-display/comments-display.comp
     LikeBtnComponent,
     CommentFormComponent,
     CommentFormComponent,
-    CommentsDisplayComponent
+    CommentsDisplayComponent,
   ],
   animations: [
     fadeInAnimation

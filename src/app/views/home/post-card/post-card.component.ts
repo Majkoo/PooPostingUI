@@ -36,4 +36,5 @@ import {MiniCommentComponent} from "./mini-comment/mini-comment.component";
 })
 export class PostCardComponent {
   @Input() pic?: PictureDto;
+  // todo: make a readonly version
 }
