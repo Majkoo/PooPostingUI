@@ -30,6 +30,7 @@ import {CreatedPostData} from "../models/createdPostData";
 export class ReviewComponent implements AfterContentInit {
   private router = inject(Router);
   private addPostService = inject(AddPostService);
+
   async ngAfterContentInit() {
     if (!this.addPostService.canGoToDetails) await this.router.navigate(['/add-post/details']);
   }
