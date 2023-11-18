@@ -55,6 +55,13 @@ header, footer, nav {
   @apply max-w-xl mx-auto
 }
 
+.app-link {
+  @apply flex justify-center items-center gap-1 select-none hover:text-cta hover:text-opacity-70 transition ease-in-out cursor-pointer h-full text-lg;
+  >.icon {
+    @apply text-xl;
+  }
+}
+
 .nav-link {
   @apply flex justify-center items-center gap-0.5 select-none hover:text-cta hover:text-opacity-70 transition ease-in-out cursor-pointer h-full px-2;
   &.link-active {

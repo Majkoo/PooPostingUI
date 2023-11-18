@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import {AddPostDto} from "../../shared/utility/dtos/AddPostDto";
-import {BehaviorSubject, Subject} from "rxjs";
+import {inject, Injectable} from '@angular/core';
+import {BehaviorSubject, firstValueFrom} from "rxjs";
 import {PictureUploadData} from "./models/pictureUploadData";
 import {PostDetailsData} from "./models/postDetailsData";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
+import {ToastrService} from "ngx-toastr";
+import {defaultErrorHeading} from "../../shared/utility/constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddPostService {
-
-  postSubmit$ = new Subject<AddPostDto>();
-
-  pictureUploadData$ = new BehaviorSubject<Partial<PictureUploadData>>({
+  private pictureUploadData$ = new BehaviorSubject<Partial<PictureUploadData>>({
     cropBoxData: {
       left: null,
       top: null,
@@ -19,9 +19,12 @@ export class AddPostService {
     },
     rawFileUrl: '',
     croppedFileUrl: '',
-    aspectRatio: 3/4
+    aspectRatio: 4/3
   });
-  postDetailsData$ = new BehaviorSubject<Partial<PostDetailsData>>({});
+  private postDetailsData$ = new BehaviorSubject<Partial<PostDetailsData>>({});
+  private httpClient = inject(HttpClient);
+  private toastrService = inject(ToastrService);
+  private postPictureUrl = `${environment.apiUrl}/picture/post`;
 
   updatePictureUploadData(val: Partial<PictureUploadData>) {
     this.pictureUploadData$.next({
@@ -29,28 +32,37 @@ export class AddPostService {
       ...val
     });
   }
-
   updatePostDetailsData(val: Partial<PostDetailsData>) {
     this.postDetailsData$.next({
       ...this.postDetailsData$.value,
       ...val
     });
   }
+  async finish(): Promise<boolean> {
+    const formData = new FormData();
 
-  finish() {
-    if (this.canFinish) {
-      const post = {
-        file: this.pictureUploadData.croppedFileUrl,
-        description: this.postDetailsData.description,
-        tags: this.postDetailsData.tags ?? [],
-        visibilityOption: this.postDetailsData.visibilityOption
+    formData.append("dataUrl", this.pictureUploadData.croppedFileUrl);
+    formData.append("visibilityOption", this.postDetailsData.visibilityOption.toString());
+    formData.append("name", "DefaultName");
+    if (this.postDetailsData.tags) formData.append("tags", this.postDetailsData.tags)
+    if (this.postDetailsData.description) formData.append("description", this.postDetailsData.description)
+
+    try {
+      await firstValueFrom(this.httpClient.post(this.postPictureUrl, formData));
+      this.toastrService.success("Successfully posted a picture");
+    } catch (e) {
+      if (e instanceof HttpErrorResponse) {
+        this.toastrService.error(
+          e.error.errors['Tags'][0] || e.error.errors['DataUrl'][0] || e.error.errors['Description'][0] || e.error.errors['Name'][0],
+          defaultErrorHeading
+        );
       }
-      this.postSubmit$.next(post);
-      // todo: call backend with given form data
-
       this.pictureUploadData$.next({});
       this.postDetailsData$.next({});
+      return false;
     }
+
+    return true;
   }
 
   get cropBoxData() {

@@ -81,7 +81,6 @@ export class UploadComponent {
       cropBoxData: this.cropperComponent.cropper.getCropBoxData(),
       croppedFileUrl: this.cropperComponent.cropper.getCroppedCanvas().toDataURL(),
     })
-    console.log(this.addPostService.pictureUploadData);
     this.cropperComponent.cropper.disable();
     this.cdr.markForCheck();
   }
@@ -93,9 +92,6 @@ export class UploadComponent {
   }
   private resetCroppedFileUrl() {
     this.addPostService.updatePictureUploadData({croppedFileUrl: ''});
-  }
-  private resetRawFileUrl() {
-    this.addPostService.updatePictureUploadData({rawFileUrl: ''});
   }
   get canProceed() {
     return this.lockedIn && this.addPostService.canGoToDetails;

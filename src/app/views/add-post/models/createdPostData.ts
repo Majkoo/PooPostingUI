@@ -1,7 +1,8 @@
 import {PostVisibility} from "../../../shared/utility/enums/postVisibility";
 
-export interface PostDetailsData {
+export interface CreatedPostData {
   tags: string,
   description: string,
-  visibilityOption: PostVisibility
+  visibilityOption: PostVisibility,
+  url: string,
 }

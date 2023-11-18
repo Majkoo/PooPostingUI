@@ -10,7 +10,6 @@ import {CreateAccountBannerComponent} from "../views/home/create-account-banner/
 import {QueryModalComponent} from "../shared/components/query-modal/query-modal";
 import {ToastModule} from "primeng/toast";
 import {provideToastr} from "ngx-toastr";
-import {provideAnimations} from "@angular/platform-browser/animations";
 import {DialogService} from "primeng/dynamicdialog";
 import {UrlTransformModule} from "../shared/utility/pipes/url-transform/url-transform.module";
 
@@ -23,13 +22,13 @@ import {UrlTransformModule} from "../shared/utility/pipes/url-transform/url-tran
     NavComponent
   ],
     imports: [
-        CommonModule,
-        RouterModule,
-        NgOptimizedImage,
-        CreateAccountBannerComponent,
-        QueryModalComponent,
-        ToastModule,
-        UrlTransformModule,
+      CommonModule,
+      RouterModule,
+      NgOptimizedImage,
+      CreateAccountBannerComponent,
+      QueryModalComponent,
+      ToastModule,
+      UrlTransformModule,
     ],
   exports: [
     AppLayoutComponent,
@@ -38,7 +37,6 @@ import {UrlTransformModule} from "../shared/utility/pipes/url-transform/url-tran
     HeaderComponent
   ],
   providers: [
-    provideAnimations(),
     provideToastr(),
     {
       provide: DialogService,

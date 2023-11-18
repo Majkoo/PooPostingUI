@@ -133,5 +133,9 @@ export class DetailsComponent implements AfterContentInit, OnDestroy {
     return this.addPostService.canGoToReview;
   }
 
+  get tags() {
+    return this.postDetailsTemp.tags?.split(' ');
+  }
+
   protected readonly PostVisibility = PostVisibility;
 }

@@ -35,7 +35,12 @@ export class AuthService {
     localStorage.setItem("jwtUserData", JSON.stringify(jwtData));
   }
 
-  getJwtData(): JwtUserData {
+  logout() {
+    localStorage.removeItem("jwtUserData");
+    window.location.reload();
+  }
+
+  getJwtData(): JwtUserData | null {
     const dataString: string | null = localStorage.getItem("jwtUserData")
     return dataString ? JSON.parse(dataString) : null;
   }

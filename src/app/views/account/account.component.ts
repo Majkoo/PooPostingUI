@@ -21,6 +21,7 @@ import {combineLatest} from "rxjs";
 import {map} from "rxjs/operators";
 import {PostPreviewComponent} from "./post-preview/post-preview.component";
 import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
+import {AuthService} from "../../services/data-access/account/auth.service";
 
 @Component({
   selector: 'pp-account',
@@ -36,6 +37,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private toastrService = inject(ToastrService);
   private accountService = inject(AccountService);
+  private authService = inject(AuthService);
 
   private pageSize = 4;
   private pageNumber = 2;
@@ -45,6 +47,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   private masterSub: Subscription = new Subscription();
 
   account$: Observable<AccountDto> = new Observable<AccountDto>();
+  isAccountCurrentUsers = false;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -92,6 +95,7 @@ export class AccountComponent implements OnInit, OnDestroy {
           if (pictures && pictures.items) {
             updatedPictures.push(...pictures.items);
           }
+          this.isAccountCurrentUsers = acc.id == this.authService.getJwtData()?.uid;
           return { ...acc, pictures: updatedPictures };
         }
         return null;
@@ -101,10 +105,13 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   }
 
+  logout() {
+    this.authService.logout();
+  }
+
   ngOnDestroy() {
     this.masterSub.unsubscribe();
   }
-
 
   private getAccount(id: string) {
     return this.accountService.getById(id).pipe(

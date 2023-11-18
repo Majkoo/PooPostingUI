@@ -13,23 +13,19 @@ export class HeaderComponent implements OnInit {
   private authService = inject(AuthService);
   private accountService = inject(AccountService);
 
-  account$: Observable<AccountDto> = new Observable<AccountDto>();
+  account$: Observable<AccountDto> | undefined;
 
   scrollTop() {
     document.documentElement.scrollTop = 0;
   }
 
   ngOnInit() {
-    if (this.isLoggedIn) {
-      this.account$ = this.accountService.getById(this.currentUserId);
+    if (this.currentUserId) {
+      this.account$ = this.accountService.getById(this.currentUserId!);
     }
   }
 
-  get isLoggedIn() {
-    return this.authService.isLoggedIn;
-  }
-
   get currentUserId() {
-    return this.authService.getJwtData().uid
+    return this.authService.getJwtData()?.uid
   }
 }

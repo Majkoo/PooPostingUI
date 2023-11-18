@@ -12,6 +12,7 @@ import {LikeBtnComponent} from "../../shared/components/like-btn/like-btn.compon
 import {MiniCommentComponent} from "../home/post-card/mini-comment/mini-comment.component";
 import {TagComponent} from "../../shared/components/tag/tag.component";
 import {UrlTransformModule} from "../../shared/utility/pipes/url-transform/url-transform.module";
+import { CreatedPostCardPreviewComponent } from './review/created-post-card-preview/created-post-card-preview.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {UrlTransformModule} from "../../shared/utility/pipes/url-transform/url-t
     AddPostComponent,
     UploadComponent,
     DetailsComponent,
-    ReviewComponent
+    ReviewComponent,
+    CreatedPostCardPreviewComponent
   ],
   exports: [
     AddPostComponent
