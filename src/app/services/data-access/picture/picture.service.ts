@@ -19,6 +19,12 @@ export class PictureService {
     );
   }
 
+  getLiked(pageSize = 5, pageNumber = 1, accId: string): Observable<PagedResult<PictureDto>> {
+    return this.httpClient.get<PagedResult<PictureDto>>(
+      `${environment.apiUrl}/account/${accId}/picture/liked?pageSize=${pageSize}&pageNumber=${pageNumber}`
+    );
+  }
+
   getById(id: string): Observable<PictureDto> {
     return this.httpClient.get<PictureDto>(`${this.getPicturesUrl}/${id}`);
   }

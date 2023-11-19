@@ -18,6 +18,18 @@ export const APP_LAYOUT_ROUTES: Routes = [
     loadChildren: () => import('../../views/add-post/add-post.module')
       .then(m => m.AddPostModule)
   },
+  {
+    path: 'trending',
+    canActivate: [isLoggedInGuard],
+    loadComponent: () => import('../../views/trending/trending.component')
+      .then(m => m.TrendingComponent)
+  },
+  {
+    path: 'liked',
+    canActivate: [isLoggedInGuard],
+    loadComponent: () => import('../../views/liked/liked.component')
+      .then(m => m.LikedComponent)
+  },
   // {
   //   path: "search",
   //   loadChildren: () => import('../view/search/feature/search-shell/search-shell.module')

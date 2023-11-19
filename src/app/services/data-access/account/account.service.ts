@@ -16,6 +16,14 @@ export class AccountService {
     private httpClient: HttpClient,
   ) { }
 
+  getMe(): Observable<AccountDto>{
+    return this.httpClient
+      .get<AccountDto>(
+        `${this.accountApiUrl}/me`,
+        {responseType: "json",}
+      );
+  }
+
   getById(id: string): Observable<AccountDto>{
     return this.httpClient
       .get<AccountDto>(

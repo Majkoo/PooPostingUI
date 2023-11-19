@@ -6,11 +6,19 @@ import { Component } from '@angular/core';
     <nav class="pp-shadow">
 
       <div class="nav cont">
-        <a class="icon icon-trending nav-link">
+        <a
+          class="icon icon-trending nav-link"
+          routerLinkActive="link-active"
+          routerLink="/trending"
+        >
           <span>Trending</span>
         </a>
 
-        <a class="icon icon-heart--filled nav-link">
+        <a
+          class="icon icon-heart--filled nav-link"
+          routerLinkActive="link-active"
+          routerLink="/liked"
+        >
           <span>Liked</span>
         </a>
 
@@ -22,11 +30,19 @@ import { Component } from '@angular/core';
           <span>Add post</span>
         </a>
 
-        <a class="icon icon-search nav-link">
+        <a
+          class="icon icon-search nav-link"
+          routerLinkActive="link-active"
+          routerLink="/search"
+        >
           <span>Search</span>
         </a>
 
-        <a class="icon icon-setting nav-link">
+        <a
+          class="icon icon-setting nav-link"
+          routerLinkActive="link-active"
+          routerLink="/settings"
+        >
           <span>Settings</span>
         </a>
       </div>

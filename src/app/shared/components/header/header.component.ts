@@ -15,17 +15,14 @@ export class HeaderComponent implements OnInit {
 
   account$: Observable<AccountDto> | undefined;
 
-  scrollTop() {
+  onLogoClick() {
     document.documentElement.scrollTop = 0;
   }
 
   ngOnInit() {
-    if (this.currentUserId) {
-      this.account$ = this.accountService.getById(this.currentUserId!);
+    if (this.authService.isLoggedIn) {
+      this.account$ = this.accountService.getMe();
     }
   }
 
-  get currentUserId() {
-    return this.authService.getJwtData()?.uid
-  }
 }

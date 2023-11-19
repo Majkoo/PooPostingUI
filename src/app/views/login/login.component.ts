@@ -45,8 +45,7 @@ export class LoginComponent implements OnDestroy {
 
     this.sub.add(
       this.authService.login(this.loginDto).subscribe({
-        next: (resp) => {
-          this.authService.saveJwtData(resp);
+        next: () => {
           this.msgService.success("Successfully logged in", "Success");
           this.awaitSubmit = false;
           this.router.navigateByUrl('/');
