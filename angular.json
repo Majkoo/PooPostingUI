@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "PicturesUI": {
+    "PooPosting": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -15,7 +15,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "pp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -35,8 +35,8 @@
             ],
             "styles": [
               "src/styles/styles.scss",
-              "src/styles/themes/theme-default.scss",
-              "node_modules/primeng/resources/primeng.min.css"
+              "src/styles/icons/css/fontello.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [],
             "serviceWorker": true,
@@ -103,10 +103,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "PicturesUI:build:production"
+              "browserTarget": "PooPosting:build:production"
             },
             "development": {
-              "browserTarget": "PicturesUI:build:development"
+              "browserTarget": "PooPosting:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -114,7 +114,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "PicturesUI:build"
+            "browserTarget": "PooPosting:build"
           }
         },
         "test": {

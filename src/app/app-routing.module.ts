@@ -1,19 +1,11 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {APP_LAYOUT_ROUTES} from "./routes/app-layout.routes";
-import {AUTH_LAYOUT_ROUTES} from "./routes/auth-layout.routes";
-import {AppLayoutComponent} from "./layout/app-layout/app-layout.component";
-import {AuthLayoutComponent} from "./layout/auth-layout/auth-layout.component";
-import {ErrorLayoutComponent} from "./layout/error-layout/error-layout.component";
-import {ERROR_LAYOUT_ROUTES} from "./routes/error-layout.routes";
-
+import {AppLayoutComponent} from "./layouts/app-layout/app-layout.component";
+import {APP_LAYOUT_ROUTES} from "./layouts/routes/app-layout.routes";
+import {AuthLayoutComponent} from "./layouts/auth-layout/auth-layout.component";
+import {AUTH_LAYOUT_ROUTES} from "./layouts/routes/auth-layout.routes";
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: "/home",
-    pathMatch: 'full'
-  },
   {
     path: '',
     component: AppLayoutComponent,
@@ -24,14 +16,14 @@ const routes: Routes = [
     component: AuthLayoutComponent,
     children: AUTH_LAYOUT_ROUTES
   },
-  {
-    path: '',
-    component: ErrorLayoutComponent,
-    children: ERROR_LAYOUT_ROUTES
-  },
+  // {
+  //   path: '',
+  //   component: ErrorLayoutComponent,
+  //   children: ERROR_LAYOUT_ROUTES
+  // },
   {
     path: '**',
-    redirectTo: '/404',
+    redirectTo: '',
     pathMatch: 'full'
   },
 ];
@@ -43,7 +35,7 @@ const routes: Routes = [
       {
         preloadingStrategy: PreloadAllModules,
         anchorScrolling: 'enabled',
-        scrollPositionRestoration: 'enabled',
+        scrollPositionRestoration: 'disabled',
         initialNavigation: 'enabledNonBlocking'
       }
     )],

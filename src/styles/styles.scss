@@ -1,251 +1,100 @@
-@import "themes/_variables";
-@import "bootstrap/scss/bootstrap";
-@import "bootstrap-icons";
-@import "primeicons/primeicons.css";
-@import "additional";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media screen and (min-width: 1200px){
-  ::-webkit-scrollbar-track
-  {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
-    background-color: #F5F5F5;
-  }
-  ::-webkit-scrollbar
-  {
-    width: 12px;
-    background-color: #F5F5F5;
-  }
-  ::-webkit-scrollbar-thumb
-  {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #c2c2c2;
-    &:hover {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.45);
-    }
-  }
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "node_modules/primeng/resources/primeng.min.css";
 
+.icon-fz {
+  font-size: 24px;
+}
+.icon {
+  margin: 0 !important;
+  @apply icon-fz flex justify-center items-center h-auto
+}
+.icon-dark {
+  margin: 0 !important;
+  @apply icon-fz text-black flex justify-center items-center h-auto
 }
 
-
-
-$navbar-height: 75px;
-
-.popup {
-  background-color: white;
-  @media screen and (max-width: 767px) {
-    width: 100vw;
-    height: 100vh;
-  }
+.m-0 {
+  margin: 0 !important;
 }
 
 body {
-  overflow-y: auto;
+  @apply top-0 w-full bg-surface-200
 }
-footer{
-  box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
-  -webkit-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
-  -moz-box-shadow: 0 0 16px -2px rgba(0,0,0,0.6);
-}
-h1 {
-  font-size: 1.875rem;
-}
-h2 {
-  font-size: 1.75rem;
-}
-h3 {
-  font-size: 1.5rem;
-}
-h4 {
-  font-size: 1.25rem;
-}
-h5 {
-  font-size: 1.125rem;
-}
-h6 {
-  font-size: 1rem;
-}
-h1,h2,h3,h4,h5,h6 {
-  font-weight: bold;
+html {
+  @apply scroll-smooth
 }
 
-.form-label{
-  margin: 2px;
-  font-weight: 600;
-  color: $gray-600;
-}
-.mb-form-input {
-  margin-bottom: 1.875rem;
-}
-.paginator {
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  background-color: $gray-300;
-}
-.bi {
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-}
-a:hover {
-  text-decoration: none !important;
-}
-.bb {
-  border-bottom: 2px solid $gray-200 !important;
-}
-.bt {
-  border-top: 2px solid $gray-200 !important;
-}
-.gap-1 {
-  gap: 0.25rem;
-}
-.gap-2 {
-  gap: 0.5rem;
-}
-.gap-3 {
-  gap: 1rem;
+* {
+  font-family: "poppins", sans-serif;
 }
 
-.account-link {
-  overflow-wrap: break-word;
-  text-align: left;
-  cursor: pointer;
-  &:hover{
-    text-decoration: underline;
+nav, header {
+  @media screen and (max-width: 768px) {
+    z-index: 1102 !important;
   }
 }
+
+header, footer, nav {
+  @apply z-30
+}
+.pp-shadow {
+  @apply shadow-[0_0_15px_0_rgba(160,160,160,0.5)]
+}
+.font-bolder {
+  font-weight: 900;
+}
+
+.cont {
+  @apply max-w-2xl mx-auto
+}
+.cont-inner {
+  @apply max-w-xl mx-auto
+}
+
+.app-link {
+  @apply flex justify-center items-center gap-1 select-none hover:text-cta hover:text-opacity-70 transition ease-in-out cursor-pointer h-full text-lg;
+  >.icon {
+    @apply text-xl;
+  }
+}
+
 .link {
-  overflow-wrap: break-word;
-  text-align: left;
-  cursor: pointer;
-  text-decoration: underline;
-  &:hover {
-    opacity: 0.85;
-  }
-  &:active {
-    opacity: 1;
+  @apply select-none hover:text-cta hover:text-opacity-70 transition ease-in-out cursor-pointer;
+  >.icon {
+    @apply text-xl;
   }
 }
 
-.toast {
-  position: fixed;
-  bottom: 3em;
-  right: 0.75em;
-  font-size: 0.875rem;
-  padding: 0.2rem 0.5rem;
-  @media only screen and (max-width: 766px) {
-    transform: translateX(-50%);
-    bottom: 11rem;
-    left: 50%;
+.nav-link {
+  @apply flex justify-center items-center gap-0.5 select-none hover:text-cta hover:text-opacity-70 transition ease-in-out cursor-pointer h-full px-2;
+  &.link-active {
+    @apply text-cta hover:text-opacity-70;
   }
+}
+
+.nav-link {
+  span {
+    @apply text-lg hidden sm:block
+  }
+}
+
+.cropper-modal, .cropper-container, .cropper-container img {
+  @apply rounded-xl;
 }
 
 .p-dialog {
-  @media screen and (max-width: 1140px) {
-    margin-right: 1rem !important;
-    margin-left: 1rem !important;
-  }
-  max-width: 1140px;
-  .p-dialog-header {
-    background-color: $gray-400 !important;
-    border-bottom: 1px solid $gray-500 !important;
-  }
+  max-height: 100vh !important;
+  padding: 0 !important;
   .p-dialog-content {
     padding: 0 !important;
-    border-radius: 0 0 0.25rem 0.25rem !important;
-  }
-  border-radius: 0.25rem !important;
-}
-.p-dataview-content, .p-dataview-header, .p-paginator-bottom {
-  outline: 1px solid $gray-200 !important;
-  border: none !important;
-}
-.bg-surface-gray {
-  background-color: $gray-200;
-}
-.custom-spinner-container {
-  position: sticky;
-  top: 6rem;
-}
-.p-carousel-item {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-}
-.color-primary{
-  color: $primary-color;
-}
-.p-dialog-header {
-  height: 75px;
-}
-.cookies-alert {
-  max-width: 1100px !important;
-  width: max-content !important;
-  margin: 0 !important;
-  padding: 0 1rem;
-  opacity: 0.9 !important;
-  bottom: 0.25rem !important;
-}
-.big-modal {
-  height: 100vh !important;
-  width: 100vw;
-  max-width: 1400px;
-  position: absolute;
-}
-.p-overlaypanel-content {
-  padding: 0 !important;
-}
-.prof-link {
-  display: flex;
-  align-items: center;
-  gap: 0.15rem;
-  .prof-pic {
-    width: 1.5rem;
-    height: 1.5rem;
-    aspect-ratio: 1;
-    border-radius: 40%;
-    object-fit: cover;
-    font-size: 6px;
-  }
-  .prof-name {
-    color: #424242;
-    cursor: pointer;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  transition: 0.1s ease-in-out;
-  &:hover {
-    opacity: 0.85;
-    .prof-name {
-      color: $primary-active-color;
-    }
   }
 }
 
-.prof-link-lg {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  .prof-pic {
-    width: 2.5rem;
-    height: 2.5rem;
-    aspect-ratio: 1;
-    border-radius: 40%;
-    object-fit: cover;
-    font-size: .25rem;
-  }
-  .prof-name {
-    color: #424242;
-    cursor: pointer;
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  transition: 0.1s ease-in-out;
-  &:hover {
-    opacity: 0.85;
-    .prof-name {
-      color: $primary-active-color;
-    }
-  }
+.btn {
+  @apply rounded-lg transition-all ease-in-out duration-100
+  active:opacity-75
 }

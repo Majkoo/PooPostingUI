@@ -7,5 +7,5 @@ export interface CommentDto {
   isModifiable: boolean,
   isAdminModifiable: boolean,
   commentAdded: string
-  accountPreview: AccountPreviewDto,
+  account: AccountPreviewDto,
 }

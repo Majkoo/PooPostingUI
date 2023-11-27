@@ -1,8 +1,9 @@
-﻿import {AccountPreviewDto} from "./AccountPreviewDto";
+﻿import {AccountDto} from "./AccountDto";
+import {CommentDto} from "./CommentDto";
 
 export interface PictureDto {
   id: string;
-  accountPreview: AccountPreviewDto,
+  account: AccountDto,
 
   name: string;
   description: string;
@@ -10,13 +11,12 @@ export interface PictureDto {
   url: string;
   pictureAdded: string;
 
+  comments: CommentDto[];
   commentCount: number;
   likeCount: number;
   dislikeCount: number;
 
-  likeState: number;
+  isLiked: boolean;
   isModifiable: boolean;
   isAdminModifiable: boolean;
-
-  isAdv?: boolean;
 }

@@ -1,18 +1,1 @@
-<router-outlet></router-outlet>
-
-<p-toast position="bottom-right"></p-toast>
-<p-toast position="bottom-center" key="cookiesAlert" styleClass="cookies-alert">
-  <ng-template let-message pTemplate="message">
-    <div class="d-flex flex-column w-100">
-      <div class="text-center">
-        <h4 class="mb-2">{{message.summary}}</h4>
-        <p>{{message.detail}}</p>
-      </div>
-      <div class="d-flex justify-content-center gap-2 mt-2">
-        <button pButton pRipple label="OK" class="p-button-sm" (click)="onCookieAlertAccept()"></button>
-      </div>
-    </div>
-
-  </ng-template>
-</p-toast>
-
+<router-outlet />
