@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: npm run build:ci
       - name: Run tests:ci
-        run: npm run test:prod
+        run: npm run test:ci
       - name: Zaciągnięcie playbooka
         run: "wget https://raw.githubusercontent.com/PooPosting/DevOps/master/frontend-update.yml -O .github/workflows/frontend-update.yml"
       - name: Run ansible playbook
