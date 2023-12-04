@@ -1,0 +1,28 @@
+name: Deploy Prod
+run-name: ${{ github.actor }} odpalił
+on:
+  workflow_dispatch
+#  push:
+#    branches:
+#      - main
+jobs:
+  DeployProd:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Udało się!"
+      - name: Git repo
+        uses: actions/checkout@v3
+      - name: Zaciągnięcie playbooka
+        run: "wget https://raw.githubusercontent.com/PooPosting/DevOps/master/frontend-update.yml -O .github/workflows/frontend-update.yml"
+      - name: Run ansible playbook
+        env:
+          type: prod
+          repo: main
+        uses: dawidd6/action-ansible-playbook@master
+        with:
+          playbook: frontend-update.yml
+          directory: ./.github/workflows
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          inventory: |
+            [vps]
+            ${{ secrets.IP }}
