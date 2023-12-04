@@ -26,8 +26,8 @@ jobs:
         run: "wget https://raw.githubusercontent.com/PooPosting/DevOps/master/frontend-update.yml -O .github/workflows/frontend-update.yml"
       - name: Run ansible playbook
         env:
-          type: prod
-          repo: main
+          type: dev
+          repo: development
         uses: dawidd6/action-ansible-playbook@master
         with:
           playbook: frontend-update.yml
