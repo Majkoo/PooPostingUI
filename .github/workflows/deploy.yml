@@ -6,7 +6,7 @@ on:
 #    branches:
 #      - main
 jobs:
-  DeployProd:
+  DeployDev:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Udało się!"
