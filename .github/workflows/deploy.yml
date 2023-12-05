@@ -5,7 +5,7 @@ on:
 #  push:
 #    branches:
 #      - main
-concurrency: 
+concurrency:
   group: PooPosting
   cancel-in-progress: false
 jobs:
