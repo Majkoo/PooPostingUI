@@ -5,6 +5,9 @@ on:
 #  push:
 #    branches:
 #      - main
+concurrency: 
+  group: PooPosting
+  cancel-in-progress: false
 jobs:
   DeployProd:
     runs-on: ubuntu-latest
