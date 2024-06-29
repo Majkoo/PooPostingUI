@@ -6,11 +6,12 @@ import {
 import {fadeInOutAnimation} from "../../../../../utility/animations/fadeInOutAnimation";
 import {CommentDto} from "../../../../../utility/dtos/CommentDto";
 import { shortDateFormat } from 'src/app/shared/utility/constants';
+import {DateAgoPipe} from "../../../../../utility/pipes/date-ago/date-ago.pipe";
 
 @Component({
   selector: 'pp-comment',
   standalone: true,
-  imports: [CommonModule, CommentAccountInlineLinkComponent],
+  imports: [CommonModule, CommentAccountInlineLinkComponent, DateAgoPipe],
   templateUrl: './comment.component.html',
   animations: [
     fadeInOutAnimation
