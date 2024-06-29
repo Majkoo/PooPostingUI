@@ -22,6 +22,7 @@ import {PostPreviewComponent} from "./post-preview/post-preview.component";
 import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
 import {AccountService} from "../../services/api/account/account.service";
 import {AuthService} from "../../services/api/account/auth.service";
+import * as _ from "lodash";
 
 @Component({
   selector: 'pp-account',
@@ -54,7 +55,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     const scrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    const threshold = 200;
+    const threshold = windowHeight * 0.75;
 
     if (
       documentHeight - scrollPosition - windowHeight < threshold && this.enableScrollListener
@@ -91,12 +92,11 @@ export class AccountComponent implements OnInit, OnDestroy {
       map(([account, pictures]) => {
         if (account) {
           const acc = account as AccountDto;
-          const updatedPictures = acc.pictures || [];
           if (pictures && pictures.items) {
-            updatedPictures.push(...pictures.items);
+            acc.pictures = _.uniqBy([...acc.pictures, ...pictures.items], (i) => i.id);
           }
           this.isAccountCurrentUsers = acc.id == this.authService.getJwtData()?.uid;
-          return { ...acc, pictures: updatedPictures };
+          return acc;
         }
         return null;
       }),
