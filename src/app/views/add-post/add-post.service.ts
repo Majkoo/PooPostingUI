@@ -1,16 +1,20 @@
 import {inject, Injectable} from '@angular/core';
-import {BehaviorSubject, firstValueFrom} from "rxjs";
+import {BehaviorSubject, tap} from "rxjs";
 import {PictureUploadData} from "./models/pictureUploadData";
 import {PostDetailsData} from "./models/postDetailsData";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {ToastrService} from "ngx-toastr";
 import {defaultErrorHeading} from "../../shared/utility/constants";
+import {catchError} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddPostService {
+  private router = inject(Router);
+
   private pictureUploadData$ = new BehaviorSubject<Partial<PictureUploadData>>({
     cropBoxData: {
       left: null,
@@ -38,42 +42,40 @@ export class AddPostService {
       ...val
     });
   }
-  async finish(): Promise<boolean> {
+  finish() {
     const formData = new FormData();
-
     formData.append("dataUrl", this.pictureUploadData.croppedFileUrl);
     formData.append("visibilityOption", this.postDetailsData.visibilityOption.toString());
     formData.append("name", "DefaultName");
     if (this.postDetailsData.tags) formData.append("tags", this.postDetailsData.tags)
     if (this.postDetailsData.description) formData.append("description", this.postDetailsData.description)
 
-    try {
-      await firstValueFrom(this.httpClient.post(this.postPictureUrl, formData));
-      this.toastrService.success("Successfully posted a picture");
-    } catch (e) {
-      if (e instanceof HttpErrorResponse) {
-        this.toastrService.error(
-          e.error.errors['Tags'][0] || e.error.errors['DataUrl'][0] || e.error.errors['Description'][0] || e.error.errors['Name'][0],
-          defaultErrorHeading
-        );
-      }
-      this.pictureUploadData$.next({});
-      this.postDetailsData$.next({});
-      return false;
-    }
+    this.httpClient.post(this.postPictureUrl, formData)
+      .pipe(
+        tap(() => {
+          this.toastrService.success("Successfully posted a picture");
+          this.pictureUploadData$.next({});
+          this.postDetailsData$.next({});
+          this.router.navigate(['/'])
+        }),
+        catchError((e) => {
+          this.toastrService.error(
+            e.error.errors['Tags'][0] || e.error.errors['DataUrl'][0] || e.error.errors['Description'][0] || e.error.errors['Name'][0],
+            defaultErrorHeading
+          );
 
-    return true;
+          return this.router.navigate(['/add-post'])
+        }),
+      ).subscribe();
   }
 
-  get cropBoxData() {
+  get cropBoxData(): Cropper.SetCropBoxDataOptions {
     const currentCropBoxData = this.pictureUploadData.cropBoxData;
-    let cropBoxData = {};
-    cropBoxData = {
-      width: currentCropBoxData?.width || null,
-      top: currentCropBoxData?.top || null,
-      left: currentCropBoxData?.left || null
+    return {
+      width: currentCropBoxData?.width || 0,
+      top: currentCropBoxData?.top || 0,
+      left: currentCropBoxData?.left || 0
     };
-    return cropBoxData;
   }
   get pictureUploadData(): PictureUploadData {
     return this.pictureUploadData$.value as PictureUploadData;

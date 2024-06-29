@@ -1,7 +1,11 @@
 <div class="pp-shadow w-full bg-surface-100 rounded-xl flex flex-col gap-2" *ngIf="pic">
 
   <!--  Image  -->
-  <div class="flex rounded-t-xl justify-center items-center cursor-pointer" routerLink="" [queryParams]="{viewPicture: pic.id}">
+  <div class="flex rounded-t-xl justify-center items-center cursor-pointer"
+       ppOpenQueryModal
+       [modalMode]="QueryModalEnum.VIEW_PICTURE"
+       [id]="pic.id"
+  >
     <img class="w-full rounded-t-xl select-none" @fadeIn src="{{pic.url | urlTransform}}" alt="{{pic.name}}">
   </div>
 
@@ -41,7 +45,10 @@
   </ng-container>
 
   <!--  Comment form  -->
-  <div routerLink="" [queryParams]="{viewPicture: pic.id}"
+  <div
+    ppOpenQueryModal
+    [modalMode]="QueryModalEnum.VIEW_PICTURE"
+    [id]="pic.id"
     class="cursor-pointer bg-surface-100 border-1 rounded-md text-xs text-gray-400 border-grey flex items-center justify-between m-3 mt-1 px-3">
     <p>Comment this...</p>
     <span class="icon-vector text text-lg"></span>

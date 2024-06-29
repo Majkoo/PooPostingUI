@@ -1,17 +1,19 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {PictureDto} from "../../shared/utility/dtos/PictureDto";
-import {firstValueFrom} from "rxjs";
 import {Location, NgClass, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
-import {extractQueryParams} from "../../shared/utility/extractQueryParams";
-import {UrlTransformModule} from "../../shared/utility/pipes/url-transform/url-transform.module";
 import {Router, RouterLink} from "@angular/router";
-import {TagComponent} from "../../shared/components/tag/tag.component";
-import {LikeBtnComponent} from "../../shared/components/like-btn/like-btn.component";
 import {CommentFormComponent} from "./comment-form/comment-form.component";
-import {CommentDto} from "../../shared/utility/dtos/CommentDto";
-import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
 import {CommentsDisplayComponent} from "./comments-display/comments-display.component";
-import {PictureService} from "../../services/api/picture/picture.service";
+import {catchError} from "rxjs/operators";
+import {tap} from "rxjs";
+import {UrlTransformModule} from "../../../utility/pipes/url-transform/url-transform.module";
+import {TagComponent} from "../../tag/tag.component";
+import {LikeBtnComponent} from "../../like-btn/like-btn.component";
+import {fadeInAnimation} from "../../../utility/animations/fadeInAnimation";
+import {PictureDto} from "../../../utility/dtos/PictureDto";
+import {PictureService} from "../../../../services/api/picture/picture.service";
+import {extractQueryParams} from "../../../utility/extractQueryParams";
+import {QueryModalEnum} from "../query-modal.enum";
+import {CommentDto} from "../../../utility/dtos/CommentDto";
 
 @Component({
   selector: 'pp-view-picture-modal',
@@ -51,16 +53,17 @@ export class ViewPictureModalComponent implements OnInit {
   ) {
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.updateTemplateDisplay();
     const queryParams = extractQueryParams(this.location.path());
-    const picId = queryParams['viewPicture'];
+    const picId = queryParams[QueryModalEnum.VIEW_PICTURE];
     if (picId) {
-      try {
-        this.pic = await firstValueFrom(this.picService.getById(picId));
-      } catch (e) {
-        this.router.navigate([""], {queryParams: null})
-      }
+      this.picService.getById(picId)
+        .pipe(
+          tap((pic: PictureDto) => this.pic = pic),
+          catchError(() => this.router.navigate([""], {queryParams: null}))
+        )
+        .subscribe();
     }
   }
 

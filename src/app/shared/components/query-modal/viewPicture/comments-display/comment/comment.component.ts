@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import {
   CommentAccountInlineLinkComponent
 } from "./account-inline-link/comment-account-inline-link.component";
-import {CommentDto} from "../../../../shared/utility/dtos/CommentDto";
-import {fadeInOutAnimation} from "../../../../shared/utility/animations/fadeInOutAnimation";
-import {shortDateFormat} from "../../../../shared/utility/constants";
+import {fadeInOutAnimation} from "../../../../../utility/animations/fadeInOutAnimation";
+import {CommentDto} from "../../../../../utility/dtos/CommentDto";
+import { shortDateFormat } from 'src/app/shared/utility/constants';
 
 @Component({
   selector: 'pp-comment',

@@ -10,11 +10,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
 import {BehaviorSubject, Subscription, switchMap} from "rxjs";
 import {map} from "rxjs/operators";
 import {CommentComponent} from "./comment/comment.component";
-import {CommentService} from "../../../services/api/comment/comment.service";
+import {PictureDto} from "../../../../utility/dtos/PictureDto";
+import {CommentService} from "../../../../../services/api/comment/comment.service";
 
 @Component({
   selector: 'pp-comments-display',

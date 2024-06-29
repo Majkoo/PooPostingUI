@@ -5,7 +5,7 @@ import {
   BehaviorSubject,
   catchError,
   EMPTY,
-  filter, firstValueFrom,
+  filter,
   Observable,
   of,
   startWith,
@@ -105,8 +105,8 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   }
 
-  async logout() {
-    await firstValueFrom(this.authService.forgetTokens());
+  logout() {
+    this.authService.forgetTokens().subscribe();
   }
 
   ngOnDestroy() {

@@ -7,6 +7,8 @@ import {fadeInAnimation} from "../../../shared/utility/animations/fadeInAnimatio
 import {LikeBtnComponent} from "../../../shared/components/like-btn/like-btn.component";
 import {TagComponent} from "../../../shared/components/tag/tag.component";
 import {MiniCommentComponent} from "./mini-comment/mini-comment.component";
+import {OpenQueryModalDirective} from "../../../shared/components/query-modal/open-query-modal.directive";
+import {QueryModalEnum} from "../../../shared/components/query-modal/query-modal.enum";
 
 @Component({
   selector: 'pp-post-card',
@@ -27,7 +29,8 @@ import {MiniCommentComponent} from "./mini-comment/mini-comment.component";
     DatePipe,
     LikeBtnComponent,
     TagComponent,
-    MiniCommentComponent
+    MiniCommentComponent,
+    OpenQueryModalDirective
   ],
   animations: [
     fadeInAnimation
@@ -37,4 +40,5 @@ import {MiniCommentComponent} from "./mini-comment/mini-comment.component";
 export class PostCardComponent {
   @Input() pic?: PictureDto;
   // todo: make a readonly version
+  protected readonly QueryModalEnum = QueryModalEnum;
 }

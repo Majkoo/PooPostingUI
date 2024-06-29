@@ -41,9 +41,7 @@ export class ReviewComponent implements AfterContentInit {
 
   async finish() {
     if (this.canFinish) {
-      const result = await this.addPostService.finish();
-      if (result) await this.router.navigate(['/']);
-      else await this.router.navigate(['/add-post']);
+      this.addPostService.finish();
     }
   }
 

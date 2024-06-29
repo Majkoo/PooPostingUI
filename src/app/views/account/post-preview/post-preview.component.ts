@@ -4,6 +4,8 @@ import {UrlTransformModule} from "../../../shared/utility/pipes/url-transform/ur
 import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
 import {NgClass, NgOptimizedImage, NgStyle} from "@angular/common";
 import {AuthService} from "../../../services/api/account/auth.service";
+import {QueryModalEnum} from "../../../shared/components/query-modal/query-modal.enum";
+import {OpenQueryModalDirective} from "../../../shared/components/query-modal/open-query-modal.directive";
 
 @Component({
   selector: 'pp-post-preview',
@@ -13,7 +15,8 @@ import {AuthService} from "../../../services/api/account/auth.service";
     UrlTransformModule,
     NgStyle,
     NgClass,
-    NgOptimizedImage
+    NgOptimizedImage,
+    OpenQueryModalDirective
   ],
   styles: [`
     .image-wrapper {
@@ -37,9 +40,10 @@ import {AuthService} from "../../../services/api/account/auth.service";
       <img
         class="image-preview group-hover:scale-125"
         src="{{pic.url | urlTransform}}"
-        routerLink="."
-        [queryParams]="{viewPicture: pic.id}"
         alt="{{pic.description}}"
+        ppOpenQueryModal
+        [modalMode]="QueryModalEnum.VIEW_PICTURE"
+        [id]="pic.id"
       />
 
       <div class="data-block opacity-0 group-hover:opacity-100">
@@ -79,4 +83,6 @@ export class PostPreviewComponent {
   get isLoggedOn() {
     return this.authService.isLoggedIn;
   }
+
+  protected readonly QueryModalEnum = QueryModalEnum;
 }

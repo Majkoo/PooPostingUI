@@ -1,8 +1,8 @@
 import { Injectable, Type } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ViewPictureModalComponent } from '../../../views/viewPicture/view-picture-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import {QueryModalEnum} from "./query-modal.enum";
+import {ViewPictureModalComponent} from "./viewPicture/view-picture-modal.component";
 
 @Injectable({
   providedIn: 'root',
