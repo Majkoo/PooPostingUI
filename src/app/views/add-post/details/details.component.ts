@@ -5,7 +5,6 @@ import {fadeInAnimation} from "../../../shared/utility/animations/fadeInAnimatio
 import {PostDetailsData} from "../models/postDetailsData";
 import {NgForm} from "@angular/forms";
 import {Subscription, tap} from "rxjs";
-import {PostVisibility} from "../../../shared/utility/enums/postVisibility";
 
 @Component({
   selector: 'pp-details',
@@ -35,45 +34,45 @@ import {PostVisibility} from "../../../shared/utility/enums/postVisibility";
           class="border-2 px-2 py-1 rounded-lg"
           placeholder="Post tags..."
           name="tags"
-          [(ngModel)]="postDetailsTemp.tags"
+          [(ngModel)]="tagsString"
         >
       </div>
 
-      <div class="flex flex-col gap-1">
-        Post Visibility:
-        <div class="ml-2">
-          <div class="flex flex-row gap-1">
-            <input
-              type="radio"
-              id="public"
-              name="visibilityOption"
-              [value]="PostVisibility.PUBLIC"
-              [(ngModel)]="postDetailsTemp.visibilityOption"
-            >
-            <label for="public">Public</label>
-          </div>
-          <div class="flex flex-row gap-1">
-            <input
-              type="radio"
-              id="feed"
-              name="visibilityOption"
-              [value]="PostVisibility.FEED"
-              [(ngModel)]="postDetailsTemp.visibilityOption"
-            >
-            <label for="feed">Feed only</label>
-          </div>
-          <div class="flex flex-row gap-1">
-            <input
-              type="radio"
-              id="private"
-              name="visibilityOption"
-              [value]="PostVisibility.PRIVATE"
-              [(ngModel)]="postDetailsTemp.visibilityOption"
-            >
-            <label for="private">Private</label>
-          </div>
-        </div>
-      </div>
+      <!--      <div class="flex flex-col gap-1">-->
+      <!--        Post Visibility:-->
+      <!--        <div class="ml-2">-->
+      <!--          <div class="flex flex-row gap-1">-->
+      <!--            <input-->
+      <!--              type="radio"-->
+      <!--              id="public"-->
+      <!--              name="visibilityOption"-->
+      <!--              [value]="PostVisibility.PUBLIC"-->
+      <!--              [(ngModel)]="postDetailsTemp.visibilityOption"-->
+      <!--            >-->
+      <!--            <label for="public">Public</label>-->
+      <!--          </div>-->
+      <!--          <div class="flex flex-row gap-1">-->
+      <!--            <input-->
+      <!--              type="radio"-->
+      <!--              id="feed"-->
+      <!--              name="visibilityOption"-->
+      <!--              [value]="PostVisibility.FEED"-->
+      <!--              [(ngModel)]="postDetailsTemp.visibilityOption"-->
+      <!--            >-->
+      <!--            <label for="feed">Feed only</label>-->
+      <!--          </div>-->
+      <!--          <div class="flex flex-row gap-1">-->
+      <!--            <input-->
+      <!--              type="radio"-->
+      <!--              id="private"-->
+      <!--              name="visibilityOption"-->
+      <!--              [value]="PostVisibility.PRIVATE"-->
+      <!--              [(ngModel)]="postDetailsTemp.visibilityOption"-->
+      <!--            >-->
+      <!--            <label for="private">Private</label>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
 
       <div class="mt-4 flex items-center justify-between">
         <button
@@ -101,6 +100,7 @@ export class DetailsComponent implements AfterContentInit, OnDestroy {
   private router = inject(Router);
 
   postDetailsTemp: Partial<PostDetailsData> = {};
+  tagsString: string = "";
   sub = new Subscription();
 
   async ngAfterContentInit() {
@@ -109,7 +109,12 @@ export class DetailsComponent implements AfterContentInit, OnDestroy {
 
     this.sub = this.form.valueChanges!.pipe(
       tap((val) => {
-        this.addPostService.updatePostDetailsData(val);
+        this.postDetailsTemp = {
+          ...val,
+          tags: this.tagsString.split(" ").filter(t => t != "") ?? []
+        };
+        console.log(this.tagsString.split(" ").filter(t => t != "") ?? []);
+        this.addPostService.updatePostDetailsData(this.postDetailsTemp);
       }),
     ).subscribe();
 
@@ -134,8 +139,6 @@ export class DetailsComponent implements AfterContentInit, OnDestroy {
   }
 
   get tags() {
-    return this.postDetailsTemp.tags?.split(' ');
+    return this.postDetailsTemp.tags;
   }
-
-  protected readonly PostVisibility = PostVisibility;
 }
