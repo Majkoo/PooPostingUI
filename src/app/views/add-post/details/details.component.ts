@@ -113,7 +113,6 @@ export class DetailsComponent implements AfterContentInit, OnDestroy {
           ...val,
           tags: this.tagsString.split(" ").filter(t => t != "") ?? []
         };
-        console.log(this.tagsString.split(" ").filter(t => t != "") ?? []);
         this.addPostService.updatePostDetailsData(this.postDetailsTemp);
       }),
     ).subscribe();
