@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {fadeInAnimation} from "./shared/utility/animations/fadeInAnimation";
 @Component({
   selector: 'pp-root',
   templateUrl: './app.component.html',
@@ -7,5 +6,4 @@ import {fadeInAnimation} from "./shared/utility/animations/fadeInAnimation";
 })
 export class AppComponent {
 
-    protected readonly fadeInAnimation = fadeInAnimation;
 }

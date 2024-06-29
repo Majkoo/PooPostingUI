@@ -1,7 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {PictureDto} from "../../shared/utility/dtos/PictureDto";
 import {firstValueFrom} from "rxjs";
-import {PictureService} from "../../services/data-access/picture/picture.service";
 import {Location, NgClass, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {extractQueryParams} from "../../shared/utility/extractQueryParams";
 import {UrlTransformModule} from "../../shared/utility/pipes/url-transform/url-transform.module";
@@ -12,6 +11,7 @@ import {CommentFormComponent} from "./comment-form/comment-form.component";
 import {CommentDto} from "../../shared/utility/dtos/CommentDto";
 import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
 import {CommentsDisplayComponent} from "./comments-display/comments-display.component";
+import {PictureService} from "../../services/api/picture/picture.service";
 
 @Component({
   selector: 'pp-view-picture-modal',

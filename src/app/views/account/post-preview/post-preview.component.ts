@@ -3,7 +3,7 @@ import {RouterLink} from "@angular/router";
 import {UrlTransformModule} from "../../../shared/utility/pipes/url-transform/url-transform.module";
 import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
 import {NgClass, NgOptimizedImage, NgStyle} from "@angular/common";
-import {AuthService} from "../../../services/data-access/account/auth.service";
+import {AuthService} from "../../../services/api/account/auth.service";
 
 @Component({
   selector: 'pp-post-preview',

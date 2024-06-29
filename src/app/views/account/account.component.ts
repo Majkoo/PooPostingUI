@@ -1,7 +1,6 @@
 import {Component, HostListener, inject, OnDestroy, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {AccountService} from "../../services/data-access/account/account.service";
 import {
   BehaviorSubject,
   catchError,
@@ -21,7 +20,8 @@ import {combineLatest} from "rxjs";
 import {map} from "rxjs/operators";
 import {PostPreviewComponent} from "./post-preview/post-preview.component";
 import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
-import {AuthService} from "../../services/data-access/account/auth.service";
+import {AccountService} from "../../services/api/account/account.service";
+import {AuthService} from "../../services/api/account/auth.service";
 
 @Component({
   selector: 'pp-account',

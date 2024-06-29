@@ -12,9 +12,9 @@ import {
 import { CommonModule } from '@angular/common';
 import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
 import {BehaviorSubject, Subscription, switchMap} from "rxjs";
-import {CommentService} from "../../../services/data-access/comment/comment.service";
 import {map} from "rxjs/operators";
 import {CommentComponent} from "./comment/comment.component";
+import {CommentService} from "../../../services/api/comment/comment.service";
 
 @Component({
   selector: 'pp-comments-display',

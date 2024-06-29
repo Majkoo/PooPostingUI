@@ -1,7 +1,7 @@
 import {CanActivateFn, Router} from '@angular/router';
 import {inject} from "@angular/core";
-import {AuthService} from "../../../services/data-access/account/auth.service";
 import {ToastrService} from "ngx-toastr";
+import {AuthService} from "../../../services/api/account/auth.service";
 
 export const isLoggedInGuard: CanActivateFn = () => {
   const isLoggedIn = inject(AuthService).isLoggedIn

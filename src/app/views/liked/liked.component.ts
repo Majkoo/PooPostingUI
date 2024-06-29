@@ -1,15 +1,15 @@
 import {Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {AuthService} from "../../services/data-access/account/auth.service";
 import {Observable, tap} from "rxjs";
 import {AccountDto} from "../../shared/utility/dtos/AccountDto";
-import {AccountService} from "../../services/data-access/account/account.service";
 import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
 import {RouterLink} from "@angular/router";
 import {PostPreviewComponent} from "../account/post-preview/post-preview.component";
 import {PictureDto} from "../../shared/utility/dtos/PictureDto";
-import {PictureService} from "../../services/data-access/picture/picture.service";
 import {map} from "rxjs/operators";
+import {AccountService} from "../../services/api/account/account.service";
+import {PictureService} from "../../services/api/picture/picture.service";
+import {AuthService} from "../../services/api/account/auth.service";
 
 @Component({
   selector: 'pp-liked',

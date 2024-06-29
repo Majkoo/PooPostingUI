@@ -1,10 +1,10 @@
 import {Component, inject, Input} from '@angular/core';
 import {CreatedPostData} from "../../models/createdPostData";
-import {AccountService} from "../../../../services/data-access/account/account.service";
 import {Observable} from "rxjs";
 import {AccountDto} from "../../../../shared/utility/dtos/AccountDto";
-import {AuthService} from "../../../../services/data-access/account/auth.service";
 import {fadeInAnimation} from "../../../../shared/utility/animations/fadeInAnimation";
+import {AccountService} from "../../../../services/api/account/account.service";
+import {AuthService} from "../../../../services/api/account/auth.service";
 
 @Component({
   selector: 'pp-created-post-card-preview',
