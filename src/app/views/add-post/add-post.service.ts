@@ -37,7 +37,6 @@ export class AddPostService {
   }
 
   constructor() {
-    // Handle the POST request when the subject emits a value
     this.postTrigger$.pipe(
       switchMap(() => {
         const formData = new FormData();
