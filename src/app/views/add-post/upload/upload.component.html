@@ -19,13 +19,13 @@
       id="fileInput"
       class="hidden"
       [accept]="['image/*']"
-      (change)="onFileChange($event)"
+      (change)="onFileChange($event.target)"
     />
   </div>
 
   <!--  Cropper -->
   <div *ngIf="rawFileUrl" class="rounded-xl relative flex flex-col">
-    <div class="p-2" >
+    <div class="p-2" (mouseenter)="cropperUnlock()" (mouseover)="cropperCrop()">
       <angular-cropper
         #cropperComponent
         [imageUrl]="rawFileUrl"
@@ -48,7 +48,7 @@
         class="text-white px-2.5 py-1.5 rounded-lg text-sm md:px-4 md:py-2"
         [ngClass]="aspectRatio == 3 / 4 ? 'bg-cta' : 'bg-primary-800'"
         (click)="changeAspectRatio(3 / 4)"
-        [disabled]="lockedIn"
+        [disabled]="!this.rawFileUrl"
       >
         3/4
       </button>
@@ -56,7 +56,7 @@
         class="text-white px-2.5 py-1.5 rounded-lg text-sm md:px-4 md:py-2"
         [ngClass]="aspectRatio == 4 / 4 ? 'bg-cta' : 'bg-primary-800'"
         (click)="changeAspectRatio(4 / 4)"
-        [disabled]="lockedIn"
+        [disabled]="!this.rawFileUrl"
       >
         4/4
       </button>
@@ -64,7 +64,7 @@
         class="text-white px-2.5 py-1.5 rounded-lg text-sm md:px-4 md:py-2"
         [ngClass]="aspectRatio == 4/3 ? 'bg-cta' : 'bg-primary-800'"
         (click)="changeAspectRatio(4 / 3)"
-        [disabled]="lockedIn"
+        [disabled]="!this.rawFileUrl"
       >
         4/3
       </button>
@@ -72,7 +72,7 @@
         class="text-white px-2.5 py-1.5 rounded-lg text-sm md:px-4 md:py-2"
         [ngClass]="aspectRatio == 4 / 2 ? 'bg-cta' : 'bg-primary-800'"
         (click)="changeAspectRatio(4 / 2)"
-        [disabled]="lockedIn"
+        [disabled]="!this.rawFileUrl"
       >
         4/2
       </button>
@@ -96,17 +96,7 @@
   <div class="flex items-end gap-3">
     <button
       @fadeIn
-      class="flex gap-1 text-white px-4 py-2 rounded-lg whitespace-nowrap disabled:opacity-60"
-      [ngClass]="!lockedIn ? 'bg-cta' : 'bg-primary-800'"
-      [disabled]="!cropBoxSelected"
-      (click)="onCropBtnClick()"
-    >
-      {{lockedIn ? "Edit Crop" : "Crop Image"}}
-    </button>
-    <button
-      @fadeIn
       class="flex gap-1 text-white px-4 py-2 rounded-lg whitespace-nowrap bg-cta disabled:opacity-60"
-      [ngClass]="canProceed ? 'bg-cta' : 'bg-primary-800'"
       [disabled]="!canProceed"
       (click)="goNext()"
     >

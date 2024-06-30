@@ -18,8 +18,20 @@ import {Router} from "@angular/router";
   animations: [fadeInAnimation]
 })
 export class AddPostComponent {
-
   private router = inject(Router);
+
+  // highest reached step (for smoother form navigation)
+  maxStepIndex = 0;
+  steps = [
+    'upload',
+    'details',
+    'review'
+  ];
+  get currentStepIndex() {
+    const index = this.steps.indexOf(this.currentRoute);
+    if (this.maxStepIndex < index) this.maxStepIndex = index;
+    return index;
+  }
 
   get currentRoute() {
     const routes = this.router.url.split('/');

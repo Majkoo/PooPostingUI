@@ -10,11 +10,8 @@
         class="step-heading"
         routerLink="/add-post/upload"
         routerLinkActive="active"
-        [disabled]="true"
-        [ngClass]="{
-       'bg-cta': currentRoute == 'upload' || currentRoute == 'details' || currentRoute == 'review',
-       'bg-primary-800': !(currentRoute == 'upload' || currentRoute == 'details' || currentRoute == 'review'),
-      }"
+        [disabled]="false"
+        [ngClass]="currentStepIndex >= 0 ? 'bg-cta' : 'bg-primary-800'"
       >
         Upload
       </button>
@@ -22,22 +19,16 @@
         class="step-heading"
         routerLink="/add-post/details"
         routerLinkActive="active"
-        [disabled]="true"
-        [ngClass]="{
-       'bg-cta': currentRoute == 'details' || currentRoute == 'review',
-       'bg-primary-800': !(currentRoute == 'details' || currentRoute == 'review'),
-      }"
+        [disabled]="!(maxStepIndex >= 1)"
+        [ngClass]="currentStepIndex >= 1 ? 'bg-cta' : 'bg-primary-800'"
       >
         Details
       </button>
       <button
         class="step-heading"
         routerLink="/add-post/review"
-        [disabled]="true"
-        [ngClass]="{
-       'bg-cta': currentRoute == 'review',
-       'bg-primary-800': currentRoute != 'review',
-      }"
+        [disabled]="!(maxStepIndex >= 2)"
+        [ngClass]="currentStepIndex >= 2 ? 'bg-cta' : 'bg-primary-800'"
       >
         Review
       </button>
@@ -54,9 +45,11 @@
     </div>
   </div>
 
-  <div class="bg-surface-200 p-3 rounded-xl shadow mt-4">
+  <form
+    class="bg-surface-200 p-3 rounded-xl shadow mt-4"
+  >
     <router-outlet />
-  </div>
+  </form>
 </div>
 
 
