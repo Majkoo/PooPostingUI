@@ -8,6 +8,7 @@ import {ToastrService} from "ngx-toastr";
 import {defaultErrorHeading} from "../../shared/utility/constants";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {CreatePictureDto} from "./models/createPictureDto";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,10 @@ export class AddPostService {
   private postDetailsData$ = new BehaviorSubject<Partial<PostDetailsData>>({});
   private httpClient = inject(HttpClient);
   private toastrService = inject(ToastrService);
+
   private postPictureUrl = `${environment.apiUrl}/picture/post`;
+
+  public inMemoryCreatePictureDto: Partial<CreatePictureDto> = {}
 
   updatePictureUploadData(val: Partial<PictureUploadData>) {
     this.pictureUploadData$.next({

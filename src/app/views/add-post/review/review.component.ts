@@ -2,7 +2,7 @@ import {AfterContentInit, Component, inject} from '@angular/core';
 import {Router} from "@angular/router";
 import {AddPostService} from "../add-post.service";
 import {fadeInAnimation} from "../../../shared/utility/animations/fadeInAnimation";
-import {CreatedPostData} from "../models/createdPostData";
+import {CreatePictureDto} from "../models/createPictureDto";
 
 @Component({
   selector: 'pp-review',
@@ -49,7 +49,7 @@ export class ReviewComponent implements AfterContentInit {
     return this.addPostService.canFinish && this.createdPostData;
   }
 
-  get createdPostData(): CreatedPostData {
+  get createdPostData(): CreatePictureDto {
     return {
       ...this.addPostService.postDetailsData,
       url: this.addPostService.pictureUploadData.croppedFileUrl,

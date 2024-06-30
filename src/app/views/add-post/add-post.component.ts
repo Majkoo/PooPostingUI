@@ -1,6 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
 import {Router} from "@angular/router";
+import {CreatePictureDto} from "./models/createPictureDto";
+import {AddPostService} from "./add-post.service";
 
 @Component({
   selector: 'pp-add-post',
@@ -20,6 +22,9 @@ import {Router} from "@angular/router";
 export class AddPostComponent {
 
   private router = inject(Router);
+  private addPostService = inject(AddPostService);
+
+  pictureDto: Partial<CreatePictureDto> = this.addPostService.inMemoryCreatePictureDto;
 
   get currentRoute() {
     const routes = this.router.url.split('/');

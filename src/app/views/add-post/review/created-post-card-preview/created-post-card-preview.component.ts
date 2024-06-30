@@ -1,5 +1,5 @@
 import {Component, inject, Input} from '@angular/core';
-import {CreatedPostData} from "../../models/createdPostData";
+import {CreatePictureDto} from "../../models/createPictureDto";
 import {Observable} from "rxjs";
 import {AccountDto} from "../../../../shared/utility/dtos/AccountDto";
 import {fadeInAnimation} from "../../../../shared/utility/animations/fadeInAnimation";
@@ -13,7 +13,7 @@ import {AuthService} from "../../../../services/api/account/auth.service";
   animations: [fadeInAnimation]
 })
 export class CreatedPostCardPreviewComponent {
-  @Input({required: true}) postData!: CreatedPostData;
+  @Input({required: true}) postData!: CreatePictureDto;
   private accountService = inject(AccountService);
   private authService = inject(AuthService);
   acc$: Observable<AccountDto> | undefined;
