@@ -4,11 +4,12 @@ import {CommentDto} from "../../../../shared/utility/dtos/CommentDto";
 import {RouterLink} from "@angular/router";
 import {UrlTransformModule} from "../../../../shared/utility/pipes/url-transform/url-transform.module";
 import {shortDateFormat} from "../../../../shared/utility/constants";
+import {DateAgoPipe} from "../../../../shared/utility/pipes/date-ago/date-ago.pipe";
 
 @Component({
   selector: 'pp-mini-comment',
   standalone: true,
-  imports: [CommonModule, RouterLink, UrlTransformModule, NgOptimizedImage],
+  imports: [CommonModule, RouterLink, UrlTransformModule, NgOptimizedImage, DateAgoPipe],
   templateUrl: './mini-comment.component.html',
   styles: [
   ]

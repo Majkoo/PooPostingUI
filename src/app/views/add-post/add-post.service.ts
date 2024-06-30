@@ -49,9 +49,9 @@ export class AddPostService {
   finish() {
     const formData = new FormData();
     formData.append("dataUrl", this.pictureUploadData.croppedFileUrl);
-    formData.append("visibilityOption", this.postDetailsData.visibilityOption.toString());
+    formData.append("visibilityOption", this.postDetailsData.visibilityOption?.toString());
     formData.append("name", "DefaultName");
-    if (this.postDetailsData.tags) formData.append("tags", this.postDetailsData.tags)
+    if (this.postDetailsData.tags) formData.append("tags", this.postDetailsData.tags.join(","))
     if (this.postDetailsData.description) formData.append("description", this.postDetailsData.description)
 
     this.httpClient.post(this.postPictureUrl, formData)
@@ -76,9 +76,9 @@ export class AddPostService {
   get cropBoxData(): Cropper.SetCropBoxDataOptions {
     const currentCropBoxData = this.pictureUploadData.cropBoxData;
     return {
-      width: currentCropBoxData?.width || 0,
-      top: currentCropBoxData?.top || 0,
-      left: currentCropBoxData?.left || 0
+      width: currentCropBoxData?.width || undefined,
+      top: currentCropBoxData?.top || undefined,
+      left: currentCropBoxData?.left || undefined
     };
   }
   get pictureUploadData(): PictureUploadData {
@@ -91,9 +91,10 @@ export class AddPostService {
     return this.pictureUploadData$.value && this.pictureUploadData$.value.croppedFileUrl && this.pictureUploadData$.value.rawFileUrl;
   }
   get canGoToReview() {
-    return this.canGoToDetails &&
-      this.postDetailsData$.value.visibilityOption !== null &&
-      this.postDetailsData$.value.visibilityOption !== undefined;
+    return this.canGoToDetails;
+      // &&
+      // this.postDetailsData$.value.visibilityOption !== null &&
+      // this.postDetailsData$.value.visibilityOption !== undefined;
   }
   get canFinish() {
     return this.canGoToReview;

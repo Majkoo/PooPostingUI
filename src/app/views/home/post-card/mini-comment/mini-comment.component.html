@@ -13,7 +13,7 @@
          routerLink="/account/{{comm.account.id}}">
         {{comm.account.nickname}}
       </a>
-      <span class="text-xs text-gray-600">{{comm.commentAdded | date:shortDateFormat}}</span>
+      <span class="text-xs text-gray-600">{{comm.commentAdded | dateAgo}}</span>
     </div>
     <span class="text-sm">{{ comm.text.length > 125 ? comm.text.substring(0, 125) + '...' : comm.text }}</span>
   </div>

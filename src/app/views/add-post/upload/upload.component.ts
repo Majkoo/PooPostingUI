@@ -33,7 +33,6 @@ export class UploadComponent {
     const target = event.target as HTMLInputElement;
     if (!target.files) return;
     await this.fileToUrl(target.files[0]);
-    this.cdr.markForCheck();
   }
   fileToUrl(file: File): Promise<void> {
     return new Promise((resolve) => {
@@ -42,6 +41,13 @@ export class UploadComponent {
         this.addPostService.updatePictureUploadData({rawFileUrl: reader.result as string});
         this.cdr.markForCheck();
         resolve();
+      };
+      reader.onloadend = () => {
+        this.cropperComponent.ready.subscribe(() => {
+          this.changeAspectRatio(4/3);
+          this.cdr.markForCheck();
+          resolve();
+        })
       };
       reader.readAsDataURL(file);
     });
@@ -107,5 +113,9 @@ export class UploadComponent {
   }
   get aspectRatio() {
     return this.addPostService.pictureUploadData.aspectRatio;
+  }
+  get cropBoxSelected(): boolean {
+    const cropbox = this.cropperComponent?.cropper?.getCropBoxData();
+    return !!cropbox?.top && !!cropbox.width
   }
 }
