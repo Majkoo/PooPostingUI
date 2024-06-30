@@ -1,17 +1,15 @@
-import {AfterContentInit, Component, inject, OnDestroy, ViewChild} from '@angular/core';
+import {AfterContentInit, Component, inject, ViewChild} from '@angular/core';
 import {AddPostService} from "../add-post.service";
 import {Router} from "@angular/router";
 import {fadeInAnimation} from "../../../shared/utility/animations/fadeInAnimation";
 import {PostDetailsData} from "../models/postDetailsData";
 import {NgForm} from "@angular/forms";
-import {Subscription, tap} from "rxjs";
 
 @Component({
   selector: 'pp-details',
   template: `
-    <form
+    <div
       class="flex flex-col gap-3"
-      #form="ngForm"
       @fadeIn
     >
 
@@ -34,7 +32,8 @@ import {Subscription, tap} from "rxjs";
           class="border-2 px-2 py-1 rounded-lg"
           placeholder="Post tags..."
           name="tags"
-          [(ngModel)]="tagsString"
+          (keyup)="tagChanges()"
+          [(ngModel)]="postDetailsTemp.tags"
         >
       </div>
 
@@ -89,38 +88,35 @@ import {Subscription, tap} from "rxjs";
           Next step
         </button>
       </div>
-    </form>
+    </div>
   `,
   styles: [],
   animations: [fadeInAnimation]
 })
-export class DetailsComponent implements AfterContentInit, OnDestroy {
+export class DetailsComponent implements AfterContentInit {
   @ViewChild('form', {static: true}) form!: NgForm;
   private addPostService = inject(AddPostService);
   private router = inject(Router);
 
   postDetailsTemp: Partial<PostDetailsData> = {};
-  tagsString: string = "";
-  sub = new Subscription();
 
   async ngAfterContentInit() {
     if (!this.addPostService.canGoToDetails) await this.router.navigate(['/add-post/upload']);
-    this.postDetailsTemp = this.addPostService.postDetailsData;
-
-    this.sub = this.form.valueChanges!.pipe(
-      tap((val) => {
-        this.postDetailsTemp = {
-          ...val,
-          tags: this.tagsString.split(" ").filter(t => t != "") ?? []
-        };
-        this.addPostService.updatePostDetailsData(this.postDetailsTemp);
-      }),
-    ).subscribe();
-
+    this.postDetailsTemp = {
+      ...this.addPostService.inMemoryCreatePictureDto,
+      tags: this.addPostService.inMemoryCreatePictureDto.tags?.join(" ")
+    }
   }
 
-  ngOnDestroy() {
-    this.sub.unsubscribe();
+  tagChanges() {
+    const val =  this.postDetailsTemp.tags ?? "";
+    const tags = val
+      .split(" ")
+      .slice(0, 4)
+      .map(tag => tag.substring(0, 25));
+
+    this.addPostService.inMemoryCreatePictureDto.tags = tags;
+    this.postDetailsTemp.tags = tags.join(" ");
   }
 
   async goBack() {

@@ -1,8 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
 import {Router} from "@angular/router";
-import {CreatePictureDto} from "./models/createPictureDto";
-import {AddPostService} from "./add-post.service";
 
 @Component({
   selector: 'pp-add-post',
@@ -20,11 +18,20 @@ import {AddPostService} from "./add-post.service";
   animations: [fadeInAnimation]
 })
 export class AddPostComponent {
-
   private router = inject(Router);
-  private addPostService = inject(AddPostService);
 
-  pictureDto: Partial<CreatePictureDto> = this.addPostService.inMemoryCreatePictureDto;
+  // highest reached step (for smoother form navigation)
+  maxStepIndex = 0;
+  steps = [
+    'upload',
+    'details',
+    'review'
+  ];
+  get currentStepIndex() {
+    const index = this.steps.indexOf(this.currentRoute);
+    if (this.maxStepIndex < index) this.maxStepIndex = index;
+    return index;
+  }
 
   get currentRoute() {
     const routes = this.router.url.split('/');
