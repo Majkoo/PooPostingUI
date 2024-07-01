@@ -12,39 +12,41 @@ import {NgOptimizedImage} from "@angular/common";
 import {UrlTransformModule} from "./shared/utility/pipes/url-transform/url-transform.module";
 import {MessageService} from "primeng/api";
 import {TokenInterceptorService} from "./shared/utility/interceptors/token-interceptor.service";
+import { EasterEggComponent } from "./shared/components/easter-egg/easter-egg.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-    imports: [
-      RouterModule,
-      BrowserModule,
-      BrowserAnimationsModule,
-      AppRoutingModule,
-      HttpClientModule,
-      ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-      LayoutModule,
-      NgOptimizedImage,
-      UrlTransformModule,
+    declarations: [
+        AppComponent,
     ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true,
-    },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: HttpErrorInterceptorService,
-    //   multi: true,
-    // },
-    {
-      provide: MessageService,
-      useClass: MessageService
-    }
-  ],
-  exports: [],
-  bootstrap: [AppComponent]
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptorService,
+            multi: true,
+        },
+        // {
+        //   provide: HTTP_INTERCEPTORS,
+        //   useClass: HttpErrorInterceptorService,
+        //   multi: true,
+        // },
+        {
+            provide: MessageService,
+            useClass: MessageService
+        }
+    ],
+    exports: [],
+    bootstrap: [AppComponent],
+    imports: [
+        RouterModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+        LayoutModule,
+        NgOptimizedImage,
+        UrlTransformModule,
+        EasterEggComponent
+    ]
 })
 export class AppModule { }
