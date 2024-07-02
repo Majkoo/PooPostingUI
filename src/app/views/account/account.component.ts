@@ -1,12 +1,11 @@
 import {Component, HostListener, inject, OnDestroy, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {AccountService} from "../../services/data-access/account/account.service";
 import {
   BehaviorSubject,
   catchError,
   EMPTY,
-  filter, firstValueFrom,
+  filter,
   Observable,
   of,
   startWith,
@@ -21,7 +20,9 @@ import {combineLatest} from "rxjs";
 import {map} from "rxjs/operators";
 import {PostPreviewComponent} from "./post-preview/post-preview.component";
 import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
-import {AuthService} from "../../services/data-access/account/auth.service";
+import {AccountService} from "../../services/api/account/account.service";
+import {AuthService} from "../../services/api/account/auth.service";
+import * as _ from "lodash";
 
 @Component({
   selector: 'pp-account',
@@ -54,7 +55,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     const scrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    const threshold = 200;
+    const threshold = windowHeight * 0.75;
 
     if (
       documentHeight - scrollPosition - windowHeight < threshold && this.enableScrollListener
@@ -91,12 +92,11 @@ export class AccountComponent implements OnInit, OnDestroy {
       map(([account, pictures]) => {
         if (account) {
           const acc = account as AccountDto;
-          const updatedPictures = acc.pictures || [];
           if (pictures && pictures.items) {
-            updatedPictures.push(...pictures.items);
+            acc.pictures = _.uniqBy([...acc.pictures, ...pictures.items], (i) => i.id);
           }
           this.isAccountCurrentUsers = acc.id == this.authService.getJwtData()?.uid;
-          return { ...acc, pictures: updatedPictures };
+          return acc;
         }
         return null;
       }),
@@ -105,8 +105,8 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   }
 
-  async logout() {
-    await firstValueFrom(this.authService.forgetTokens());
+  logout() {
+    this.authService.forgetTokens().subscribe();
   }
 
   ngOnDestroy() {

@@ -1,8 +1,8 @@
 import { Injectable, Type } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Location } from '@angular/common';
-import { ViewPictureModalComponent } from '../../views/viewPicture/view-picture-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import {QueryModalEnum} from "./query-modal.enum";
+import {ViewPictureModalComponent} from "./viewPicture/view-picture-modal.component";
 
 @Injectable({
   providedIn: 'root',
@@ -12,14 +12,13 @@ export class QueryModalService {
 
   constructor(
     private dialogService: DialogService,
-    private location: Location,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   init() {
     this.router.events.subscribe(() => {
-      const viewPictureParam = this.route.snapshot.queryParamMap.get('viewPicture');
+      const viewPictureParam = this.route.snapshot.queryParamMap.get(QueryModalEnum.VIEW_PICTURE);
       if (viewPictureParam) {
         this.open(ViewPictureModalComponent);
       } else {

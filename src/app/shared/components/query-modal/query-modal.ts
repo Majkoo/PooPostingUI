@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {DialogModule} from "primeng/dialog";
 import {DialogService} from "primeng/dynamicdialog";
-import {QueryModalService} from "../../../services/helpers/query-modal.service";
+import {QueryModalService} from "./query-modal.service";
 @Component({
   selector: 'pp-query-modal',
   template: ``,

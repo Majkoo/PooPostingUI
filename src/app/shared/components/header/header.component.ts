@@ -1,8 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {AuthService} from "../../../services/data-access/account/auth.service";
-import {AccountService} from "../../../services/data-access/account/account.service";
 import {Observable} from "rxjs";
 import {AccountDto} from "../../utility/dtos/AccountDto";
+import {AuthService} from "../../../services/api/account/auth.service";
+import {AccountService} from "../../../services/api/account/account.service";
 
 @Component({
   selector: 'pp-header',

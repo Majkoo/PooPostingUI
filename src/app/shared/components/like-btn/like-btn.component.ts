@@ -2,9 +2,9 @@ import {Component, EventEmitter, inject, Input, OnDestroy, Output} from '@angula
 import { CommonModule } from '@angular/common';
 import {PictureDto} from "../../utility/dtos/PictureDto";
 import {Subscription} from "rxjs";
-import {PictureLikesService} from "../../../services/data-access/picture/picture-likes.service";
 import {likeStateAnimation} from "../../utility/animations/likeStateAnimation";
-import {AuthService} from "../../../services/data-access/account/auth.service";
+import {PictureLikesService} from "../../../services/api/picture/picture-likes.service";
+import {AuthService} from "../../../services/api/account/auth.service";
 
 @Component({
   selector: 'pp-like-btn',

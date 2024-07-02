@@ -17,95 +17,81 @@ import {fadeInAnimation} from "../../../shared/utility/animations/fadeInAnimatio
   animations: [fadeInAnimation]
 })
 export class UploadComponent {
-  @ViewChild('cropperComponent') cropperComponent!: CropperComponent;
+  @ViewChild('cropperComponent') cropperComponent!: CropperComponent & HTMLElement;
 
-  private addPostService = inject(AddPostService);
+  private add = inject(AddPostService);
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
 
   changeAspectRatio(val: number) {
     this.cropperComponent.cropper.setAspectRatio(val);
-    this.cropperComponent.cropperOptions.aspectRatio = this.aspectRatio;
-    this.addPostService.updatePictureUploadData({aspectRatio: val});
-  }
-  async onFileChange(event: Event) {
-    if (!event) return;
-    const target = event.target as HTMLInputElement;
-    if (!target.files) return;
-    await this.fileToUrl(target.files[0]);
+    this.add.inMemoryCropPictureData.aspectRatio = val;
     this.cdr.markForCheck();
   }
+  async onFileChange(target: EventTarget | null) {
+    const htmlTarget = target as HTMLInputElement
+    if (!htmlTarget?.files) return;
+    await this.fileToUrl(htmlTarget.files[0]);
+  }
+
+
   fileToUrl(file: File): Promise<void> {
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = () => {
-        this.addPostService.updatePictureUploadData({rawFileUrl: reader.result as string});
         this.cdr.markForCheck();
+        this.add.inMemoryCropPictureData.rawFileUrl = reader.result as string
         resolve();
+      };
+      reader.onloadend = () => {
+        this.cropperComponent.ready.subscribe(() => {
+          this.changeAspectRatio(4/3);
+          this.cropperComponent.cropper.enable();
+          this.cdr.markForCheck();
+          this.cropperCrop();
+          resolve();
+        })
       };
       reader.readAsDataURL(file);
     });
   }
+
   reset() {
-    this.addPostService.updatePictureUploadData({
+    this.add.inMemoryCreatePictureDto = {};
+    this.add.inMemoryCropPictureData = {
+      cropBoxData: {},
       rawFileUrl: '',
-      croppedFileUrl: '',
-    });
+      aspectRatio: 4/3
+    };
     this.cropperComponent.cropper.enable();
-    this.addPostService.updatePictureUploadData({});
     this.cdr.markForCheck();
   }
 
-  onCropBtnClick() {
-    if (this.lockedIn) {
-      this.cropperUnlock();
-    } else {
-      this.cropperCrop();
-    }
-  }
   onCropperReady() {
     this.cropperComponent.cropper.setAspectRatio(this.aspectRatio);
-    this.cropperComponent.cropper.setCropBoxData(this.addPostService.cropBoxData);
-    if (this.lockedIn) {
-      this.cropperComponent.cropper.disable();
-    }
+    this.cropperComponent.cropper.setCropBoxData(this.add.inMemoryCropPictureData.cropBoxData);
   }
   async goNext() {
     if (this.canProceed) {
       await this.router.navigate(['/add-post/details'])
     }
   }
-  private cropperCrop() {
-    this.addPostService.updatePictureUploadData({
-      aspectRatio: this.aspectRatio,
-      cropBoxData: this.cropperComponent.cropper.getCropBoxData(),
-      croppedFileUrl: this.cropperComponent.cropper.getCroppedCanvas().toDataURL(),
-    })
-    this.cropperComponent.cropper.disable();
+
+  public cropperCrop() {
+    this.add.inMemoryCropPictureData.cropBoxData = this.cropperComponent?.cropper?.getCropBoxData();
+    this.add.inMemoryCreatePictureDto.url = this.cropperComponent?.cropper?.getCroppedCanvas()?.toDataURL();
     this.cdr.markForCheck();
   }
-  private cropperUnlock() {
-    this.resetCroppedFileUrl();
-    this.cropperComponent.cropper.enable();
-    this.cropperComponent.cropper.setCropBoxData(this.addPostService.cropBoxData);
-    this.cdr.markForCheck();
-  }
-  private resetCroppedFileUrl() {
-    this.addPostService.updatePictureUploadData({croppedFileUrl: ''});
-  }
+
   get canProceed() {
-    return this.lockedIn && this.addPostService.canGoToDetails;
+    return this.add.canGoToDetails;
   }
-  get lockedIn() {
-    return this.croppedFileUrl != '';
+  protected get rawFileUrl() {
+    return this.add.inMemoryCropPictureData.rawFileUrl;
   }
-  get rawFileUrl() {
-    return this.addPostService.pictureUploadData.rawFileUrl;
+
+  protected get aspectRatio() {
+    return this.add.inMemoryCropPictureData.aspectRatio;
   }
-  get croppedFileUrl() {
-    return this.addPostService.pictureUploadData.croppedFileUrl;
-  }
-  get aspectRatio() {
-    return this.addPostService.pictureUploadData.aspectRatio;
-  }
+
 }

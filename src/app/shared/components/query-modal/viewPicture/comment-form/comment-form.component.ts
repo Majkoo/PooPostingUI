@@ -1,12 +1,12 @@
 import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
-import {CommentDto} from "../../../shared/utility/dtos/CommentDto";
-import {AuthService} from "../../../services/data-access/account/auth.service";
-import {CommentService} from "../../../services/data-access/comment/comment.service";
 import {FormsModule} from "@angular/forms";
 import {BehaviorSubject, Subject, switchMap} from "rxjs";
-import {fadeInOutAnimation} from "../../../shared/utility/animations/fadeInOutAnimation";
+import {PictureDto} from "../../../../utility/dtos/PictureDto";
+import {fadeInOutAnimation} from "../../../../utility/animations/fadeInOutAnimation";
+import {CommentDto} from "../../../../utility/dtos/CommentDto";
+import {AuthService} from "../../../../../services/api/account/auth.service";
+import {CommentService} from "../../../../../services/api/comment/comment.service";
 
 @Component({
   selector: 'pp-comment-form',

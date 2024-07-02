@@ -10,11 +10,13 @@ import {
   ViewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {PictureDto} from "../../../shared/utility/dtos/PictureDto";
 import {BehaviorSubject, Subscription, switchMap} from "rxjs";
-import {CommentService} from "../../../services/data-access/comment/comment.service";
 import {map} from "rxjs/operators";
 import {CommentComponent} from "./comment/comment.component";
+import {PictureDto} from "../../../../utility/dtos/PictureDto";
+import {CommentService} from "../../../../../services/api/comment/comment.service";
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'pp-comments-display',
@@ -28,11 +30,9 @@ export class CommentsDisplayComponent implements OnInit, AfterViewInit, OnDestro
   @ViewChild('scrollableElement') scrollableElement!: ElementRef<HTMLElement>;
 
   private commService = inject(CommentService);
-  private hostElement = inject(ElementRef);
 
-  private pageSize = 3;
+  private pageSize = 2;
   private pageNumber = 2;
-  private hostHeight = 0;
 
   private enableScrollListener = true;
   private scrollSubject: BehaviorSubject<null> = new BehaviorSubject<null>(null);
@@ -43,10 +43,11 @@ export class CommentsDisplayComponent implements OnInit, AfterViewInit, OnDestro
     const scrollPosition = target.scrollTop || 0;
     const elementHeight = target.offsetHeight;
     const scrollHeight = target.scrollHeight;
-    const threshold = 50;
-    if (
-      scrollHeight - scrollPosition - elementHeight < threshold &&
-      this.enableScrollListener
+    const threshold = elementHeight * 0.75;
+
+    const position = scrollHeight - scrollPosition - elementHeight;
+    const isAtBottom =  position < threshold;
+    if (isAtBottom && this.enableScrollListener
     ) {
       this.scrollSubject.next(null);
     }
@@ -56,7 +57,6 @@ export class CommentsDisplayComponent implements OnInit, AfterViewInit, OnDestro
     this.masterSub = this.scrollSubject.pipe(
       switchMap(() => this.fetchComments(this.pageSize, this.pageNumber))
     ).subscribe();
-    this.hostHeight = this.hostElement.nativeElement.offsetHeight;
   }
 
   ngAfterViewInit() {
@@ -83,7 +83,7 @@ export class CommentsDisplayComponent implements OnInit, AfterViewInit, OnDestro
       .getCommentsForPicture(this.pic.id, pageSize, pageNumber)
       .pipe(
         map((res) => {
-          this.pic.comments = [...this.pic.comments, ...res.items];
+          this.pic.comments =  _.uniqBy([...this.pic.comments, ...res.items], (i) => i.id);
           res.page === res.totalPages ? this.masterSub.unsubscribe() : this.pageNumber = res.page + 1;
           this.pageSize = res.items.length;
           this.enableScrollListener = true;

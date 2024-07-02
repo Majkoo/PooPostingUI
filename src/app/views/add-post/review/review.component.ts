@@ -2,12 +2,12 @@ import {AfterContentInit, Component, inject} from '@angular/core';
 import {Router} from "@angular/router";
 import {AddPostService} from "../add-post.service";
 import {fadeInAnimation} from "../../../shared/utility/animations/fadeInAnimation";
-import {CreatedPostData} from "../models/createdPostData";
+import {CreatePictureDto} from "../models/createPictureDto";
 
 @Component({
   selector: 'pp-review',
   template: `
-    <pp-created-post-card-preview *ngIf="createdPostData" [postData]="createdPostData" @fadeIn />
+    <pp-created-post-card-preview [postData]="post" @fadeIn />
 
     <div class="mt-4 flex items-center justify-between">
       <button
@@ -29,10 +29,11 @@ import {CreatedPostData} from "../models/createdPostData";
 })
 export class ReviewComponent implements AfterContentInit {
   private router = inject(Router);
-  private addPostService = inject(AddPostService);
+  private add = inject(AddPostService);
+  post: CreatePictureDto = this.add.inMemoryCreatePictureDto as CreatePictureDto;
 
   async ngAfterContentInit() {
-    if (!this.addPostService.canGoToDetails) await this.router.navigate(['/add-post/details']);
+    if (!this.add.canGoToDetails) await this.router.navigate(['/add-post/details']);
   }
 
   async goBack() {
@@ -40,22 +41,11 @@ export class ReviewComponent implements AfterContentInit {
   }
 
   async finish() {
-    if (this.canFinish) {
-      const result = await this.addPostService.finish();
-      if (result) await this.router.navigate(['/']);
-      else await this.router.navigate(['/add-post']);
-    }
+    this.add.finish();
   }
 
   get canFinish() {
-    return this.addPostService.canFinish && this.createdPostData;
-  }
-
-  get createdPostData(): CreatedPostData {
-    return {
-      ...this.addPostService.postDetailsData,
-      url: this.addPostService.pictureUploadData.croppedFileUrl,
-    }
+    return this.add.canFinish;
   }
 
 }

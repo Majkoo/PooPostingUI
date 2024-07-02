@@ -4,11 +4,11 @@ import {Router, RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {CreateAccountDto} from "../../shared/utility/dtos/CreateAccountDto";
 import {validationErrorAnimation} from "../../shared/utility/animations/validationErrorAnimation";
-import {AuthService} from "../../services/data-access/account/auth.service";
 import {Subscription} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {fadeInAnimation} from "../../shared/utility/animations/fadeInAnimation";
+import {AuthService} from "../../services/api/account/auth.service";
 
 @Component({
   selector: 'pp-register',

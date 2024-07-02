@@ -1,18 +1,15 @@
-import {AfterContentInit, Component, inject, OnDestroy, ViewChild} from '@angular/core';
+import {AfterContentInit, Component, inject, ViewChild} from '@angular/core';
 import {AddPostService} from "../add-post.service";
 import {Router} from "@angular/router";
 import {fadeInAnimation} from "../../../shared/utility/animations/fadeInAnimation";
 import {PostDetailsData} from "../models/postDetailsData";
 import {NgForm} from "@angular/forms";
-import {Subscription, tap} from "rxjs";
-import {PostVisibility} from "../../../shared/utility/enums/postVisibility";
 
 @Component({
   selector: 'pp-details',
   template: `
-    <form
+    <div
       class="flex flex-col gap-3"
-      #form="ngForm"
       @fadeIn
     >
 
@@ -35,45 +32,46 @@ import {PostVisibility} from "../../../shared/utility/enums/postVisibility";
           class="border-2 px-2 py-1 rounded-lg"
           placeholder="Post tags..."
           name="tags"
+          (keyup)="tagChanges()"
           [(ngModel)]="postDetailsTemp.tags"
         >
       </div>
 
-      <div class="flex flex-col gap-1">
-        Post Visibility:
-        <div class="ml-2">
-          <div class="flex flex-row gap-1">
-            <input
-              type="radio"
-              id="public"
-              name="visibilityOption"
-              [value]="PostVisibility.PUBLIC"
-              [(ngModel)]="postDetailsTemp.visibilityOption"
-            >
-            <label for="public">Public</label>
-          </div>
-          <div class="flex flex-row gap-1">
-            <input
-              type="radio"
-              id="feed"
-              name="visibilityOption"
-              [value]="PostVisibility.FEED"
-              [(ngModel)]="postDetailsTemp.visibilityOption"
-            >
-            <label for="feed">Feed only</label>
-          </div>
-          <div class="flex flex-row gap-1">
-            <input
-              type="radio"
-              id="private"
-              name="visibilityOption"
-              [value]="PostVisibility.PRIVATE"
-              [(ngModel)]="postDetailsTemp.visibilityOption"
-            >
-            <label for="private">Private</label>
-          </div>
-        </div>
-      </div>
+      <!--      <div class="flex flex-col gap-1">-->
+      <!--        Post Visibility:-->
+      <!--        <div class="ml-2">-->
+      <!--          <div class="flex flex-row gap-1">-->
+      <!--            <input-->
+      <!--              type="radio"-->
+      <!--              id="public"-->
+      <!--              name="visibilityOption"-->
+      <!--              [value]="PostVisibility.PUBLIC"-->
+      <!--              [(ngModel)]="postDetailsTemp.visibilityOption"-->
+      <!--            >-->
+      <!--            <label for="public">Public</label>-->
+      <!--          </div>-->
+      <!--          <div class="flex flex-row gap-1">-->
+      <!--            <input-->
+      <!--              type="radio"-->
+      <!--              id="feed"-->
+      <!--              name="visibilityOption"-->
+      <!--              [value]="PostVisibility.FEED"-->
+      <!--              [(ngModel)]="postDetailsTemp.visibilityOption"-->
+      <!--            >-->
+      <!--            <label for="feed">Feed only</label>-->
+      <!--          </div>-->
+      <!--          <div class="flex flex-row gap-1">-->
+      <!--            <input-->
+      <!--              type="radio"-->
+      <!--              id="private"-->
+      <!--              name="visibilityOption"-->
+      <!--              [value]="PostVisibility.PRIVATE"-->
+      <!--              [(ngModel)]="postDetailsTemp.visibilityOption"-->
+      <!--            >-->
+      <!--            <label for="private">Private</label>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
 
       <div class="mt-4 flex items-center justify-between">
         <button
@@ -90,33 +88,35 @@ import {PostVisibility} from "../../../shared/utility/enums/postVisibility";
           Next step
         </button>
       </div>
-    </form>
+    </div>
   `,
   styles: [],
   animations: [fadeInAnimation]
 })
-export class DetailsComponent implements AfterContentInit, OnDestroy {
+export class DetailsComponent implements AfterContentInit {
   @ViewChild('form', {static: true}) form!: NgForm;
   private addPostService = inject(AddPostService);
   private router = inject(Router);
 
   postDetailsTemp: Partial<PostDetailsData> = {};
-  sub = new Subscription();
 
   async ngAfterContentInit() {
     if (!this.addPostService.canGoToDetails) await this.router.navigate(['/add-post/upload']);
-    this.postDetailsTemp = this.addPostService.postDetailsData;
-
-    this.sub = this.form.valueChanges!.pipe(
-      tap((val) => {
-        this.addPostService.updatePostDetailsData(val);
-      }),
-    ).subscribe();
-
+    this.postDetailsTemp = {
+      ...this.addPostService.inMemoryCreatePictureDto,
+      tags: this.addPostService.inMemoryCreatePictureDto.tags?.join(" ")
+    }
   }
 
-  ngOnDestroy() {
-    this.sub.unsubscribe();
+  tagChanges() {
+    const val =  this.postDetailsTemp.tags ?? "";
+    const tags = val
+      .split(" ")
+      .slice(0, 4)
+      .map(tag => tag.substring(0, 25));
+
+    this.addPostService.inMemoryCreatePictureDto.tags = tags;
+    this.postDetailsTemp.tags = tags.join(" ");
   }
 
   async goBack() {
@@ -134,8 +134,6 @@ export class DetailsComponent implements AfterContentInit, OnDestroy {
   }
 
   get tags() {
-    return this.postDetailsTemp.tags?.split(' ');
+    return this.postDetailsTemp.tags;
   }
-
-  protected readonly PostVisibility = PostVisibility;
 }

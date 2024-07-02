@@ -24,7 +24,6 @@ export class EasterEggComponent implements AfterViewInit {
       this.easterEgg.nativeElement.style.top = (Math.random() * window.innerHeight).toString() + "px"
     }
   }
-
   clickedEgg(){
     this.easterEgg.nativeElement.style.display = "none"
     setTimeout(() => {
