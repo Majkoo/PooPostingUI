@@ -25,7 +25,7 @@
 
   <!--  Cropper -->
   <div *ngIf="rawFileUrl" class="rounded-xl relative flex flex-col">
-    <div class="p-2" (mouseenter)="cropperUnlock()" (mouseover)="cropperCrop()">
+    <div class="p-2" (touchend)="cropperCrop()" (mouseover)="cropperCrop()">
       <angular-cropper
         #cropperComponent
         [imageUrl]="rawFileUrl"
