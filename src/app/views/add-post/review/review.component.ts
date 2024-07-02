@@ -41,9 +41,7 @@ export class ReviewComponent implements AfterContentInit {
   }
 
   async finish() {
-    if (this.canFinish) {
-      this.add.finish();
-    }
+    this.add.finish();
   }
 
   get canFinish() {

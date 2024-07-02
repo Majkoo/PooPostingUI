@@ -70,9 +70,6 @@ export class UploadComponent {
   onCropperReady() {
     this.cropperComponent.cropper.setAspectRatio(this.aspectRatio);
     this.cropperComponent.cropper.setCropBoxData(this.add.inMemoryCropPictureData.cropBoxData);
-    if (this.rawFileUrl != '') {
-      this.cropperComponent.cropper.disable();
-    }
   }
   async goNext() {
     if (this.canProceed) {
@@ -83,13 +80,6 @@ export class UploadComponent {
   public cropperCrop() {
     this.add.inMemoryCropPictureData.cropBoxData = this.cropperComponent?.cropper?.getCropBoxData();
     this.add.inMemoryCreatePictureDto.url = this.cropperComponent?.cropper?.getCroppedCanvas()?.toDataURL();
-    this.cdr.markForCheck();
-  }
-  public cropperUnlock() {
-    this.add.inMemoryCreatePictureDto.url = undefined;
-
-    this.cropperComponent?.cropper?.enable();
-    this.cropperComponent?.cropper?.setCropBoxData(this.add.inMemoryCropPictureData.cropBoxData);
     this.cdr.markForCheck();
   }
 
