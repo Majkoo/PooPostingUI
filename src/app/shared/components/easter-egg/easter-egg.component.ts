@@ -1,15 +1,18 @@
-import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'pp-easter-egg',
+  imports: [CommonModule],
   standalone: true,
   templateUrl: './easter-egg.component.html',
   styleUrls: ['./easter-egg.component.scss']
 })
 export class EasterEggComponent implements AfterViewInit {
-  @ViewChild("easterEgg") easterEgg! : ElementRef<HTMLDivElement>
-  @ViewChild("nerdEmoji") nerdEmoji! : ElementRef<HTMLImageElement>
-  @ViewChild("nerdSong") nerdSong! : ElementRef<HTMLAudioElement>
+  showingAnimation : boolean = false
+  dot = {display: "none", left: "2px", top: "3px"}
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(){
     if (Math.random()*1000 == 693){
@@ -18,17 +21,22 @@ export class EasterEggComponent implements AfterViewInit {
   }
 
   showEasterEgg(){
-    if (this.easterEgg != null){
-      this.easterEgg.nativeElement.style.display = "block"
-      this.easterEgg.nativeElement.style.left = (Math.random() * window.innerWidth).toString() + "px"
-      this.easterEgg.nativeElement.style.top = (Math.random() * window.innerHeight).toString() + "px"
-    }
+    this.dot.display = "block"
+    this.dot.left = Math.floor(Math.random() * window.innerWidth).toString() + "px"
+    this.dot.top =  Math.floor(Math.random() * window.innerHeight).toString() + "px"
+    this.cdr.detectChanges();
   }
+  
   clickedEgg(){
-    this.easterEgg.nativeElement.style.display = "none"
+    this.dot.display = "none"
+    this.cdr.detectChanges();
     setTimeout(() => {
-      this.nerdEmoji.nativeElement.classList.add("nerdEmoji")
-      this.nerdSong.nativeElement.play()
+      this.showingAnimation = true
+      this.cdr.detectChanges();
+      let audio = new Audio();
+      audio.src = "/assets/sounds/nerdSong.mp3";
+      audio.load();
+      audio.play();
     }, 3000);
   }
 }
