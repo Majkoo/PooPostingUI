@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {BehaviorSubject, of, Subject, tap} from "rxjs";
+import {BehaviorSubject, concatMap, Subject } from "rxjs";
 import {CropPictureData} from "./models/cropPictureData";
 import {PostDetailsData} from "./models/postDetailsData";
 import {HttpClient} from "@angular/common/http";
@@ -8,7 +8,7 @@ import {ToastrService} from "ngx-toastr";
 import {defaultErrorHeading} from "../../shared/utility/constants";
 import {catchError, switchMap} from "rxjs/operators";
 import {Router} from "@angular/router";
-import {CreatePictureDto} from "./models/createPictureDto";
+import {CreatePictureDto, toFormData} from "./models/createPictureDto";
 
 @Injectable({
   providedIn: 'root'
@@ -38,27 +38,18 @@ export class AddPostService {
 
   constructor() {
     this.postTrigger$.pipe(
-      switchMap(() => {
-        const formData = new FormData();
-        if (!this.inMemoryCreatePictureDto.url) return of(null);
-        formData.append("dataUrl", this.inMemoryCreatePictureDto.url);
-        formData.append("visibilityOption", (this.inMemoryCreatePictureDto.visibilityOption ?? 0).toString());
-        if (this.inMemoryCreatePictureDto.tags) formData.append("tags", JSON.stringify(this.inMemoryCreatePictureDto.tags));
-        if (this.inMemoryCreatePictureDto.description) formData.append("description", this.inMemoryCreatePictureDto.description);
+      concatMap(() => {
+        const formData = toFormData(this.inMemoryCreatePictureDto as CreatePictureDto);
 
         return this.httpClient.post(this.postPictureUrl, formData).pipe(
-          tap(() => {
+          switchMap(() => {
             this.toastrService.success("Successfully posted a picture");
             this.postDetailsData$.next({});
-            this.router.navigate(['/']);
+            return this.router.navigate(['/']);
           }),
-          catchError((e) => {
-            this.toastrService.error(
-              e.error.errors['Tags'][0] || e.error.errors['DataUrl'][0] || e.error.errors['Description'][0] || e.error.errors['Name'][0],
-              defaultErrorHeading
-            );
-            this.router.navigate(['/add-post']);
-            return of(null); // Return an observable to complete the error handling
+          catchError(() => {
+            this.toastrService.error(defaultErrorHeading);
+            return this.router.navigate(['/add-post']);
           })
         );
       })
