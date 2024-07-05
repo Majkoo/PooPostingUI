@@ -12,6 +12,7 @@ import {NgOptimizedImage} from "@angular/common";
 import {UrlTransformModule} from "./shared/utility/pipes/url-transform/url-transform.module";
 import {MessageService} from "primeng/api";
 import {TokenInterceptorService} from "./shared/utility/interceptors/token-interceptor.service";
+import { EasterEggComponent } from './shared/components/easter-egg/easter-egg.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {TokenInterceptorService} from "./shared/utility/interceptors/token-inter
       LayoutModule,
       NgOptimizedImage,
       UrlTransformModule,
+      EasterEggComponent
     ],
   providers: [
     {
