@@ -4,6 +4,7 @@ import { environment } from '../../../../environments/environment';
 import {Observable, Subject} from 'rxjs';
 import { PictureDto } from '../../../shared/utility/dtos/PictureDto';
 import { PagedResult } from '../../../shared/utility/dtos/PagedResult';
+import {CreatePictureDto, toFormData} from "../../../views/add-post/models/createPictureDto";
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,11 @@ export class PictureService {
 
   getById(id: string): Observable<PictureDto> {
     return this.httpClient.get<PictureDto>(`${this.getPicturesUrl}/${id}`);
+  }
+
+  post(createPictureDto: CreatePictureDto) {
+    const formData = toFormData(createPictureDto as CreatePictureDto);
+    return this.httpClient.post<PictureDto>(`${environment.apiUrl}/picture/post`, formData);
   }
 
   get updatedPicture$(): Observable<PictureDto> {
