@@ -1,7 +1,6 @@
 ﻿import {
   UntypedFormGroup
 } from '@angular/forms';
-import {BlockSpaceOnStartEnd} from "./app/shared/utility/regexes/blockSpaceOnStartEnd";
 
 export class CustomValidators {
   constructor() {}
