@@ -38,6 +38,7 @@ module.exports = {
       shadowColor: theme,
       borderColor: theme,
       gradientColorStops: theme,
+      colors: theme,
       borderWidth: {
         "1": "1px"
       },
