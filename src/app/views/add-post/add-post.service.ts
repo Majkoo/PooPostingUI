@@ -29,20 +29,20 @@ export class AddPostService {
   constructor() {
     this.submitSubject.pipe(
       exhaustMap(() => {
-        this.spinnerService.isLoading = true;
+        this.spinnerService.isLoadingBs.next(true);
         return this.pictureService.post(this.inMemoryCreatePictureDto as CreatePictureDto).pipe(
           switchMap(() => {
             this.toastrService.success("Successfully posted a picture");
             this.inMemoryCreatePictureDto = {};
-            this.spinnerService.isLoading = false;
+            this.spinnerService.isLoadingBs.next(false);
             return this.router.navigate(['/']);
           }),
           catchError(() => {
-            this.spinnerService.isLoading = false;
+            this.spinnerService.isLoadingBs.next(false);
             return of(this.toastrService.error(defaultErrorHeading));
           })
         );
-      }),
+      })
     ).subscribe();
   }
 
