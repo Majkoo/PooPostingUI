@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   appWebUrl: "http://localhost:4200",
-  apiUrl: "https://localhost:5001/api",
+  apiUrl: "https://dev.pooposting.pl/api",
 };
 
 /*
