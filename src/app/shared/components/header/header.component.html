@@ -16,12 +16,10 @@
           <p class="p-2 pr-0 text-xs text-end hidden sm:block">
             Welcome back, <br> <b>{{acc.nickname}}</b>
           </p>
-
           <img
             class="rounded-full w-14 h-14 aspect-square p-2"
             src="{{acc.profilePicUrl | urlTransform}}"
             alt="{{acc.nickname}}"/>
-
         </div>
         <div class="nav-link gap-1"
           routerLink="/admin-page"
@@ -30,8 +28,7 @@
           <img
           class="rounded-full w-14 h-14 aspect-square p-2 cursor-pointer"
           src="/assets/images/adminlogo.png"
-          alt="'admin panel'"
-          (click)="onAdminClick()"/>
+          alt="'admin panel'"/>
         </div>
       </div>
       

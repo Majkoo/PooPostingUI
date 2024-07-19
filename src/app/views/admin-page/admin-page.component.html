@@ -1,1 +1,7 @@
-<pp-table-pagination [entries] = "entries" (newPage)="changePage($event)" (newPageSize)="changePageSize($event)" (sendChecks)="banUsers($event)"></pp-table-pagination>
+<pp-account-table (selectedItems)="recievedIds = $event" #table></pp-account-table>
+<pp-text-button 
+    buttonText="Ban" 
+    class="transition-all" 
+    [ngStyle]="{'opacity' : !recievedIds.length ? '0' : '1'}"
+    (onClick)="banUsers(this.table)">
+</pp-text-button>

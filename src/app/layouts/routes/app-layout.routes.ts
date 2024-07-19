@@ -30,12 +30,6 @@ export const APP_LAYOUT_ROUTES: Routes = [
     loadComponent: () => import('../../views/liked/liked.component')
       .then(m => m.LikedComponent)
   },
-  {
-    path: 'admin-page',
-    canActivate: [isLoggedInGuard],
-    loadComponent: () => import('../../views/admin-page/admin-page.component')
-      .then(m => m.AdminPageComponent)
-  },
   // {
   //   path: "search",
   //   loadChildren: () => import('../view/search/feature/search-shell/search-shell.module')
