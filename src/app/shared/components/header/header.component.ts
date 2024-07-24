@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {AccountDto} from "../../utility/dtos/AccountDto";
 import {AuthService} from "../../../services/api/account/auth.service";
 import {AccountService} from "../../../services/api/account/account.service";
@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   private accountService = inject(AccountService);
 
   account$: Observable<AccountDto> | undefined;
+  roleId : number | undefined
 
   onLogoClick() {
     document.documentElement.scrollTop = 0;
@@ -22,7 +23,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     if (this.authService.isLoggedIn) {
       this.account$ = this.accountService.getMe();
+      this.roleId = this.authService.getJwtData()?.roleId
+      console.log(this.roleId);
+      
     }
   }
-
 }

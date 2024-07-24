@@ -48,12 +48,19 @@ export class AccountService {
       );
   }
 
-  getAccountsPaginated(pageSize: number, pageNumber: number): Observable<PagedResult<AccountDto>>{
-    return this.httpClient
-      .get<PagedResult<AccountDto>>(
-        `${this.accountApiUrl}?PageSize=${pageSize}&pageNumber=${pageNumber}`,
-        {responseType: "json",}
-      );
+  getAccountsPaginated(pageSize: number, pageNumber: number, sortBy : string, sortDirection : string, searchPhrase: string): Observable<PagedResult<AccountDto>>{
+    return searchPhrase == "" ? 
+      this.httpClient
+        .get<PagedResult<AccountDto>>(
+          `${this.accountApiUrl}?PageSize=${pageSize}&pageNumber=${pageNumber}&OrderBy=${sortBy}&Direction=${sortDirection}`,
+          {responseType: "json",}
+        ) 
+    : 
+      this.httpClient
+        .get<PagedResult<AccountDto>>(
+          `${this.accountApiUrl}?SearchPhrase=${searchPhrase}&PageSize=${pageSize}&pageNumber=${pageNumber}&OrderBy=${sortBy}&Direction=${sortDirection}`,
+          {responseType: "json",}
+        );
   }
 
   // searchAccounts(params: HttpParams): Observable<AccountDtoPaged>{

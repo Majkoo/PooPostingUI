@@ -18,7 +18,7 @@ export class AdminPageComponent {
   
   recievedIds : string[] = []
 
-  banUsers(table : AccountTableComponent){
+  banUsers(table : AccountTableComponent){    
     let anyError = false
     for (let x = 0; x < this.recievedIds.length; x++) {
       this.accountService.banUserById(this.recievedIds[x]).pipe(

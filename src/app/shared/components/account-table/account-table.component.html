@@ -1,35 +1,68 @@
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg border px-8 pb-8 bg-white">
+    <div class="py-5 rounded-t-sm border-b flex justify-end">
+        <div class="relative mr-2">
+            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" 
+                    stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+            </div>
+            <input type="text" id="table-search" 
+            class="block py-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500" 
+            placeholder="Search for users" (keyup)="changeSearchPhrase($event)">
+        </div>
+    </div>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-200">
-            <tr>
+        <thead class="text-sm select-none">
+            <tr class="text-gray-700 border-b">
                 <th scope="col" class="p-4">
                     <div class="flex items-center">
-                        <input id="checkbox-all-search" [checked]="checkAllBoxes" #check (change)="checkAllBoxes = check.checked;  checkedEverything(check.checked);" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="checkbox-all-search" [checked]="checkTopBox" #check (change)="checkTopBox = check.checked; checkedEverything(check.checked);" 
+                        type="checkbox" 
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="checkbox-all-search" class="sr-only">checkbox</label>
                     </div>
                 </th>
-                <th scope="col" class="px-4 py-3">
-                    User
+                <th scope="col" class="px-4 py-3 cursor-pointer transition-all" 
+                    [ngClass]="sortBy == 'User' ? 'bg-blue-50 text-blue-700' : 'hover:bg-gray-100'" (click)="changeDirection($event)">
+                    <span class="float-left">User</span>
+                    <span class="float-right" [ngClass]="sortBy == 'User' ? '' : 'hidden'">▼</span>
                 </th>
                 <th scope="col" class="px-4 py-3">
                     Id
                 </th>
-                <th scope="col" class="px-4 py-3">
-                    Role
+                <th scope="col" class="px-4 py-3 cursor-pointer transition-all" 
+                    [ngClass]="sortBy == 'Role' ? 'bg-blue-50 text-blue-700' : 'hover:bg-gray-100'" (click)="changeDirection($event)">
+                    <span class="float-left">Role</span>
+                    <span class="float-right" [ngClass]="sortBy == 'Role' ? '' : 'hidden'">▼</span>
                 </th>
-                <th scope="col" class="px-4 py-3 whitespace-nowrap">
-                    # of posts
+                <th scope="col" class="px-4 py-3 cursor-pointer transition-all whitespace-nowrap" 
+                    [ngClass]="sortBy == '# of posts' ? 'bg-blue-50 text-blue-700' : 'hover:bg-gray-100'" (click)="changeDirection($event)">
+                    <span class="float-left"># of posts</span>
+                    <span class="float-right" [ngClass]="sortBy == '# of posts' ? '' : 'hidden'">▼</span>
                 </th>
-                <th scope="col" class="px-4 py-3">
-                    Date of join
+                <th scope="col" class="px-4 py-3 cursor-pointer transition-all"  
+                    [ngClass]="sortBy == 'Date of join' ? 'bg-blue-50 text-blue-700' : 'hover:bg-gray-100'" (click)="changeDirection($event)">
+                    <span class="float-left">Date of join</span>
+                    <span class="float-right" [ngClass]="sortBy == 'Date of join' ? '' : 'hidden'">▼</span>
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b hover:bg-gray-50" *ngFor="let entry of entries.items">
+            <tr class="bg-white border-b" [ngClass]="PageData.totalPages == 0 ? '' : 'hidden'">
+                <th scope="row" class="px-4 py-4 font-medium text-gray-900 whitespace-nowrap text-center" colspan="6">
+                    No results :C
+                </th>
+            </tr>
+            <tr class="bg-white border-b hover:bg-gray-50" *ngFor="let entry of PageData.items">
                 <td class="w-4 p-4">
                     <div class="flex items-center">
-                        <input id="checkbox-table-search-1" (change)="checkedEntry(entry.id);" [checked]="this.checked.includes(entry.id)" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <input id="checkbox-table-search-1" (change)="checkedEntry(entry.id);" 
+                        [checked]="this.checkedBoxes.includes(entry.id)" type="checkbox" 
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                         <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                     </div>
                 </td>
@@ -51,81 +84,60 @@
             </tr>
         </tbody>
     </table>
-    <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between" aria-label="Table PageSize">
-        <span class="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto p-4">Change Page Size</span>
-        <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8 pr-4">
+    <nav class="flex flex-column flex-wrap md:flex-row justify-between bg-white border-b" aria-label="Table navigation">
+        <span class="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto p-4">Showing <span class="font-semibold text-gray-900">
+            {{((PageData.page-1) * PageData.pageSize) + 1 + "-" + (((PageData.page)*PageData.pageSize) < PageData.totalItems ? ((PageData.page)*PageData.pageSize) : PageData.totalItems)}}</span> of <span class="font-semibold text-gray-900">{{PageData.totalItems}}
+            </span></span>
+        <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8 pr-4 my-2.5">
             <li>
-                <div (click)="changePageSize(5)" 
-                [ngClass]="entries.pageSize == 5 ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight rounded-s-lg">5</div>
+                <div (click)="PageData.page != 1 ? changePage(1) : ''"
+                class="select-none flex items-center rounded-lg ml-1 cursor-pointer justify-center px-3 h-8 leading-tight text-gray-500 bg-white hover:bg-gray-200 hover:text-gray-700"
+                [ngClass]="PageData.page != 1 ? '' : 'cursor-auto text-gray-300 bg-white hover:bg-white hover:text-gray-300'">&#x3C;&#x3C;</div>
             </li>
             <li>
-                <div (click)="changePageSize(6)" 
-                [ngClass]="entries.pageSize == 6 ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight">6</div>
+                <div (click)="PageData.page != 1 ? changePage(PageData.page - 1) : ''"
+                class="select-none flex items-center rounded-lg ml-1 cursor-pointer justify-center px-3 h-8 leading-tight text-gray-500 bg-white hover:bg-gray-200 hover:text-gray-700"
+                [ngClass]="PageData.page != 1 ? '' : 'cursor-auto text-gray-300 bg-white hover:bg-white hover:text-gray-300'">&#x3C;</div>
+            </li>
+            <li [ngClass]="PageData.totalPages == 0 ? 'hidden' : ''">
+                <div (click)="changePage(PageData.page < 3 || PageData.totalPages < 5 ? 1 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-4 : PageData.page-2))" 
+                [ngClass]="PageData.page == 1 ? 'text-blue-700 bg-blue-50 hover:text-blue-700': 'text-gray-500 bg-white hover:bg-gray-200 hover:text-gray-700'" 
+                class="select-none flex items-center rounded-lg ml-1 cursor-pointer justify-center px-3 h-8 leading-tight">
+                {{PageData.page < 3 || PageData.totalPages < 5 ? 1 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-4 : PageData.page-2)}}</div>
+            </li>
+            <li [ngClass]="PageData.totalPages < 2 ? 'hidden' : ''">
+                <div (click)="changePage(PageData.page < 3 || PageData.totalPages < 5 ? 2 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-3 : PageData.page-1))" 
+                [ngClass]="PageData.page == 2 ? 'text-blue-700 bg-blue-50 hover:text-blue-700': 'text-gray-500 bg-white hover:bg-gray-200 hover:text-gray-700'" 
+                class="select-none flex items-center rounded-lg ml-1 cursor-pointer justify-center px-3 h-8 leading-tight">{{PageData.page < 3 || PageData.totalPages < 5 ? 2 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-3 : PageData.page-1)}}</div>
+            </li>
+            <li [ngClass]="PageData.totalPages < 3 ? 'hidden' : ''">
+                <div (click)="changePage(PageData.page < 3 || PageData.totalPages < 5 ? 3 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-2 : PageData.page))" 
+                [ngClass]="PageData.page > 2 && PageData.page < PageData.totalPages-1 || PageData.totalPages < 5 && PageData.page == 3 ? 'text-blue-700 bg-blue-50 hover:text-blue-700': 'text-gray-500 bg-white hover:bg-gray-200 hover:text-gray-700'" 
+                class="select-none flex items-center rounded-lg ml-1 cursor-pointer justify-center px-3 h-8 leading-tight">{{PageData.page < 3 || PageData.totalPages < 5 ? 3 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-2 : PageData.page)}}</div>
+            </li>
+            <li [ngClass]="PageData.totalPages < 4 ? 'hidden' : ''">
+                <div (click)="changePage(PageData.page < 3 || PageData.totalPages < 5 ? 4 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-1 : PageData.page+1))" 
+                [ngClass]="PageData.page == PageData.totalPages-1 && PageData.page != 3 || PageData.totalPages < 5 && PageData.page == 4 ? 'text-blue-700 bg-blue-50 hover:text-blue-700': 'text-gray-500 bg-white hover:bg-gray-200 hover:text-gray-700'" 
+                class="select-none flex items-center rounded-lg ml-1 cursor-pointer justify-center px-3 h-8 leading-tight">{{PageData.page < 3 || PageData.totalPages < 5 ? 4 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-1 : PageData.page+1)}}</div>
+            </li>
+            <li [ngClass]="PageData.totalPages < 5 ? 'hidden' : ''">
+                <div (click)="changePage(PageData.page < 4 || PageData.totalPages < 5 ? 5 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages : PageData.page+2))" 
+                [ngClass]="PageData.page == PageData.totalPages ? 'text-blue-700 bg-blue-50 hover:text-blue-700': 'text-gray-500 bg-white hover:bg-gray-200 hover:text-gray-700'" 
+                class="select-none flex items-center rounded-lg ml-1 cursor-pointer justify-center px-3 h-8 leading-tight">{{PageData.page < 4 || PageData.totalPages < 5 ? 5 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages : PageData.page+2)}}</div>
             </li>
             <li>
-                <div (click)="changePageSize(7)" 
-                [ngClass]="entries.pageSize == 7 ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight">7</div>
+                <div (click)="PageData.page != PageData.totalPages && PageData.totalPages != 0 ? changePage(PageData.page + 1) : ''"
+                class="select-none flex items-center rounded-lg ml-1 cursor-pointer justify-center px-3 h-8 leading-tight text-gray-500 bg-white hover:bg-gray-200 hover:text-gray-700"
+                [ngClass]="PageData.page != PageData.totalPages && PageData.totalPages != 0 ? '' : 'cursor-auto text-gray-300 bg-white hover:bg-white hover:text-gray-300'">></div>
             </li>
             <li>
-                <div (click)="changePageSize(8)" 
-                [ngClass]="entries.pageSize == 8 ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight">8</div>
+                <div (click)="PageData.page != PageData.totalPages && PageData.totalPages != 0 ? changePage(PageData.totalPages) : ''"
+                class="select-none flex items-center rounded-lg ml-1 cursor-pointer justify-center px-3 h-8 leading-tight text-gray-500 bg-white hover:bg-gray-200 hover:text-gray-700"
+                [ngClass]="PageData.page != PageData.totalPages && PageData.totalPages != 0 ? '' : 'cursor-auto text-gray-300 bg-white hover:bg-white hover:text-gray-300'">>></div>
             </li>
-            <li>
-                <div (click)="changePageSize(10)" 
-                [ngClass]="entries.pageSize == 10 ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight">10</div>
-            </li>
-            <li>
-                <div (click)="changePageSize(15)" 
-                [ngClass]="entries.pageSize == 15 ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight">15</div>
-            </li>
-            <li>
-                <div (click)="changePageSize(20)" 
-                [ngClass]="entries.pageSize == 20 ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight rounded-e-lg">20</div>
-            </li>
-        </ul>
-    </nav>
-    <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between" aria-label="Table navigation">
-        <span class="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto p-4">Showing <span class="font-semibold text-gray-900">{{((entries.page-1) * entries.pageSize) + 1 + "-" + (((entries.page)*entries.pageSize) < entries.totalItems ? ((entries.page)*entries.pageSize) : entries.totalItems)}}</span> of <span class="font-semibold text-gray-900">{{entries.totalItems}}</span></span>
-        <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8 pr-4">
-            <li>
-                <div (click)="changePage(1)" class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">First</div>
-            </li>
-            <li>
-                <div (click)="changePage(entries.page > 2 ? entries.page-2 : 1)" 
-                [ngClass]="entries.page == 1 ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight">{{entries.page < 3 ? 1 : (entries.page > entries.totalPages-2 ? entries.totalPages-4 : entries.page-2)}}</div>
-            </li>
-            <li>
-                <div (click)="changePage(entries.page < 3 ? 2 : (entries.page > entries.totalPages-2 ? entries.totalPages-3 : entries.page-1))" 
-                [ngClass]="entries.page == 2 ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight">{{entries.page < 3 ? 2 : (entries.page > entries.totalPages-2 ? entries.totalPages-3 : entries.page-1)}}</div>
-            </li>
-            <li>
-                <div (click)="changePage(entries.page < 3 ? 3 : (entries.page > entries.totalPages-2 ? entries.totalPages-2 : entries.page))" 
-                [ngClass]="entries.page > 2 && entries.page < entries.totalPages-1 ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight">{{entries.page < 3 ? 3 : (entries.page > entries.totalPages-2 ? entries.totalPages-2 : entries.page)}}</div>
-            </li>
-            <li>
-                <div (click)="changePage(entries.page < 3 ? 4 : (entries.page > entries.totalPages-2 ? entries.totalPages-1 : entries.page+1))" 
-                [ngClass]="entries.page == entries.totalPages-1 ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight">{{entries.page < 3 ? 4 : (entries.page > entries.totalPages-2 ? entries.totalPages-1 : entries.page+1)}}</div>
-            </li>
-            <li>
-                <div (click)="changePage(entries.page < 4 ? 5 : (entries.page > entries.totalPages-2 ? entries.totalPages : entries.page+2))" 
-                [ngClass]="entries.page == entries.totalPages ? 'text-blue-700 border border-gray-300 bg-blue-50 hover:text-blue-700 hover:bg-blue-100': 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight">{{entries.page < 4 ? 5 : (entries.page > entries.totalPages-2 ? entries.totalPages : entries.page+2)}}</div>
-            </li>
-            <li>
-                <div (click)="changePage(entries.totalPages)" 
-                class="select-none flex items-center cursor-pointer justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">Last</div>
-            </li>
+            <select class="p-1 border border-gray-300 rounded-lg outline-none text-gray-500 h-8 text-sm" (change)="changePageSize($event)">
+                <option *ngFor="let size of [5,6,7,8,10,15,20]">{{size}}</option>
+            </select>
         </ul>
     </nav>
 </div>

@@ -19,25 +19,35 @@ export class AccountTableComponent {
     private cdr: ChangeDetectorRef
   ) {}
 
-  entries: PagedResult<AccountDto> = {
+  PageData: PagedResult<AccountDto> = {
     items: [],
     totalPages: 0,
     totalItems: 0,
-    pageSize: 10,
+    pageSize: 5,
     page: 1
   }
 
+  private sortByNameMap: { [key: string]: string } = {
+    'Role': 'roleId',
+    'User': 'nickname',
+    '# of posts': 'pictureCount',
+    'Date of join': 'accountCreated'
+  };
+
+  sortBy: string = "Date of join"
+  sortDirection: string = "desc"
+  searchPhrase: string = ""
+
   @Output() selectedItems = new EventEmitter<string[]>();
-  checkAllBoxes : boolean = false
-  checked: string[] = []
-  pages: number[] = []
+  checkTopBox : boolean = false
+  checkedBoxes: string[] = []
   
   private accountService = inject(AccountService);
 
   refresh(){
     this.clearChecks()
-    this.changePage(this.entries.page)
-    this.selectedItems.emit(this.checked);
+    this.changePage(this.PageData.page)
+    this.selectedItems.emit(this.checkedBoxes);
   }
 
   ngOnInit(){
@@ -45,40 +55,57 @@ export class AccountTableComponent {
   }
 
   changePage(page: number){
-    this.accountService.getAccountsPaginated(this.entries.pageSize, page).pipe(
-      tap((list: PagedResult<AccountDto>) => (this.entries = list, 
-        this.entries.items.forEach(entry => entry.accountCreated = entry.accountCreated.split("T")[0]), 
-        this.entries.page > this.entries.totalPages ? this.changePage(this.entries.totalPages) : this.cdr.detectChanges())),
+    this.accountService.getAccountsPaginated(this.PageData.pageSize, page, this.sortByNameMap[this.sortBy], this.sortDirection, this.searchPhrase).pipe(
+      tap((list: PagedResult<AccountDto>) => (this.PageData = list, 
+        this.PageData.items.forEach(entry => entry.accountCreated = entry.accountCreated.split("T")[0]), 
+        this.PageData.totalPages === 0 || this.PageData.page <= this.PageData.totalPages ? this.cdr.detectChanges() : this.changePage(1))),
       catchError(() => this.router.navigate([""], {queryParams: null}))
     )
     .subscribe();
   }
 
-  changePageSize(pageSize: number){
-    this.entries.pageSize = pageSize
-    this.changePage(this.entries.page)
+  changePageSize(event : Event){
+    let option = event.target as HTMLSelectElement
+    this.PageData.pageSize = parseInt(option.value)
+    this.changePage(this.PageData.page)
     this.clearChecks()
   }
 
   checkedEntry(id : string){
-    let index = this.checked.indexOf(id)
-    index == -1 ? this.checked.push(id) : this.checked.splice(index, 1)
-    this.checkAllBoxes = this.checked.length == this.entries.pageSize;
-    this.selectedItems.emit(this.checked);
+    let index = this.checkedBoxes.indexOf(id)
+    index == -1 ? this.checkedBoxes.push(id) : this.checkedBoxes.splice(index, 1)
+    this.checkTopBox = this.checkedBoxes.length == this.PageData.pageSize;
+    this.selectedItems.emit(this.checkedBoxes);
   }
 
   checkedEverything(check : boolean){
-    this.checked = []
+    this.checkedBoxes = []
     if(check){
-      this.entries.items.forEach(item => {
-        this.checked.push(item.id)
+      this.PageData.items.forEach(item => {
+        this.checkedBoxes.push(item.id)
       })
     }
-    this.selectedItems.emit(this.checked);
+    this.selectedItems.emit(this.checkedBoxes);
   }
 
   clearChecks(){
-    this.checked = []
-    this.checkAllBoxes = false
+    this.checkedBoxes = []
+    this.checkTopBox = false
+  }
+
+  changeDirection(event : MouseEvent){
+    let targetElement = event.currentTarget as HTMLElement;
+    let lastChild = targetElement.lastElementChild;
+
+    this.sortBy = targetElement.firstElementChild!.innerHTML
+    console.log(this.sortBy);
+    
+    lastChild!.innerHTML == "▼" ? (lastChild!.innerHTML = "▲", this.sortDirection = "asc") : (lastChild!.innerHTML = "▼", this.sortDirection = "desc")
+    this.changePage(this.PageData.page)
+  }
+
+  changeSearchPhrase(event){
+    this.searchPhrase = event.target!.value
+    this.changePage(this.PageData.page)
   }
 }

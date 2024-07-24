@@ -28,6 +28,7 @@
           <img
           class="rounded-full w-14 h-14 aspect-square p-2 cursor-pointer"
           src="/assets/images/adminlogo.png"
+          [ngClass]="roleId == 1 ? 'hidden' : ''"
           alt="'admin panel'"/>
         </div>
       </div>
