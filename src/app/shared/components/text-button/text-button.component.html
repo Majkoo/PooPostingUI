@@ -1,5 +1,6 @@
 <div 
-    class="w-32 h-16 fixed left-1/2 bottom-20 bg-slate-400 rounded-xl flex items-center justify-center text-4xl button cursor-pointer select-none"
-    (click)="onClick.emit();">
+    class="w-32 h-16 fixed left-1/2 bottom-20 bg-surface-300 rounded-xl flex items-center justify-center text-4xl button cursor-pointer select-none transition-all"
+    (click)="onClick.emit();"
+    [ngClass]="disappear == 'true' ? 'opacity-0 cursor-auto' : 'opacity-100'">
     {{buttonText}}
 </div>

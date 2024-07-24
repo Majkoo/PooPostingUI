@@ -29,6 +29,4 @@ export class AdminPageComponent {
     }
     if (!anyError) {this.toastrService.success("Slut")}
   }
-
-
 }

@@ -2,6 +2,6 @@
 <pp-text-button 
     buttonText="Ban" 
     class="transition-all" 
-    [ngStyle]="{'opacity' : !recievedIds.length ? '0' : '1'}"
+    disappear={{!this.recievedIds.length}}
     (onClick)="!recievedIds.length ? '' : banUsers(this.table)">
 </pp-text-button>
