@@ -26,8 +26,8 @@ export class AccountTableComponent {
     pageSize: 5,
     page: 1
   }
-
-  private sortByNameMap: { [key: string]: string } = {
+  
+  private mapPropertyNamesToDisplayNames: { [key: string]: string } = {
     'Role': 'roleId',
     'User': 'nickname',
     '# of posts': 'pictureCount',
@@ -55,7 +55,7 @@ export class AccountTableComponent {
   }
 
   changePage(page: number){
-    this.accountService.getAccountsPaginated(this.PageData.pageSize, page, this.sortByNameMap[this.sortBy], this.sortDirection, this.searchPhrase).pipe(
+    this.accountService.getAccountsPaginated(this.PageData.pageSize, page, this.mapPropertyNamesToDisplayNames[this.sortBy], this.sortDirection, this.searchPhrase).pipe(
       tap((list: PagedResult<AccountDto>) => (this.PageData = list, 
         this.PageData.items.forEach(entry => entry.accountCreated = entry.accountCreated.split("T")[0]), 
         this.PageData.totalPages === 0 || this.PageData.page <= this.PageData.totalPages ? this.cdr.detectChanges() : this.changePage(1))),
@@ -71,14 +71,14 @@ export class AccountTableComponent {
     this.clearChecks()
   }
 
-  checkedEntry(id : string){
+  checkEntry(id : string){
     let index = this.checkedBoxes.indexOf(id)
     index == -1 ? this.checkedBoxes.push(id) : this.checkedBoxes.splice(index, 1)
     this.checkTopBox = this.checkedBoxes.length == this.PageData.pageSize;
     this.selectedItems.emit(this.checkedBoxes);
   }
 
-  checkedEverything(check : boolean){
+  checkEverything(check : boolean){
     this.checkedBoxes = []
     if(check){
       this.PageData.items.forEach(item => {

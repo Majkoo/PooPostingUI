@@ -11,10 +11,13 @@ theme = {
     '800': '#5A3F29',
     '900': '#372719'
   },
+  'lightGrey': '#DBDBDB',
   'grey': '#A0A0A0',
   'cta': '#2B94A6',
   'warning': '#D32F2F',
   'dark': '#1E1E1E',
+  'lightBlue': '#EFF6FF',
+  'blue': '#1D4ED8',
 }
 
 module.exports = {
