@@ -6,7 +6,7 @@ theme = {
     '200': '#FBFBFB',
     '300': '#f1f1f1',
     '400': '#EDEDED',
-    '500': "#DBDBDB"
+    '500': "#DBDBDB",
   },
   'primary': {
     '800': '#5A3F29',
