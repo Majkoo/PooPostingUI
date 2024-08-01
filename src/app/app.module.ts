@@ -14,6 +14,7 @@ import {MessageService} from "primeng/api";
 import {TokenInterceptorService} from "./shared/utility/interceptors/token-interceptor.service";
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { EasterEggComponent } from './shared/components/easter-egg/easter-egg.component';
+import { TextButtonComponent } from './shared/components/text-button/text-button.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { EasterEggComponent } from './shared/components/easter-egg/easter-egg.co
       LayoutModule,
       NgOptimizedImage,
       UrlTransformModule,
+      TextButtonComponent,
       EasterEggComponent
     ],
   providers: [

@@ -12,6 +12,7 @@ import {ToastModule} from "primeng/toast";
 import {provideToastr} from "ngx-toastr";
 import {DialogService} from "primeng/dynamicdialog";
 import {UrlTransformModule} from "../shared/utility/pipes/url-transform/url-transform.module";
+import { TableLayoutComponent } from './table-layout/table-layout.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {UrlTransformModule} from "../shared/utility/pipes/url-transform/url-tran
     AuthLayoutComponent,
     ErrorLayoutComponent,
     HeaderComponent,
-    NavComponent
+    NavComponent,
+    TableLayoutComponent
   ],
     imports: [
       CommonModule,

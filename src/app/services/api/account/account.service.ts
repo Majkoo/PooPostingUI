@@ -32,12 +32,35 @@ export class AccountService {
       );
   }
 
+  banUserById(id: string): Observable<AccountDto>{
+    return this.httpClient
+      .delete<AccountDto>(
+        `${this.accountApiUrl}/${id}`,
+        {responseType: "json",}
+      );
+  }
+
   getPicturesById(id: string, pageSize: number, pageNumber: number): Observable<PagedResult<PictureDto>>{
     return this.httpClient
       .get<PagedResult<PictureDto>>(
         `${this.accountApiUrl}/${id}/picture?pageSize=${pageSize}&pageNumber=${pageNumber}`,
         {responseType: "json",}
       );
+  }
+
+  getAccountsPaginated(pageSize: number, pageNumber: number, sortBy : string, sortDirection : string, searchPhrase: string): Observable<PagedResult<AccountDto>>{
+    return searchPhrase == "" ? 
+      this.httpClient
+        .get<PagedResult<AccountDto>>(
+          `${this.accountApiUrl}?PageSize=${pageSize}&pageNumber=${pageNumber}&OrderBy=${sortBy}&Direction=${sortDirection}`,
+          {responseType: "json",}
+        ) 
+    : 
+      this.httpClient
+        .get<PagedResult<AccountDto>>(
+          `${this.accountApiUrl}?SearchPhrase=${searchPhrase}&PageSize=${pageSize}&pageNumber=${pageNumber}&OrderBy=${sortBy}&Direction=${sortDirection}`,
+          {responseType: "json",}
+        );
   }
 
   // searchAccounts(params: HttpParams): Observable<AccountDtoPaged>{

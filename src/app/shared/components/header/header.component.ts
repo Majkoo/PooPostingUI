@@ -24,5 +24,4 @@ export class HeaderComponent implements OnInit {
       this.account$ = this.accountService.getMe();
     }
   }
-
 }
