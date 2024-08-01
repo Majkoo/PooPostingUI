@@ -10,7 +10,7 @@
                 </svg>
             </div>
             <input type="text" id="table-search" 
-            class="block py-2 ps-10 text-sm text-dark border border-grey rounded-lg w-80 bg-surface-200 focus:ring-lightBlue0 focus:border-lightBlue0" 
+            class="block py-2 ps-10 text-sm text-dark border border-grey rounded-lg w-80 bg-surface-200 focus:ring-cta-1000 focus:border-cta-1000" 
             placeholder="Search for users" (keyup)="changeSearchPhrase($event)">
         </div>
     </div>
@@ -21,32 +21,32 @@
                     <div class="flex items-center">
                         <input id="checkbox-all-search" [checked]="checkTopBox" #check (change)="checkTopBox = check.checked; checkEverything(check.checked);" 
                         type="checkbox" 
-                        class="w-4 h-4 text-blue bg-surface-300 border-grey rounded focus:ring-blue">
+                        class="w-4 h-4 text-cta-200 bg-surface-300 border-grey rounded focus:ring-cta-200">
                         <label for="checkbox-all-search" class="sr-only">checkbox</label>
                     </div>
                 </th>
                 <th scope="col" class="px-4 py-3 cursor-pointer transition-all" 
-                    [ngClass]="sortBy == 'User' ? 'bg-lightBlue text-blue' : 'hover:bg-surface-300'" (click)="changeDirection($event)">
+                    [ngClass]="sortBy == 'User' ? 'bg-cta-100 text-cta-200' : 'hover:bg-surface-300'" (click)="changeDirection()">
                     <span class="float-left">User</span>
-                    <span class="float-right" [ngClass]="sortBy == 'User' ? '' : 'hidden'">▼</span>
+                    <span class="float-right" [ngClass]="sortBy == 'User' ? '' : 'hidden'">{{sortDirection == "desc" ? "▼" : "▲"}}</span>
                 </th>
                 <th scope="col" class="px-4 py-3">
                     Id
                 </th>
                 <th scope="col" class="px-4 py-3 cursor-pointer transition-all" 
-                    [ngClass]="sortBy == 'Role' ? 'bg-lightBlue text-blue' : 'hover:bg-surface-300'" (click)="changeDirection($event)">
+                    [ngClass]="sortBy == 'Role' ? 'bg-cta-100 text-cta-200' : 'hover:bg-surface-300'" (click)="changeDirection()">
                     <span class="float-left">Role</span>
-                    <span class="float-right" [ngClass]="sortBy == 'Role' ? '' : 'hidden'">▼</span>
+                    <span class="float-right" [ngClass]="sortBy == 'Role' ? '' : 'hidden'">{{sortDirection == "desc" ? "▼" : "▲"}}</span>
                 </th>
                 <th scope="col" class="px-4 py-3 cursor-pointer transition-all whitespace-nowrap" 
-                    [ngClass]="sortBy == '# of posts' ? 'bg-lightBlue text-blue' : 'hover:bg-surface-300'" (click)="changeDirection($event)">
+                    [ngClass]="sortBy == '# of posts' ? 'bg-cta-100 text-cta-200' : 'hover:bg-surface-300'" (click)="changeDirection()">
                     <span class="float-left"># of posts</span>
-                    <span class="float-right" [ngClass]="sortBy == '# of posts' ? '' : 'hidden'">▼</span>
+                    <span class="float-right" [ngClass]="sortBy == '# of posts' ? '' : 'hidden'">{{sortDirection == "desc" ? "▼" : "▲"}}</span>
                 </th>
                 <th scope="col" class="px-4 py-3 cursor-pointer transition-all"  
-                    [ngClass]="sortBy == 'Date of join' ? 'bg-lightBlue text-blue' : 'hover:bg-surface-300'" (click)="changeDirection($event)">
+                    [ngClass]="sortBy == 'Date of join' ? 'bg-cta-100 text-cta-200' : 'hover:bg-surface-300'" (click)="changeDirection()">
                     <span class="float-left">Date of join</span>
-                    <span class="float-right" [ngClass]="sortBy == 'Date of join' ? '' : 'hidden'">▼</span>
+                    <span class="float-right" [ngClass]="sortBy == 'Date of join' ? '' : 'hidden'">{{sortDirection == "desc" ? "▼" : "▲"}}</span>
                 </th>
             </tr>
         </thead>
@@ -61,7 +61,7 @@
                     <div class="flex items-center">
                         <input id="checkbox-table-search-1" (change)="checkEntry(entry.id);" 
                         [checked]="this.checkedBoxes.includes(entry.id)" type="checkbox" 
-                        class="w-4 h-4 text-blue bg-surface-300 border-grey rounded focus:ring-blue">
+                        class="w-4 h-4 text-cta-200 bg-surface-300 border-grey rounded focus:ring-cta-200">
                         <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                     </div>
                 </td>
@@ -91,48 +91,48 @@
             <li>
                 <div (click)="PageData.page != 1 ? changePage(1) : ''"
                 class="select-none flex items-center rounded-lg cursor-pointer justify-center px-3 h-8 leading-tight text-dark bg-surface-100 hover:text-dark"
-                [ngClass]="PageData.page != 1 ? 'hover:bg-surface-300' : 'cursor-auto text-lightGrey hover:bg-surface-100 hover:text-lightGrey'">&#x3C;&#x3C;</div>
+                [ngClass]="PageData.page != 1 ? 'hover:bg-surface-300' : 'cursor-auto text-surface-500 hover:bg-surface-100 hover:text-surface-500'">&#x3C;&#x3C;</div>
             </li>
             <li>
                 <div (click)="PageData.page != 1 ? changePage(PageData.page - 1) : ''"
                 class="select-none flex items-center rounded-lg cursor-pointer justify-center px-3 h-8 leading-tight text-dark bg-surface-100 hover:text-dark"
-                [ngClass]="PageData.page != 1 ? 'hover:bg-surface-300' : 'cursor-auto text-lightGrey hover:bg-surface-100 hover:text-lightGrey'">&#x3C;</div>
+                [ngClass]="PageData.page != 1 ? 'hover:bg-surface-300' : 'cursor-auto text-surface-500 hover:bg-surface-100 hover:text-surface-500'">&#x3C;</div>
             </li>
             <li [ngClass]="PageData.totalPages == 0 ? 'hidden' : ''">
                 <div (click)="changePage(PageData.page < 3 || PageData.totalPages < 5 ? 1 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-4 : PageData.page-2))" 
-                [ngClass]="PageData.page == 1 ? 'text-blue bg-lightBlue hover:text-blue': 'text-dark bg-surface-100 hover:bg-surface-200 hover:text-dark'" 
+                [ngClass]="PageData.page == 1 ? 'text-cta-200 bg-cta-100 hover:text-cta-200': 'text-dark bg-surface-100 hover:bg-surface-200 hover:text-dark'" 
                 class="select-none flex items-center rounded-lg cursor-pointer justify-center px-3 h-8 leading-tight">
                 {{PageData.page < 3 || PageData.totalPages < 5 ? 1 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-4 : PageData.page-2)}}</div>
             </li>
             <li [ngClass]="PageData.totalPages < 2 ? 'hidden' : ''">
                 <div (click)="changePage(PageData.page < 3 || PageData.totalPages < 5 ? 2 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-3 : PageData.page-1))" 
-                [ngClass]="PageData.page == 2 ? 'text-blue bg-lightBlue hover:text-blue': 'text-dark bg-surface-100 hover:bg-surface-200 hover:text-dark'" 
+                [ngClass]="PageData.page == 2 ? 'text-cta-200 bg-cta-100 hover:text-cta-200': 'text-dark bg-surface-100 hover:bg-surface-200 hover:text-dark'" 
                 class="select-none flex items-center rounded-lg cursor-pointer justify-center px-3 h-8 leading-tight">{{PageData.page < 3 || PageData.totalPages < 5 ? 2 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-3 : PageData.page-1)}}</div>
             </li>
             <li [ngClass]="PageData.totalPages < 3 ? 'hidden' : ''">
                 <div (click)="changePage(PageData.page < 3 || PageData.totalPages < 5 ? 3 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-2 : PageData.page))" 
-                [ngClass]="PageData.page > 2 && PageData.page < PageData.totalPages-1 || PageData.totalPages < 5 && PageData.page == 3 ? 'text-blue bg-lightBlue hover:text-blue': 'text-dark bg-surface-100 hover:bg-surface-200 hover:text-dark'" 
+                [ngClass]="PageData.page > 2 && PageData.page < PageData.totalPages-1 || PageData.totalPages < 5 && PageData.page == 3 ? 'text-cta-200 bg-cta-100 hover:text-cta-200': 'text-dark bg-surface-100 hover:bg-surface-200 hover:text-dark'" 
                 class="select-none flex items-center rounded-lg cursor-pointer justify-center px-3 h-8 leading-tight">{{PageData.page < 3 || PageData.totalPages < 5 ? 3 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-2 : PageData.page)}}</div>
             </li>
             <li [ngClass]="PageData.totalPages < 4 ? 'hidden' : ''">
                 <div (click)="changePage(PageData.page < 3 || PageData.totalPages < 5 ? 4 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-1 : PageData.page+1))" 
-                [ngClass]="PageData.page == PageData.totalPages-1 && PageData.page != 3 || PageData.totalPages < 5 && PageData.page == 4 ? 'text-blue bg-lightBlue hover:text-blue': 'text-dark bg-surface-100 hover:bg-surface-200 hover:text-dark'" 
+                [ngClass]="PageData.page == PageData.totalPages-1 && PageData.page != 3 || PageData.totalPages < 5 && PageData.page == 4 ? 'text-cta-200 bg-cta-100 hover:text-cta-200': 'text-dark bg-surface-100 hover:bg-surface-200 hover:text-dark'" 
                 class="select-none flex items-center rounded-lg cursor-pointer justify-center px-3 h-8 leading-tight">{{PageData.page < 3 || PageData.totalPages < 5 ? 4 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages-1 : PageData.page+1)}}</div>
             </li>
             <li [ngClass]="PageData.totalPages < 5 ? 'hidden' : ''">
                 <div (click)="changePage(PageData.page < 4 || PageData.totalPages < 5 ? 5 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages : PageData.page+2))" 
-                [ngClass]="PageData.page == PageData.totalPages ? 'text-blue bg-lightBlue hover:text-blue': 'text-dark bg-surface-100 hover:bg-surface-200 hover:text-dark'" 
+                [ngClass]="PageData.page == PageData.totalPages ? 'text-cta-200 bg-cta-100 hover:text-cta-200': 'text-dark bg-surface-100 hover:bg-surface-200 hover:text-dark'" 
                 class="select-none flex items-center rounded-lg cursor-pointer justify-center px-3 h-8 leading-tight">{{PageData.page < 4 || PageData.totalPages < 5 ? 5 : (PageData.page > PageData.totalPages-2 ? PageData.totalPages : PageData.page+2)}}</div>
             </li>
             <li>
                 <div (click)="PageData.page != PageData.totalPages && PageData.totalPages != 0 ? changePage(PageData.page + 1) : ''"
                 class="select-none flex items-center rounded-lg cursor-pointer justify-center px-3 h-8 leading-tight text-dark bg-surface-100 hover:text-dark"
-                [ngClass]="PageData.page != PageData.totalPages && PageData.totalPages != 0 ? 'hover:bg-surface-300' : 'cursor-auto text-lightGrey hover:bg-surface-100 hover:text-lightGrey'">></div>
+                [ngClass]="PageData.page != PageData.totalPages && PageData.totalPages != 0 ? 'hover:bg-surface-300' : 'cursor-auto text-surface-500 hover:bg-surface-100 hover:text-surface-500'">></div>
             </li>
             <li>
                 <div (click)="PageData.page != PageData.totalPages && PageData.totalPages != 0 ? changePage(PageData.totalPages) : ''"
                 class="select-none flex items-center rounded-lg cursor-pointer justify-center px-3 h-8 leading-tight text-dark bg-surface-100 hover:text-dark"
-                [ngClass]="PageData.page != PageData.totalPages && PageData.totalPages != 0 ? 'hover:bg-surface-300' : 'cursor-auto text-lightGrey hover:bg-surface-100 hover:text-lightGrey'">>></div>
+                [ngClass]="PageData.page != PageData.totalPages && PageData.totalPages != 0 ? 'hover:bg-surface-300' : 'cursor-auto text-surface-500 hover:bg-surface-100 hover:text-surface-500'">>></div>
             </li>
             <select class="p-1 ml-3 border border-grey rounded-lg outline-none text-dark h-8 text-sm" (change)="changePageSize($event)">
                 <option *ngFor="let size of [5,6,7,8,10,15,20]">{{size}}</option>

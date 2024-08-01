@@ -93,14 +93,8 @@ export class AccountTableComponent {
     this.checkTopBox = false
   }
 
-  changeDirection(event : MouseEvent){
-    let targetElement = event.currentTarget as HTMLElement;
-    let lastChild = targetElement.lastElementChild;
-
-    this.sortBy = targetElement.firstElementChild!.innerHTML
-    console.log(this.sortBy);
-    
-    lastChild!.innerHTML == "▼" ? (lastChild!.innerHTML = "▲", this.sortDirection = "asc") : (lastChild!.innerHTML = "▼", this.sortDirection = "desc")
+  changeDirection(){
+    this.sortDirection == "desc" ? this.sortDirection = "asc" : this.sortDirection = "desc"
     this.changePage(this.PageData.page)
   }
 
