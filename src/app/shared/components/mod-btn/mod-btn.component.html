@@ -1,0 +1,24 @@
+<div class="flex">
+  <button
+    [disabled]="!isAdmin"
+    [ngClass]="{
+      cssClass: true,
+      'm-0 icon-red': true,
+      'cursor-pointer': isAdmin,
+      'icon-hammer': isAdmin,
+    }"
+    (click)="banUser()"
+  >
+  </button>
+  <button
+    [disabled]="!isAdmin"
+    [ngClass]="{
+      cssClass: true,
+      'm-0 icon-red': true,
+      'cursor-pointer': isAdmin,
+      'icon-trash': isAdmin,
+    }"
+    (click)="deleteImage()"
+  >
+  </button>
+</div>

@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     if (this.authService.isLoggedIn) {
       this.account$ = this.accountService.getMe();
+      
     }
   }
 }

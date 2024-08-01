@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {PictureDtoPaged} from "../../shared/utility/dtos/PictureDtoPaged";
+import { environment } from 'src/environments/environment';
+import { PictureDto } from 'src/app/shared/utility/dtos/PictureDto';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,10 @@ export class AccountPicturesService {
     private httpClient: HttpClient
   ) { }
 
-  getPostedPictures(accId: string, pageSize: number, pageNumber: number): Observable<PictureDtoPaged> {
+  getPostedPictures(accId: string, pageSize: number, pageNumber: number): Observable<PictureDto> {
     return this.httpClient
-      .get<PictureDtoPaged>(
-        `${environment.picturesApiUrl}/account/${accId}/picture/posted`,
+      .get<PictureDto>(
+        `${environment.apiUrl}/account/${accId}/picture/posted`,
         {
           responseType: "json",
           params: new HttpParams()
@@ -26,10 +26,10 @@ export class AccountPicturesService {
       );
   }
 
-  getLikedPictures(accId: string, pageSize: number, pageNumber: number): Observable<PictureDtoPaged> {
+  getLikedPictures(accId: string, pageSize: number, pageNumber: number): Observable<PictureDto> {
     return this.httpClient
-      .get<PictureDtoPaged>(
-        `${environment.picturesApiUrl}/account/${accId}/picture/liked`,
+      .get<PictureDto>(
+        `${environment.apiUrl}/account/${accId}/picture/liked`,
         {
           responseType: "json",
           params: new HttpParams()
@@ -38,6 +38,4 @@ export class AccountPicturesService {
         }
       );
   }
-
-
 }
