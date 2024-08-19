@@ -1,22 +1,22 @@
 <div class="flex">
   <button
-    [disabled]="!isAdmin"
+    [disabled]="isModerator"
     [ngClass]="{
       cssClass: true,
       'm-0 icon-red': true,
-      'cursor-pointer': isAdmin,
-      'icon-hammer': isAdmin,
+      'cursor-pointer': isModerator,
+      'icon-hammer': isModerator,
     }"
     (click)="banUser()"
   >
   </button>
   <button
-    [disabled]="!isAdmin"
+    [disabled]="!isModerator"
     [ngClass]="{
       cssClass: true,
       'm-0 icon-red': true,
-      'cursor-pointer': isAdmin,
-      'icon-trash': isAdmin,
+      'cursor-pointer': isModerator,
+      'icon-trash': isModerator,
     }"
     (click)="deleteImage()"
   >

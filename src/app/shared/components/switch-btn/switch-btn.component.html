@@ -1,0 +1,11 @@
+<div 
+    [ngClass]="flipped ? 'bg-cta-300' : 'bg-surface-600'" 
+    class="w-16 h-9 border border-dark rounded-2xl relative transition-all duration-500 cursor-pointer"
+    (click)="flipped = !flipped; flip.emit(flipped)">
+    
+    <div 
+        [ngStyle]="{'left': flipped ? '30px' : '3px'}" 
+        class="w-7 h-7 bg-surface-200 absolute rounded-2xl transition-all duration-500"
+        style="top: 3px;">
+    </div>
+</div>

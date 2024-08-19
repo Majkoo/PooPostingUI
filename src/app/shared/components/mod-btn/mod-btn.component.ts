@@ -6,25 +6,29 @@ import { AccountService } from 'src/app/services/api/account/account.service';
 import { catchError, tap } from 'rxjs';
 import { PictureService } from 'src/app/services/api/picture/picture.service';
 import { ToastrService } from 'ngx-toastr';
+import { SettingsService } from 'src/app/services/api/settings/settings.service';
 
 @Component({
-  selector: 'pp-mod-btn',
+  selector: 'pp-mod-btns',
   templateUrl: './mod-btn.component.html',
   imports: [CommonModule],
   standalone: true
 })
-export class ModBtnComponent {
+export class ModBtnsComponent {
   @Input({required: true}) pic!: PictureDto;
 
   private authService = inject(AuthService);
   private accountService = inject(AccountService);
   private pictureService = inject(PictureService);
   private toastrService = inject(ToastrService);
+  private settingService = inject(SettingsService);
 
-  isAdmin: boolean | undefined;
+  isModerator: boolean | undefined;
 
   ngOnInit() {
-    this.isAdmin = this.authService.isAdmin;
+    if (this.authService.isModerator && this.settingService.getModeratorButtonsSetting()) {
+      this.isModerator = true
+    }
   }
 
   banUser(){   

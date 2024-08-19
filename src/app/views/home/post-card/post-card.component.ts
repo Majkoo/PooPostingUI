@@ -9,7 +9,7 @@ import {TagComponent} from "../../../shared/components/tag/tag.component";
 import {MiniCommentComponent} from "./mini-comment/mini-comment.component";
 import {OpenQueryModalDirective} from "../../../shared/components/query-modal/open-query-modal.directive";
 import {QueryModalEnum} from "../../../shared/components/query-modal/query-modal.enum";
-import { ModBtnComponent } from 'src/app/shared/components/mod-btn/mod-btn.component';
+import { ModBtnsComponent } from 'src/app/shared/components/mod-btn/mod-btn.component';
 
 @Component({
   selector: 'pp-post-card',
@@ -29,7 +29,7 @@ import { ModBtnComponent } from 'src/app/shared/components/mod-btn/mod-btn.compo
     NgClass,
     DatePipe,
     LikeBtnComponent,
-    ModBtnComponent,
+    ModBtnsComponent,
     TagComponent,
     MiniCommentComponent,
     OpenQueryModalDirective

@@ -30,6 +30,12 @@ export const APP_LAYOUT_ROUTES: Routes = [
     loadComponent: () => import('../../views/liked/liked.component')
       .then(m => m.LikedComponent)
   },
+  {
+    path: 'settings',
+    canActivate: [isLoggedInGuard],
+    loadComponent: () => import('../../views/settings/settings.component')
+      .then(m => m.SettingsComponent)
+  },
   // {
   //   path: "search",
   //   loadChildren: () => import('../view/search/feature/search-shell/search-shell.module')

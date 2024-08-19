@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, AfterViewInit, ChangeDetectorRef, Input } from '@angular/core';
 
 @Component({
   selector: 'pp-easter-egg',
@@ -9,6 +9,7 @@ import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./easter-egg.component.scss']
 })
 export class EasterEggComponent implements AfterViewInit {
+  @Input() playEasterEgg: boolean = false;
   showingAnimation : boolean = false
   dot = {display: "none", left: "2px", top: "3px"}
 
@@ -17,6 +18,11 @@ export class EasterEggComponent implements AfterViewInit {
   ngAfterViewInit(){
     if (Math.random()*1000 == 693){
       this.showEasterEgg()
+    }
+  }
+  ngOnChanges(){
+    if(this.playEasterEgg){
+      this.clickedEgg()
     }
   }
 
@@ -37,6 +43,9 @@ export class EasterEggComponent implements AfterViewInit {
       audio.src = "/assets/sounds/nerdSong.mp3";
       audio.load();
       audio.play();
+      setTimeout(() => {
+        this.showingAnimation = false
+      }, 6000);
     }, 3000);
   }
 }

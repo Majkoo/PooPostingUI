@@ -68,7 +68,7 @@ export class AuthService {
     return this.getJwtData() != null;
   }
 
-  get isAdmin(): boolean {
+  get isModerator(): boolean {
     if (this.isLoggedIn && this.getJwtData()!.roleId == 2 || this.getJwtData()!.roleId == 3) {
       return true;
     }
