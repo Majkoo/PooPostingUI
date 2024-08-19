@@ -7,6 +7,7 @@ theme = {
     '300': '#f1f1f1',
     '400': '#EDEDED',
     '500': "#DBDBDB",
+    '600': "#CCCCCC",
   },
   'primary': {
     '800': '#5A3F29',
@@ -15,13 +16,12 @@ theme = {
   'cta': {
     DEFAULT: '#2B94A6',
     '100': '#EFF6FF',
+    '300': '#2196F3',
     '400': '#1D4ED8'
   },
   'grey': '#A0A0A0',
-  'warning': '#D32F2F',
+  'warning': '#EE0000',
   'dark': '#1E1E1E',
-  'lightBlue': '#EFF6FF',
-  'blue': '#1D4ED8',
 }
 
 module.exports = {

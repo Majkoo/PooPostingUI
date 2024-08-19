@@ -14,6 +14,7 @@ import {PictureService} from "../../../../services/api/picture/picture.service";
 import {extractQueryParams} from "../../../utility/extractQueryParams";
 import {QueryModalEnum} from "../query-modal.enum";
 import {CommentDto} from "../../../utility/dtos/CommentDto";
+import { ModBtnsComponent } from '../../mod-btn/mod-btn.component';
 
 @Component({
   selector: 'pp-view-picture-modal',
@@ -28,6 +29,7 @@ import {CommentDto} from "../../../utility/dtos/CommentDto";
     NgForOf,
     NgClass,
     TagComponent,
+    ModBtnsComponent,
     LikeBtnComponent,
     CommentFormComponent,
     CommentFormComponent,
