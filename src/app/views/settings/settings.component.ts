@@ -14,12 +14,12 @@ import { SettingsService } from 'src/app/services/api/settings/settings.service'
 })
 export class SettingsComponent {
   testSetting: boolean = false
-  isModerator: boolean | undefined;
+  isModeratororAdmin: boolean | undefined;
 
   private authService = inject(AuthService);
   settingsService = inject(SettingsService);
 
   ngOnInit() {
-    this.isModerator = this.authService.isModerator;
+    this.isModeratororAdmin = this.authService.isModeratororAdmin;
   }
 }

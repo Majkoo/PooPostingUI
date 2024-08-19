@@ -35,8 +35,8 @@ export class PictureService {
     return this.httpClient.post<PictureDto>(`${environment.apiUrl}/picture/post`, formData);
   }
 
-  delete(id: string): Observable<String>{
-    return this.httpClient.delete<String>(`${environment.apiUrl}/picture/${id}`) 
+  delete(id: string): Observable<string>{
+    return this.httpClient.delete<string>(`${environment.apiUrl}/picture/${id}`) 
   }
 
   get updatedPicture$(): Observable<PictureDto> {

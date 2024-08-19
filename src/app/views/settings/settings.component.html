@@ -1,13 +1,13 @@
 <pp-setting-option 
     [text]="'Bardzo testowa opcja (nie naciskać)'" 
-    [changeFlipState]="settingsService.getTestingButtonSetting()" 
-    (switchFlipped)="testSetting = $event; settingsService.setTestingButtonSetting($event)">
+    [switchValue]="settingsService.getTestingButtonSetting()" 
+    (valueChanged)="testSetting = $event; settingsService.setTestingButtonSetting($event)">
 </pp-setting-option>
 <pp-easter-egg [playEasterEgg]="testSetting"></pp-easter-egg>
 
 <pp-setting-option 
-    [ngClass]="isModerator ? '' : 'hidden'"
+    [ngClass]="isModeratororAdmin ? '' : 'hidden'"
     [text]="'Show moderator buttons on posts'"
-    [changeFlipState]="settingsService.getModeratorButtonsSetting()" 
-    (switchFlipped)="settingsService.setModeratorButtonsSetting($event)">
+    [switchValue]="settingsService.getModeratorButtonsSetting()" 
+    (valueChanged)="settingsService.setModeratorButtonsSetting($event)">
 </pp-setting-option>

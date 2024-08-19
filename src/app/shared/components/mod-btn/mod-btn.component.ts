@@ -23,11 +23,11 @@ export class ModBtnsComponent {
   private toastrService = inject(ToastrService);
   private settingService = inject(SettingsService);
 
-  isModerator: boolean | undefined;
+  isModeratororAdmin: boolean | undefined;
 
   ngOnInit() {
-    if (this.authService.isModerator && this.settingService.getModeratorButtonsSetting()) {
-      this.isModerator = true
+    if (this.authService.isModeratororAdmin && this.settingService.getModeratorButtonsSetting()) {
+      this.isModeratororAdmin = true
     }
   }
 

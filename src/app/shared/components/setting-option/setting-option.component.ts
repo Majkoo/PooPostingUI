@@ -9,6 +9,6 @@ import { SwitchBtnComponent } from '../switch-btn/switch-btn.component';
 })
 export class SettingOptionComponent {
   @Input({required: true}) text!: string;
-  @Input() changeFlipState: boolean = false;
-  @Output() switchFlipped: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() switchValue: boolean = false;
+  @Output() valueChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 }

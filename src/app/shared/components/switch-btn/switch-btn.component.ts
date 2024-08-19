@@ -8,9 +8,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   imports: [CommonModule]
 })
 export class SwitchBtnComponent {
-  @Input() flipped: boolean = false;
-  @Output() flip: EventEmitter<boolean> = new EventEmitter<boolean>();
-  ngOnInit(){
-    console.log("switch", this.flipped);
-  }
+  @Input() switchValue: boolean = false;
+  @Output() valueChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 }

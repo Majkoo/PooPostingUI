@@ -68,13 +68,8 @@ export class AuthService {
     return this.getJwtData() != null;
   }
 
-  get isModerator(): boolean {
-    if (this.isLoggedIn && this.getJwtData()!.roleId == 2 || this.getJwtData()!.roleId == 3) {
-      return true;
-    }
-    else{
-      return false
-    }
+  get isModeratororAdmin(): boolean {
+    return this.isLoggedIn && this.getJwtData()!.roleId == 2 || this.getJwtData()!.roleId == 3
   }
 
   // verifyJwt(data: VerifyJwtDto): Observable<JwtUserData> {
