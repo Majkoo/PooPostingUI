@@ -1,4 +1,4 @@
-<div class="pp-shadow w-full bg-surface-100 rounded-xl flex flex-col gap-2" *ngIf="pic">
+<div class="pp-shadow w-full bg-surface-100 dark:bg-dark-surface-100 rounded-xl flex flex-col gap-2" *ngIf="pic">
 
   <!--  Image  -->
   <div class="flex rounded-t-xl justify-center items-center cursor-pointer"
@@ -13,14 +13,14 @@
   <div class="flex justify-between items-center px-3">
 
       <a class="flex flex-row justify-between items-center gap-1" routerLink="/account/{{pic.account.id}}">
-        <img class="w-8 h-8 rounded-3xl object-center object-contain" src="{{pic.account.profilePicUrl | urlTransform}}" alt="{{pic.account.nickname}}">
-        <p class="font-bold h-min lh flex justify-center items-center sm:text-xl">{{pic.account.nickname}}</p>
+        <img class="w-8 h-8 rounded-3xl object-center object-contain bg-grey dark:bg-dark-grey" src="{{pic.account.profilePicUrl | urlTransform}}" alt="{{pic.account.nickname}}">
+        <p class="font-bold h-min lh flex justify-center items-center sm:text-xl text-dark dark:text-dark-dark">{{pic.account.nickname}}</p>
       </a>
 
       <div class="flex items-start gap-1">
         <pp-mod-btns [pic]="pic"></pp-mod-btns>
         <pp-like-btn [(pic)]="pic"/>
-        <button class="icon-dark m-0 icon-share">
+        <button class="icon-dark m-0 icon-share text-dark dark:text-dark-dark ">
         </button>
       </div>
 
@@ -50,7 +50,7 @@
     ppOpenQueryModal
     [modalMode]="QueryModalEnum.VIEW_PICTURE"
     [id]="pic.id"
-    class="cursor-pointer bg-surface-100 border-1 rounded-md text-xs text-gray-400 border-grey flex items-center justify-between m-3 mt-1 px-3">
+    class="cursor-pointer bg-surface-100 dark:bg-dark-surface-100 border-1 rounded-md text-xs text-gray-400 border-grey flex items-center justify-between m-3 mt-1 px-3">
     <p>Comment this...</p>
     <span class="icon-vector text text-lg"></span>
   </div>
