@@ -25,15 +25,15 @@
       Posts: {{ acc.pictureCount || 0 }}
     </span>
     <span class="tag">
-      Likes: {{ acc.likeCount || 0 }}
+      Likes: {{ likesCount || 0 }}
     </span>
     <span class="tag">
-      Comments: {{ acc.commentCount || 0 }}
+      Comments: {{ commentsCount || 0 }}
     </span>
   </div>
 
   <div class="grid grid-cols-2 gap-4 mt-2">
-    <pp-post-preview *ngFor="let pic of acc.pictures" [pic]="pic" />
+    <pp-post-preview *ngFor="let pic of pictures" [pic]="pic" />
   </div>
 
 </div>
