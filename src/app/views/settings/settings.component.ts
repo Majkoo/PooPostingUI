@@ -16,8 +16,7 @@ export class SettingsComponent {
   testSetting: boolean = false
   isModeratororAdmin: boolean | undefined;
   
-  constructor(private renderer: Renderer2) {}
-
+  private renderer = inject(Renderer2);
   private authService = inject(AuthService);
   settingsService = inject(SettingsService);
 
