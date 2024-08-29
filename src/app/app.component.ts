@@ -9,8 +9,7 @@ import { SettingsService } from './services/api/settings/settings.service';
 export class AppComponent {
   private spinnerService = inject(SpinnerService);
   private settingsService = inject(SettingsService);
-
-  constructor(private renderer: Renderer2) {}
+  private renderer = inject(Renderer2);
 
   get isLoading() {
     return this.spinnerService.isLoadingBs;

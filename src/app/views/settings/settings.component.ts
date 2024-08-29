@@ -26,8 +26,6 @@ export class SettingsComponent {
   }
 
   changeTheme(){
-    console.log("efwef");
-    
     this.settingsService.getDarkModeSetting() ? 
             this.renderer.addClass(document.body, 'dark') : 
             this.renderer.removeClass(document.body, 'dark')
