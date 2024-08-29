@@ -14,13 +14,18 @@
 }
 .icon-dark {
   margin: 0 !important;
-  @apply icon-fz text-black flex justify-center items-center h-auto
+  @apply icon-fz text-black dark:text-white flex justify-center items-center h-auto
 }
 .icon-red {
   margin: 0 !important;
   @apply icon-fz text-warning dark:text-dark-warning flex justify-center items-center h-auto
 }
-
+.p-dialog-header{ 
+  @apply bg-surface-100 dark:bg-dark-surface-100 p-5 text-dark dark:text-dark-dark
+}
+.p-dialog{
+ @apply pp-shadow
+}
 .m-0 {
   margin: 0 !important;
 }

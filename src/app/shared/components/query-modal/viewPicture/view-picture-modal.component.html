@@ -19,7 +19,7 @@
           <div class="flex flex-col px-4 md:px-3 py-2 pt-3 border-b-1 order-1 md:order-2 md:pt-0">
             <div class="flex gap-3 text-2xl icon-dark">
               <pp-like-btn [(pic)]="pic" />
-              <pp-share-btn></pp-share-btn>
+              <pp-share-btn imageId="{{pic.id}}" creatorName="{{pic.account.nickname}}"></pp-share-btn>
               <pp-mod-btns [pic]="pic"></pp-mod-btns>
               <div class="grow flex justify-end">
                 <span class="icon-setting text-dark dark:text-dark-dark"></span>
