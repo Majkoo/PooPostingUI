@@ -40,7 +40,7 @@ export class ShareBtnComponent {
     window.open(`mailto:?subject=See this poo post on ${environment.appWebUrl}&body=Check out this poo post ${this.postUrl}, created by ${this.creatorName} `);
   }
   shareTelegram(){
-    window.open(`https://t.me/share/url?url=${environment.appWebUrl}&text=Check out this poo post ${this.postUrl}, created by ${this.creatorName}!`);
+    window.open(`https://t.me/share/url?url=${this.postUrl}&text=Check out this poo post, created by ${this.creatorName}!`);
   }
   shareFacebook(){
     window.open(`https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=${this.postUrl}&display=popup&ref=plugin&src=share_button`);
