@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 theme = {
+  // Light-mode colors
   'surface': {
     '100': '#FFFFFF',
     '200': '#FBFBFB',
@@ -22,9 +23,34 @@ theme = {
   'grey': '#A0A0A0',
   'warning': '#EE0000',
   'dark': '#1E1E1E',
+
+
+  // Dark-mode colors
+  'dark-surface': {
+    '100': '#222222',
+    '200': '#444444',
+    '300': '#666666',
+    '400': '#888888',
+    '500': "#AAAAAA",
+    '600': "#CCCCCC",
+  },
+  'dark-primary': {
+    '800': '#666666',
+    '900': '#666666'
+  },
+  'dark-cta': {
+    DEFAULT: '#2B94A6',
+    '100': '#80b7ff',
+    '300': '#1a7dff',
+    '400': '#0063e6'
+  },
+  'dark-grey': '#777777',
+  'dark-warning': '#EE0000',
+  'dark-dark': '#DDDDDD',
 }
 
 module.exports = {
+  darkMode: 'class',
   content: [
     "./src/**/*.{html,ts}", // add this line
   ],

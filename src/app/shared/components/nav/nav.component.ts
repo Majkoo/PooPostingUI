@@ -52,7 +52,7 @@ import { Component } from '@angular/core';
   styles: [`
     nav {
       @apply
-      bottom-0 fixed w-full z-30 bg-surface-100 px-4
+      bottom-0 fixed w-full z-30 bg-surface-100 dark:bg-dark-surface-100 px-4
       rounded-t-xl
     }
     .nav {

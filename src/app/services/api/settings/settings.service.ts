@@ -28,4 +28,16 @@ export class SettingsService {
     }
     return localStorage.getItem("TestingButtonSetting") == "true"
   }
+
+  setDarkModeSetting(setting: boolean){
+    localStorage.setItem("DarkModeSetting", setting.toString())
+  }
+
+  getDarkModeSetting(){
+    let value = localStorage.getItem("DarkModeSetting")
+    if (value == null) {
+      this.setDarkModeSetting(false)
+    }
+    return localStorage.getItem("DarkModeSetting") == "true"
+  }
 }

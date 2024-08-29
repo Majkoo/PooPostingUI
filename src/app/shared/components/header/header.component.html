@@ -1,4 +1,4 @@
-<header class="w-full fixed bg-surface-100 pp-shadow rounded-b-2xl top-0">
+<header class="w-full fixed bg-surface-100 dark:bg-dark-surface-100 pp-shadow rounded-b-2xl top-0">
 
   <div class="cont px-4 sm:px-0 h-14 flex items-center justify-between">
 
@@ -17,7 +17,7 @@
             Welcome back, <br> <b>{{acc.nickname}}</b>
           </p>
           <img
-            class="rounded-full w-14 h-14 aspect-square p-2"
+            class="rounded-full w-10 h-10 mx-2 aspect-square dark:bg-dark-grey"
             src="{{acc.profilePicUrl | urlTransform}}"
             alt="{{acc.nickname}}"/>
         </div>
@@ -26,7 +26,7 @@
           routerLinkActive="link-active">
 
           <img
-          class="rounded-full w-14 h-14 aspect-square p-2 cursor-pointer"
+          class="rounded-full w-10 h-10 aspect-square mx-2 mt-1 cursor-pointer dark:bg-dark-grey"
           src="/assets/images/adminlogo.png"
           [ngClass]="acc.roleId == '1' ? 'hidden' : ''"
           alt="'admin panel'"/>
