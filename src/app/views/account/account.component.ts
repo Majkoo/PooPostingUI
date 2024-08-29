@@ -101,7 +101,6 @@ export class AccountComponent implements OnInit, OnDestroy {
       this.enableScrollListener = false;
       this.pageNumber += 1;
       this.scrollSubject.next(null);
-      console.log("Aaaaa");
     }
   }
 
