@@ -20,8 +20,7 @@
       <div class="flex items-start gap-1">
         <pp-mod-btns [pic]="pic"></pp-mod-btns>
         <pp-like-btn [(pic)]="pic"/>
-        <button class="icon-dark m-0 icon-share text-dark dark:text-dark-dark ">
-        </button>
+        <pp-share-btn imageId="{{pic.id}}" creatorName="{{pic.account.nickname}}"></pp-share-btn>
       </div>
 
     </div>

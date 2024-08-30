@@ -15,6 +15,7 @@ import {extractQueryParams} from "../../../utility/extractQueryParams";
 import {QueryModalEnum} from "../query-modal.enum";
 import {CommentDto} from "../../../utility/dtos/CommentDto";
 import { ModBtnsComponent } from '../../mod-btn/mod-btn.component';
+import { ShareBtnComponent } from '../../share-btn/share-btn.component';
 
 @Component({
   selector: 'pp-view-picture-modal',
@@ -31,6 +32,7 @@ import { ModBtnsComponent } from '../../mod-btn/mod-btn.component';
     TagComponent,
     ModBtnsComponent,
     LikeBtnComponent,
+    ShareBtnComponent,
     CommentFormComponent,
     CommentFormComponent,
     CommentsDisplayComponent,
