@@ -14,13 +14,12 @@
 }
 .icon-dark {
   margin: 0 !important;
-  @apply icon-fz text-black flex justify-center items-center h-auto
+  @apply icon-fz text-black dark:text-white flex justify-center items-center h-auto
 }
 .icon-red {
   margin: 0 !important;
   @apply icon-fz text-warning dark:text-dark-warning flex justify-center items-center h-auto
 }
-
 .m-0 {
   margin: 0 !important;
 }

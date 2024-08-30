@@ -21,19 +21,19 @@ import { TextButtonComponent } from './shared/components/text-button/text-button
     AppComponent,
     SpinnerComponent,
   ],
-    imports: [
-      RouterModule,
-      BrowserModule,
-      BrowserAnimationsModule,
-      AppRoutingModule,
-      HttpClientModule,
-      ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-      LayoutModule,
-      NgOptimizedImage,
-      UrlTransformModule,
-      TextButtonComponent,
-      EasterEggComponent
-    ],
+  imports: [
+    RouterModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    LayoutModule,
+    NgOptimizedImage,
+    UrlTransformModule,
+    TextButtonComponent,
+    EasterEggComponent
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -44,7 +44,7 @@ theme = {
     '300': '#1a7dff',
     '400': '#0063e6'
   },
-  'dark-grey': '#777777',
+  'dark-grey': '#222222',
   'dark-warning': '#EE0000',
   'dark-dark': '#DDDDDD',
 }

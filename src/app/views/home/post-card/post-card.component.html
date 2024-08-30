@@ -27,20 +27,20 @@
     </div>
 
   <!--  Description  -->
-  <p class="text-md px-3" *ngIf="pic.description">
+  <p class="text-md px-3 text-dark dark:text-dark-dark" *ngIf="pic.description">
     {{pic.description}}
   </p>
 
   <!--  Tags  -->
-  <p class="flex gap-2 px-3" *ngIf="pic.tags?.length">
+  <p class="flex gap-2 px-3 text-dark dark:text-dark-dark" *ngIf="pic.tags?.length">
     <pp-tag *ngFor="let tag of pic.tags" [tag]="tag"/>
   </p>
 
   <!--  Comments  -->
   <ng-container  *ngIf="pic.commentCount && pic.comments?.length">
-    <p class="font-bold text-lg px-3">Comments</p>
+    <p class="font-bold text-lg px-3 text-dark dark:text-dark-dark">Comments</p>
 
-    <div class="flex flex-col gap-2 px-3">
+    <div class="flex flex-col gap-2 px-3 text-dark dark:text-dark-dark">
       <pp-mini-comment [comm]="pic.comments[0]" />
     </div>
   </ng-container>
