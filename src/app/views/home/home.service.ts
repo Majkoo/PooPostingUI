@@ -10,6 +10,7 @@ import {PictureDto} from "../../shared/utility/dtos/PictureDto";
 @Injectable({
   providedIn: 'root'
 })
+// todo: rename to pictureTrackingService
 export class HomeService {
   public triggerCall = new BehaviorSubject<null>(null);
   public canFetchPictures = true;
@@ -23,6 +24,9 @@ export class HomeService {
 
   private picturesAggregated: PictureDto[] = [];
 
+  // todo: introduce accountPageScroll
+
+  // todo: rename to homepageScroll
   scrollWithPictures$ = this.triggerCall
     .pipe(
       switchMap(() => this.getPictures(this.pageSize, this.pageNumber))
@@ -40,6 +44,7 @@ export class HomeService {
       startWith(null)
     );
 
+  // todo: either handle newly introduced accountPage scroll or do it in a separate rxjs stream
   pictures$ = combineLatest([
     this.scrollWithPictures$,
     this.likedPicture$,
@@ -55,7 +60,11 @@ export class HomeService {
          ]) => {
       return pictures.map((picture) => {
         if (likedPicture && picture.id === likedPicture.id) {
-          return { ...picture, isLiked: likedPicture.isLiked };
+          return {
+            ...picture,
+            isLiked: likedPicture.isLiked,
+            likeCount: likedPicture.likeCount
+          };
         }
         if (updatedPicture && picture.id === updatedPicture.id) {
           return { ...updatedPicture };
@@ -69,6 +78,7 @@ export class HomeService {
   );
 
 
+  // todo: consider using separate method for account pictures, non obligatory
   private getPictures = (pageSize: number, pageNumber: number) => {
     return this.pictureService.get(pageSize, pageNumber).pipe(
       map((res: PagedResult<PictureDto>) => {
