@@ -70,7 +70,7 @@ export class ViewPictureModalComponent implements OnInit {
   }
 
   private updateTemplateDisplay(): void {
-    this.isMobile = window.innerWidth < 768;
+    this.isMobile = window.innerWidth < 769;
   }
 
   onCommentAdd(comment: CommentDto) {
